@@ -1,25 +1,21 @@
-﻿@{
+﻿
+@{
   string _classSearch = Session["idEventList"] == null ? "search" : "filterListEventsProducts";
   string _classMiniCart = Session["idEventList"] == null && Session["EventList"] == null ? "mini-cart" : "mini-cart-list-event";
 }
 <div class="ui container fluid _header">
     <div class="ui container">
-        <div class="ui middle aligned four column centered grid">
+        <div class="ui middle aligned three column centered grid">
             <div class="row">
-                <div class="ui five wide mobile five wide tablet four wide computer column">
+                <div class="ui four wide mobile five wide tablet four wide computer column"> 
+                   @Html.Action("Menu", "Home")
+                </div>
+                <div class="ui center aligned eight wide mobile six wide tablet seven wide computer column">                   
                     <a href="/Home" title="Página Inicial">
-                        <img class="ui middle aligned image logo" src="/assets/image/logo/logo.png" alt="@LojaCorp.Control.Company._Company.FantasyName" title="@LojaCorp.Control.Company._Company.FantasyName">
+                        <img class="ui middle aligned image logo" src="/assets/image/logo/logo.svg" alt="@LojaCorp.Control.Company._Company.FantasyName" title="@LojaCorp.Control.Company._Company.FantasyName">
                     </a>
                 </div>
-                <div class="ui center aligned six wide tablet seven wide computer column searchcolumn">
-                    <div class="ui category @_classSearch">
-                        <div class="ui icon input fluid">
-                            <input class="prompt" type="text" placeholder="Buscar...">
-                            <i class="search icon"></i>
-                        </div>
-                        <div class="results"></div>
-                    </div>
-                </div>
+                <div class="ui center aligned four wide mobile two wide tablet two wide computer column">
                 @{
                     bool isb2b = Session["segment"] != null && Session["segment"].ToString() == "b2b" ? true : false;
                     DomainAssistedSale.Entities.Seller _assistedSale = (DomainAssistedSale.Entities.Seller)Session["Seller"];
@@ -27,48 +23,88 @@
 
                     if (!isb2b && !isAssistedSale)
                     {
-                        <div class="ui center aligned two wide mobile two wide tablet two wide computer column">
+                        
                             <div>
-                                <a href="/Customer/WishList"><i class="icon heart large red" style="position: absolute;"></i></a>
-                                @{
-                                    if (Request.Cookies["WishList"] == null)
-                                    {
-                                        @Html.Action("LoadWishListCookie", "Customer")
-                                    }
-
-                                    List<DomainCustomer.Entities.Wishlist.WishlistItem>
-                                        wishList = Newtonsoft.Json.JsonConvert.DeserializeObject<List<DomainCustomer.Entities.Wishlist.WishlistItem>>(Request.Cookies["WishList"] != null ? HttpUtility.UrlDecode(Request.Cookies["WishList"].Value) : string.Empty);
-                                    int wishListItemsCount = wishList != null ? wishList.Count() : 0;
-                                }
-                                <a id="wishListCount" href="/Customer/WishList" class="ui circular label">@wishListItemsCount</a>
+                               @if ((Session["UserAuthenticated"] == null || (Convert.ToBoolean(Session["Guest"]) == true)) && Session["Seller"] == null)
+                        {
+                            <div class="item">
+                                <a href="/customer" title="Área do Cliente">
+                                    <i class="user icon regular"></i>                                   
+                                </a>
                             </div>
-                        </div>
+                        }
+                        @if ((Session["UserAuthenticated"] != null) && (Convert.ToBoolean(Session["Guest"]) == false))
+                        {
+                            var userAuthenticated = (DomainCustomer.Entities.Customer)Session["UserAuthenticated"];
+
+                            Char delimiter = ' ';
+                            String[] nickName = userAuthenticated.Name.Split(delimiter);
+
+                            <div class="ui inline item dropdown pointing top right">
+                                <div class="text regular black">
+                                    <i class="user icon regular"></i>
+                                    <span class="text">Olá <span id="userNameCommon">@nickName[0]</span></span>
+                                </div>
+                                <div class="menu">
+                                    <a href="/customer" class="item" title="Minha Conta"><i class="options icon"></i>Minha Conta</a>
+                                    <a href="/order" class="item" title="Meus Pedidos"><i class="shopping bag icon"></i>Meus Pedidos</a>
+                                    <a href="/customer/logout" class="item" title="Sair"><i class="sign out icon"></i>Sair</a>
+                                </div>
+                            </div>
+                        }
+                        else if ((Session["Seller"] != null))
+                        {
+                            var userAuthenticated = (DomainAssistedSale.Entities.Seller)Session["Seller"];
+
+                            Char delimiter = ' ';
+                            String[] nickName = userAuthenticated.Name.Split(delimiter);
+
+                            <div class="ui inline item dropdown pointing top right">
+                                <div class="text regular black">
+                                    <i class="rocket icon regular"></i>
+                                    <span class="text">Olá <span title="@userAuthenticated.Name.ToString()" id="userNameCommon">@nickName[0]</span></span>
+                                </div>
+                                <div class="menu">
+                                    <a href="/assistedsale" class="item" title="Minha Conta"><i class="options icon"></i>Meus Clientes</a>
+                                    <a href="/assistedsale/logout" class="item" title="Sair"><i class="sign out icon"></i>Sair</a>
+                                </div>
+                            </div>
+                        }
+                        @if((Session["Seller"] == null)) {
+                            @Html.Action("B2BIsActived", "Company", null)
+                        }
+                            </div>
+                        
                     }
                 }
-                <div class="ui right aligned eight wide mobile three wide tablet three wide computer column">
                     <div id="cartButton" class="ui labeled button cartbutton no margin bottom @_classMiniCart" tabindex="0" data-segment="@(Session["segment"] != null ? Session["segment"] : "b2c")">
-                        <div class="ui basic primary button ">
-                            <i class="cart icon"></i>
-                            <span>@(Session["idEventList"] == null && Session["EventList"] == null ? "Meu Carrinho" : "Minha Lista")</span>
+                        <div class="cart-button " title="@(Session["idEventList"] == null && Session["EventList"] == null ? "Meu Carrinho" : "Minha Lista")">
+                            <a class="total-itens" id="total_itens_card"></a>
+                            <svg width="19" height="22" viewBox="0 0 19 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18.9964 21.2769L17.328 5.35381C17.293 5.02046 17.0126 4.76735 16.6781 4.76735H13.5421V4.05081C13.5421 1.81728 11.7288 0 9.50008 0C7.2712 0 5.45784 1.81728 5.45784 4.05081V4.76735H2.32187C1.9874 4.76735 1.70703 5.02046 1.67203 5.35381L0.00354731 21.2769C-0.0157134 21.4614 0.0440785 21.6455 0.167849 21.7835C0.291788 21.9213 0.468317 22 0.653387 22H18.3464C18.5317 22 18.7082 21.9213 18.832 21.7835C18.9561 21.6455 19.0157 21.4614 18.9964 21.2769ZM6.76456 4.05081C6.76456 2.53935 7.99172 1.30954 9.50008 1.30954C11.0083 1.30954 12.2354 2.53935 12.2354 4.05081V4.76735H6.76456V4.05081ZM1.37893 20.6905L2.91024 6.07689H5.45784V7.51987C5.45784 7.88141 5.75044 8.17464 6.1112 8.17464C6.47196 8.17464 6.76456 7.88141 6.76456 7.51987V6.07689H12.2354V7.51987C12.2354 7.88141 12.528 8.17464 12.8888 8.17464C13.2496 8.17464 13.5421 7.88141 13.5421 7.51987V6.07689H16.0898L17.6211 20.6905H1.37893Z" fill="black"/>
+                            </svg>
                         </div>
-                        <a class="ui left pointing primary label" id="total_itens_card"></a>
+                        
                     </div>
-                    <div class="ui searchMobile mobile only">
-                        <div class="ui button icon centered">
-                            <i class="search icon"></i>
-                        </div>
-                        <div class="ui blocoBusca @_classSearch">
-                            <div class="ui input fluid blocoBuscaContainer">
-                                <input class="prompt" type="text" placeholder="Buscar...">
-                                <i class="search icon search-results"></i>
-                                <i class="close icon disabled" id="closeResultsMobile"></i>
-                            </div>
-                            <div class="results"></div>
-                        </div>
-                    </div>
-                </div>
+                </div>                
             </div>
         </div>
     </div>
 </div>
-
+<div class="ui container">
+    <div class="row">
+            <div class="ui searchMobile mobile only">
+                <div class="ui button icon centered hide mobile">
+                    <i class="search icon"></i>
+                </div>
+                <div class="ui blocoBusca @_classSearch">
+                    <div class="ui input fluid blocoBuscaContainer">
+                        <input class="prompt" type="text" placeholder="Buscar...">
+                        <i class="search icon search-results"></i>
+                        <i class="close icon disabled" id="closeResultsMobile"></i>
+                    </div>
+                    <div class="results"></div>
+                </div>
+            </div>
+     </div>   
+</div>
