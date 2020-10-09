@@ -1,122 +1,123 @@
-.newsletter-bar {
-	padding-bottom: 10px;
-	background: #333;
-	position: relative;
+.footer-divider {
+    margin: 30px 0 0 0;
 
-	i.envelope {
-		float: left;
-		margin-right: 5px;
-		font-size: 3em;
-		color: #fff;
-		line-height: 40px;
-	}
+    & > .container {
+        display: flex;
+        align-items: center;
+    }
 
-	h4.header {
-		color: #fff;
-		font-size: 18px;
-		font-weight: 700;
-		text-transform: uppercase;
-		border-right: 1px solid lighten($secondary-color, 30);
-		padding-right: 15px;
-		margin: 0;
-		float: left;
-		line-height: 40px;
+    svg {
+        width: 30px;
+        margin: 0 20px;
+    }
 
-		@media screen and (max-width: $mobile-bp) {
-			border:0;
-			padding-right: 0;
-		}
-	}
-
-	span.text {
-		color: #999;
-		font-size: 12px;
-	}
-
-
-	.inline.fields {
-		-webkit-box-pack: center;
-		-ms-flex-pack: center;
-		justify-content: center;
-
-		.field {
-			@media screen and (max-width: $mobile-bp) {
-				padding-right: 0 !important;
-			}
-		}
-
-	}
-
-
-	.inline {
-		>.icon.input {
-			@media screen and (max-width: $mobile-bp) {
-				display:table;
-			}
-		}
-
-		.textNews {
-			@media screen and (min-width: $tablet-bp-min) and (max-width: $tablet-bp-max) {
-				max-width: 180px;
-
-			}
-
-			@media screen and (max-width: $mobile-bp) {
-				margin: 10px auto !important;
-				padding:0 !important;
-			}
-		}
-
-		#email_news {
-			background: #fff;
-			font-size: 12px;
-			color: #666666;
-
-
-			@media screen and (max-width: $mobile-bp) {
-				max-width: 200px;
-
-			}
-
-
-		}
-
-		i.mail.icon {
-			color: $secondary-color;
-			opacity: 1 !important;
-
-			@media screen and (max-width: $mobile-bp) {
-				top: 16px;
-				height:initial;
-			}
-		}
-
-		#btn_news {
-			margin-left: 5px;
-			color: #ffffff;
-			text-transform: uppercase;
-			background: lighten($secondary-color , 20);
-			font-size: 13px;
-
-			@media screen and (max-width: $mobile-bp) {
-				width: 100%;
-				margin:0 auto;
-			}
-		}
-
-
-	}
-
+    .line {
+        flex: 1;
+        width: 100%;
+        height: 2px;
+        background: #eee;
+        display: inline-block;
+    }
 }
 
-.footer-wrap{
-	position: absolute;
-	bottom: 0px;
+.newsletter-bar {
+    position: relative;
+
+    .ui.form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    h4 {
+        color: #333;
+        font-size: 22px;
+        font-weight: 400;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    span.text {
+        color: #999;
+        font-size: 12px;
+    }
+
+    .inline.fields {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 1px solid #eee;
+        max-width: 350px;
+        margin: 0 auto !important;
+
+        .field {
+            @media screen and (max-width: $mobile-bp) {
+                padding-right: 0 !important;
+            }
+        }
+    }
+
+    .textNews {
+        text-transform: uppercase;
+        text-align: center;
+        color: #333;
+
+        @media screen and (min-width: $tablet-bp-min) and (max-width: $tablet-bp-max) {
+            max-width: 180px;
+        }
+
+        @media screen and (max-width: $mobile-bp) {
+            margin: 10px auto !important;
+            padding: 0 !important;
+        }
+    }
+
+    .inline {
+        #email_news {
+            background: #fff;
+            font-size: 12px;
+            color: #666666;
+            border: 0;
+            flex: 1;
+
+            @media screen and (max-width: $mobile-bp) {
+                max-width: 200px;
+            }
+        }
+
+        #btn_news {
+            margin-left: 5px;
+            color: #333;
+            font-weight: 400;
+            text-transform: uppercase;
+            background: transparent;
+            font-size: 13px;
+            border: 0;
+
+            @media screen and (max-width: $mobile-bp) {
+                width: 100%;
+                margin: 0 auto;
+            }
+        }
+    }
+}
+
+.footer-wrap {
+    position: absolute;
+    bottom: 0px;
 }
 
 .footer {
-    background-color: $secondary-color !important;
+    background-color: #fff !important;
     padding-bottom: 20px !important;
+
+    h4 {
+        font-size: 22px !important;
+        font-weight: 300 !important;
+        color: #555555 !important;
+    }
+    i.icon {
+        color: #555555 !important;
+    }
 
     > .ui.container {
         > .ui.grid {
@@ -129,7 +130,7 @@
     .listMobile {
         .column {
             @media screen and (max-width: $mobile-bp) {
-                border-bottom: 1px solid lighten($secondary-color, 10);
+                border-bottom: 1px solid #e5e5e5;
             }
         }
     }
@@ -149,7 +150,6 @@
             font-size: 1em;
         }
     }
-
 
     socialbar {
         margin-top: 10px;
@@ -210,8 +210,6 @@
             }
         }
 
-
-
         &.selos a img {
             max-height: 100px;
             display: inline-block;
@@ -242,10 +240,7 @@
         }
     }
 
-
     .ui.form {
-
-
         > .inline {
             > .icon.input {
                 @media screen and (max-width: $mobile-bp) {
@@ -285,84 +280,79 @@
 }
 
 .subFooter {
-	background-color: $secondary-color;
-	border-top:1px solid lighten($secondary-color,10);
+    @media screen and (max-width: $mobile-bp) {
+        text-align: center;
+    }
 
-	@media screen and (max-width: $mobile-bp) {
-		text-align: center;
-	}
+    .menu_subfooter {
+        margin-bottom: 1em;
 
-	.menu_subfooter {
-		margin-bottom: 1em;
+        a.submenu {
+            padding: 0.42857143em 0.84285714em;
+            color: white;
 
-		a.submenu {
-			padding: .42857143em 0.84285714em;
-			color: white;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
 
-			&:hover {
-				text-decoration: underline;
-			}
-		}
-	}
+    .textoEmpresa {
+        text-align: center;
+        background: #dedede;
+        color: #333;
 
-	.textoEmpresa {
-		text-align: center;
+        > h6 {
+            color: #333;
+            font-size: 12px;
+            font-weight: normal;
+            margin: 0 0 10px 0;
+            display: inline-block;
+        }
+        > address {
+            color: #333;
+            font-size: 12px;
+            font-weight: normal;
+            font-style: normal;
+            display: inline-block;
+        }
+    }
 
-		>h6 {
-			color:#fff;
-			font-size:12px;
-			font-weight: normal;
-			margin:0 0 10px 0;
-			display: inline-block;
-		}
-		> address {
-			color:#fff;
-			font-size:12px;
-			font-weight: normal;
-			font-style: normal;
-			display: inline-block;
-		}
-	}
-
-	.ui.tiny.images {
-		@media screen and (max-width: $mobile-bp) {
-			text-align: center;
-		}
-	}
-
-
+    .ui.tiny.images {
+        @media screen and (max-width: $mobile-bp) {
+            text-align: center;
+        }
+    }
 }
 
-.jetBrand{
-	height: 35px;
-	text-align: center;
-	padding: 0px !important;
-	background: black !important;
+.jetBrand {
+    height: 35px;
+    text-align: center;
+    padding: 0px !important;
+    background: black !important;
 
-	img{
-		height: 25px;
-		margin:5px;
-	}
+    img {
+        height: 25px;
+        margin: 5px;
+    }
 }
-#seloEbit{
-	display: inline-block !important;
-	width:84px;
-	@media screen and (max-width: $mobile-bp) {
-		float:none;
-		margin: 0;
-		width: auto;
-	}
-
+#seloEbit {
+    display: inline-block !important;
+    width: 84px;
+    @media screen and (max-width: $mobile-bp) {
+        float: none;
+        margin: 0;
+        width: auto;
+    }
 }
 #jetLogo {
-	height: 57px;
+    height: 57px;
 
-	.st0 {
-		fill: rgba(255, 255, 255, 1);
+    .st0 {
+        fill: rgba(255, 255, 255, 1);
+    }
 
-	}
-
-	.st1 {
-		fill: rgba(255,0, 0, 1);
-	}
+    .st1 {
+        fill: rgba(255, 0, 0, 1);
+    }
 }

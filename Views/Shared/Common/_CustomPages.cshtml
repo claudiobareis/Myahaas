@@ -9,8 +9,8 @@
 @foreach (var itemTitle in Model)
 {
   <div class="column">
-    <h4 class="ui inverted header">@itemTitle.Name <i class="ui icon chevron right mobile only"></i></h4>
-    <div class="ui inverted link list">
+    <h4 class="ui header">@itemTitle.Name <i class="ui icon chevron right mobile only"></i></h4>
+    <div class="ui link list">
       @foreach (var itemPage in itemTitle.CustomPagesContent)
       {
         <a href="/institucional/@itemTitle.IdCustomPage/@itemPage.IdCustomPageContent" class="item" title="@itemPage.Name"><h5>@itemPage.Name</h5></a>

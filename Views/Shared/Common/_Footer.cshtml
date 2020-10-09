@@ -1,34 +1,36 @@
 ﻿@{
     List<DomainSocialNetwork.Entities.SocialNetwork> redesSociais = Session["SocialNetworkLinks"] != null ? (List<DomainSocialNetwork.Entities.SocialNetwork>)Session["SocialNetworkLinks"] : new List<DomainSocialNetwork.Entities.SocialNetwork>();
 }
-
+<div class="footer-divider">
+<div class="ui container">
+<div class="line"></div>
+<svg width="31" height="19" viewBox="0 0 31 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M29.3882 9.73973C28.7766 10.2832 28.0067 10.6231 27.1878 10.7112C27.6596 10.1105 28.1844 9.55204 28.7559 9.04226C29.4135 8.46933 30.2735 8.76824 29.3882 9.73973ZM21.143 17.661C19.3151 17.0692 17.4015 16.7747 15.4775 16.7892C13.5535 16.7747 11.6399 17.0692 9.81204 17.661C8.81433 15.6835 7.53701 13.8552 6.0182 12.2307C7.31515 12.6279 8.65783 12.8622 10.0144 12.9282C11.1211 12.8808 12.1989 12.5649 13.1519 12.0087C14.105 11.4525 14.9038 10.6731 15.4775 9.73973C16.063 10.6546 16.867 11.4144 17.8193 11.9528C18.7716 12.4912 19.8432 12.7919 20.9406 12.8285C22.2972 12.7629 23.6399 12.5285 24.9368 12.1311C23.408 13.7937 22.1303 15.6646 21.143 17.6859V17.661ZM14.6428 3.73647C14.6428 1.54441 15.2499 0.846933 15.4269 0.846933C15.604 0.846933 16.211 1.54441 16.211 3.73647C16.1932 5.05443 15.9184 6.35675 15.4016 7.57258C14.8854 6.35656 14.6107 5.05436 14.5923 3.73647H14.6428ZM1.56676 9.73973C0.681532 8.74333 1.56676 8.46933 2.19907 9.04226C2.77062 9.55204 3.29537 10.1105 3.76719 10.7112C2.9483 10.6231 2.17838 10.2832 1.56676 9.73973ZM30.2988 7.87149C28.6042 6.92492 26.7578 9.26644 25.4932 11.1347C24.044 11.5388 22.5478 11.7565 21.0418 11.7823C20.0498 11.7467 19.0834 11.4626 18.2337 10.9571C17.3841 10.4515 16.6792 9.74107 16.1857 8.89279C16.9781 7.34419 17.4183 5.64408 17.4756 3.91084C17.4756 1.41986 16.7421 0 15.604 0C14.4658 0 13.7323 1.5195 13.7323 3.91084C13.7896 5.64408 14.2298 7.34419 15.0222 8.89279C14.523 9.75984 13.8037 10.4843 12.9346 10.9952C12.0656 11.5061 11.0768 11.7859 10.065 11.8072C8.55898 11.7815 7.06273 11.5638 5.61352 11.1596C4.3489 9.29135 2.50257 6.94983 0.807985 7.8964C-0.886595 8.84297 0.42862 10.5617 1.61736 11.2094C2.54683 11.6819 3.54508 12.0097 4.57654 12.1809C5.0557 12.65 5.50347 13.1493 5.91703 13.6755C7.19489 15.1828 8.25068 16.8599 9.05326 18.6574C9.08097 18.7249 9.12204 18.7863 9.17408 18.8379C9.22612 18.8896 9.28809 18.9305 9.35637 18.9584C9.42465 18.9862 9.49787 19.0003 9.57176 19C9.64565 18.9996 9.71873 18.9848 9.78674 18.9564C11.6218 18.281 13.5694 17.9515 15.5281 17.9849C17.4868 17.9515 19.4344 18.281 21.2694 18.9564C21.3374 18.9848 21.4105 18.9996 21.4844 19C21.5583 19.0003 21.6315 18.9862 21.6998 18.9584C21.7681 18.9305 21.83 18.8896 21.8821 18.8379C21.9341 18.7863 21.9752 18.7249 22.0029 18.6574C22.8055 16.8599 23.8613 15.1828 25.1391 13.6755C25.5509 13.1478 25.9988 12.6485 26.4796 12.1809C27.5104 12.007 28.5083 11.6794 29.4388 11.2094C30.6276 10.5617 31.8163 8.71842 30.2482 7.8964" fill="#E5E5E5"/>
+</svg>
+<div class="line"></div>
+</div>
+</div>
 <div class="ui container fluid newsletter-bar">
     <div class="ui container">
         <div class="ui grid middle aligned">
             <div class="row stackable">
                 <div class="column">
                     <div class="ui form">
+                        <h4>Newsletter</h4>
+                        <div class="field textNews">
+                            <span class="text">
+                                Cadastre seu email e ganhe 10% na primeira compra
+                            </span>
+                        </div>
                         <div class="inline fields margin none">
                             <div class="field">
-                                <span>
-                                    <i class="icon envelope"></i>
-                                    <h4 class="header">Newsletter</h4>
-                                </span>
-                            </div>
-                            <div class="field textNews">
-                                <span class="text">
-                                    Cadastre seu e-mail e receba novidades e promoções.
-                                </span>
-                            </div>
-                            <div class="field">
-                                <div class="ui left icon input">
-                                    <i class="mail icon"></i>
+                                <div class="ui input">
                                     <input type="text" placeholder="seu@email.com.br" id="email_news">
                                 </div>
                             </div>
                             <div class="field">
                                 <button class="ui button red" id="btn_news">
-                                    Cadastrar
+                                    Ok
                                 </button>
                             </div>
                         </div>
@@ -41,63 +43,11 @@
 
 <div class="ui container fluid vertical segment footer">
     <div class="ui container">
-        <div class="ui four column stackable inverted equal height grid">
+        <div class="ui four column stackable equal height grid">
             <div class="ten wide table six wide computer column">
                 <div class="ui grid stackable">
                     <div class="row two column no padding listMobile">
                         @Html.Action("CustomPages", "Home")
-                        <div class="column eight wide tablet sixteen wide computer margin top large mobile-hide">
-                            <h4 class="ui inverted header">Siga nos</h4>
-                            <socialbar>
-                                @if (redesSociais.Find(f => f.Identifier == "facebook") != null)
-                                {
-                                    <a class="text color white" href="@redesSociais.Find(f => f.Identifier == "facebook").Content" target="_blank">
-                                        <i class="facebook icon"></i>
-                                    </a>
-                                }
-                                @if (redesSociais.Find(f => f.Identifier == "instagram") != null)
-                                {
-                                    <a class="text color white" href="@redesSociais.Find(f => f.Identifier == "instagram").Content" target="_blank">
-                                        <i class="instagram icon"></i>
-                                    </a>
-                                }
-                                @if (redesSociais.Find(f => f.Identifier == "twitter") != null)
-                                {
-                                    <a class="text color white" href="@redesSociais.Find(f => f.Identifier == "twitter").Content" target="_blank">
-                                        <i class="twitter icon"></i>
-                                    </a>
-                                }
-                                @if (redesSociais.Find(f => f.Identifier == "youtube") != null)
-                                {
-                                    <a class="text color white" href="@redesSociais.Find(f => f.Identifier == "youtube").Content" target="_blank">
-                                        <i class="youtube icon"></i>
-                                    </a>
-                                }
-                                @if (redesSociais.Find(f => f.Identifier == "google plus") != null)
-                                {
-                                    <a class="text color white" href="@redesSociais.Find(f => f.Identifier == "google plus").Content" target="_blank">
-                                        <i class="google plus icon"></i>
-                                    </a>
-                                }
-                                @if (redesSociais.Find(f => f.Identifier.ToUpper() == "WHATSAPP") != null)
-                                {
-                                    string urlWhasapp = HttpContext.Current.Request.Url.ToString();
-                                    if (urlWhasapp.Contains("?"))
-                                    {
-                                        urlWhasapp = urlWhasapp.Split('?')[0];
-                                    }
-                                    <a class="text color white" href="https://api.whatsapp.com/send?text=@urlWhasapp" target="_blank" title="WHATSAPP">
-                                        <i class="whatsapp icon"></i>
-                                    </a>
-                                }
-                                @if (redesSociais.Find(f => f.Identifier.ToUpper() == "BLOGER") != null)
-                                {
-                                    <a class="text color white" href="@redesSociais.Find(f => f.Identifier == "bloger").Content" target="_blank" title="Blogger">
-                                        <i class="wpforms icon"></i>
-                                    </a>
-                                }
-                            </socialbar>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -107,8 +57,8 @@
                     <div class="row one column no padding listMobile">
                         @Html.Action("GetList", "EventList")
                         <div class="column">
-                            <h4 class="ui inverted header">Central de Relacionamento <i class="ui icon chevron right mobile only"></i></h4>
-                            <div class="ui inverted link list">
+                            <h4 class="ui header">Central de Relacionamento <i class="ui icon chevron right mobile only"></i></h4>
+                            <div class="ui link list">
                                 <p>Preparada para esclarecer suas dúvidas e problemas.</p>
                                 <h5>SAC: @LojaCorp.Control.Company._Company.Phone1</h5>
                                 <a href="/fale-conosco" class="ui button text uppercase tireDuvidas margin top bottom medium">Tire suas dúvidas</a>
@@ -122,11 +72,11 @@
                 <div class="ui grid stackable">
                     <div class="row one column no padding">
                         <div class="column seven wide tablet sixteen wide computer margin bottom large">
-                            <h4 class="ui inverted header">FORMAS DE PAGAMENTO</h4>
+                            <h4 class="ui header">FORMAS DE PAGAMENTO</h4>
                             @Html.Partial("~/Views/Shared/Common/_Payments_List.cshtml")
                         </div>
                         <div class="column seven wide tablet sixteen wide computer middle aligned">
-                            <h4 class="ui inverted header">SEGURANÇA</h4>
+                            <h4 class="ui header">SEGURANÇA</h4>
                             <div class="ui horizontal list selos">
                                 @Html.Action("EBit", "Company")
                                 @Html.Action("GetCompanySeal", "Company")
@@ -141,10 +91,75 @@
                 </div>
             </div>
         </div>
-        <div class="row text center">
-            <div class="ui divider"></div>
-            @Html.Partial("Common/_JetLogo")
+
+        <div class="column eight wide tablet sixteen wide computer margin top large mobile-hide">
+            <h4 class="ui header">Siga nos</h4>
+            <socialbar>
+                @if (redesSociais.Find(f => f.Identifier == "facebook") != null)
+                {
+                    <a class="text color white" href="@redesSociais.Find(f => f.Identifier == "facebook").Content" target="_blank">
+                        <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19.9492 5.8812C19.9023 4.81832 19.7304 4.08759 19.4842 3.45441C19.2302 2.7823 18.8394 2.18057 18.3274 1.68034C17.8272 1.17233 17.2215 0.777586 16.5572 0.52755C15.9203 0.281329 15.1934 0.109448 14.1306 0.0625854C13.0597 0.0117538 12.7198 0 10.0039 0C7.28799 0 6.94805 0.0117538 5.8812 0.0586166C4.81831 0.105479 4.08759 0.277513 3.45456 0.523581C2.7823 0.777586 2.18057 1.16836 1.68034 1.68034C1.17233 2.18057 0.777738 2.78627 0.527549 3.4506C0.281329 4.08759 0.109448 4.81435 0.0625854 5.87723C0.0117538 6.94805 0 7.288 0 10.0039C0 12.7198 0.0117538 13.0598 0.0586166 14.1266C0.105479 15.1895 0.277513 15.9202 0.523733 16.5534C0.777738 17.2255 1.17233 17.8272 1.68034 18.3275C2.18057 18.8355 2.78627 19.2302 3.45059 19.4803C4.08759 19.7265 4.81434 19.8984 5.87738 19.9452C6.94408 19.9922 7.28418 20.0038 10.0001 20.0038C12.716 20.0038 13.0559 19.9922 14.1228 19.9452C15.1857 19.8984 15.9164 19.7265 16.5494 19.4803C17.8938 18.9605 18.9567 17.8976 19.4764 16.5534C19.7225 15.9164 19.8945 15.1895 19.9414 14.1266C19.9882 13.0598 20 12.7198 20 10.0039C20 7.288 19.996 6.94805 19.9492 5.8812ZM18.1478 14.0484C18.1047 15.0254 17.9406 15.5529 17.8039 15.9046C17.4677 16.7761 16.7761 17.4678 15.9046 17.8039C15.5529 17.9407 15.0216 18.1047 14.0484 18.1476C12.9933 18.1947 12.6769 18.2063 10.0079 18.2063C7.33882 18.2063 7.01842 18.1947 5.96714 18.1476C4.99019 18.1047 4.46264 17.9407 4.11094 17.8039C3.67727 17.6436 3.28253 17.3896 2.96212 17.0574C2.62996 16.7331 2.37596 16.3423 2.21568 15.9086C2.0789 15.5569 1.91481 15.0254 1.87191 14.0524C1.8249 12.9973 1.8133 12.6807 1.8133 10.0117C1.8133 7.34265 1.8249 7.02224 1.87191 5.97111C1.91481 4.99417 2.0789 4.46662 2.21568 4.11492C2.37596 3.68109 2.62996 3.2865 2.96609 2.96594C3.29031 2.63378 3.68109 2.37977 4.11491 2.21965C4.46661 2.08287 4.99813 1.91878 5.9711 1.87573C7.0262 1.82887 7.34279 1.81712 10.0117 1.81712C12.6847 1.81712 13.0011 1.82887 14.0524 1.87573C15.0293 1.91878 15.5569 2.08287 15.9086 2.21965C16.3423 2.37977 16.737 2.63378 17.0574 2.96594C17.3896 3.29032 17.6436 3.68109 17.8039 4.11492C17.9406 4.46662 18.1047 4.99798 18.1478 5.97111C18.1946 7.02621 18.2064 7.34265 18.2064 10.0117C18.2064 12.6807 18.1946 12.9934 18.1478 14.0484Z" fill="#040404"/>
+                        <path d="M10.0033 4.86572C7.16639 4.86572 4.86462 7.16734 4.86462 10.0044C4.86462 12.8416 7.16639 15.1432 10.0033 15.1432C12.8404 15.1432 15.1421 12.8416 15.1421 10.0044C15.1421 7.16734 12.8404 4.86572 10.0033 4.86572ZM10.0033 13.3378C8.16288 13.3378 6.66998 11.8451 6.66998 10.0044C6.66998 8.16382 8.16288 6.67108 10.0033 6.67108C11.844 6.67108 13.3367 8.16382 13.3367 10.0044C13.3367 11.8451 11.844 13.3378 10.0033 13.3378Z" fill="#040404"/>
+                        <path d="M16.5452 4.66206C16.5452 5.32455 16.0081 5.86172 15.3454 5.86172C14.6829 5.86172 14.1458 5.32455 14.1458 4.66206C14.1458 3.99942 14.6829 3.4624 15.3454 3.4624C16.0081 3.4624 16.5452 3.99942 16.5452 4.66206Z" fill="#040404"/>
+                        </svg>
+
+                    </a>
+                }
+                @if (redesSociais.Find(f => f.Identifier == "instagram") != null)
+                {
+                    <a class="text color white" href="@redesSociais.Find(f => f.Identifier == "instagram").Content" target="_blank">
+                        <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19.9492 5.8812C19.9023 4.81832 19.7304 4.08759 19.4842 3.45441C19.2302 2.7823 18.8394 2.18057 18.3274 1.68034C17.8272 1.17233 17.2215 0.777586 16.5572 0.52755C15.9203 0.281329 15.1934 0.109448 14.1306 0.0625854C13.0597 0.0117538 12.7198 0 10.0039 0C7.28799 0 6.94805 0.0117538 5.8812 0.0586166C4.81831 0.105479 4.08759 0.277513 3.45456 0.523581C2.7823 0.777586 2.18057 1.16836 1.68034 1.68034C1.17233 2.18057 0.777738 2.78627 0.527549 3.4506C0.281329 4.08759 0.109448 4.81435 0.0625854 5.87723C0.0117538 6.94805 0 7.288 0 10.0039C0 12.7198 0.0117538 13.0598 0.0586166 14.1266C0.105479 15.1895 0.277513 15.9202 0.523733 16.5534C0.777738 17.2255 1.17233 17.8272 1.68034 18.3275C2.18057 18.8355 2.78627 19.2302 3.45059 19.4803C4.08759 19.7265 4.81434 19.8984 5.87738 19.9452C6.94408 19.9922 7.28418 20.0038 10.0001 20.0038C12.716 20.0038 13.0559 19.9922 14.1228 19.9452C15.1857 19.8984 15.9164 19.7265 16.5494 19.4803C17.8938 18.9605 18.9567 17.8976 19.4764 16.5534C19.7225 15.9164 19.8945 15.1895 19.9414 14.1266C19.9882 13.0598 20 12.7198 20 10.0039C20 7.288 19.996 6.94805 19.9492 5.8812ZM18.1478 14.0484C18.1047 15.0254 17.9406 15.5529 17.8039 15.9046C17.4677 16.7761 16.7761 17.4678 15.9046 17.8039C15.5529 17.9407 15.0216 18.1047 14.0484 18.1476C12.9933 18.1947 12.6769 18.2063 10.0079 18.2063C7.33882 18.2063 7.01842 18.1947 5.96714 18.1476C4.99019 18.1047 4.46264 17.9407 4.11094 17.8039C3.67727 17.6436 3.28253 17.3896 2.96212 17.0574C2.62996 16.7331 2.37596 16.3423 2.21568 15.9086C2.0789 15.5569 1.91481 15.0254 1.87191 14.0524C1.8249 12.9973 1.8133 12.6807 1.8133 10.0117C1.8133 7.34265 1.8249 7.02224 1.87191 5.97111C1.91481 4.99417 2.0789 4.46662 2.21568 4.11492C2.37596 3.68109 2.62996 3.2865 2.96609 2.96594C3.29031 2.63378 3.68109 2.37977 4.11491 2.21965C4.46661 2.08287 4.99813 1.91878 5.9711 1.87573C7.0262 1.82887 7.34279 1.81712 10.0117 1.81712C12.6847 1.81712 13.0011 1.82887 14.0524 1.87573C15.0293 1.91878 15.5569 2.08287 15.9086 2.21965C16.3423 2.37977 16.737 2.63378 17.0574 2.96594C17.3896 3.29032 17.6436 3.68109 17.8039 4.11492C17.9406 4.46662 18.1047 4.99798 18.1478 5.97111C18.1946 7.02621 18.2064 7.34265 18.2064 10.0117C18.2064 12.6807 18.1946 12.9934 18.1478 14.0484Z" fill="#040404"/>
+                        <path d="M10.0033 4.86572C7.16639 4.86572 4.86462 7.16734 4.86462 10.0044C4.86462 12.8416 7.16639 15.1432 10.0033 15.1432C12.8404 15.1432 15.1421 12.8416 15.1421 10.0044C15.1421 7.16734 12.8404 4.86572 10.0033 4.86572ZM10.0033 13.3378C8.16288 13.3378 6.66998 11.8451 6.66998 10.0044C6.66998 8.16382 8.16288 6.67108 10.0033 6.67108C11.844 6.67108 13.3367 8.16382 13.3367 10.0044C13.3367 11.8451 11.844 13.3378 10.0033 13.3378Z" fill="#040404"/>
+                        <path d="M16.5452 4.66206C16.5452 5.32455 16.0081 5.86172 15.3454 5.86172C14.6829 5.86172 14.1458 5.32455 14.1458 4.66206C14.1458 3.99942 14.6829 3.4624 15.3454 3.4624C16.0081 3.4624 16.5452 3.99942 16.5452 4.66206Z" fill="#040404"/>
+                        </svg>
+
+                    </a>
+                }
+                @if (redesSociais.Find(f => f.Identifier == "twitter") != null)
+                {
+                    <a class="text color white" href="@redesSociais.Find(f => f.Identifier == "twitter").Content" target="_blank">
+                        <i class="twitter icon"></i>
+                    </a>
+                }
+                @if (redesSociais.Find(f => f.Identifier == "youtube") != null)
+                {
+                    <a class="text color white" href="@redesSociais.Find(f => f.Identifier == "youtube").Content" target="_blank">
+                        <i class="youtube icon"></i>
+                    </a>
+                }
+                @if (redesSociais.Find(f => f.Identifier == "google plus") != null)
+                {
+                    <a class="text color white" href="@redesSociais.Find(f => f.Identifier == "google plus").Content" target="_blank">
+                        <i class="google plus icon"></i>
+                    </a>
+                }
+                @if (redesSociais.Find(f => f.Identifier.ToUpper() == "WHATSAPP") != null)
+                {
+                    string urlWhasapp = HttpContext.Current.Request.Url.ToString();
+                    if (urlWhasapp.Contains("?"))
+                    {
+                        urlWhasapp = urlWhasapp.Split('?')[0];
+                    }
+                    <a class="text color white" href="https://api.whatsapp.com/send?text=@urlWhasapp" target="_blank" title="WHATSAPP">
+                        <i class="whatsapp icon"></i>
+                    </a>
+                }
+                @if (redesSociais.Find(f => f.Identifier.ToUpper() == "BLOGER") != null)
+                {
+                    <a class="text color white" href="@redesSociais.Find(f => f.Identifier == "bloger").Content" target="_blank" title="Blogger">
+                        <i class="wpforms icon"></i>
+                    </a>
+                }
+            </socialbar>
         </div>
+        @{
+        //<div class="row text center">
+        //    <div class="ui divider"></div>
+        //    @Html.Partial("Common/_JetLogo")
+        //</div>
+        }
     </div>
 </div>
 <div class="ui container fluid vertical subFooter">
