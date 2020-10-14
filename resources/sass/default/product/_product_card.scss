@@ -265,7 +265,7 @@
 .ui.five.doubling.cards > .card,
 .ui.six.doubling.cards > .card {
     @media screen and (max-width: $mobile-bp) {
-        width: calc( 100% - 2em);
+        width: calc( 50% - 2em);
         margin-left: 1em;
         margin-right: 1em;
     }

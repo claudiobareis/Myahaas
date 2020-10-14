@@ -1,8 +1,18 @@
 /* Breadbrumbs */
 .breadcrumbs {
+    @media screen and (max-width: $mobile-bp) {
+        text-align: left !important;
+    }
+    .row{
+        @media screen and (max-width: $mobile-bp) {
+            text-align: left !important;
+            justify-content: left !important;
+        }   
+    }
     h1 {
-        margin: 0;
-        font-size: 1.5em;
+        margin: 0 0 0 .4em;
+        font-size: 1em;
+        font-weight: 300;
     }
 }
 

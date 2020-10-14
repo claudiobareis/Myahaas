@@ -167,9 +167,9 @@
         &.link {
             a,
             h5 {
-                color: #999999 !important;
+                color: #9D9D9D !important;
                 font-size: 12px;
-                font-weight: bold;
+                font-weight: normal;
                 margin: 0;
                 line-height: 20px;
 
@@ -182,11 +182,12 @@
             }
 
             @media screen and (max-width: $mobile-bp) {
-                padding: 1em;
+                padding: 0;
                 text-align: left !important;
                 margin: 10px 0 0 0;
                 display: none;
-                background: lighten($secondary-color, 5);
+                background: transparent;
+                
             }
         }
 
