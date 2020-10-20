@@ -3,6 +3,9 @@
     Layout = "~/Views/Shared/Base/_Layout.cshtml";
 }
 
+<!-- ~/Views/Shared/Blocks/_Owl.cshtml -->
+@Html.Partial("Blocks/_Owl")
+
 <!-- ~/Views/Shared/Blocks/Banner/_FullBanner.cshtml -->
 @Html.Action("FullBanner", "Banner")
 
@@ -12,6 +15,11 @@
 <div class="featuredProducts">
     <!-- ~/Views/Shared/Blocks/Product/_FeaturedProducts.cshtml -->
     @Html.Action("FeaturedProducts", "Product")
+</div>
+
+<!-- Chamada de exibição de uma categoria  -->
+<div class="owl-carousel owl-theme">
+    @Html.Action("GetProducts", "Product", new { category = 125492 })
 </div>
 
 <!-- ~/Views/Shared/Blocks/_CentralHalfBanner.cshtml -->
