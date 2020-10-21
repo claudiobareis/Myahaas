@@ -18,8 +18,10 @@
 </div>
 
 <!-- Chamada de exibição de uma categoria  -->
-<div class="owl-carousel owl-theme">
-    @Html.Action("GetProducts", "Product", new { category = 125492 })
+<div class="ui container">
+    <div class="products-carousel ">
+        @Html.Action("GetProducts", "Product", new { category = 125492 })
+</div>
 </div>
 
 <!-- ~/Views/Shared/Blocks/_CentralHalfBanner.cshtml -->

@@ -1,4 +1,4 @@
-@import "colors";
+@import 'colors';
 
 .wsmenu {
     float: left;
@@ -44,13 +44,13 @@
     }
 
     &:before {
-        content: "";
+        content: '';
         display: table;
     }
 
     &:after {
         clear: both;
-        content: "";
+        content: '';
         display: table;
     }
 
@@ -75,7 +75,7 @@
     width: 100%;
 
     .searchicon {
-        transition: all .7s ease 0s;
+        transition: all 0.7s ease 0s;
     }
 
     input {
@@ -92,7 +92,7 @@
         right: 0;
         text-indent: 15px;
         top: 0;
-        transition: all .7s ease 0s;
+        transition: all 0.7s ease 0s;
         width: 100%;
         z-index: 2;
 
@@ -103,7 +103,7 @@
                 .btnstyle {
                     background-color: $colorcapecodapprox;
                     color: $white;
-                    opacity: .9;
+                    opacity: 0.9;
 
                     .fa {
                         color: $white;
@@ -129,7 +129,7 @@
         position: absolute;
         right: 0;
         top: 0;
-        transition: all .7s ease 0s;
+        transition: all 0.7s ease 0s;
         width: 42px;
         z-index: 1000;
 
@@ -153,6 +153,12 @@
     padding: 0;
     text-align: left;
     width: 100%;
+
+    @media screen and (min-width: $desktop-bp-min) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
     > li {
         display: block;
@@ -242,12 +248,12 @@
         > {
             .wsmenu-submenu {
                 transform: translateY(35px);
-                transition: all .3s ease;
+                transition: all 0.3s ease;
                 visibility: hidden;
             }
 
             .megamenu {
-                transition: all .3s ease;
+                transition: all 0.3s ease;
                 visibility: hidden;
             }
         }
@@ -349,7 +355,7 @@
 
         > .wsmenu-submenu-sub {
             transform: translateY(35px);
-            transition: all .3s ease;
+            transition: all 0.3s ease;
             visibility: hidden;
         }
 
@@ -370,8 +376,32 @@
     display: none;
 }
 
-.wsmenu-click, .wsmenu-click02 {
+.wsmenu-click,
+.wsmenu-click02 {
     display: none;
 }
 
-@import "mq";
+@import 'mq';
+
+.desktop-menu {
+    flex: 1;
+
+    @media screen and (max-width: $desktop-bp-min) {
+        display: none !important;
+    }
+
+    .menuheader {
+        .ui.menu {
+            .item {
+                color: #333 !important;
+            }
+        }
+    }
+    .wsmenu-list {
+        justify-content: flex-start;
+
+        > li a:before {
+            display: none;
+        }
+    }
+}

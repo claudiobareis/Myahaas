@@ -7,7 +7,16 @@ headlogo {
 
 ._header {
     background: rgb(255, 255, 255);
-    margin-top: 0px;
+    margin-top: 0;
+    padding: 5px 0;
+
+    @media screen and (max-width: $mobile-bp) {
+        border-bottom: 2px solid #eee !important;
+    }
+
+    @media screen and (max-width: $mobile-bp) {
+        border-bottom: 2px solid #eee !important;
+    }
 
     & > .container > .ui > .row {
         @media screen and (max-width: $mobile-bp) {
@@ -68,7 +77,6 @@ headlogo {
         }
 
         margin-right: 1em;
-        padding-right: 1em;
         border-right: 1px solid #eee;
 
         > .button {
@@ -79,8 +87,8 @@ headlogo {
         .blocoBusca {
             display: none;
             background: #fff;
-            border-radius: 0.5em;
-            border: 1px solid #ddd;
+            border: 0;
+            padding: 5px 1rem 5px 5px !important;
 
             &.active {
                 display: block !important;
@@ -137,10 +145,16 @@ headlogo {
 }
 
 .brand {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    max-width: 120px;
+
     @media screen and (max-width: $mobile-bp) {
         max-width: 80px;
         width: 100%;
         display: inline-block;
+        margin-left: 60px;
     }
 }
 
@@ -249,5 +263,11 @@ headlogo {
         &.disabled {
             display: none;
         }
+    }
+}
+
+.searchMobile {
+    .blocoBusca {
+        padding: 5px 1rem 5px 5px !important;
     }
 }
