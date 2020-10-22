@@ -7,7 +7,64 @@
         position: relative;
         z-index: 4;
         border-top: 0px !important;
+        @media screen and (max-width: $mobile-bp) {
+            padding: 1em .3em;
+        }
+        .dados{
+            h3{
+                font-size: 1em;
+                text-align: center;
+                font-weight: 100;
+                padding: 1em 0;
+                color: #000;
+            }
+            
+            padding: 10px 0;
 
+            a:focus {
+                text-decoration: underline;
+            }
+
+            h3 {
+                font-weight: normal;
+                color: $black;
+                font-size: 14px;
+                margin-bottom: 10px;
+            }
+
+            .precoBase {
+                color: #666666;
+                font-size: 12px;
+                display: block;
+                text-align: center;
+                text-decoration: line-through;
+
+                i {
+                    text-decoration: line-through;
+                }
+            }
+
+            .preco {
+                color: $primary-color;
+                font-size: 14px;
+                line-height: 30px;
+                font-weight: 100;
+                text-align: center;
+                display: block;
+
+                &:after {
+                    content: '\A';
+                    white-space: pre;
+                }
+            }
+
+            .parcelamento {
+                color: #909090;
+                font-size: 12px;
+                display: block;
+                text-align: center;
+            }
+        }
         .info {
             background-color: white;
             height: auto;
@@ -15,48 +72,11 @@
             text-align: center;
             transition-duration: 0.3s;
             z-index: 4;
-
-            .dados {
-                padding: 10px 0;
-
-                a:focus {
-                    text-decoration: underline;
-                }
-
-                h3 {
-                    font-weight: normal;
-                    color: $black;
-                    font-size: 14px;
-                    margin-bottom: 10px;
-                }
-
-                .precoBase {
-                    color: #666666;
-                    font-size: 14px;
-
-                    i {
-                        text-decoration: line-through;
-                    }
-                }
-
-                .preco {
-                    color: $primary-color;
-                    font-size: 18px;
-                    line-height: 30px;
-                    font-weight: 900;
-
-                    &:after {
-                        content: '\A';
-                        white-space: pre;
-                    }
-                }
-
-                .parcelamento {
-                    color: #666666;
-                    font-size: 14px;
-                }
+            margin: 1em 0 0;
+            padding: 10px 0;
+            @media screen and (max-width: $mobile-bp) {
+                margin:0;
             }
-
             .botoes {
                 border-top: 0 !important;
                 bottom: -40px;
@@ -65,6 +85,7 @@
                 position: absolute;
                 transition-duration: 0.3s;
                 width: 100%;
+                display: none;
 
                 @media screen and (max-width: $tablet-bp-max) {
                     bottom: initial;
@@ -114,21 +135,69 @@
 
             .sku-options {
                 color: #ffffff;
-                display: block;
-                opacity: 0;
-                padding: 10px;
-                position: absolute;
+                display: flex;
+                justify-content: space-between;
+                opacity: 1;
+                padding: 10px 0;
+                position: initial;
                 text-align: left;
                 bottom: 100%;
                 transition-duration: .3s;
                 width: 100%;
                 max-height: 230px;
                 z-index: 10 !important;
-
+                border-top: 1px solid #BBBBBB;
+                border-bottom: 1px solid #BBBBBB;
+                .dropdownreference{
+                    line-height: initial;
+                    width: auto;
+                    padding: 0;
+                    margin: 0;
+                    min-height: initial;
+                    max-width: auto;
+                    min-width: 33% !important;
+                    border: 0;
+                    outline: none;
+                    .menu {
+                        &.transition{
+                            top: -48px;
+                            border-radius: 0;
+                            border: 1px solid #ddd;
+                            box-shadow: none;
+                            width: 100%;
+                            .header{
+                                display: none;
+                            }
+                            .scrolling {
+                                &.menu{
+                                    display: flex;
+                                }
+                            }
+                        }
+                    }
+                }
+              
+                .dropdown{
+                    &.icon{
+                        padding: 0;
+                        right: 22px;
+                        top: 1em;
+                        @media screen and (max-width: $mobile-bp) {
+                            right: 0;
+                        }
+                    }
+                    .text{
+                        font-size: .8em;
+                    }
+                }
                 &.mask {
                     background: rgba(255, 255, 255, .5);
-                }
+                    padding: 10px 0;
 
+                }
+                .btn-comprar-card{
+                    font-size: .8em;
+                }
                 .produto-esgotado-label {
                     color: $grey !important;
 
@@ -160,7 +229,7 @@
         .info {
 
             @media screen and (min-width: $desktop-bp-min) {
-                transform: translateY(-40px);
+                transform: translateY(0);
             }
 
 
@@ -177,6 +246,7 @@
     .wishlist {
 
         .bcg-heart {
+            display: none;
             background: #9e9e9e;
             border-radius: 50%;
             text-align: center;

@@ -79,15 +79,66 @@
                 }
             </a>
         }
-        <div class="ui horizontal divider avaliacao">
-            <div class="ui tiny star rating" data-rating="@Model.Rate.Value.ToString().Replace(",", ".")"></div>
-        </div>
+        
+            <div class="dados">
+                <a href="@(Model.UrlFriendlyCustom != null ? Model.UrlFriendlyCustom : Model.UrlFriendly)" title="@Model.Name">
+                    <h3>
+                        <span itemprop="name">
+                            @Model.Name
+                        </span>
+                    </h3>
+                </a>
+                <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
 
-        <div class="info">
+                    <meta itemprop="priceCurrency" content="BRL" />
+                    @if (Model.PricePromotion != null && Model.PricePromotion > 0)
+                    {
+                        <span id="basePrice_@Model.IdProduct" class="precoBase">@string.Format("{0:c}", Model.Price) @(Session["segment"] != null && Session["segment"].ToString() == "b2b" && Model.AvailableReferences != null ? "a partir de" : string.Empty)</span>
+                        <span class="preco">R$ <span>@string.Format("{0:n2}", Model.PricePromotion)</span></span>
+                        <meta itemprop="price" content="@string.Format("{0:n2}", Model.PricePromotion).Replace(".", "").Replace(",", ".")" />
+                    }
+                    else
+                    {
+                        <span id="price_@Model.IdProduct" class="preco">
+                            <span class="precoBase">
+                                @(Session["segment"] != null && Session["segment"].ToString() == "b2b" && Model.AvailableReferences != null ? "a partir de" : string.Empty)
+                            </span>
+                            R$ @string.Format("{0:n2}", Model.Price)
+                        </span>
+                        <meta itemprop="price" content="@string.Format("{0:n2}", Model.Price).Replace(".", "").Replace(",", ".")" />
+                    }
+                    @if (Model.InstallmentMax != null)
+                    {
+                        <span class="parcelamento">
+                            <span class="installmentMaxNumber">@Model.InstallmentMax.MaxNumber</span>
+                            x de <span class="installmentMaxValue">@string.Format("{0:c}", Model.InstallmentMax.Value)</span>
+                        </span>
+                    }
 
-            <div class="sku-options mobile-hide tablet-hide @(Model.AvailableReferences != null ? "mask" : "") @(Session["segment"] != null && Session["segment"].ToString() == "b2b" ? "hideme" : string.Empty)">
+                    @if (Model.Stock >= 0 && !Model.FlagExhausted && !string.IsNullOrEmpty(Model.DescriptionAvailabilityStatus))
+                    {
+                        <span class="disponibilidade">
+                            @Model.DescriptionAvailabilityStatus
+                        </span>
+                    }
 
-                <span id="produto-esgotado_@Model.IdProduct" class="text center produto-esgotado-label hideme @(Model.FlagExhausted ? " " : "hideme" )">Produto Esgotado</span>
+                    @if (!Model.FlagExhausted && Model.Stock > 0)
+                    {
+                        <meta itemprop="availability" content="http://schema.org/InStock" title="disponível" />
+                    }
+                    else
+                    {
+                        <meta itemprop="availability" content="http://schema.org/SoldOut" title="esgotado" />
+                    }
+
+                </div>
+            </div>
+                    <div class="info">
+
+                        <span id="produto-esgotado_@Model.IdProduct" class="text center produto-esgotado-label hideme @(Model.FlagExhausted ? " " : "hideme" )">Produto Esgotado</span>
+            <div class="sku-options @(Model.AvailableReferences != null ? "mask" : "") @(Session["segment"] != null && Session["segment"].ToString() == "b2b" ? "hideme" : string.Empty)">
+
+                
 
                 @if (Model.AvailableReferences != null)
                 {
@@ -137,15 +188,15 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="ui small divider hidden"></div>
+                        
                     }
                 }
                 <!-- Verificar se o produto é conjunto -->
                 @if (Model.HasConjunct)
                 {
-                    <a href="@(Model.UrlFriendlyCustom != null ? Model.UrlFriendlyCustom : Model.UrlFriendly)" title="Comprar" class="ui labeled icon button action fluid btn-comprar text uppercase" data-idproduct="@Model.IdProduct" data-name="Model.Name">
-                        <i id="btn-icon-card-Model.IdProduct" class="icon announcement"></i>
-                        Comprar
+                    <a href="@(Model.UrlFriendlyCustom != null ? Model.UrlFriendlyCustom : Model.UrlFriendly)" title="Comprar" class="ui labeled icon button action fluid btn-comprar text uppercase" data-idproduct="@Model.IdProduct" data-name="Model.Name">                        
+                        eu quero 
+                        <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.813477 3.61978H3.45348V0.904785H4.53348V3.61978H7.17348V4.69978H4.53348V7.39979H3.45348V4.69978H0.813477V3.61978Z" fill="#BBBBBB"/></svg>
                     </a>
                 }
                 else if (Model.FlagExhausted || Model.Stock <= 0)
@@ -170,70 +221,17 @@
               <i id="btn-icon-card-@Model.IdProduct" class="icon add to cart"></i>
               Assinar
             </a>
-            <div class="ui small divider hidden"></div>
+            
           }
           if (Model.ProductSignature == false)
           {
-                    <a id="btn-comprar-card-@Model.IdProduct" title="Comprar" class="ui labeled icon button action fluid btn-comprar-card text uppercase" data-idproduct="@Model.IdProduct" data-name="@Model.Name">
-                        <i id="btn-icon-card-@Model.IdProduct" class="icon add to cart"></i>
-                        Comprar
+                    <a id="btn-comprar-card-@Model.IdProduct" title="Comprar" class="ui labeled icon fluid btn-comprar-card text uppercase" data-idproduct="@Model.IdProduct" data-name="@Model.Name">
+                        eu quero 
+                        <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.813477 3.61978H3.45348V0.904785H4.53348V3.61978H7.17348V4.69978H4.53348V7.39979H3.45348V4.69978H0.813477V3.61978Z" fill="#BBBBBB"/></svg>
                     </a>
                 }
         }
-            </div>
-            <div class="dados">
-                <a href="@(Model.UrlFriendlyCustom != null ? Model.UrlFriendlyCustom : Model.UrlFriendly)" title="@Model.Name">
-                    <h3>
-                        <span itemprop="name">
-                            @Model.Name
-                        </span>
-                    </h3>
-                </a>
-                <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-
-                    <meta itemprop="priceCurrency" content="BRL" />
-                    @if (Model.PricePromotion != null && Model.PricePromotion > 0)
-                    {
-                        <span id="basePrice_@Model.IdProduct" class="precoBase">de <i>@string.Format("{0:c}", Model.Price)</i> por @(Session["segment"] != null && Session["segment"].ToString() == "b2b" && Model.AvailableReferences != null ? "a partir de" : string.Empty)</span>
-                        <span class="preco">R$ <span>@string.Format("{0:n2}", Model.PricePromotion)</span></span>
-                        <meta itemprop="price" content="@string.Format("{0:n2}", Model.PricePromotion).Replace(".", "").Replace(",", ".")" />
-                    }
-                    else
-                    {
-                        <span id="price_@Model.IdProduct" class="preco">
-                            <span class="precoBase">
-                                @(Session["segment"] != null && Session["segment"].ToString() == "b2b" && Model.AvailableReferences != null ? "a partir de" : string.Empty)
-                            </span>
-                            R$ @string.Format("{0:n2}", Model.Price)
-                        </span>
-                        <meta itemprop="price" content="@string.Format("{0:n2}", Model.Price).Replace(".", "").Replace(",", ".")" />
-                    }
-                    @if (Model.InstallmentMax != null)
-                    {
-                        <span class="parcelamento">
-                            ou em <span class="installmentMaxNumber">@Model.InstallmentMax.MaxNumber</span>
-                            x de <span class="installmentMaxValue">@string.Format("{0:c}", Model.InstallmentMax.Value)</span>
-                        </span>
-                    }
-
-                    @if (Model.Stock >= 0 && !Model.FlagExhausted && !string.IsNullOrEmpty(Model.DescriptionAvailabilityStatus))
-                    {
-                        <span class="disponibilidade">
-                            @Model.DescriptionAvailabilityStatus
-                        </span>
-                    }
-
-                    @if (!Model.FlagExhausted && Model.Stock > 0)
-                    {
-                        <meta itemprop="availability" content="http://schema.org/InStock" title="disponível" />
-                    }
-                    else
-                    {
-                        <meta itemprop="availability" content="http://schema.org/SoldOut" title="esgotado" />
-                    }
-
-                </div>
-            </div>
+        </div>
             <div class="botoes centered">
                 <!-- Verificar se o produto é conjunto -->
                 @if (Model.HasConjunct)
@@ -265,8 +263,7 @@
                         <a id="btn-assinatura-card-@Model.IdProduct" title="Assinar" class="ui labeled icon button recurring fluid btn-assinatura-card tablet-and-mobile-only text uppercase" data-idproduct="@Model.IdProduct" data-name="@Model.Name">
                             <i id="btn-icon-card-@Model.IdProduct" class="icon add to cart"></i>
                             Assinar
-                        </a>
-                        <div class="ui small divider hidden"></div>
+                        </a>                        
                     }
                     if (Model.ProductSignature == false)
                     {
