@@ -10,7 +10,7 @@ $(document).ready(function () {
             type: 'fixed',
             refreshOnResize: true,
             checkOnRefresh:true,
-            offset: 0
+            offset: 0            
         });
     //}
 });

@@ -167,7 +167,7 @@
 }
 
 @section breadcrumbs {
-    <div class="ui two column centered grid stackable middle aligned">
+    <div class="ui two column centered grid stackable middle aligned hidden">
         <div class="container">
             <div class="column">
                 <div class="ui breadcrumb margin top medium">
@@ -207,8 +207,7 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="ui divider"></div>
+    </div>   
 }
 
 <div id="fb-root"></div>
@@ -258,7 +257,6 @@
     <link itemprop="url" href="" rel="author" />
     <div class="ui grid stackable produto">
         <div class="row product information one column">
-
             <!-- COMEÇO MARCA MOBILE-->
             <div class="mobile only column">
                 <h1 itemprop="name" class="nomeProduto" id="produto-nome">@Model.Name</h1>
@@ -271,7 +269,7 @@
                     <h5 itemprop="productBrand" class="marcaProduto"></h5>
                 }
                 <!-- FIM MARCA MOBILE-->
-                <div class="ui two column grid">
+                <div class="ui two column grid hidden">
                     <div class="column six wide mobile">
                         <h6 itemprop="productID" class="codProduto">@Model.Code</h6>
                     </div>

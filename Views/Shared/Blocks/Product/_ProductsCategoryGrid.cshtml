@@ -1,7 +1,7 @@
 ﻿@model DomainProduct.Result
 
 <div class="type-grid" data-grid-number="@(Model.Settings.PageCount > 1 ? Model.Settings.PageNumber : 0)">
-    <div class="ui three doubling cards centered">
+    <div class="ui three doubling cards">
         @if (Model != null && Model.Products.Count() > 0)
         {
             foreach (var product in Model.Products)

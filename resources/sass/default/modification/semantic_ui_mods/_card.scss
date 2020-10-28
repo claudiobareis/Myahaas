@@ -13,7 +13,7 @@
   &.produto {
     &:hover,
     &:focus {
-      box-shadow: 0 1px 3px 0 #eee, 0 0 0 1px #eee !important;
+      box-shadow: none !important;
     }
   }
   
