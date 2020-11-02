@@ -257,16 +257,61 @@
     <link itemprop="url" href="" rel="author" />
     <div class="ui grid stackable produto">
         <div class="row product information one column">
-            <!-- COMEÇO MARCA MOBILE-->
-            <div class="mobile only column">
-                <h1 itemprop="name" class="nomeProduto" id="produto-nome">@Model.Name</h1>
+           
+        </div>
+
+        <div class="row detalhes produto">
+            <!-- FIM IMAGENS DO PRODUTO PRINCIPAL-->
+            <div class="sixteen wide mobile @classSkus wide computer column" id="exibePartial">
+                @Html.Partial("~/Views/Product/Details/_Slide.cshtml", productImages.ToList())
+            </div>
+              <!-- COMEÇO MARCA MOBILE-->
+            <div class="mobile only column product-name">
+               <h1 itemprop="name" class="nomeProduto" id="produto-nome">@Model.Name</h1>
+               <span class="sku-product">@Model.Code</span>
+               <div class="stars">
+                   <svg width="113" height="15" viewBox="0 0 113 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0)">
+                    <path d="M1.14441e-05 5.49793L5.17059 5.158L7.11785 0.265991L9.0651 5.158L14.23 5.49793L10.2686 8.86161L11.5685 13.9641L7.11785 11.1509L2.66716 13.9641L3.9671 8.86161L1.14441e-05 5.49793Z" fill="black"/>
+                    </g>
+                    <g clip-path="url(#clip1)">
+                    <path d="M48.46 5.49793L54.1476 5.158L56.2896 0.265991L58.4316 5.158L64.113 5.49793L59.7554 8.86161L61.1853 13.9641L56.2896 11.1509L51.3938 13.9641L52.8238 8.86161L48.46 5.49793Z" fill="black"/>
+                    </g>
+                    <g clip-path="url(#clip2)">
+                    <path d="M24.23 5.49793L29.4006 5.158L31.3478 0.265991L33.2951 5.158L38.46 5.49793L34.4985 8.86161L35.7985 13.9641L31.3478 11.1509L26.8971 13.9641L28.1971 8.86161L24.23 5.49793Z" fill="black"/>
+                    </g>
+                    <g clip-path="url(#clip3)">
+                    <path d="M74.113 5.49793L79.2836 5.158L81.2309 0.265991L83.1781 5.158L88.343 5.49793L84.3816 8.86161L85.6815 13.9641L81.2309 11.1509L76.7802 13.9641L78.0801 8.86161L74.113 5.49793Z" fill="black"/>
+                    </g>
+                    <g clip-path="url(#clip4)">
+                    <path d="M98.343 5.49793L103.514 5.158L105.461 0.265991L107.408 5.158L112.573 5.49793L108.612 8.86161L109.911 13.9641L105.461 11.1509L101.01 13.9641L102.31 8.86161L98.343 5.49793Z" fill="black"/>
+                    </g>
+                    <defs>
+                    <clipPath id="clip0">
+                    <rect width="14.23" height="14.23" fill="white" transform="matrix(-1 0 0 1 14.23 0)"/>
+                    </clipPath>
+                    <clipPath id="clip1">
+                    <rect width="15.653" height="14.23" fill="white" transform="matrix(-1 0 0 1 64.113 0)"/>
+                    </clipPath>
+                    <clipPath id="clip2">
+                    <rect width="14.23" height="14.23" fill="white" transform="matrix(-1 0 0 1 38.46 0)"/>
+                    </clipPath>
+                    <clipPath id="clip3">
+                    <rect width="14.23" height="14.23" fill="white" transform="matrix(-1 0 0 1 88.343 0)"/>
+                    </clipPath>
+                    <clipPath id="clip4">
+                    <rect width="14.23" height="14.23" fill="white" transform="matrix(-1 0 0 1 112.573 0)"/>
+                    </clipPath>
+                    </defs>
+                    </svg>
+               </div>
                 @if (Model.Brand != null)
                 {
-                    <h5 itemprop="productBrand" class="marcaProduto">@Model.Brand.Name</h5>
+                    /*<h5 itemprop="productBrand" class="marcaProduto">@Model.Brand.Name</h5>*/
                 }
                 else
                 {
-                    <h5 itemprop="productBrand" class="marcaProduto"></h5>
+                    /*<h5 itemprop="productBrand" class="marcaProduto"></h5>*/
                 }
                 <!-- FIM MARCA MOBILE-->
                 <div class="ui two column grid hidden">
@@ -294,13 +339,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <div class="row detalhes produto">
-            <!-- FIM IMAGENS DO PRODUTO PRINCIPAL-->
-            <div class="sixteen wide mobile @classSkus wide computer column" id="exibePartial">
-                @Html.Partial("~/Views/Product/Details/_Slide.cshtml", productImages.ToList())
             </div>
             <!-- COMEÇO IMAGENS DO PRODUTO PRINCIPAL-->
             <div class="ui divider hidden"></div>
@@ -366,7 +404,7 @@
                                         <input type="hidden" id="hdnShowProductOutOfStock" value="@(!LojaCorp.Control.Company._Company.ShowProductOutOfStock ? 0 : 1)" />
                                         if (Model.AvailableReferences != null)
                                         {
-                                            <div class="one column ui attached segment">
+                                            <div class="hidden one column ui attached segment">
                                                 @if (Model.ProductGrouping != null)
                                                 {
                                                     @Html.Partial("~/Views/Product/Details/_ProductsGrouping.cshtml", Model.ProductGrouping)
@@ -380,7 +418,7 @@
                                         {
                                             if (Model.ProductGrouping != null)
                                             {
-                                                <div class="one column ui attached segment">
+                                                <div class="hidden one column ui attached segment">
                                                     <div class="column">
                                                         @Html.Partial("~/Views/Product/Details/_ProductsGrouping.cshtml", Model.ProductGrouping)
                                                     </div>
@@ -591,19 +629,7 @@
                                 }
                             </div>
 
-                            @if (!Model.FlagExhausted)
-                            {
-                                <div id="pagamento-calculado">
-                                    @if (@Model.PricePromotion != null && @Model.PricePromotion > 0)
-                                    {
-                                        @Html.Action("Payment", "Product", new { valor = @Model.PricePromotion, flagExibir = Model.FlagExhausted == true || Model.Stock <= 0 ? false : true })
-                                    }
-                                    else
-                                    {
-                                        @Html.Action("Payment", "Product", new { valor = @Model.Price, flagExibir = Model.FlagExhausted == true || Model.Stock <= 0 ? false : true })
-                                    }
-                                </div>
-                            }
+                           
 
                             @if (Model.HaveSku)
                             {
@@ -642,11 +668,9 @@
                                         <div class="column">
                                             <div class="ui input">
                                                 <input type="text" name="simular-frete-cep" id="simular-frete-cep" placeholder="00000-000">
+                                                <button name="simular-frete-submit" id="simular-frete-submit" class="ui button primary">OK</button>
                                             </div>
-                                        </div>
-                                        <div class="column">
-                                            <button name="simular-frete-submit" id="simular-frete-submit" class="ui button primary">OK</button>
-                                        </div>
+                                        </div>                                        
                                     </div>
                                 </div>
                                 <div class="ui divider"></div>
@@ -658,12 +682,29 @@
                                             <th>Prazo</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="listSimulateFreight">
+                                    <tbody id="listSimulateFreight" class="hidden">
                                         <tr><td colspan="3" class="center aligned">Digite um CEP e clique no botão OK.</td></tr>
                                     </tbody>
                                 </table>
                             </div>
                             <!-- FIM SIMULADOR FRETE-->
+
+
+                            @if (!Model.FlagExhausted)
+                            {
+                                <div id="pagamento-calculado">
+                                    @if (@Model.PricePromotion != null && @Model.PricePromotion > 0)
+                                    {
+                                        @Html.Action("Payment", "Product", new { valor = @Model.PricePromotion, flagExibir = Model.FlagExhausted == true || Model.Stock <= 0 ? false : true })
+                                    }
+                                    else
+                                    {
+                                        @Html.Action("Payment", "Product", new { valor = @Model.Price, flagExibir = Model.FlagExhausted == true || Model.Stock <= 0 ? false : true })
+                                    }
+                                </div>
+                            }
+
+
                             <!-- COMEÇO REDES SOCIAIS-->
                             <div class="ui divider hidden"></div>
                             <div class="one column row">
