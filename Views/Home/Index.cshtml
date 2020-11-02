@@ -2,39 +2,208 @@
     ViewBag.Title = string.IsNullOrEmpty(LojaCorp.Control.Company._Company.Title) ? LojaCorp.Control.Company._Company.NameStore : LojaCorp.Control.Company._Company.Title;
     Layout = "~/Views/Shared/Base/_Layout.cshtml";
 }
-
 <!-- ~/Views/Shared/Blocks/_Owl.cshtml -->
 @Html.Partial("Blocks/_Owl")
-
-<!-- ~/Views/Shared/Blocks/Banner/_FullBanner.cshtml -->
-@Html.Action("FullBanner", "Banner")
 
 <!-- ~/Views/Shared/Blocks/_InfoBar.cshtml -->
 @Html.Partial("Blocks/_InfoBar")
 
-<div class="featuredProducts">
-    <!-- ~/Views/Shared/Blocks/Product/_FeaturedProducts.cshtml -->
-    @Html.Action("FeaturedProducts", "Product")
-</div>
+<section class="hero-banner">
+    <!-- ~/Views/Shared/Blocks/Banner/_FullBanner.cshtml -->
+    @Html.Action("FullBanner", "Banner")
 
-<!-- Chamada de exibição de uma categoria  -->
-<div class="ui container">
-    <div class="products-carousel ">
+    <script>
+        jQuery( document ).ready(function() {
+            jQuery(".hero-banner .images.middle").addClass("owl-carousel").owlCarousel({
+                loop:true,
+                margin:0,
+                nav:false,
+                items: 1
+            });
+        });
+    </script>
+</section>
+
+
+<section class="ui container category-1">
+    <div class="title">
+        <h2>Nossos lançamentos semanais</h2>
+    </div>
+    <div class="products-carousel">
+        <!-- Chamada de exibição de uma categoria  -->
         @Html.Action("GetProducts", "Product", new { category = 125492 })
-</div>
-</div>
+    </div>
+    <div class="category-cta">
+        <a href="https://myahaas.plataformaneo.com.br/categoria/sapato/rasteira">VER TODOS</a>
+    </div>
+    <script>
+        jQuery( document ).ready(function() {
+            jQuery(".category-1 .products-carousel .doubling").addClass("owl-carousel").addClass("owl-theme").owlCarousel({
+                loop:true,
+                margin:10,
+                nav:false,
+                responsive:{
+                    0:{
+                        items:2
+                    },
+                    600:{
+                        items:2
+                    },
+                    1000:{
+                        items:4
+                    }
+                }
+            });
+        })
+    </script>
+</section>
+
+
 
 <!-- ~/Views/Shared/Blocks/_CentralHalfBanner.cshtml -->
 @Html.Action("CentralHalfBanner", "Banner")
 
-<!-- ~/Views/Shared/Blocks/Group/_Groups.cshtml -->
-@Html.Action("Group", "Group")
 
-<!-- ~/Views/Shared/Blocks/_TopSellers.cshtml -->
-@Html.Action("TopSellers", "Product")
+<section class="ui container category-2">
+    <div class="title">
+        <h2>mais vendidos</h2>
+    </div>
+    <div class="products-carousel">
+        <!-- Chamada de exibição de uma categoria  -->
+        @Html.Action("GetProducts", "Product", new { category = 125492 })
+    </div>
+    <div class="category-cta">
+        <a href="https://myahaas.plataformaneo.com.br/categoria/sapato/rasteira">VER TODOS</a>
+    </div>
+</section>
 
 <!-- ~/Views/Shared/Blocks/Banner/_FooterHalfBanner.cshtml -->
 @Html.Action("FooterHalfBanner", "Banner")
 
+<section class="ui container category-3">
+    <div class="title">
+        <h2>mya  bee home</h2>
+         <h3>coisinhas incríveis para tornar sua casa um lugar favorito</h3>
+    </div>
+    <div class="products-carousel">
+        <!-- Chamada de exibição de uma categoria  -->
+        @Html.Action("GetProducts", "Product", new { category = 125492 })
+    </div>
+    <div class="category-cta">
+        <a href="https://myahaas.plataformaneo.com.br/categoria/sapato/rasteira">VER TODOS</a>
+    </div>
+    <script>
+        jQuery( document ).ready(function() {
+            jQuery(".category-3 .products-carousel .doubling").addClass("owl-carousel").addClass("owl-theme").owlCarousel({
+                loop:true,
+                margin:10,
+                nav:false,
+                responsive:{
+                    0:{
+                        items:2
+                    },
+                    600:{
+                        items:2
+                    },
+                    1000:{
+                        items:4
+                    }
+                }
+            });
+        })
+    </script>
+</section>
+
+<section class="ui container testimonial-slider">
+    <div class="title">
+        <h2>Depoimentos</h2>
+    </div>
+    <div class="testimonial-wrapper owl-carousel owl-theme">
+        <div class="item">
+            <div class="stars">
+                <svg width="153" height="25" viewBox="0 0 153 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 9.65903L9.08394 9.06182L12.505 0.467285L15.926 9.06182L25 9.65903L18.0403 15.5685L20.3241 24.5328L12.505 19.5904L4.68579 24.5328L6.96958 15.5685L0 9.65903Z" fill="black"/>
+                    <g clip-path="url(#clip0)">
+                    <path d="M62.5 9.65903L72.4923 9.06182L76.2555 0.467285L80.0186 9.06182L90 9.65903L82.3444 15.5685L84.8565 24.5328L76.2555 19.5904L67.6544 24.5328L70.1665 15.5685L62.5 9.65903Z" fill="black"/>
+                    </g>
+                    <g clip-path="url(#clip1)">
+                    <path d="M32.5 9.65903L41.5839 9.06182L45.005 0.467285L48.426 9.06182L57.5 9.65903L50.5403 15.5685L52.8241 24.5328L45.005 19.5904L37.1858 24.5328L39.4696 15.5685L32.5 9.65903Z" fill="black"/>
+                    </g>
+                    <path d="M95 9.65903L104.084 9.06182L107.505 0.467285L110.926 9.06182L120 9.65903L113.04 15.5685L115.324 24.5328L107.505 19.5904L99.6858 24.5328L101.97 15.5685L95 9.65903Z" fill="black"/>
+                    <g clip-path="url(#clip2)">
+                    <path d="M127.5 9.65903L136.584 9.06182L140.005 0.467285L143.426 9.06182L152.5 9.65903L145.54 15.5685L147.824 24.5328L140.005 19.5904L132.186 24.5328L134.47 15.5685L127.5 9.65903Z" fill="black"/>
+                    </g>
+                    <defs>
+                    <clipPath id="clip0">
+                    <rect width="27.5" height="25" fill="white" transform="matrix(-1 0 0 1 90 0)"/>
+                    </clipPath>
+                    <clipPath id="clip1">
+                    <rect width="25" height="25" fill="white" transform="matrix(-1 0 0 1 57.5 0)"/>
+                    </clipPath>
+                    <clipPath id="clip2">
+                    <rect width="25" height="25" fill="white" transform="matrix(-1 0 0 1 152.5 0)"/>
+                    </clipPath>
+                    </defs>
+                </svg>
+            </div>
+            <div class="content">
+                <div class="image">
+                    <img src="data:image/jpeg;base64,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" />
+                    <span>Lorem Ipsum</span>
+                </div>
+                <div class="text">
+                    <svg width="17" height="13" viewBox="0 0 17 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6.672 9.216C6.672 10.08 6.384 10.768 5.808 11.28C5.232 11.792 4.528 12.048 3.696 12.048C2.576 12.048 1.68 11.712 1.008 11.04C0.336 10.368 0 9.36 0 8.016C0 6.736 0.176 5.632 0.528 4.704C0.912 3.744 1.36 2.944 1.872 2.304C2.416 1.664 2.976 1.168 3.552 0.815998C4.128 0.431999 4.64 0.16 5.088 0L6.528 1.968C5.632 2.416 4.848 2.992 4.176 3.696C3.536 4.4 3.216 5.296 3.216 6.384C3.344 6.352 3.536 6.336 3.792 6.336C4.528 6.336 5.184 6.608 5.76 7.152C6.368 7.696 6.672 8.384 6.672 9.216ZM16.272 9.216C16.272 10.08 15.984 10.768 15.408 11.28C14.832 11.792 14.128 12.048 13.296 12.048C12.176 12.048 11.28 11.712 10.608 11.04C9.936 10.368 9.6 9.36 9.6 8.016C9.6 6.736 9.776 5.632 10.128 4.704C10.512 3.744 10.96 2.944 11.472 2.304C12.016 1.664 12.576 1.168 13.152 0.815998C13.728 0.431999 14.24 0.16 14.688 0L16.128 1.968C15.232 2.416 14.448 2.992 13.776 3.696C13.136 4.4 12.816 5.296 12.816 6.384C12.944 6.352 13.136 6.336 13.392 6.336C14.128 6.336 14.784 6.608 15.36 7.152C15.968 7.696 16.272 8.384 16.272 9.216Z" fill="#828282"/>
+                    </svg>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eu diam erat. Phasellus fringilla augue lacus, nec vulputate mi hendrerit sit amet. Nullam lacinia accumsan eros,
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        jQuery( document ).ready(function() {
+            jQuery(".testimonial-wrapper").owlCarousel({
+                loop:true,
+                margin:20,
+                nav:false,
+                responsive:{
+                    0:{
+                        items:1
+                    },
+                    600:{
+                        items:2
+                    },
+                    1000:{
+                        items:3
+                    }
+                }
+            });
+        });
+    </script>
+</section>
+
+
+
+
+<section class="instagram">
+    <div data-mc-src="720c382f-9580-4a1d-86e0-ff25adf6e2db"></div>
+    <script
+      src="https://cdn.woxo.tech/index.js#5fa0073abbf64c0017d166c7"
+      async data-usrc>
+    </script>
+</section>
+
+<!-- ~/Views/Shared/Blocks/_TopSellers.cshtml -->
+<!-- @Html.Action("TopSellers", "Product") -->
+
+<!-- <div class="featuredProducts"> -->
+<!--      --><!-- ~/Views/Shared/Blocks/Product/_FeaturedProducts.cshtml -->
+<!--     @Html.Action("FeaturedProducts", "Product") -->
+<!-- </div> -->
+
+<!-- ~/Views/Shared/Blocks/Group/_Groups.cshtml -->
+@Html.Action("Group", "Group")
+
 <!-- ~/Views/Shared/Blocks/Brand/_Brands.cshtml -->
-@Html.Action("Brand", "Product")
+<!-- @Html.Action("Brand", "Product") -->

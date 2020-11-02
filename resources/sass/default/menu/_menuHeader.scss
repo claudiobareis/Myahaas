@@ -10,7 +10,7 @@ $colorLinkSubMenu: '#666';
             span {
                 &:before,
                 &:after {
-                    background: #fff;
+                    background: #333;
                 }
             }
         }
@@ -45,10 +45,12 @@ $colorLinkSubMenu: '#666';
         flex-wrap: wrap;
         margin: 0;
         li {
+            height: 57px;
+
             &:hover,
             &.active,
             &:focus {
-                box-shadow: inset 0 -5px 0 $menuHoverBorderColor;
+                box-shadow: inset 0 -3px 0 #ccc;
             }
             > .item {
                 word-wrap: normal;
@@ -59,10 +61,13 @@ $colorLinkSubMenu: '#666';
                 margin: 0;
                 font-size: 14px;
                 line-height: $menuHeight;
+                color: #333;
+                height: 57px;
 
                 > .icon.dropdown {
                     line-height: 18px;
                 }
+
                 > .icon.content {
                     font-size: 26px;
                     line-height: 1;

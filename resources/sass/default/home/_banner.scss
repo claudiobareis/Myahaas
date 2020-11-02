@@ -1,29 +1,39 @@
-.car-banners {	
-	.container {
-		position:relative;
-		.description {
-			width: 30%;
-			height: 100%;
-			top: 0;
-			bottom: 0;
-			position: absolute;
-			background: rgba(255,255,255,.5);
-			display: flex;
+.hero-banner {
+    width: 100%;
+    max-height: 808px;
+    overflow: hidden;
 
-			.html {
-				flex-direction: column;
-				vertical-align: middle;
-				align-self: center !important;
-				width:100%;
-				text-align: center;
-			}
-		}
-	}	
+    @media only screen and (max-width: 767px) {
+        max-height: 158px;
+    }
+}
+
+.car-banners {
+    .container {
+        position: relative;
+        .description {
+            width: 30%;
+            height: 100%;
+            top: 0;
+            bottom: 0;
+            position: absolute;
+            background: rgba(255, 255, 255, 0.5);
+            display: flex;
+
+            .html {
+                flex-direction: column;
+                vertical-align: middle;
+                align-self: center !important;
+                width: 100%;
+                text-align: center;
+            }
+        }
+    }
 }
 
 .ui.images {
-  img.side-halfbanner-image {
-    margin-left: 0px;
-    margin-right: 0px;
-  }
+    img.side-halfbanner-image {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
 }
