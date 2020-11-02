@@ -1,10 +1,40 @@
 h1.nomeProduto {
-    font-weight: bold;
+    font-weight: 300;
     margin-bottom: 0.5rem;
     font-size: 20px;
     color: $black;
+    @media screen and (max-width: $mobile-bp) {
+        text-align: center;
+        display: block;
+        margin: auto;
+        font-size: 1.2em;
+        letter-spacing: 1px;
+    }
+}
+.sku-product{
+    color: $ascent-7-color;
+    font-size: .8em;
+    @media screen and (max-width: $mobile-bp) {
+        text-align: center;
+        display: block;
+        padding: 1em 0;
+    }
+}
+.ui.stackable.grid > .row > .column{
+    &.product-name{
+        &.mobile{       
+            @media screen and (max-width: $mobile-bp) {        
+                padding: 0 !important;
+            }                
+        }    
+    }
 }
 
+.stars{
+    @media screen and (max-width: $mobile-bp) {
+        text-align: center;
+    }      
+}
 h6.codProduto {
     color: #888888;
     margin: 0px !important;
@@ -49,8 +79,25 @@ h6.codProduto {
         }
 
         .blocoValores {
-            border-bottom: 5px solid #ddd;
-
+            border-bottom: 0;
+            .segment{
+                border: 0;
+            }
+            #preco-antigo{
+                display: block;
+                text-decoration: line-through;
+                color: $ascent-6-color;
+            }
+            .btn-comprar{
+                @media screen and (max-width: $mobile-bp) {
+                    position: fixed;
+                    bottom: 0;
+                    left: 0;
+                    width: 100%;
+                    border-radius: 0;
+                    padding: 1em;
+                }
+            }
             > .column {
                 @media screen and (max-width: $mobile-bp) {
                     text-align: center;
@@ -89,8 +136,11 @@ h6.codProduto {
                 .preco {
                     clear: both;
                     color: $black;
-                    font-size: 20px;
+                    font-size: 22px;
                     line-height: 25px;
+                    letter-spacing: 1px;
+                    font-weight: 400;
+                    font-family: inherit;
 
                     &:after {
                         content: '\A';
@@ -494,12 +544,14 @@ h6.codProduto {
     margin-top: 20px;
 
     i {
-        font-size: 22px;
-        color: #666 !important;
+        font-size: 13px;
+        color: $ascent-9-color !important;        
     }
 
     span {
-        color: #666 !important;
+        color: $ascent-9-color !important;
+        text-transform: uppercase;
+        letter-spacing: 1px;
     }
 }
 
@@ -511,11 +563,17 @@ h6.codProduto {
 
     &.ui.attached.segment {
         padding: 0.5em 1em 1.5em;
+        border-top: 1px solid $ascent-8-color !important;
+        border-bottom: 1px solid $ascent-8-color !important;
+        border-left: 0;
+        border-right: 0;
     }
 
     span {
-        color: #000;
-        font-weight: 700;
+        color: $ascent-9-color;
+        font-weight: 500;
+        text-transform: uppercase;
+        font-size: .9em;
     }
 
     table {
