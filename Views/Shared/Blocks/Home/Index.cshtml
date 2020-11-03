@@ -1,0 +1,86 @@
+﻿@{
+    ViewBag.Title = string.IsNullOrEmpty(LojaCorp.Control.Company._Company.Title) ? LojaCorp.Control.Company._Company.NameStore : LojaCorp.Control.Company._Company.Title;
+    Layout = "~/Views/Shared/Base/_Layout.cshtml";
+}
+<!-- ~/Views/Shared/Blocks/_Owl.cshtml -->
+@Html.Partial("Blocks/_Owl")
+
+<!-- ~/Views/Shared/Blocks/_InfoBar.cshtml -->
+@Html.Partial("Blocks/_InfoBar")
+
+<section class="hero-banner">
+    <!-- ~/Views/Shared/Blocks/Banner/_FullBanner.cshtml -->
+    @Html.Action("HeroBanner", "Banner")
+
+    <script>
+        jQuery( document ).ready(function() {
+            jQuery(".images.middle").addClass("owl-carousel").addClass("owl-theme").owlCarousel({
+                loop:true,
+                margin:0,
+                nav:false,
+                responsive:{
+                    0:{
+                        items:1
+                    },
+                    600:{
+                        items:2
+                    },
+                    1000:{
+                        items:4
+                    }
+                }
+            });
+        });
+    </script>
+</section>
+
+
+
+<div class="ui container">
+    <div class="products-carousel ">
+        <!-- Chamada de exibição de uma categoria  -->
+        @Html.Action("GetProducts", "Product", new { category = 125492 })
+    </div>
+    <script>
+        jQuery( document ).ready(function() {
+            jQuery(".products-carousel .doubling").addClass("owl-carousel").addClass("owl-theme").owlCarousel({
+                loop:true,
+                margin:10,
+                nav:false,
+                responsive:{
+                    0:{
+                        items:2
+                    },
+                    600:{
+                        items:2
+                    },
+                    1000:{
+                        items:4
+                    }
+                }
+            });
+        })
+    </script>
+</div>
+
+
+
+<!-- ~/Views/Shared/Blocks/_CentralHalfBanner.cshtml -->
+@Html.Action("CentralHalfBanner", "Banner")
+
+<!-- ~/Views/Shared/Blocks/_TopSellers.cshtml -->
+@Html.Action("TopSellers", "Product")
+
+<!-- <div class="featuredProducts"> -->
+<!--      --><!-- ~/Views/Shared/Blocks/Product/_FeaturedProducts.cshtml -->
+<!--     @Html.Action("FeaturedProducts", "Product") -->
+<!-- </div> -->
+
+<!-- ~/Views/Shared/Blocks/Group/_Groups.cshtml -->
+@Html.Action("Group", "Group")
+
+<!-- ~/Views/Shared/Blocks/Banner/_FooterHalfBanner.cshtml -->
+@Html.Action("FooterHalfBanner", "Banner")
+
+<!-- ~/Views/Shared/Blocks/Brand/_Brands.cshtml -->
+<!-- @Html.Action("Brand", "Product") -->
