@@ -568,7 +568,18 @@ h6.codProduto {
         border-left: 0;
         border-right: 0;
     }
+    #simular-frete-submit{
+        border-radius: 0;
+        font-weight: 100;
+    }
+    .tabela-cep {
+        width: 100%;
+        tr, td{
+            text-align: left;
+            color: $ascent-6-color;
 
+        }
+    }
     span {
         color: $ascent-9-color;
         font-weight: 500;
@@ -581,6 +592,9 @@ h6.codProduto {
             tr {
                 th {
                     padding: 5px 5px 15px !important;
+                    font-weight: 100;
+                    text-transform: uppercase;
+                    color: #000000;
                 }
             }
         }
@@ -589,7 +603,9 @@ h6.codProduto {
             tr {
                 td {
                     padding: 15px 5px !important;
-                    font-weight: normal !important;
+                    font-weight: normal !important;   
+                    text-transform: uppercase;        
+                    font-size: .9em;         
                 }
             }
         }
