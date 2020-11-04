@@ -456,6 +456,9 @@ h6.codProduto {
             font-size: .9em;
             font-weight: 500;
             color: $ascent-9-color;
+            @media screen and (max-width: $mobile-bp) {
+                padding-left: 1em;
+            }
             &.divider{
                 &:before{
                     display: none;
@@ -504,6 +507,7 @@ h6.codProduto {
         &.container {
             @media screen and (max-width: $mobile-bp) {
                 margin: 0 auto 0 auto !important;
+                padding: 0 !important;
             }
         }
     }
