@@ -1,9 +1,6 @@
-
 $bgBox: #f7f7f7;
 $borderBox: 0px;
 $radiusBox: 0px;
-
-
 
 .flexCenter {
     align-items: center;
@@ -11,9 +8,8 @@ $radiusBox: 0px;
     justify-content: center;
 }
 
-
 .cart-divider {
-    margin: 30px 0 0 0;
+    margin: 30px 0;
     width: 100%;
 
     & > .container {
@@ -35,15 +31,15 @@ $radiusBox: 0px;
     }
 }
 
-.header-cart{
+.header-cart {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 100%;
+    width: 100%;exi
     margin-top: 20px;
 
-    .mobile{
+    .mobile {
         padding: 10px 0;
         width: 100%;
         display: flex;
@@ -52,7 +48,7 @@ $radiusBox: 0px;
     }
 }
 
-.meu-carrinho{
+.meu-carrinho {
     margin-top: 15px !important;
     border-top: 1px solid #d4d4d4 !important;
     border-bottom: 1px solid #d4d4d4 !important;
@@ -66,11 +62,9 @@ $radiusBox: 0px;
     padding: 20px 0;
 }
 
-
-.elementos{
-
-    .wide{
-        svg{
+.elementos {
+    .wide {
+        svg {
             margin: 0 auto;
         }
     }
@@ -83,19 +77,15 @@ $radiusBox: 0px;
     min-width: 370px;
     text-align: left;
 
-    
-
     @media screen and (max-width: $mobile-bp) {
         min-width: 100%;
     }
 
-    .fecharCarrinho{
+    .fecharCarrinho {
         position: absolute;
         right: 10px;
         top: 10px;
     }
-
-   
 
     .CloseMiniCart {
         width: 100%;
@@ -106,14 +96,13 @@ $radiusBox: 0px;
         cursor: pointer;
     }
 
-
     .msgEmpty {
         strong {
             font-size: 16px;
         }
     }
 
-    .item-cart-product{
+    .item-cart-product {
         flex-direction: column;
 
         .removeCartItem {
@@ -122,47 +111,46 @@ $radiusBox: 0px;
             position: absolute;
             box-shadow: none !important;
             top: 0;
-            right: -.5em;
-            padding: .5rem;
+            right: -0.5em;
+            padding: 0.5rem;
             cursor: pointer;
             outline: none;
-            transition: all .5s ease-in-out;
-            color:$grey;
+            transition: all 0.5s ease-in-out;
+            color: $grey;
 
             &:hover {
                 transform: scale(1.2);
             }
         }
 
-        .wrapper-qty-price{
+        .wrapper-qty-price {
             display: flex;
             align-items: flex-start;
             justify-content: space-between;
             margin-top: 10px;
 
-            .description, .price{
+            .description,
+            .price {
                 flex: 0.4;
                 display: flex;
                 flex-direction: column;
 
-                span{
+                span {
                     font-weight: bold;
                     margin-bottom: 10px;
                 }
 
-                .priceProduct{
+                .priceProduct {
                     font-size: 14px;
                 }
             }
         }
     }
 
-
-
     .image {
         width: 100% !important;
-        
-        a{
+
+        a {
             margin: 0 auto;
             display: table;
         }
@@ -184,27 +172,22 @@ $radiusBox: 0px;
         position: relative;
 
         .nameProduct {
-
             h1 {
                 font-size: 10px;
                 text-transform: uppercase;
-                margin:0;
+                margin: 0;
             }
             div {
                 //display: none;
                 font-size: 9px;
                 font-weight: 300;
                 color: #999;
-                letter-spacing: .5px;
+                letter-spacing: 0.5px;
             }
-
         }
         .priceProduct {
             font-size: 10px;
         }
-
-        
-
     }
 
     .qtdCartMessage {
@@ -218,13 +201,12 @@ $radiusBox: 0px;
         span {
             font-size: 14px;
             text-transform: uppercase;
-            
+
             #subTotalCarrinho,
             #descontoCarrinho,
             #totalCarrinho {
                 font-weight: 600;
             }
-            
         }
 
         @media screen and (max-width: $mobile-bp) {
@@ -233,16 +215,13 @@ $radiusBox: 0px;
             }
         }
     }
-    
+
     #mini-carrinho-checkout {
         @media screen and (min-width: $tablet-bp-min) {
             margin-bottom: 1rem;
         }
     }
-
 }
-
-
 
 .ShippingValueBox {
     cursor: pointer;
@@ -258,40 +237,34 @@ $radiusBox: 0px;
     padding-bottom: 1rem;
 }
 
-
-
-
 #ListProductsCheckoutCompleto {
-
-    >.row {
-        >.detalhes {
+    > .row {
+        > .detalhes {
             &.produtos,
             &.compra {
                 @media screen and (max-width: $mobile-bp) {
-                    margin: 0 .5rem 1rem;
+                    margin: 0 0.5rem 1rem;
                 }
 
                 #checkout_products_list_cart,
-                >.detalhes {
-                    background-color: #f7f7f7;
+                > .detalhes {
+                    background-color: #fff;
                     border-radius: 10px;
                     padding: 1rem;
 
                     @media screen and (max-width: $mobile-bp) {
-                        padding: 1rem .5rem;
+                        padding: 1rem 0.5rem;
                     }
 
                     .item {
-                        border-color: transparent !important; 
-                        &:not(.no-line){
-                            border-color:#efe8e8 !important;    
+                        border-color: transparent !important;
+                        &:not(.no-line) {
+                            border-color: #efe8e8 !important;
                         }
-                        
+
                         @media screen and (max-width: $mobile-bp) {
                             margin: 0;
                         }
-
-
 
                         .qtd {
                             &.action {
@@ -317,44 +290,34 @@ $radiusBox: 0px;
                 margin: 1rem auto 0;
             }
         }
-
     }
-
-
-
-
 
     .detalhes.produtos {
-        box-shadow:none;
+        box-shadow: none;
     }
     .ui.items {
-
         .item {
-
             .ui.image {
-
                 @media screen and (max-width: $mobile-bp) {
                     width: auto !important;
                     max-width: 100px !important;
                 }
 
-                +.content {
+                + .content {
                     @media screen and (max-width: $mobile-bp) {
-                        padding-left:1em !important;
+                        padding-left: 1em !important;
                     }
                 }
-
             }
 
             .description {
-
                 > span.title {
                     color: black;
                     font-size: 12px;
                     display: block;
                 }
 
-                >.qtd.action {
+                > .qtd.action {
                     border: 1px solid #ddd;
                     width: 100%;
                     max-width: 150px;
@@ -387,26 +350,21 @@ $radiusBox: 0px;
                             margin: 0;
                         }
                     }
-
                 }
-
             }
 
-            .subtotal{
+            .subtotal {
                 font-weight: 600;
                 text-transform: uppercase;
                 font-size: 1rem;
                 margin-bottom: 1em;
                 display: block;
             }
-
-
         }
     }
 }
 
 .description {
-
     &.resultado {
         display: none;
         padding-bottom: 0.6em;
@@ -415,7 +373,7 @@ $radiusBox: 0px;
     &.frete {
         padding-bottom: 0.6em;
 
-        label{
+        label {
             text-transform: uppercase !important;
             font-weight: lighter !important;
             width: 100% !important;
@@ -425,13 +383,13 @@ $radiusBox: 0px;
             display: inline-block;
         }
 
-        .ui.action.input:not([class*="left action"]) > input{
+        .ui.action.input:not([class*='left action']) > input {
             border-radius: 0 !important;
             border: 1px solid #d4d4d4 !important;
             border-right: 1px solid #d4d4d4 !important;
         }
 
-        .ui.labeled.button:not(.icon){
+        .ui.labeled.button:not(.icon) {
             border: 1px solid #333 !important;
             margin-left: 10px !important;
             padding: 0 20px !important;
@@ -455,13 +413,11 @@ $radiusBox: 0px;
 }
 
 .ui.items {
-
     &.fluid {
         width: 100%;
     }
 
     &.card-checkout {
-
         .item {
             margin: 0;
             font-size: 14px;
@@ -477,12 +433,9 @@ $radiusBox: 0px;
     display: none;
 }
 
-
-
 #checkout_products_list_cart,
-#checkout_products_list{
-
-    >.item {
+#checkout_products_list {
+    > .item {
         position: relative;
         .removeCartItem {
             background: transparent;
@@ -490,10 +443,10 @@ $radiusBox: 0px;
             position: absolute;
             top: 1rem;
             right: 0;
-            padding: .5rem;
+            padding: 0.5rem;
             cursor: pointer;
             outline: none;
-            transition: all .5s ease-in-out;
+            transition: all 0.5s ease-in-out;
             color: $grey;
             z-index: 0;
 
@@ -502,32 +455,27 @@ $radiusBox: 0px;
             }
         }
     }
-
 }
-
-
-
 
 #ListProductsCheckout,
 #checkout_products_list,
-#checkout_products_list_cart{
+#checkout_products_list_cart {
     position: relative;
-    .product.title{
-        h1{
+    .product.title {
+        h1 {
             font-weight: normal;
             color: $black;
             font-size: 14px;
-            margin-bottom:10px;
+            margin-bottom: 10px;
             text-transform: uppercase;
-
         }
-        div{
+        div {
             font-weight: normal;
             font-size: 11px;
-            color:$grey;
+            color: $grey;
         }
     }
-    .product.avaibility{
+    .product.avaibility {
         color: #000;
         font-size: 14px;
         font-weight: 600;
@@ -542,21 +490,20 @@ $radiusBox: 0px;
         right: 0;
         top: -1em;
         i.icon {
-            font-size:1.3em;
+            font-size: 1.3em;
             cursor: pointer;
         }
     }
 }
 
-
 #checkout_products_list {
     h1 {
-        margin:0 !important;
+        margin: 0 !important;
     }
     .item {
         background: #fff;
         border-radius: 8px;
-        padding: .5rem;
+        padding: 0.5rem;
 
         .image {
             width: auto !important;
@@ -565,19 +512,17 @@ $radiusBox: 0px;
                 max-height: 100px;
             }
         }
-
-
     }
 }
 
-
 .presente {
-    .ui.toggle.checkbox input:checked ~ .box:before, .ui.toggle.checkbox input:checked ~ label:before {
+    .ui.toggle.checkbox input:checked ~ .box:before,
+    .ui.toggle.checkbox input:checked ~ label:before {
         background-color: $action !important;
     }
 }
 
-.disable_column{
+.disable_column {
     pointer-events: none;
     opacity: 0.45;
 }
@@ -610,10 +555,9 @@ $radiusBox: 0px;
             margin-bottom: 30px;
         }
 
-        .ui.divided.grid:not([class*="vertically divided"]) > .row > .column {
-            box-shadow:none !important
+        .ui.divided.grid:not([class*='vertically divided']) > .row > .column {
+            box-shadow: none !important;
         }
-
 
         #checkout_products_list_cart {
             table {
@@ -623,11 +567,8 @@ $radiusBox: 0px;
     }
 }
 
-
 .venda-assistida {
-
     .info {
-
         @media only screen and (max-width: 767px) {
             text-align: center;
         }
@@ -725,7 +666,7 @@ $radiusBox: 0px;
             border-radius: 8px !important;
 
             .accordion,
-            #resumoCheckout{
+            #resumoCheckout {
                 .title {
                     font-size: 18px;
                 }
@@ -740,11 +681,9 @@ $radiusBox: 0px;
         }
     }
 
-
-
     #containerPayment {
         @media only screen and (max-width: $mobile-bp) {
-            padding: 0 .5rem !important;
+            padding: 0 0.5rem !important;
         }
 
         .ui {
@@ -779,7 +718,6 @@ $radiusBox: 0px;
             width: 100%;
         }
 
-
         .shopping-voucher {
             .title {
                 span {
@@ -797,15 +735,12 @@ $radiusBox: 0px;
         }
     }
 
-
     .ui.toggle.checkbox input:checked ~ .box:before,
     .ui.toggle.checkbox input:checked ~ label:before,
-    .ui.toggle.checkbox input:focus:checked ~ label:before{
+    .ui.toggle.checkbox input:focus:checked ~ label:before {
         background-color: $action !important;
     }
-    
 }
-
 
 .buySecurity {
     text-align: right;
@@ -842,33 +777,25 @@ $radiusBox: 0px;
             }
         }
     }
-
-
-
-
 }
 
 #containerPayment {
     @media only screen and (max-width: $mobile-bp) {
-        padding: 0 .5rem !important;
+        padding: 0 0.5rem !important;
         margin: 0 !important;
     }
 }
 
-
 #formas-pagamento {
-
     .ui {
         &.secondary {
             &.menu {
                 .item {
                     background-color: $white;
-                    margin: .5rem;
+                    margin: 0.5rem;
                     &.active {
                         box-shadow: 0 0 0 1px $action;
                     }
-
-
                 }
             }
         }
@@ -883,8 +810,8 @@ $radiusBox: 0px;
 
     .blocoTypePayment {
         .titleTypePayment {
-            margin-bottom: .5em;
-            padding: .5rem;
+            margin-bottom: 0.5em;
+            padding: 0.5rem;
             cursor: pointer;
             display: inline-block;
         }
@@ -916,23 +843,21 @@ $radiusBox: 0px;
         }
     }
 
-
     .ui {
         &.list {
-            padding: .5rem;
+            padding: 0.5rem;
             margin: 1em auto 2em;
             display: block;
             width: 100%;
 
             > .item {
                 @media only screen and (max-width: $mobile-bp) {
-                    margin-top:1em;
+                    margin-top: 1em;
                 }
-                >.icon {
+                > .icon {
                     background-color: #f7f7f7;
                     display: table-cell;
                     vertical-align: middle;
-
 
                     @media only screen and (max-width: $mobile-bp) {
                         background: transparent;
@@ -948,16 +873,13 @@ $radiusBox: 0px;
         }
     }
 
-
-
     @media only screen and (max-width: $mobile-bp) {
         .segment {
-            padding:0;
+            padding: 0;
             .jp-card-container {
                 width: auto;
                 margin: 0 auto;
             }
-
 
             .jp-card {
                 min-width: 100%;
@@ -967,7 +889,7 @@ $radiusBox: 0px;
 }
 
 .textSecurity {
-    border: 1px solid #EEEEEE;
+    border: 1px solid #eeeeee;
     padding: 2em;
     display: inline-block;
     text-align: left;
@@ -983,9 +905,8 @@ $radiusBox: 0px;
 
         @media only screen and (max-width: $mobile-bp) {
             float: none;
-            margin:0 auto 20px;
+            margin: 0 auto 20px;
         }
-
     }
 
     span {
@@ -1012,13 +933,13 @@ $radiusBox: 0px;
 
 #updateShippingPayment {
     #GetShippping {
-        margin-left:0;
+        margin-left: 0;
         margin-right: 0;
         &.card-checkout {
             .card {
                 box-shadow: none !important;
                 border-radius: 8px !important;
-                padding:1em;
+                padding: 1em;
                 cursor: pointer;
 
                 @media only screen and (max-width: $mobile-bp) {
@@ -1026,7 +947,7 @@ $radiusBox: 0px;
                     margin-left: 0;
                     margin-right: 0;
                 }
-               
+
                 .checkbox {
                     width: 100%;
                     label {
@@ -1041,7 +962,7 @@ $radiusBox: 0px;
 
                 .meta {
                     padding-left: 2rem;
-                    color:#000;
+                    color: #000;
                 }
 
                 &.checked {
@@ -1052,13 +973,10 @@ $radiusBox: 0px;
     }
 }
 
-
 .blc-key {
-
     width: 100%;
     max-width: 300px;
 
-    
     label {
         line-height: 50px;
         color: #4c4c4c;
@@ -1067,7 +985,7 @@ $radiusBox: 0px;
     }
 
     #key {
-        border: 1px dashed  #ccc !important;
+        border: 1px dashed #ccc !important;
         border-radius: 12px !important;
         flex: 1 0 auto;
         width: auto;
@@ -1078,5 +996,35 @@ $radiusBox: 0px;
         position: absolute;
         right: 0;
         line-height: 30px;
+    }
+}
+
+.checkout-page {
+    .frete {
+        padding-bottom: 0.6em;
+
+        label {
+            text-transform: uppercase !important;
+            font-weight: lighter !important;
+            width: 100% !important;
+            text-align: right;
+            font-size: 14px;
+            margin-bottom: 10px !important;
+            display: inline-block;
+        }
+
+        .ui.action.input:not([class*='left action']) > input {
+            border-radius: 0 !important;
+            border: 1px solid #d4d4d4 !important;
+            border-right: 1px solid #d4d4d4 !important;
+        }
+
+        .ui.action.input:not([class*='left action']) > .button:last-child {
+            border: 1px solid #333 !important;
+            margin-left: 10px !important;
+            padding: 0 20px !important;
+            border-radius: 0 !important;
+            background: transparent !important;
+        }
     }
 }

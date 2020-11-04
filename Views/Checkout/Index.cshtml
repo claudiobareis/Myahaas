@@ -27,20 +27,20 @@
     }
 }
 
-<div class="ui container">
+<div class="ui container checkout-page">
 
     <div class="ui two column grid stackable middle aligned">
         <div class="row">
-            <div class="column ui ten wide computer six wide tablet">
+            <div class="column sixteen wide">
                 <h1 class="meu-carrinho">@(Session["idEventList"] == null && Session["EventList"] == null ? "Meu Carrinho" : "Minha Lista")</h1>
             </div>
-            <div class="column ui six wide computer ten wide tablet">
-
+            
                 @if (Session["UserAuthenticated"] != null && Session["Seller"] != null)
                 {
                     if (((DomainCustomer.Entities.Customer)Session["UserAuthenticated"]).User.UserName != null)
                     {
                         <!-- Comeco Venda Assistida (Com Cliente) -->
+                        <div class="column">
                         <div class="ui two column grid stackable middle aligned venda-assistida">
                             <div class="row">
                                 <div class="column">
@@ -68,6 +68,7 @@
                                 </div>
                             </div>
                         </div>
+                        </div>
                         <!-- Fim Venda Assistida -->
                     }
                 }
@@ -75,6 +76,7 @@
                 {
                     permiteVenda = false;
                     <!-- Comeco Venda Assistida (Sem Cliente) -->
+                    <div class="column">
                     <div class="ui two column grid stackable middle aligned venda-assistida">
                         <div class="row">
                             <div class="column">
@@ -98,13 +100,12 @@
                             </div>
                         </div>
                     </div>
+                    </div>
                     <!-- Fim Venda Assistida -->
                 }
-                <input type="hidden" id="permiteVenda" value="@permiteVenda.ToString()" />
-            </div>
         </div>
-        <div class="ui clearing divider"></div>
     </div>
+                <input type="hidden" id="permiteVenda" value="@permiteVenda.ToString()" />
 
     <div class="ui grid horizontal" id="ListProductsCheckoutCompleto">
         <div class="row">
@@ -154,7 +155,6 @@
                                                                value="@Model.ZipCode"
                                                                id="shipping">
                                                         <button class="ui right labeled icon button frete calcular" id="CallServiceShipping">
-                                                            <i class="shipping icon"></i>
                                                             Calcular
                                                         </button>
                                                     </div>
@@ -205,6 +205,7 @@
                                             <i class="right arrow icon"></i>
                                         </div>
                                     </button>
+
                                     @if (Active)
                                     {
                                         <input type="hidden" name="EnvPayPallCheckoutInCart" id="EnvPayPalCheckoutInCartlCheckoutInCart" value="@Env" />
@@ -219,15 +220,25 @@
                                         
                                         <div id="paypal-button-container-incart" class="buttonsMiniCart paypalBtn" data-container="checkout_products_list_cart"></div>
                                     }
+
+                                    <button class="ui button basic fluid large" id="ClearCart" tabindex="0" style="margin-top: 20px">
+                                        Limpar Carrinho
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <button class="ui button basic tiny"
-                        id="ClearCart" tabindex="0">
-                    Limpar Carrinho
-                </button>
+
+                <div class="cart-divider">
+                    <div class="ui container">
+                        <div class="line"></div>
+                        <svg width="31" height="19" viewBox="0 0 31 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M29.3882 9.73973C28.7766 10.2832 28.0067 10.6231 27.1878 10.7112C27.6596 10.1105 28.1844 9.55204 28.7559 9.04226C29.4135 8.46933 30.2735 8.76824 29.3882 9.73973ZM21.143 17.661C19.3151 17.0692 17.4015 16.7747 15.4775 16.7892C13.5535 16.7747 11.6399 17.0692 9.81204 17.661C8.81433 15.6835 7.53701 13.8552 6.0182 12.2307C7.31515 12.6279 8.65783 12.8622 10.0144 12.9282C11.1211 12.8808 12.1989 12.5649 13.1519 12.0087C14.105 11.4525 14.9038 10.6731 15.4775 9.73973C16.063 10.6546 16.867 11.4144 17.8193 11.9528C18.7716 12.4912 19.8432 12.7919 20.9406 12.8285C22.2972 12.7629 23.6399 12.5285 24.9368 12.1311C23.408 13.7937 22.1303 15.6646 21.143 17.6859V17.661ZM14.6428 3.73647C14.6428 1.54441 15.2499 0.846933 15.4269 0.846933C15.604 0.846933 16.211 1.54441 16.211 3.73647C16.1932 5.05443 15.9184 6.35675 15.4016 7.57258C14.8854 6.35656 14.6107 5.05436 14.5923 3.73647H14.6428ZM1.56676 9.73973C0.681532 8.74333 1.56676 8.46933 2.19907 9.04226C2.77062 9.55204 3.29537 10.1105 3.76719 10.7112C2.9483 10.6231 2.17838 10.2832 1.56676 9.73973ZM30.2988 7.87149C28.6042 6.92492 26.7578 9.26644 25.4932 11.1347C24.044 11.5388 22.5478 11.7565 21.0418 11.7823C20.0498 11.7467 19.0834 11.4626 18.2337 10.9571C17.3841 10.4515 16.6792 9.74107 16.1857 8.89279C16.9781 7.34419 17.4183 5.64408 17.4756 3.91084C17.4756 1.41986 16.7421 0 15.604 0C14.4658 0 13.7323 1.5195 13.7323 3.91084C13.7896 5.64408 14.2298 7.34419 15.0222 8.89279C14.523 9.75984 13.8037 10.4843 12.9346 10.9952C12.0656 11.5061 11.0768 11.7859 10.065 11.8072C8.55898 11.7815 7.06273 11.5638 5.61352 11.1596C4.3489 9.29135 2.50257 6.94983 0.807985 7.8964C-0.886595 8.84297 0.42862 10.5617 1.61736 11.2094C2.54683 11.6819 3.54508 12.0097 4.57654 12.1809C5.0557 12.65 5.50347 13.1493 5.91703 13.6755C7.19489 15.1828 8.25068 16.8599 9.05326 18.6574C9.08097 18.7249 9.12204 18.7863 9.17408 18.8379C9.22612 18.8896 9.28809 18.9305 9.35637 18.9584C9.42465 18.9862 9.49787 19.0003 9.57176 19C9.64565 18.9996 9.71873 18.9848 9.78674 18.9564C11.6218 18.281 13.5694 17.9515 15.5281 17.9849C17.4868 17.9515 19.4344 18.281 21.2694 18.9564C21.3374 18.9848 21.4105 18.9996 21.4844 19C21.5583 19.0003 21.6315 18.9862 21.6998 18.9584C21.7681 18.9305 21.83 18.8896 21.8821 18.8379C21.9341 18.7863 21.9752 18.7249 22.0029 18.6574C22.8055 16.8599 23.8613 15.1828 25.1391 13.6755C25.5509 13.1478 25.9988 12.6485 26.4796 12.1809C27.5104 12.007 28.5083 11.6794 29.4388 11.2094C30.6276 10.5617 31.8163 8.71842 30.2482 7.8964" fill="#E5E5E5"/>
+                        </svg>
+                        <div class="line"></div>
+                    </div>
+                </div>
                 
                  @* Compra Recorrente: Termo de Aceite *@
                 @Html.Partial("~/Views/Shared/Blocks/RecurringPurchase/_Terms.cshtml")
