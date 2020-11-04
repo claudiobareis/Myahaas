@@ -4,14 +4,14 @@
 }
 @if (Model != null && Model.Any() && Model.FirstOrDefault().PaymentMethods != null && Model.FirstOrDefault().PaymentMethods.Any() && Model.FirstOrDefault().PaymentMethods.FirstOrDefault().PaymentBrands != null)
 {
-    <div class="ui segment formas-pagamento" id="calculo-parcelamento">
-        <div class="ui accordion fluid" id="parcelamento_b2b">
-            <div class="title">
+    <div class="ui formas-pagamento" id="calculo-parcelamento">
+        <div class="ui fluid" id="parcelamento_b2b">
+            <div class="title hidden">
                 <i class="dropdown icon"></i>
                 <span id="btnParcelamento text color black"><strong>Parcelas e formas de pagamento</strong></span>
             </div>
             <div class="content  @(Session["segment"] != null && Session["segment"].ToString() == "b2b" ? "first-b2b-payment" : "")">
-                <div class="accordion" id="parcelamento_info">
+                <div class="parcelamento" id="parcelamento_info">
                     @foreach (var gateways in Model)
                     {
                         foreach (var methods in gateways.PaymentMethods)

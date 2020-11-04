@@ -17,7 +17,7 @@ export function Slideshow(elements) {
             { breakpoint: 1319, slides: $slidesToShow == 1 ? 1 : 4 },
             { breakpoint: 1025, slides: $slidesToShow == 1 ? 1 : 3 },
             { breakpoint: 769, slides: $slidesToShow == 1 ? 1 : 2 },
-            { breakpoint: 569, slides: $slidesToShow == 1 ? 1 : 1 }
+            { breakpoint: 569, slides: $slidesToShow == 1 ? 1 : 2 }
         ],
         settings = {
           prevArrow: '<a class="slick-prev ui mini button basic icon"><i class="chevron left icon"></i></a>',
