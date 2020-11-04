@@ -160,17 +160,26 @@
                     outline: none;
                     .menu {
                         &.transition{
-                            top: -48px;
+                            bottom: 31px;
                             border-radius: 0;
                             border: 1px solid #ddd;
                             box-shadow: none;
                             width: 100%;
+                            max-height: max-content;
+                            min-width: min-content;
+                            box-shadow: 0px -2px 5px #00000040;
                             .header{
                                 display: none;
                             }
                             .scrolling {
                                 &.menu{
-                                    display: flex;
+                                    display: block;
+                                    height: initial;
+                                    max-height: initial !important;
+                                    border-color: transparent;
+                                    .item{
+                                        font-size: .8em;
+                                    }
                                 }
                             }
                         }
