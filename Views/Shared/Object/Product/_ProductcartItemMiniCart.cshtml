@@ -2,8 +2,8 @@
 @model DomainCheckout.Entities.CartItem
 
 @{
-  string classe_qtd = "ui icon button ";
-  string classe_remove = "mini ui icon red button produto ";
+  string classe_qtd = "ui icon basic button ";
+  string classe_remove = "mini ui icon basic button produto ";
   string id_ipt_qtd = "qtd_";
   string classe_stock = "stock_";
   string classe_ipt_qtd = "";
@@ -23,11 +23,18 @@
 
 <div class="item item-cart-product @(Model.Stock == 0 || Model.FlagExhausted == EnumeratorsCommons.EnumYesNo.Yes ? "exhausted" : "")" data-id-produto="@Model.IdProduct" data-id-cart="@Model.IdCartItem" data-signature="@Model.IsRecurrent" id="itemCartProduct_@Model.IdCartItem">
 
+    <button class="@classe_remove" data-id="@Model.IdCartItem" data-id-produto="@Model.IdProduct" data-id-sku="@Model.IdSku">
+        <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14 1H10.5L9.5 0H4.5L3.5 1H0V3H14V1ZM1 16C1 16.5304 1.21071 17.0391 1.58579 17.4142C1.96086 17.7893 2.46957 18 3 18H11C11.5304 18 12.0391 17.7893 12.4142 17.4142C12.7893 17.0391 13 16.5304 13 16V4H1V16Z" fill="#BDBDBD"/>
+        </svg>
+    </button>
+
     <div class="image">
         <a href="/Product/Details/@Model.IdProduct" class="product image" id="name_@Model.IdCartItem">
             <img src="@Model.ProductImage.ImageDefault" onerror="imgError(this)">
         </a>
     </div>
+
     <div class="content">
         <div class="nameProduct">
             <a href="/Product/Details/@Model.IdProduct" class="product title" id="name_@Model.IdCartItem">
@@ -53,34 +60,37 @@
                 @Model.AvailabilityStatus.DescriptionCart
             }
         </div>
-        
-        <div class="priceProduct" id="priceProduct_@Model.IdCartItem">@(Model.Quantity > 1 ? Model.Quantity+"x" : "") @string.Format("{0:c}", Model.PriceProduct)</div>
-        
-        <div class="description">
-             @if (Model.Stock == 0 || Model.FlagExhausted == EnumeratorsCommons.EnumYesNo.Yes)
-             {
-                 <span class="ui label basic primary exhausted">PRODUTO ESGOTADO</span>
-             }
-             else
-             {
-                 <div class="ui qtd action mini input">
-                     <button class="@classe_qtd mini" data-id="@Model.IdCartItem" data-action="minus" data-id-produto="@Model.IdProduct" data-id-sku="@Model.IdSku">
-                         <i class="icon minus"></i>
-                     </button>
-                     <input type="hidden" id="qtdInicial_@Model.IdCartItem" value="@Model.Quantity"/>
-                     <input type="hidden" value="@Model.Stock" name="stock_@Model.IdCartItem" id="stock_@Model.IdCartItem"/>
-                     <input type="number" class="text center quantidade" min="0" step="1" size="3" value="@Model.Quantity" name="@Model.IdCartItem" id="qtd_@Model.IdCartItem" data-id="@Model.IdCartItem" data-action="ipt"/>
 
-                     <button class="@classe_qtd mini" data-id="@Model.IdCartItem" data-action="plus" data-id-produto="@Model.IdProduct" data-id-sku="@Model.IdSku">
-                         <i class="icon plus"></i>
-                     </button>
-                 </div>
-             }
+        <div class="wrapper-qty-price">
+            <div class="description">
+                @if (Model.Stock == 0 || Model.FlagExhausted == EnumeratorsCommons.EnumYesNo.Yes)
+                {
+                    <span class="ui label basic primary exhausted">PRODUTO ESGOTADO</span>
+                }
+                else
+                {
+                    <span>QTD</span>
+                    <div class="ui qtd action mini input">
+                        <button class="@classe_qtd mini" data-id="@Model.IdCartItem" data-action="minus" data-id-produto="@Model.IdProduct" data-id-sku="@Model.IdSku">
+                            <i class="icon minus"></i>
+                        </button>
+                        <input type="hidden" id="qtdInicial_@Model.IdCartItem" value="@Model.Quantity"/>
+                        <input type="hidden" value="@Model.Stock" name="stock_@Model.IdCartItem" id="stock_@Model.IdCartItem"/>
+                        <input type="number" class="text center quantidade" min="0" step="1" size="3" value="@Model.Quantity" name="@Model.IdCartItem" id="qtd_@Model.IdCartItem" data-id="@Model.IdCartItem" data-action="ipt"/>
+
+                        <button class="@classe_qtd mini" data-id="@Model.IdCartItem" data-action="plus" data-id-produto="@Model.IdProduct" data-id-sku="@Model.IdSku">
+                            <i class="icon plus"></i>
+                        </button>
+                    </div>
+                }
+            </div>
+            <div class="price">
+                <span>VALOR</span>
+                <div class="priceProduct" id="priceProduct_@Model.IdCartItem">@(Model.Quantity > 1 ? Model.Quantity+"x" : "") @string.Format("{0:c}", Model.PriceProduct)</div>
+            </div>
         </div>
         
-        <button class="@classe_remove" data-id="@Model.IdCartItem" data-id-produto="@Model.IdProduct" data-id-sku="@Model.IdSku">
-            <i class="trash alternate outline icon"></i>
-        </button>
+        
     </div>
     
     <div class="ui divider"></div>
