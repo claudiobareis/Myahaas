@@ -184,7 +184,7 @@
             display: none;
             list-style: none;
             padding: 2px;
-            border: solid 1px $colorgalleryapprox;
+            // border: solid 1px $colorgalleryapprox;
             background-color: $white;
         }
     }
@@ -230,8 +230,8 @@
             background-color: transparent;
             color: $colorstormdustapprox;
             line-height: 25px;
-            border-bottom: 1px solid;
-            border-bottom-color: $black13;
+            // border-bottom: 1px solid;
+            // border-bottom-color: $black13;
             position: static;
             &.active {
                 color: $colorstormdustapprox;
@@ -466,7 +466,7 @@
             margin: 0;
             font-size: 15px;
             padding: 7px 13px !important;
-            border-bottom: 1px solid $colorcelesteapprox;
+            // border-bottom: 1px solid $colorcelesteapprox;
             background-color: transparent !important;
         }
         .ui.grid.doubling {
@@ -488,7 +488,7 @@
         position: relative !important;
         top: 0;
         background-color: $white;
-        border: solid 1px $colorcelesteapprox;
+        // border: solid 1px $colorcelesteapprox;
         padding: 0;
         visibility: visible !important;
         li {

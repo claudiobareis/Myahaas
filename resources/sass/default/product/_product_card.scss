@@ -148,6 +148,8 @@
                 z-index: 10 !important;
                 border-top: 1px solid #BBBBBB;
                 border-bottom: 1px solid #BBBBBB;
+                flex-wrap: wrap;
+
                 .dropdownreference{                   
                     line-height: initial;
                     width: auto;
@@ -217,6 +219,8 @@
                 }
                 .btn-comprar-card{
                     font-size: .8em;
+                    border-left: 1px solid #ddd;
+                    padding: 3px 10px;
                 }
                 .produto-esgotado-label {
                     color: $grey !important;

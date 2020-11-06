@@ -162,6 +162,7 @@ headlogo {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-left: 25px;
 
     & > div {
         padding: 10px;
@@ -267,7 +268,16 @@ headlogo {
 }
 
 .searchMobile {
+    padding: 0 10px;
+    
     .blocoBusca {
         padding: 5px 1rem 5px 5px !important;
+        
     }
+}
+
+.ui.container.search-container{
+    border-bottom: 1px solid #ddd;
+    margin: 0 !important;
+    width: 100vw !important;
 }

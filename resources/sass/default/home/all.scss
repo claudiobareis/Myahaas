@@ -123,3 +123,13 @@
         }
     }
 }
+
+
+.category-2{
+    @media screen and (max-width: 764px){
+        .ui.three.doubling.cards > .card, .ui.four.doubling.cards > .card, .ui.five.doubling.cards > .card, .ui.six.doubling.cards > .card {
+            width: 50%;
+            margin: 5px 0;
+        }
+    }
+}
