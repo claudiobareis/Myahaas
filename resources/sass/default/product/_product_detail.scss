@@ -31,9 +31,16 @@ h1.nomeProduto {
 }
 
 .stars{
+    
     @media screen and (max-width: $mobile-bp) {
-        text-align: center;
+        text-align: center;        
     }      
+    svg{
+        margin: 0 auto;
+        path{
+            fill: #000000;
+        }
+    }
 }
 h6.codProduto {
     color: #888888;
@@ -52,7 +59,11 @@ h6.codProduto {
         }
     }
 
-
+    .product-grid{
+        @media screen and (max-width: $mobile-bp) {
+            padding: 0 !important;
+        }
+    }
     .marcaProduto {
         color: #666;
         font-size: 14px;
@@ -82,6 +93,7 @@ h6.codProduto {
             border-bottom: 0;
             .segment{
                 border: 0;
+                padding: 0;
             }
             #preco-antigo{
                 display: block;
@@ -102,6 +114,7 @@ h6.codProduto {
                 @media screen and (max-width: $mobile-bp) {
                     text-align: center;
                 }
+                
             }
 
             .row {
@@ -115,11 +128,12 @@ h6.codProduto {
             }
 
             .blocoPreco {
-
-                @media screen and (max-width: $mobile-bp) {
-                    text-align: center !important;
+                &.column{
+                    @media screen and (max-width: $mobile-bp) {
+                        text-align: center !important;
+                        padding: 0 0 !important;
+                    }
                 }
-
 
                 .precoAntigo {
                     clear: both;

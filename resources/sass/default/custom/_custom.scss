@@ -24,3 +24,8 @@
         }
     }
 }
+.ui.grid > .stackable.stackable.row > .column{
+    &.blocoPreco{
+        padding: 0 !important;
+    }
+}

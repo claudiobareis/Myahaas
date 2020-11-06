@@ -44,10 +44,80 @@ $radiusBox: 0px;
         width: 100%;
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: center;        
+        &.compra-segura{
+            @media screen and (max-width: $mobile-bp) {
+                padding: 1em 0 2em;
+            }            
+        }
     }
 }
-
+@media screen and (max-width: $mobile-bp) {
+    .text-checkout{
+        text-transform: uppercase;
+        font-size: .9em;
+        color: #000;
+    }
+    .jet {
+        &.checkout{
+            .ui{
+                &.segment{
+                    background: transparent;
+                    .field {
+                        & > label{
+                            text-align: center;
+                            text-transform: uppercase;
+                            font-weight: 500;
+                        }
+                        .input{
+                            i{
+                                opacity: 0.2;
+                            }
+                            input{
+                                &[type='text']{
+                                    border: 1px solid #D4D4D4;
+                                    font-size: .8em;
+                                    margin: 1em 0;
+                                    padding-left: 3.3em !important;
+                                    font-weight: 100 !important;
+                                }
+                            }
+                        }                       
+                    }
+                    button{
+                        &.ui{ 
+                            &.right{
+                                &.floated{
+                                    border-radius: 0!important;
+                                    width: 100%;
+                                    position: fixed;
+                                    bottom: 0;
+                                    left: 0;
+                                    margin: 0;
+                                }
+                            }
+                        }                            
+                    }
+                }               
+            }            
+        }
+    }
+    .title-checkout{
+        border-top: 1px solid #C6C6C6;
+        border-bottom: 1px solid #C6C6C6; 
+        margin: 1em 0 0;
+        display: block;
+        padding: 1em 0;
+        h1{
+            text-transform: uppercase;
+            font-weight: 600;
+            font-size: 1em;
+            text-transform: uppercase;
+            font-size: 1em;
+            text-align: center;
+        }
+    }
+}
 .meu-carrinho {
     margin-top: 15px !important;
     border-top: 1px solid #d4d4d4 !important;
@@ -687,16 +757,30 @@ $radiusBox: 0px;
         }
 
         .ui {
+            .column{
+                &.one{
+                    @media only screen and (max-width: $mobile-bp) {
+                        padding: 0 !important;
+                    }
+                }                
+            }
             &.segment {
                 padding: 0;
 
                 .accordion {
+                    border-top: 1px solid #C6C6C6;                    
                     > .title {
                         padding: 1rem;
+                        text-transform: uppercase;
+                        font-size: 1em;
 
                         &:not(.transparent) {
-                            background-color: #eee;
-                            border-radius: 8px;
+                            background-color: #fff;                            
+                            i{
+                                &:first-of-type{
+                                    display: none;
+                                }
+                            }
                         }
 
                         &.active {
@@ -706,6 +790,7 @@ $radiusBox: 0px;
                     }
                     > .content {
                         padding: 1rem;
+                        background-color: #fff;
                     }
                 }
             }
@@ -889,11 +974,11 @@ $radiusBox: 0px;
 }
 
 .textSecurity {
-    border: 1px solid #eeeeee;
-    padding: 2em;
+    border: transparent;
+    padding: 0 2em 2em 2em;
     display: inline-block;
     text-align: left;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 
     @media only screen and (max-width: $mobile-bp) {
         text-align: center;
@@ -910,11 +995,13 @@ $radiusBox: 0px;
     }
 
     span {
-        font-size: 14px;
+        font-size: .9em;
         color: #666666;
         line-height: 22px;
         max-width: 320px;
         display: inline-block;
+        text-transform: uppercase;
+        padding: 1em 0;
 
         @media only screen and (max-width: $mobile-bp) {
             max-width: 100%;
