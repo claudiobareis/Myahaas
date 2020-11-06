@@ -1,4 +1,4 @@
-$bgBox: #f7f7f7;
+$bgBox: #fff;
 $borderBox: 0px;
 $radiusBox: 0px;
 
@@ -60,14 +60,34 @@ $radiusBox: 0px;
     }
     .jet {
         &.checkout{
+            &.register{
+                .ui{
+                    &.dividing{
+                        &.header{
+                                text-transform: uppercase;
+                                padding: 1em 0;
+                                border-top: 1px solid #C6C6C6;
+                                border-bottom: 1px solid #C6C6C6;
+                            &:first-of-type{
+                                padding: 1em 0;
+                                border-top: 1px solid #C6C6C6;
+                                border-bottom: 1px solid #C6C6C6;
+                            }
+                        }
+                    }
+                }
+            }
             .ui{
                 &.segment{
                     background: transparent;
                     .field {
                         & > label{
-                            text-align: center;
+                            text-align: left;
                             text-transform: uppercase;
                             font-weight: 500;
+                            @media screen and (max-width: $mobile-bp) {
+                                text-align: left;
+                            }
                         }
                         .input{
                             i{
@@ -156,7 +176,7 @@ $radiusBox: 0px;
         right: 10px;
         top: 10px;
     }
-
+   
     .CloseMiniCart {
         width: 100%;
         display: flex;
@@ -727,18 +747,53 @@ $radiusBox: 0px;
             text-align: center;
         }
     }
-
+    .dadosCliente{
+        #changeUserPayment{
+            @media only screen and (max-width: $mobile-bp) {
+                border-radius: 0;
+                text-transform: uppercase;
+            }
+        }
+        #listAddressPayment{
+            @media only screen and (max-width: $mobile-bp) {
+                border-radius: 0;
+                background: #000 !important;
+                color: #fff !important;
+                border: none !important;
+                text-transform: uppercase;
+                box-shadow: none !important;
+            }
+        }
+    }
     .ui {
         &.segment {
             border: 0 !important;
             background-color: #f7f7f7;
             font-size: 14px;
             border-radius: 8px !important;
-
+            @media only screen and (max-width: $mobile-bp) {
+                background-color: #fff;
+            }
+            .compra{
+                background: #fff;
+            }
+            
             .accordion,
-            #resumoCheckout {
+            #resumoCheckout {                  
+                .icon{
+                    &:first-of-type{
+                        display: none;
+                    }
+                }
+                .item{
+                    @media only screen and (max-width: $mobile-bp) {
+                        padding: .2em 0;
+                    }
+                }
                 .title {
-                    font-size: 18px;
+                    font-size: 1em;
+                    text-transform: uppercase;
+                    font-weight: 800;
                 }
 
                 .content {
@@ -757,7 +812,7 @@ $radiusBox: 0px;
         }
 
         .ui {
-            .column{
+            .column{               
                 &.one{
                     @media only screen and (max-width: $mobile-bp) {
                         padding: 0 !important;
@@ -773,6 +828,7 @@ $radiusBox: 0px;
                         padding: 1rem;
                         text-transform: uppercase;
                         font-size: 1em;
+                        font-weight: 800;
 
                         &:not(.transparent) {
                             background-color: #fff;                            
@@ -790,6 +846,9 @@ $radiusBox: 0px;
                     }
                     > .content {
                         padding: 1rem;
+                        @media only screen and (max-width: $mobile-bp) {
+                            padding: 0 1rem 1rem 1rem;
+                        }
                         background-color: #fff;
                     }
                 }
@@ -1033,6 +1092,7 @@ $radiusBox: 0px;
                     width: 100%;
                     margin-left: 0;
                     margin-right: 0;
+                    padding: 0;
                 }
 
                 .checkbox {
@@ -1063,17 +1123,22 @@ $radiusBox: 0px;
 .blc-key {
     width: 100%;
     max-width: 300px;
+    padding: 0 0 0 1em;
 
     label {
         line-height: 50px;
-        color: #4c4c4c;
+        color: #000;
         font-size: 14px;
         margin-right: 15px;
+        text-transform: uppercase;
+        font-weight: 600;
     }
 
     #key {
-        border: 1px dashed #ccc !important;
-        border-radius: 12px !important;
+        border: 1px solid #D4D4D4 !important;
+        border-radius: 0 !important;
+        -webkit-box-flex: 1;
+        -ms-flex: 1 0 auto;
         flex: 1 0 auto;
         width: auto;
     }

@@ -148,7 +148,7 @@
                 z-index: 10 !important;
                 border-top: 1px solid #BBBBBB;
                 border-bottom: 1px solid #BBBBBB;
-                .dropdownreference{
+                .dropdownreference{                   
                     line-height: initial;
                     width: auto;
                     padding: 0;
@@ -158,9 +158,11 @@
                     min-width: 33% !important;
                     border: 0;
                     outline: none;
+                    box-shadow: none;
                     .menu {
                         &.transition{
-                            bottom: 31px;
+                            bottom: 27px;
+                            top: auto;
                             border-radius: 0;
                             border: 1px solid #ddd;
                             box-shadow: none;
@@ -173,12 +175,21 @@
                             }
                             .scrolling {
                                 &.menu{
-                                    display: block;
+                                    display: flex;
+                                    flex-wrap: wrap;
                                     height: initial;
                                     max-height: initial !important;
                                     border-color: transparent;
+                                    position: sticky;
+                                    bottom: 0;
+                                    z-index: 999;
+                                    min-width: 147px !important;
                                     .item{
                                         font-size: .8em;
+                                        &.active{
+                                            background: #000;
+                                            color: #fff;
+                                        }
                                     }
                                 }
                             }
