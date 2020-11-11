@@ -29,3 +29,18 @@
         padding: 0 !important;
     }
 }
+
+.blocoBuscaContainer{
+    &.ui{
+        &.fluid{
+            &.input {
+                input{
+                    text-transform: uppercase;
+                    font-size: 12px;
+                    letter-spacing: 1px;
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+}

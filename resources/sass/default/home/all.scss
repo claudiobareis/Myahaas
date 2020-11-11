@@ -7,6 +7,9 @@
 .category-2,
 .category-3,
 .testimonial-slider {
+    @media screen and (max-width: $mobile-bp) {
+        margin: 0;
+    }
     margin: 50px 0;
     width: 100%;
     display: inline-block;
@@ -16,8 +19,14 @@
         width: 100%;
         display: inline-block;
 
-        @media only screen and (max-width: 767px) {
-            margin: 20px 0;
+        @media screen and (max-width: $mobile-bp) {
+            margin: 0;
+        }
+        h3{
+            line-height: 20px;
+            @media screen and (max-width: $mobile-bp) {
+                padding: 0 1em;
+            }
         }
     }
 
@@ -29,9 +38,24 @@
         text-transform: uppercase;
         text-align: center;
         font-family: 'PT Sans', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+        &.bee{
+            position: relative;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            margin: 20px 0 0; 
+            span{
+                background: url('/assets/image/abelha.svg');
+                left: 0;
+                top: 0;
+                background-repeat: no-repeat;
+                background-position: 42px 3px;
+                padding: 0 14px 0 0;
+            }
+        }
 
-        @media only screen and (max-width: 767px) {
-            margin: 20px 0;
+        @media screen and (max-width: $mobile-bp) {
+            margin: .7em 0;
         }
     }
 
@@ -44,6 +68,9 @@
         text-align: center;
         font-family: 'PT Sans', 'Helvetica Neue', Arial, Helvetica, sans-serif;
         color: #838383;
+        @media only screen and (max-width: 767px) {
+            margin: .6em 0 0;
+        }
     }
 
     .doubling {
@@ -91,6 +118,8 @@
 
         .stars {
             margin-bottom: 20px;
+            position: relative;
+            left: -20px;            
         }
 
         .content {
