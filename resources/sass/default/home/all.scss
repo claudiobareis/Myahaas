@@ -9,8 +9,7 @@
 .testimonial-slider {
     @media screen and (max-width: $mobile-bp) {
         margin: 0;
-    }
-    margin: 50px 0;
+    }    
     width: 100%;
     display: inline-block;
 
@@ -91,6 +90,14 @@
             padding: 10px 25px;
             display: inline-block;
             margin: 0 auto;
+        }
+    }
+}
+.ui{
+    &.category-1{
+        margin: 0;
+        @media screen and (max-width: $mobile-bp) {
+            margin: 25px 0;
         }
     }
 }

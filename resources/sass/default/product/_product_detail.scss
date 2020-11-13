@@ -42,6 +42,7 @@ h1.nomeProduto {
         }
     }
 }
+
 h6.codProduto {
     color: #888888;
     margin: 0px !important;
@@ -51,7 +52,7 @@ h6.codProduto {
 
 
     #dica_compra_partial {
-        margin-top: 15px;
+        margin-top: 0;
 
         @media screen and (max-width: $mobile-bp) {
             margin: 0 auto;
@@ -70,8 +71,9 @@ h6.codProduto {
     }
 
     .avaliacoes {
+        
         color: #666;
-        display: table;
+        display: none;
         float: right;
 
         &:hover {
@@ -315,8 +317,13 @@ h6.codProduto {
     &.cor {
         height: 35px;
         width: 35px;
+        box-shadow: none !important;
+        border-radius: 50px !important;
+        min-height: 42px;
     }
-
+    &.filter-selected{
+        border: 1px solid #000;
+    }
     &.selecionado {
         box-shadow: 0 0 0 3px rgba(0, 0, 0, .35) !important;
     }
@@ -346,7 +353,13 @@ h6.codProduto {
 }
 
 .produto {
-
+    .ui{
+        &.styled{
+            &.accordion{
+                width: 100%;
+            }
+        }
+    }
     &.detalhes {
 
         &.row {
@@ -678,9 +691,11 @@ h6.codProduto {
 
 .grid-variations {
     .references {
-        margin-bottom: 1em;
+        margin: 1em 0;
+        
         @media screen and (max-width: $mobile-bp) {
             text-align: center;
+            margin: 0;
         }
         .title {
             margin-bottom: .5em;
