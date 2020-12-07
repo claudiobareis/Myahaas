@@ -1,6 +1,5 @@
 .hidden{
-    display: none !important;
-    visibility: hidden;
+    display: none !important;    
 }
 .ui{
     &.labeled{
@@ -21,6 +20,21 @@
                     }
                 }
             }
+        }
+    }
+}
+.product-in-card{
+    &.ui{
+        &.card {            
+            a{           
+                img{
+                    &.hidden{
+                        &.content{
+                            display: block !important;
+                        }                            
+                    }
+                }                
+            }            
         }
     }
 }
