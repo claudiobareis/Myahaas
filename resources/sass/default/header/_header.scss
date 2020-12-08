@@ -20,7 +20,7 @@ headlogo {
 
     & > .container > .ui > .row {
         @media screen and (max-width: $mobile-bp) {
-            padding: 5px 0;
+            padding: 8px 0;
         }
     }
 
@@ -154,7 +154,8 @@ headlogo {
         max-width: 80px;
         width: 100%;
         display: inline-block;
-        margin-left: 60px;
+        margin: 7px 0 0 90px;
+
     }
 }
 
@@ -163,9 +164,16 @@ headlogo {
     align-items: center;
     justify-content: center;
     margin-left: 25px;
+    @media screen and (max-width: $mobile-bp) {
+        margin-left: 40px;
+    }
 
     & > div {
         padding: 10px;
+        @media screen and (max-width: $mobile-bp) {
+            margin-right: 5px;   
+            padding: 8px 10px 10px 0;         
+        }
     }
 
     .cart-button {

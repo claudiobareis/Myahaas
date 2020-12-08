@@ -14,11 +14,13 @@
 
     <script>
         jQuery( document ).ready(function() {
-            jQuery(".hero-banner .images.middle").addClass("owl-carousel").owlCarousel({
+            jQuery(".hero-banner .images.middle").addClass("owl-carousel").addClass("owl-theme").owlCarousel({
                 loop:true,
                 margin:0,
                 nav:false,
-                items: 1
+                items: 1,
+                dots:true,
+                autoHeight:true
             });
         });
     </script>
@@ -27,11 +29,12 @@
 
 <section class="ui container category-1">
     <div class="title">
-        <h2>Nossos lançamentos semanais</h2>
+        <h2>Novidades da Semana</h2>
+        <h3>Lançamento da tendência toda semana para você se apaixonar <3 </h3>
     </div>
     <div class="products-carousel">
         <!-- Chamada de exibição de uma categoria  -->
-        @Html.Action("GetProducts", "Product", new { category = 125492 })
+        @Html.Action("GetProducts", "Product", new { category = 128349 })
     </div>
     <div class="category-cta">
         <a href="https://myahaas.plataformaneo.com.br/categoria/sapato/rasteira">VER TODOS</a>
@@ -58,8 +61,6 @@
     </script>
 </section>
 
-
-
 <!-- ~/Views/Shared/Blocks/_CentralHalfBanner.cshtml -->
 @Html.Action("CentralHalfBanner", "Banner")
 
@@ -67,10 +68,11 @@
 <section class="ui container category-2">
     <div class="title">
         <h2>mais vendidos</h2>
+        <h3>Os best sellers da Mya mais desejados reunidos aqui.</h3>
     </div>
     <div class="products-carousel">
         <!-- Chamada de exibição de uma categoria  -->
-        @Html.Action("GetProducts", "Product", new { category = 125492 })
+        @Html.Action("GetProducts", "Product", new { category = 128346 })
     </div>
     <div class="category-cta">
         <a href="https://myahaas.plataformaneo.com.br/categoria/sapato/rasteira">VER TODOS</a>
@@ -82,12 +84,12 @@
 
 <section class="ui container category-3">
     <div class="title">
-        <h2 class="bee"><span class="bee">mya</span> bee home</h2>
-         <h3>coisinhas incríveis para tornar sua casa um lugar favorito</h3>
+        <h2 class="bee"><span class="bee">linha</span> home</h2>
+        <h3>Mya Bee Home: coisinhas incríveis para tornar a sua casa o seu lugar favorito</h3>
     </div>
     <div class="products-carousel">
         <!-- Chamada de exibição de uma categoria  -->
-        @Html.Action("GetProducts", "Product", new { category = 125492 })
+        @Html.Action("GetProducts", "Product", new { category = 128347 })
     </div>
     <div class="category-cta">
         <a href="https://myahaas.plataformaneo.com.br/categoria/sapato/rasteira">VER TODOS</a>

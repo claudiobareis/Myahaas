@@ -31,12 +31,24 @@
 
     h2 {
         font-style: normal;
-        font-size: 21px;
+        font-size: 19px;
         line-height: 122%;
-        font-weight: 100;
+        font-weight: 500;
         text-transform: uppercase;
         text-align: center;
         font-family: 'PT Sans', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+        position: relative;
+        &:before{
+            content: "";
+            width: 8%;
+            height: 2px;
+            background: $ascent-8-color; 
+            position: absolute;
+            bottom: -9px;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+        }
         &.bee{
             position: relative;
             text-align: center;
@@ -48,8 +60,8 @@
                 left: 0;
                 top: 0;
                 background-repeat: no-repeat;
-                background-position: 42px 3px;
-                padding: 0 14px 0 0;
+                background-position: 53px 3px;
+                padding: 0 19px 0 0;
             }
         }
 
@@ -66,9 +78,9 @@
         text-transform: uppercase;
         text-align: center;
         font-family: 'PT Sans', 'Helvetica Neue', Arial, Helvetica, sans-serif;
-        color: #838383;
+        color: #686868;
         @media only screen and (max-width: 767px) {
-            margin: .6em 0 0;
+            margin: 15px 0 0;
         }
     }
 
@@ -97,7 +109,7 @@
     &.category-1{
         margin: 0;
         @media screen and (max-width: $mobile-bp) {
-            margin: 25px 0;
+            margin: 0 0 25px 0;
         }
     }
 }
@@ -122,6 +134,9 @@
         align-items: center;
         justify-content: flex-start;
         flex-direction: column;
+        @media screen and (max-width: $mobile-bp) {
+            padding: 10px 0;
+        }
 
         .stars {
             margin-bottom: 20px;

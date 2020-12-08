@@ -4,10 +4,25 @@
     overflow: hidden;
 
     @media only screen and (max-width: 767px) {
-        max-height: 158px;
+        /*max-height: 250px;*/
+    }
+    .ui{
+        &.images{
+            img{
+                @media screen and (max-width: $mobile-bp) {
+                   
+                }
+            }
+        }
     }
 }
-
+.products-carousel{
+    #container-paginate{
+        @media screen and (max-width: $mobile-bp) {
+            display: none;
+        }
+    }
+}
 .car-banners {
     .container {
         position: relative;
