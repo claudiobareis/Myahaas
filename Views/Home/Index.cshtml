@@ -26,15 +26,14 @@
     </script>
 </section>
 
-
 <section class="ui container category-1">
     <div class="title">
         <h2>Novidades da Semana</h2>
-        <h3>Lançamento da tendência toda semana para você se apaixonar <3 </h3>
+        <h3>Lançamento da tendência toda semana para você se apaixonar </h3>
     </div>
     <div class="products-carousel">
         <!-- Chamada de exibição de uma categoria  -->
-        @Html.Action("GetProducts", "Product", new { category = 128349 })
+        @Html.Action("GetProducts", "Product", new { category = 128952, pageSize = 12 })     
     </div>
     <div class="category-cta">
         <a href="https://myahaas.plataformaneo.com.br/categoria/sapato/rasteira">VER TODOS</a>
@@ -64,7 +63,6 @@
 <!-- ~/Views/Shared/Blocks/_CentralHalfBanner.cshtml -->
 @Html.Action("CentralHalfBanner", "Banner")
 
-
 <section class="ui container category-2">
     <div class="title">
         <h2>mais vendidos</h2>
@@ -72,7 +70,7 @@
     </div>
     <div class="products-carousel">
         <!-- Chamada de exibição de uma categoria  -->
-        @Html.Action("GetProducts", "Product", new { category = 128346 })
+        @Html.Action("GetProducts", "Product", new { category = 128951, pageSize = 6 })
     </div>
     <div class="category-cta">
         <a href="https://myahaas.plataformaneo.com.br/categoria/sapato/rasteira">VER TODOS</a>
@@ -89,7 +87,7 @@
     </div>
     <div class="products-carousel">
         <!-- Chamada de exibição de uma categoria  -->
-        @Html.Action("GetProducts", "Product", new { category = 128347 })
+        @Html.Action("GetProducts", "Product", new { category = 128951 })
     </div>
     <div class="category-cta">
         <a href="https://myahaas.plataformaneo.com.br/categoria/sapato/rasteira">VER TODOS</a>
@@ -162,14 +160,12 @@
     </script>
 </section>
 
-
-
-
 <section class="instagram">
-    <div data-mc-src="720c382f-9580-4a1d-86e0-ff25adf6e2db"></div>
-    <script
-      src="https://cdn.woxo.tech/index.js#5fa0073abbf64c0017d166c7"
-      async data-usrc>
+    <div data-mc-src="6f4aefd9-c709-4c06-86f8-21de390781a0"></div>
+            
+    <script 
+    src="https://cdn2.woxo.tech/a.js#5fcfc45328c1400015c37192" 
+    async data-usrc>
     </script>
 </section>
 
