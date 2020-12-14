@@ -194,7 +194,7 @@ $radiusBox: 0px;
 
     .item-cart-product {
         flex-direction: column;
-
+        position: relative;
         .removeCartItem {
             background: transparent !important;
             border: 0 !important;
@@ -307,9 +307,19 @@ $radiusBox: 0px;
     }
 
     #mini-carrinho-checkout {
+        display: none;
         @media screen and (min-width: $tablet-bp-min) {
             margin-bottom: 1rem;
+            display: block;
         }
+    }
+
+    #btn_finalizar{
+        margin-top: -3em;
+        @media screen and (min-width: $tablet-bp-min) {
+            margin-top: 0;
+        }
+
     }
 }
 
