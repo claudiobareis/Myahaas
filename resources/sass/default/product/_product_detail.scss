@@ -698,11 +698,17 @@ h6.codProduto {
             }
         }
     }
+    .ui.input{
+        input{
+            width: calc(100vw - 175px);
+        } 
+    }
 }
 
 
 
 .grid-variations {
+    margin-top: -1.8em;
     .references {
         margin: 1em 0;
         
@@ -821,6 +827,7 @@ h6.codProduto {
         }
     }
 }
+
 
 
 
