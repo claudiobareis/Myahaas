@@ -11,19 +11,12 @@
 <section class="hero-banner">
     <!-- ~/Views/Shared/Blocks/Banner/_FullBanner.cshtml -->
     @Html.Action("FullBanner", "Banner")
-
     <script>
-        jQuery( document ).ready(function() {
-            jQuery(".hero-banner .images.middle").addClass("owl-carousel").addClass("owl-theme").owlCarousel({
-                loop:true,
-                margin:0,
-                nav:false,
-                items: 1,
-                dots:true,
-                autoHeight:true
-            });
+        $(document).ready(function () {            
+            $('.products-carousel .slideshow').attr('data-dots','true');
+            $('.products-carousel .slideshow').attr('data-arrow','false');            
         });
-    </script>
+    </script> 
 </section>
 
 <section class="ui container category-1">
@@ -32,31 +25,17 @@
         <h3>Lançamento da tendência toda semana para você se apaixonar </h3>
     </div>
     <div class="products-carousel">
-        <!-- Chamada de exibição de uma categoria  -->
-        @Html.Action("GetProducts", "Product", new { category = 128952, pageSize = 12 })     
+        <!-- Chamada de exibição de uma categoria  -->        
+        @Html.Action("ProductsByGroup", "Product", new { id = 4865 })      
     </div>
     <div class="category-cta">
-        <a href="https://myahaas.plataformaneo.com.br/categoria/sapato/rasteira">VER TODOS</a>
+        <a href="/grupo/lancamentos/">VER TODOS</a>
     </div>
     <script>
-        jQuery( document ).ready(function() {
-            jQuery(".category-1 .products-carousel .doubling").addClass("owl-carousel").addClass("owl-theme").owlCarousel({
-                loop:true,
-                margin:10,
-                nav:false,
-                responsive:{
-                    0:{
-                        items:2
-                    },
-                    600:{
-                        items:2
-                    },
-                    1000:{
-                        items:4
-                    }
-                }
-            });
-        })
+        $(document).ready(function () {            
+            $('.products-carousel .slideshow').attr('data-dots','true');
+            $('.products-carousel .slideshow').attr('data-arrow','false');            
+        });
     </script>
 </section>
 
@@ -71,6 +50,9 @@
     <div class="products-carousel">
         <!-- Chamada de exibição de uma categoria  -->
         @Html.Action("GetProducts", "Product", new { category = 128951, pageSize = 6 })
+        <!-- ~/Views/Shared/Blocks/_TopSellers.cshtml 
+        Html.Action("TopSellers", "Product")
+        -->
     </div>
     <div class="category-cta">
         <a href="https://myahaas.plataformaneo.com.br/categoria/sapato/rasteira">VER TODOS</a>
@@ -87,31 +69,18 @@
     </div>
     <div class="products-carousel">
         <!-- Chamada de exibição de uma categoria  -->
-        @Html.Action("GetProducts", "Product", new { category = 128951 })
+        @Html.Action("GetProducts", "Product", new { category = 128952, pageSize = 8 })
     </div>
     <div class="category-cta">
-        <a href="https://myahaas.plataformaneo.com.br/categoria/sapato/rasteira">VER TODOS</a>
+        <a href="/categoria/mya-bee-home">VER TODOS</a>
     </div>
     <script>
-        jQuery( document ).ready(function() {
-            jQuery(".category-3 .products-carousel .doubling").addClass("owl-carousel").addClass("owl-theme").owlCarousel({
-                loop:true,
-                margin:10,
-                nav:false,
-                responsive:{
-                    0:{
-                        items:2
-                    },
-                    600:{
-                        items:2
-                    },
-                    1000:{
-                        items:4
-                    }
-                }
-            });
-        })
-    </script>
+        $(document).ready(function () {            
+            $('.category-3 .cards').addClass('slideshow');
+            $('.category-3 .slideshow').attr('data-dots','true');
+            $('.category-3 .slideshow').attr('data-arrow','false');            
+        });
+    </script>   
 </section>
 
 <section class="ui container testimonial-slider">
@@ -168,17 +137,3 @@
     async data-usrc>
     </script>
 </section>
-
-<!-- ~/Views/Shared/Blocks/_TopSellers.cshtml -->
-<!-- @Html.Action("TopSellers", "Product") -->
-
-<!-- <div class="featuredProducts"> -->
-<!--      --><!-- ~/Views/Shared/Blocks/Product/_FeaturedProducts.cshtml -->
-<!--     @Html.Action("FeaturedProducts", "Product") -->
-<!-- </div> -->
-
-<!-- ~/Views/Shared/Blocks/Group/_Groups.cshtml -->
-@Html.Action("Group", "Group")
-
-<!-- ~/Views/Shared/Blocks/Brand/_Brands.cshtml -->
-<!-- @Html.Action("Brand", "Product") -->

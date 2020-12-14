@@ -10,7 +10,7 @@ export function Slideshow(elements) {
         $slider = jQuery(this),
         $slidesToShow = ($(this).data("qtd") != null || $(this).data("qtd") != undefined) ? $(this).data("qtd") : 4,
         $arrows = ($(this).data("arrow") != null ? $(this).data("arrow") : true),
-        $dots = ($(this).data("dots") != null ? $(this).data("dots") : false),
+        $dots = ($(this).data("dots") != null ? $(this).data("dots") : true),
         $auto = ($(this).data("auto") != null ? true : false),
         $infinite = ($(this).data("qtd") == 1 || $(this).data("infinite") ? true : false),
         breakpoints = [

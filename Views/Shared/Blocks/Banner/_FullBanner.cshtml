@@ -28,13 +28,17 @@
     </div>
   }
   if (bannerNoRandom.Any())
-  {
-    <div class="ui images middle aligned center aligned">
+  {    
+    <div class="ui fluid container car-banners slick-dotted slideshow" data-qtd="1" data-auto="true" data-arrow="false" data-dots="true">
       @foreach (var banner in bannerNoRandom)
       {
-        <a href="@banner.Link" title="@banner.Name">
-          <img src="@banner.NameFileImage" data-src="@banner.NameFileImage" class="ui image" alt="@banner.Name" title="@banner.Name" onerror="imgError(this)" />          
-        </a>
+        <div class="container slideshow-item">
+          <div class="image">
+            <a href="@banner.Link" title="@banner.Name">
+              <img src="@banner.NameFileImage" data-src="@banner.NameFileImage" class="ui image" alt="@banner.Name" title="@banner.Name" onerror="imgError(this)" />          
+            </a>
+        </div>
+        </div>
       }
     </div>
   }
