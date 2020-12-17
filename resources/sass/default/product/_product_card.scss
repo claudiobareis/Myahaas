@@ -1,7 +1,8 @@
 .card.produto {
     box-shadow: none !important;
-    
-    
+    @media screen and (max-width: $mobile-bp) {     
+        min-height: 390px!important;
+    }    
 
     .content {
         position: relative;
@@ -9,8 +10,10 @@
         border-top: 0px !important;
         @media screen and (max-width: $mobile-bp) {
             padding: 1em .3em;
+            
         }
         .dados{
+            //min-height: 155px;
             h3{
                 font-size: 1em;
                 text-align: center;
@@ -179,7 +182,16 @@
                     border: 0;
                     outline: none;
                     box-shadow: none;
-                    
+                    &:after{
+                        content: "|";
+                        display: inline-block;
+                        /* margin-left: 1em; */
+                        position: absolute;
+                        right: -15px;
+                        font-size: 20px;
+                        top: -4px;
+                        color: #ccc;
+                    }
                     .menu {
                         &.transition{
                                                 
@@ -238,7 +250,7 @@
                 }
                 .btn-comprar-card{
                     font-size: .8em;
-                    border-left: 1px solid #ddd;
+                    //border-left: 1px solid #ddd;
                     padding: 3px 10px;
                 }
                 .produto-esgotado-label {
@@ -381,6 +393,6 @@
         width: calc( 50% - 2em);
         margin-left: 1em;
         margin-right: 1em;
-        min-height: 390px;
+        //min-height: 390px;
     }
 }
