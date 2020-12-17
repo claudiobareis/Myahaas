@@ -285,7 +285,7 @@ function callAjaxGetSku(element) {
                     if (ponteiroPricesCurrent > 0) {
                         $parent.find("#basePrice_" + productId + "> i").text(moneyPtBR(sku.Price));
                     } else {
-                        $parent.find(".preco").before('<span id="basePrice_' + productId + '" class="precoBase">de <i>' + moneyPtBR(sku.Price) + '</i> por</span>');
+                        //$parent.find(".preco").before('<span id="basePrice_' + productId + '" class="precoBase">de <i>' + moneyPtBR(sku.Price) + '</i> por</span>');
                     }
                     $parent.find(".preco").text(moneyPtBR(sku.PricePromotion));
                 }
@@ -321,8 +321,8 @@ function callAjaxGetSku(element) {
                 else {
                     $parent.find("#btn-comprar-card-" + productId)
                         .removeClass(`${color_aviseme_button_class} avise-card avise-me-modal`)
-                        .addClass(`${color_comprar_button_class} btn-comprar-card`)
-                        .html('<i class="icon add to cart"></i> Comprar');
+                        .addClass(`${color_comprar_button_class} btn-comprar-card`);
+                        //.html('<i class="icon add to cart"></i> Comprar');
 
                     $parent.find("#btn-assinatura-card-" + productId).removeClass(`hideme`);
 

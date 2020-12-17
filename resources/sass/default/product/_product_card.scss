@@ -189,8 +189,9 @@
                             width: 100%;
                             max-height: max-content;
                             min-width: min-content;
-                            box-shadow: 0px -2px 5px #00000040;
-                            
+                            box-shadow: 0px 0 4px #00000021;
+                            top: -80px;
+                            min-height: 68px;
                             .header{
                                 display: none;
                             }
