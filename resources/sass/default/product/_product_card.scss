@@ -24,7 +24,7 @@
                     overflow: hidden;
                     text-overflow: ellipsis;
                     padding: 0;
-                    min-height: 40px;
+                    max-height: 40px;
                 }
             }
             
@@ -78,7 +78,7 @@
 
             .parcelamento {
                 color: #4c4c4c;
-                font-size: 15px;
+                font-size: 13px;
                 display: block;
                 text-align: center;
             }

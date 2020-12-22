@@ -197,17 +197,16 @@ ul{
             li{
                 list-style-type: none;
                 span{
-                    color: #000000;
+                    color: #999999;
                     font-size: 13px;
                     padding: 0 5px 0 0;
-                    text-transform: uppercase;
-                    font-weight: 600;
+                    text-transform: capitalize;
+                    font-weight: 300;
                 }
                 a{
                     color: $ascent-10-color;
                     font-size: 13px;
-                    font-weight: 700 !important;
-                    text-transform: uppercase;
+                    font-weight: 500 !important;                    
                 }
             }
         }
@@ -281,7 +280,7 @@ ul{
     p {
         color: #999999;
         font-size: 12px;
-        font-weight: bold;
+        font-weight: 300;
     }
 
     h4,

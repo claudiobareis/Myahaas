@@ -1,0 +1,39 @@
+﻿@model List<DomainProduct.Entities.ProductImage>
+
+@{
+    DomainProduct.Entities.SealStatus tag = new DomainProduct.Entities.SealStatus();
+
+    if (Session["SealStatusV"] != null)
+    {
+        tag = (DomainProduct.Entities.SealStatus)Session["SealStatusV"];
+    }
+    else
+    {
+        tag.Image = "";
+        tag.Name = "";
+    }
+}
+
+<div class="ui grid row">    
+    <div class="column center aligned">
+        
+            @if (!string.IsNullOrEmpty(tag.Name))
+            {
+                <div class="imagetag_tamanho">
+                    <img src="@tag.Image" alt="@tag.Name" class="img-tag" onerror="imgError(this)">
+                    <span>@tag.Name</span>
+                </div>
+            }
+            <!-- <button class="ui button basic small toggleZoom mobile only" data-active="true">Habilitar Zoom</button> -->
+        
+    </div>
+</div>
+<script>
+    $( document ).ready(function() {
+        if(jQuery(".imagetag_tamanho span:contains('compre um tamanho')") != 0){
+            jQuery(this).closest('.ui.grid').show();
+        }else{
+            jQuery(this).closest('.ui.grid').hide();
+        }        
+    });
+</script>
