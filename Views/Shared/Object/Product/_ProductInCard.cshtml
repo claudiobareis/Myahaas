@@ -61,7 +61,7 @@
 
                 @if (Model.SealStatus != null && Model.SealStatus.Name != "Normal")
                 {
-                    <div class="ui bottom right attached label massive imagetag">
+                    <div class="ui top right attached label massive imagetag">
                         <img src="@Model.SealStatus.Image" alt="@Model.SealStatus.Name" class="ui image tiny" onerror="imgError(this)" alt="@Model.Name" title="@Model.Name">
                     </div>
                 }
@@ -73,7 +73,7 @@
                 <img id="mainImageCard_@Model.IdProduct" src="/assets/image/img_default.png" data-src="@(Model.ImageHome != null ? Model.ImageHome : "/assets/image/img_default.png")" class="visible content" onerror="imgError(this)" alt="@Model.Name" title="@Model.Name">
                 @if (Model.SealStatus != null && Model.SealStatus.Name != "Normal")
                 {
-                    <div class="ui bottom right attached label massive imagetag">
+                    <div class="ui top right attached label massive imagetag">
                         <img src="@Model.SealStatus.Image" class="ui image tiny" onerror="imgError(this)" alt="@Model.Name" title="@Model.Name">
                     </div>
                 }

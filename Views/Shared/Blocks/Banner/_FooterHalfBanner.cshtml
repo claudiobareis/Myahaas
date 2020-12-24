@@ -23,14 +23,16 @@
 
     if (bannerNoRandom.Any())
     {
-        <div class="ui container footerHalf">
-            <div class="ui equal width grid images middle aligned center aligned stackable">
+        <div class="footerHalf no-p no-m">
+            <div class="ui fluid container mob-banners slick-dotted slideshow" data-qtd="1" data-auto="true" data-arrow="false" data-dots="true">
                 @foreach (var banner in bannerNoRandom)
                 {
-                    <div class="column">
-                        <a href="@banner.Link" class="ui" title="@banner.Name">
-                            <img src="/assets/image/img_default.png" data-src="@banner.NameFileImage" class="ui image" alt="@banner.Name" title="@banner.Name" onerror="imgError(this)" />
-                        </a>
+                    <div class="container slideshow-item">
+                        <div class="image">
+                            <a href="@banner.Link" class="ui" title="@banner.Name">
+                                <img src="/assets/image/img_default.png" data-src="@banner.NameFileImage" class="ui image" alt="@banner.Name" title="@banner.Name" onerror="imgError(this)" />
+                            </a>
+                        </div>
                     </div>
                   }
             </div>

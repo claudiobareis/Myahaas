@@ -96,16 +96,26 @@
         display: inline-block;
         text-align: center;
         @media screen and (max-width: $mobile-bp) {
-            margin: 30px 0 0;
+            margin: 20px 0 0;
         }
 
-        a {
-            border: 1px solid #c7c7c7;
-            color: #333;
+        a {            
+            color: #fff;
             padding: 10px 25px;
             display: inline-block;
             margin: 0 auto;
+            background: #000;
         }
+    }
+}
+.category-3{
+    @media screen and (max-width: $mobile-bp) {
+        margin: 20px 0 0 0;
+    }
+}
+.testimonial-slider {
+    @media screen and (max-width: $mobile-bp) {
+        margin: 25px 0 0 0;
     }
 }
 .ui{

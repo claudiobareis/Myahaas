@@ -8,7 +8,7 @@
 <!-- ~/Views/Shared/Blocks/_InfoBar.cshtml -->
 @Html.Partial("Blocks/_InfoBar")
 
-<section class="hero-banner">
+<section class="mobile-hide tablet-hide hero-banner">
     <!-- ~/Views/Shared/Blocks/Banner/_FullBanner.cshtml -->
     @Html.Action("FullBanner", "Banner")
     <script>
@@ -17,6 +17,11 @@
             $('.products-carousel .slideshow').attr('data-arrow','false');            
         });
     </script> 
+</section>
+
+<section class="tablet-and-mobile-only mobile-banner">
+    <!-- ~/Views/Shared/Blocks/Banner/_FooterHalfBanner.cshtml -->
+    @Html.Action("FooterHalfBanner", "Banner")
 </section>
 
 <section class="ui container category-1">
@@ -47,20 +52,19 @@
         <h2>mais vendidos</h2>
         <h3>Os best sellers da Mya mais desejados reunidos aqui.</h3>
     </div>
-    <div class="products-carousel">
-        <!-- Chamada de exibição de uma categoria  -->
-        @Html.Action("GetProducts", "Product", new { category = 128951, pageSize = 6 })
-        <!-- ~/Views/Shared/Blocks/_TopSellers.cshtml 
-        Html.Action("TopSellers", "Product")
-        -->
+    <div class="products-carousel-mais">
+        <!-- Chamada de exibição de um grupo  -->        
+        @Html.Action("ProductsByGroup", "Product", new { id = 4875 })
     </div>
     <div class="category-cta">
-        <a href="https://myahaas.plataformaneo.com.br/categoria/sapato/rasteira">VER TODOS</a>
+        <a href="/grupo/sale/">VER TODOS</a>
     </div>
+    <script>
+        $(document).ready(function () {            
+            $('.products-carousel-mais .column > div').removeClass('slideshow');            
+        });
+    </script>
 </section>
-
-<!-- ~/Views/Shared/Blocks/Banner/_FooterHalfBanner.cshtml -->
-@Html.Action("FooterHalfBanner", "Banner")
 
 <section class="ui container category-3">
     <div class="title">

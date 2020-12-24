@@ -561,8 +561,6 @@
                                     </div>
                                     <!--FIM PREÇOS-->
 
-
-
                                     <!--COMEÇO VARIAÇÔES-->
                                     if (!Model.FlagExhausted)
                                     {
@@ -604,7 +602,9 @@
                                 }
                             </div>
 
-                           
+                            <!--INÍCIO TAG ALERT-->
+                                @Html.Partial("~/Views/Product/Details/_Tag.cshtml", productImages.ToList())
+                            <!--FIM TAG ALERT-->                           
 
                             @if (Model.HaveSku)
                             {
@@ -887,7 +887,8 @@
                 <div class="content">
                     <p class="transition hidden">Comprou online e seu sapato não deu certo? Não fique triste.
 Trocar ou devolver na Mya é muito fácil =)
-<a href="./trocas-e-devolucoes" class="ui button text uppercase tireDuvidas margin top bottom medium">Saiba Mais</a></p>
+</p>
+<a href="./trocas-e-devolucoes" class="ui button text uppercase tireDuvidas">Saiba Mais</a>
                 </div>
                 <div class="title">
                     Formas de Pagamento
