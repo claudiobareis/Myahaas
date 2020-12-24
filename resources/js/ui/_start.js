@@ -5,6 +5,10 @@
 require('../vendors/validators');
 //--------------------[ Correios ]--------------------//
 require('../functions/correios');
+
+//--------------------[ Help Ecommerce ]--------------------//
+require('../functions/custom_help.js');
+
 //--------------------[ Form Starters ]--------------------//
 require('./starters/formManipulation');
 

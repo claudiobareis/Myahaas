@@ -37,6 +37,13 @@
                 &.primary {
                   border-radius: 30px;
                   min-height: 49px;
+                  background-color: #ffffff !important;
+                  box-shadow: 0 0 0 1px #000000 inset !important;
+                  color: #000000 !important;
+                  &.filter-selected{
+                    background-color: #000000 !important;
+                    color: #fff !important;
+                  }
                 }                
               }
             }

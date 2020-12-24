@@ -11,6 +11,8 @@
             padding: 1em .3em;
         }
         .dados{
+            padding: 10px 0;
+            position: relative;
             h3{
                 font-size: 1em;
                 text-align: center;
@@ -27,8 +29,6 @@
                     max-height: 40px;
                 }
             }
-            
-            padding: 10px 0;
 
             a:focus {
                 text-decoration: underline;
@@ -38,7 +38,7 @@
                 font-weight: normal;
                 color: $black;
                 font-size: 11px;
-                margin-bottom: 10px;
+                margin-bottom: 20px;
                 @media screen and (min-width: $tablet-bp-min) {
                     font-size: 14px;
                 }
@@ -46,10 +46,14 @@
 
             .precoBase {
                 color: #666666;
-                font-size: 12px;
-                display: block;
+                font-size: 11px;
+                display: block;                
                 text-align: center;
                 text-decoration: line-through;
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 52px;
 
                 i {
                     text-decoration: line-through;
@@ -66,9 +70,9 @@
                 color: $primary-color;
                 font-size: 14px;
                 line-height: 30px;
-                font-weight: 100;
+                font-weight: 400;
                 text-align: center;
-                display: block;
+                display: block;                
                 
                 &:after {
                     content: '\A';
