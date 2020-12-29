@@ -13,4 +13,7 @@ $(document).ready(function() {
             $('.produto .image .imagetag').hide(); 
         }
     },500);
+
+    jQuery( ".wsmenu ul" ).append( "<li class='js-menu'><span class='wsmenu-click'></span><a href='/grupo/lancamentos' class='item' title='Lançamentos'>Lançamentos </a></li>" );
+    jQuery( ".wsmenu ul" ).append( "<li class='js-menu'><span class='wsmenu-click'></span><a href='/grupo/sale' class='item' title='Lançamentos'>Sale </a></li>" );
 });
