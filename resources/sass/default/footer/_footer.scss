@@ -151,7 +151,7 @@ ul{
 
     h4 {
         font-size: 22px !important;
-        font-weight: 300 !important;
+        font-weight: 600 !important;
         color: #555555 !important;
     }
     i.icon {
@@ -199,9 +199,8 @@ ul{
                 span{
                     color: #999999;
                     font-size: 13px;
-                    padding: 0 5px 0 0;
-                    text-transform: capitalize;
-                    font-weight: 300;
+                    padding: 0 5px 0 0;                    
+                    font-weight: 500;
                 }
                 a{
                     color: $ascent-10-color;
@@ -227,7 +226,7 @@ ul{
         &.link {
             a,
             h5 {
-                color: #9d9d9d !important;
+                color: #333 ;
                 font-size: 12px;
                 font-weight: normal;
                 margin: 0;

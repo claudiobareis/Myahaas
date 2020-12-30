@@ -514,7 +514,7 @@ h6.codProduto {
     .ui{
         &.horizontal{
             font-size: .9em;
-            font-weight: 500;
+            font-weight: 600;
             color: $ascent-9-color;
             @media screen and (max-width: $mobile-bp) {
                 padding-left: 1em;
@@ -539,7 +539,7 @@ h6.codProduto {
                 .title{
                     font-size: .9em;
                     text-transform: uppercase;
-                    font-weight: 500;
+                    font-weight: 600;
                     color: $ascent-9-color;
                     display: flex;
                     justify-content: space-between;
@@ -678,7 +678,7 @@ h6.codProduto {
     }
     #simular-frete-submit{
         border-radius: 0;
-        font-weight: 100;
+        font-weight: 600;
     }
     .tabela-cep {
         width: 100%;
@@ -690,7 +690,7 @@ h6.codProduto {
     }
     span {
         color: $ascent-9-color;
-        font-weight: 500;
+        font-weight: 600;
         text-transform: uppercase;
         font-size: .9em;
     }
@@ -700,7 +700,7 @@ h6.codProduto {
             tr {
                 th {
                     padding: 5px 5px 15px !important;
-                    font-weight: 100;
+                    font-weight: 600;
                     text-transform: uppercase;
                     color: #000000;
                 }
