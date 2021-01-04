@@ -218,8 +218,8 @@ variations = {
             referenceDefault = $('.references:not([data-active])', container);
 
         //caso nao exista uma grade default, setamos a primeira opcao
-        if($('.references .variacao.select', container).length == 0) {
-            
+        //if($('.references .variacao.select', container).length == 0) {
+          if($('.references .variacao', container).length == 0) {            
             
 
             if($('.references', container).length > 1)
@@ -249,7 +249,7 @@ variations = {
             if($(this.config.getSession).length === 0)
                 this.haveInWishList($('#produto-id').val(), $("#produto-sku").val(), null);
 
-        } else {
+        } else { 
             //recuperando a grade padrao e escondendo as demais
             $('.references:not([data-active]) .variacao.select', container).each(function() {
                 selectInitial.push($(this).data('reference') + ':' + $(this).data('variation'))
