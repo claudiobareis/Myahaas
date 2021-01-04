@@ -37,9 +37,30 @@
         <a href="/grupo/lancamentos/">VER TODOS</a>
     </div>
     <script>
-        $(document).ready(function () {            
+        $(document).ready(function () {  
+            $('.products-carousel .slideshow').attr('data-dots','true');
+            $('.products-carousel .slideshow').attr('data-arrow','false'); 
+          
+            /*          
+              $(".category-1 .products-carousel .doubling--").addClass("owl-carousel").addClass("owl-theme").owlCarousel({
+                loop:true,
+                margin:10,
+                nav:false,
+                responsive:{
+                    0:{
+                        items:2
+                    },
+                    600:{
+                        items:2
+                    },
+                    1000:{
+                        items:4
+                    }
+                }
+            });
             $('.products-carousel .slideshow').attr('data-dots','true');
             $('.products-carousel .slideshow').attr('data-arrow','false');            
+            */
         });
     </script>
 </section>
