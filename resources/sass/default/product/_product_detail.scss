@@ -512,6 +512,9 @@ h6.codProduto {
 }
 #RelatedProducts{
     .ui{
+        .slick-prev, .slick-next{
+            display: none !important;
+        }
         &.horizontal{
             font-size: .9em;
             font-weight: 600;

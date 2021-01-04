@@ -163,7 +163,17 @@
 .ui.toggle.checkbox input:checked ~ label:before {
     background-color: $secondary-color !important;
 }
+.jetCheckout{
+    .active{
+        &.content{
+            .item{
+                color: #000;
+            }
+        }
+    }
+    
 
+}
 #jetCheckout-Logo {
     #logo {
         fill: #00b04c;

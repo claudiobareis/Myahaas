@@ -47,33 +47,41 @@ $colorLinkSubMenu: '#666';
         flex-wrap: wrap;
         margin: 0;
         
-        li {
-            
+        li {            
             height: 57px;            
             &:hover,
             &.active,
             &:focus {
                 box-shadow: inset 0 -1px 0 #fff;
             }
+            .category-image{
+                min-width: 30px;
+                display: none;
+                @media screen and (max-width: $mobile-bp) {
+                    display: block;
+                }
+                img{
+                    display: initial;
+                    max-width: 17px;
+                    height: auto;
+                }
+            }
             > .item {
-                word-wrap: normal;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                text-transform: uppercase;
-                margin: 0;
-                font-size: 14px;
-                line-height: $menuHeight;
-                color: #333;
-                height: 57px;
-                &:after{
-                    content: "Ver todos";
-                    font-size: 10px;
-                    padding: 0 0 0 10px;
-                    text-decoration: underline;
-                    color: #acacac;
-                }                
+                    word-wrap: normal;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    text-transform: uppercase;
+                    margin: 0;
+                    font-size: 14px;
+                    line-height: $menuHeight;
+                    color: #333;
+                    height: 57px;
                     margin: 0 4em 0 auto;
+                    align-items: baseline;
+                    @media screen and (max-width: $mobile-bp) {
+                        align-items: center;
+                    }
                 }
                 > .icon.dropdown {
                     line-height: 18px;
@@ -151,7 +159,7 @@ $colorLinkSubMenu: '#666';
             }
         }
     }
-}
+
 /* Mega Menu Start */
 @import 'wsmenu/style';
 /* MegaMenu End */

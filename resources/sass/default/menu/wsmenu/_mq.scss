@@ -124,7 +124,13 @@
             opacity: 1 !important;
             visibility: visible !important;
         }
-        li {
+        li {            
+            .item-ver-todos{
+                display: block;               
+                width: 100%;
+                padding: 8px 1rem;
+                color: #acacac;               
+            }            
             > {
                 .wsshoptabing {
                     visibility: visible !important;
@@ -530,7 +536,9 @@
         }
     }
 }
-
+.item-ver-todos{
+display: none;
+}
 @media only screen and(max-width: 780px) {
     .tranbg {
         background-color: $white !important;

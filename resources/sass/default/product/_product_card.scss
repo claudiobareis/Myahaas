@@ -191,7 +191,7 @@
                         display: inline-block;
                         /* margin-left: 1em; */
                         position: absolute;
-                        right: -15px;
+                        right: -22px;
                         font-size: 20px;
                         top: -4px;
                         color: #ccc;
@@ -240,7 +240,7 @@
                         right: 22px;
                         top: 1em;
                         @media screen and (max-width: $mobile-bp) {
-                            right: 0;
+                            right: 2px;
                         }
                     }
                     .text{
