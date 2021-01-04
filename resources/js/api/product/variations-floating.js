@@ -5,7 +5,7 @@ import {moneyPtBR} from "../../functions/money";
 import {AtualizarQuantidade, SomenteNumeros} from './detail'
 import {CarregarParcelamento} from "../../api/product/detail_b2b.js";
 
-import { HaveInWishList } from "../customer/wishlist";
+import { HaveInWishList } from "../customer/wishList";
 
 export function VariacaoDropDown() {
     $('.product-grid .field.dropdown').dropdown({
