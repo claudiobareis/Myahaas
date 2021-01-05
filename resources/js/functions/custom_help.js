@@ -5,7 +5,7 @@ $(document).ready(function() {
     }else{
         $('.product-in-card .image .imagetag').hide();
     }   
-    //sumir com a tag na página do produto
+    //sumir com a tag na página do produto   
     setTimeout(function(){
         if($(".produto .imagetag img[alt*='compre um tamanho']").length == 0){
             $('.produto .image .imagetag').show();
@@ -14,6 +14,23 @@ $(document).ready(function() {
         }
     },500);
 
-    jQuery( ".wsmenu ul" ).append( "<li class='js-menu'><span class='wsmenu-click'></span><a href='/grupo/lancamentos' class='item' title='Lançamentos'>Lançamentos </a></li>" );
-    jQuery( ".wsmenu ul" ).append( "<li class='js-menu'><span class='wsmenu-click'></span><a href='/grupo/sale' class='item' title='Lançamentos'>Sale </a></li>" );
+    function someTag(){
+        setTimeout(function(){
+            if($(".produto .imagetag img[alt*='compre um tamanho']").length == 0){
+                $('.produto .image .imagetag').show();
+            }else{
+                $('.produto .image .imagetag').hide(); 
+            }
+        },500); 
+    }
+
+    $(".closeFiltros").click(function() {       
+        someTag();
+    });
+    $(".containerFilter .capitalize").click(function() {       
+        someTag();        
+    });
+
+    $( ".wsmenu ul" ).append( "<li class='js-menu'><span class='wsmenu-click'></span><a href='/grupo/lancamentos' class='item' title='Lançamentos'>Lançamentos </a></li>" );
+    $( ".wsmenu ul" ).append( "<li class='js-menu'><span class='wsmenu-click'></span><a href='/grupo/sale' class='item' title='Lançamentos'>Sale </a></li>" );
 });

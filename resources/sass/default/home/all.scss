@@ -9,10 +9,10 @@
 .testimonial-slider {
     @media screen and (max-width: $mobile-bp) {
         margin: 0;
-    }    
+    }     
     width: 100%;
-    display: inline-block;
-
+    display: inline-block;    
+    
     .title {
         margin: 20px 0 40px 0;
         width: 100%;
@@ -106,6 +106,19 @@
             display: inline-block;
             margin: 0 auto;
             background: #000;
+        }
+    }
+}
+.category-2,
+.category-3{
+    .ui.grid {
+        & > .row {
+            & > .column{
+                @media screen and (max-width: $mobile-bp) {
+                    padding-left: 0;
+                    padding-right: 0;
+                }         
+            }
         }
     }
 }
