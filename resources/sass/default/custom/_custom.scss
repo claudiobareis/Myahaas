@@ -110,6 +110,29 @@
     }
 }
 @media screen and (max-width: $mobile-bp) {
+    .checkSuccess{
+        padding: 0 0 1em;
+        .box{
+            &.success{
+                .item{
+                    &.detalhes{
+                        margin: .5em 0;
+                    }
+                }
+            }
+        }
+        .button {
+            &.fluid {
+                &.large{
+                    &.basic{
+                        background: #000 !important;
+                        color: #fff !important;
+                    }
+                }
+            }
+        }
+    }
+    
     .breadcrumbs {
         &.group-products{
             .ui{
