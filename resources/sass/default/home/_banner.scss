@@ -18,10 +18,17 @@
 }
 .products-carousel{
     #container-paginate{
+        display: none;
         @media screen and (max-width: $mobile-bp) {
             display: none;
         }
     }
+    .slick-dots{
+        @media screen and (min-width: $tablet-bp-min){
+            bottom: -20px;
+        }
+    }
+    
 }
 .car-banners {
     .container {

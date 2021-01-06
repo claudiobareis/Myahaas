@@ -223,7 +223,7 @@ ul{
     }
 
     .list {
-        &.link {
+        &.link {            
             a,
             h5 {
                 color: #333 ;
@@ -237,6 +237,29 @@ ul{
                 &:checked,
                 &:active {
                     color: #fff !important;
+                    @media screen and (min-width: $tablet-bp-min){
+                        color: #000 !important;
+                        opacity: .9;
+                    }
+                }
+                
+                &.item{
+                    @media screen and (min-width: $tablet-bp-min){
+                        padding-left: 0 !important;
+                    }
+                    &:after{
+                        display: none;
+                        content: '';
+                        visibility: hidden;
+                    }
+                    &:hover{
+                        box-shadow: none;
+                        &:after{
+                            display: none;
+                            content: '';
+                            visibility: hidden;
+                        }
+                    }
                 }
             }
 

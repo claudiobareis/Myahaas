@@ -39,6 +39,9 @@
         text-align: center;
         font-family: 'PT Sans', 'Helvetica Neue', Arial, Helvetica, sans-serif;
         position: relative;
+        @media screen and (min-width: $tablet-bp-min){
+            padding: 10px 0 0;
+        }
         &:before{
             content: "";
             width: 8%;
@@ -92,13 +95,14 @@
     }
 
     .category-cta {
-        margin: 30px 0;
+        margin: 40px 0 30px;
         width: 100%;
         display: inline-block;
         text-align: center;
         @media screen and (max-width: $mobile-bp) {
             margin: 20px 0 0;
         }
+        
 
         a {            
             color: #fff;

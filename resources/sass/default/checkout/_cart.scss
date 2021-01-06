@@ -138,6 +138,88 @@ $radiusBox: 0px;
         }
     }
 }
+
+@media screen and (min-width: $tablet-bp-min){
+    .text-checkout{
+        text-transform: uppercase;
+        font-size: .9em;
+        color: #000;
+    }
+    .jet {
+        &.checkout{
+            &.register{
+                .ui{
+                    &.dividing{
+                        &.header{
+                                text-transform: uppercase;
+                                padding: 1em 0;
+                                border-top: 1px solid #C6C6C6;
+                                border-bottom: 1px solid #C6C6C6;
+                            &:first-of-type{
+                                padding: 1em 0;
+                                border-top: 1px solid #C6C6C6;
+                                border-bottom: 1px solid #C6C6C6;
+                            }
+                        }
+                    }
+                }
+            }
+            .ui{
+                &.segment{
+                    background: transparent;
+                    .field {
+                        & > label{
+                            text-align: left;
+                            text-transform: uppercase;
+                            font-weight: 500;                           
+                        }
+                        .input{
+                            i{
+                                opacity: 0.2;
+                            }
+                            input{
+                                &[type='text']{
+                                    border: 1px solid #D4D4D4;
+                                    font-size: .8em;
+                                    margin: 1em 0;
+                                    padding-left: 3.3em !important;
+                                    font-weight: 100 !important;
+                                }
+                            }
+                        }                       
+                    }
+                    button{
+                        &.ui{ 
+                            &.right{
+                                &.floated{
+                                    border-radius: 0!important;                                    
+                                    margin: 0 auto;
+                                }
+                            }
+                        }                            
+                    }
+                }               
+            }            
+        }
+    }
+    .title-checkout{
+        border-top: 1px solid #C6C6C6;
+        border-bottom: 1px solid #C6C6C6; 
+        margin: 1em 0 0;
+        display: block;
+        padding: 1em 0;
+        h1{
+            text-transform: uppercase;
+            font-weight: 600;
+            font-size: 1em;
+            text-transform: uppercase;
+            font-size: 1em;
+            text-align: center;
+        }
+    }
+}
+
+
 .meu-carrinho {
     margin-top: 15px !important;
     border-top: 1px solid #d4d4d4 !important;
@@ -779,7 +861,7 @@ $radiusBox: 0px;
     .ui {
         &.segment {
             border: 0 !important;
-            background-color: #f7f7f7;
+            background-color: transparent;
             font-size: 14px;
             border-radius: 8px !important;
             @media only screen and (max-width: $mobile-bp) {
@@ -981,7 +1063,7 @@ $radiusBox: 0px;
     }
 
     .cardDebit {
-        padding: 1em;
+        padding: 0;
         @media only screen and (max-width: $mobile-bp) {
             padding: 0;
         }
@@ -1053,7 +1135,10 @@ $radiusBox: 0px;
     display: inline-block;
     text-align: left;
     margin-bottom: 30px;
-
+    @media screen and (min-width: $tablet-bp-min){
+        margin-bottom: 0;
+        padding: 0 2em;
+    }
     @media only screen and (max-width: $mobile-bp) {
         text-align: center;
     }

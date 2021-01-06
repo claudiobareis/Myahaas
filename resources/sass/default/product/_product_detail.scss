@@ -1,7 +1,7 @@
 h1.nomeProduto {
     font-weight: 300;
     margin-bottom: 0.5rem;
-    font-size: 20px;
+    font-size: 25px;
     color: $black;
     @media screen and (max-width: $mobile-bp) {
         text-align: center;
@@ -45,12 +45,10 @@ h1.nomeProduto {
 
 h6.codProduto {
     color: #888888;
-    margin: 0px !important;
+    margin: 0px !important;    
 }
 
 .infoProduto {
-
-
     #dica_compra_partial {
         margin-top: 0;
 
@@ -539,6 +537,12 @@ h6.codProduto {
         &.accordion{
             &.product-acc{
                 box-shadow: none;        
+                .info-add{
+                    padding: 0;
+                }
+                #detalhes{
+                    padding: 0 1em;
+                }
                 .title{
                     font-size: .9em;
                     text-transform: uppercase;
@@ -672,16 +676,19 @@ h6.codProduto {
     box-shadow: none !important;
     border-radius: 0 !important;
     border-top: 1px solid #d4d4d5 !important;
-
+    
     &.ui.attached.segment {
         padding: 0.5em 1em 1.5em;
         border-top: 1px solid $ascent-8-color !important;
         border-bottom: 1px solid $ascent-8-color !important;
         border-left: 0;
         border-right: 0;
+        @media screen and (min-width: $tablet-bp-min){
+            padding: 15px 0;
+        }
     }
     #simular-frete-submit{
-        border-radius: 0;
+        border-radius: 0 3px 3px 0;
         font-weight: 600;
     }
     .tabela-cep {
@@ -725,6 +732,7 @@ h6.codProduto {
     .ui.input{
         input{
             width: calc(100vw - 175px);
+            border-radius: 3px 0 0 3px;
             @media screen and (min-width: $tablet-bp-min) {
                 width: auto;
             }
@@ -752,7 +760,9 @@ h6.codProduto {
             max-width: 205px;
             margin: 0 auto;
             padding: 0;
-
+            @media screen and (min-width: $tablet-bp-min){
+                margin: 0;
+            }
             .variacao {
                 display: inline-block;
                 margin: 0 3px 8px 3px;
@@ -765,7 +775,8 @@ h6.codProduto {
                     border-radius: 50px;
                     overflow: hidden;
                     border: 1px solid #000;
-                    padding: 2px;                    
+                    padding: 2px;        
+                    text-align: center;            
                     .button{
                         margin: 0 auto;
                         text-align: center;
@@ -829,13 +840,19 @@ h6.codProduto {
 
 .grouping {
     &-name {
-        text-transform: uppercase;       
+        text-transform: uppercase;      
+        @media screen and (min-width: $tablet-bp-min){
+            padding: 20px 0 0;
+        } 
     }
     &-grid {
         margin-left: -.25rem !important;
         margin-right: -.25rem !important;
         padding: 0 0 25px !important;
         justify-content: center;
+        @media screen and (min-width: $tablet-bp-min){
+            justify-content: left;
+        } 
         &-item {
             padding: .25rem;
             margin: .25rem;

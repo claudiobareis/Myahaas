@@ -38,6 +38,9 @@
         @media screen and (max-width: $mobile-bp) {
             display: none;
         }
+        @media screen and (min-width: $tablet-bp-min){
+            padding: 30px 0 0;
+        }
         .jCrumb {
             @extend .flexCenter;
             flex-wrap: wrap;
@@ -99,7 +102,7 @@
 
             &.completed {
                 .jButton {
-                    background: $secondary-color;
+                    background: #19c64e;
                     span {
                         color: white;
                         i {
@@ -127,6 +130,9 @@
                 position: absolute;
                 top: 17px;
                 z-index: 1;
+            }
+            @media screen and (min-width: $tablet-bp-min){
+                border-bottom: transparent;
             }
         }
     }
