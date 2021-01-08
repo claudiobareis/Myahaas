@@ -15,8 +15,19 @@
                         <img class="ui middle aligned image logo" src="/assets/image/logo/logo.svg" alt="@LojaCorp.Control.Company._Company.FantasyName" title="@LojaCorp.Control.Company._Company.FantasyName">
                     </a>
                 </div>
+                
                 <div class="ui four wide computer column only desktop-menu">
                    @Html.Action("Menu", "Home")
+                </div>
+                
+                <div class="ui center aligned three wide tablet three wide computer column searchcolumn">
+                    <div class="ui category @_classSearch">
+                        <div class="ui icon input fluid">
+                            <input class="prompt" type="text" placeholder="Buscar...">
+                            <i class="search icon"></i>
+                        </div>
+                        <div class="results"></div>
+                    </div>
                 </div>
 
                 <div class="ui center aligned four wide mobile two wide tablet two wide computer header-actions">

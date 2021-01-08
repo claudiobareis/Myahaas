@@ -1127,6 +1127,14 @@ $radiusBox: 0px;
             }
         }
     }
+    @media screen and (min-width: $tablet-bp-min){
+        .segment {
+            padding: 0;
+            .jp-card-container {
+                transform: scale(1) !important;
+            }           
+        }
+    }
 }
 
 .textSecurity {
@@ -1239,7 +1247,7 @@ $radiusBox: 0px;
 
     #key {
         border: 1px solid #D4D4D4 !important;
-        border-radius: 0 !important;
+        border-radius: 3px !important;
         -webkit-box-flex: 1;
         -ms-flex: 1 0 auto;
         flex: 1 0 auto;
@@ -1254,7 +1262,9 @@ $radiusBox: 0px;
         line-height: 30px;
     }
 }
-
+#containerPayment{
+   width: 750px; 
+}
 .checkout-page {
     .frete {
         padding-bottom: 0.6em;

@@ -46,10 +46,27 @@
             <div class="column" id="checkoutColumn1">
             
                 <div class="ui grid two column stackable summary">
+                    
+                    
                     <div class="column">
                         <!-- Dados do Cliente -->
                         <div class="ui segment" id="dadosClienteUpdate">
                             @Html.Action("ListaDadosCliente", "Checkout", new {zipCodeCart = Model.ZipCode, idShippingModeCart = Model.IdShippingMode})
+                        </div>
+                    </div>
+                    <div class="column">
+                        <!-- Dados de Frete -->
+                        <div class="ui segment">
+                            <div class="ui accordion frete">
+                                <div class="active title">
+                                    <i class="icon shipping fast"></i>
+                                    Opções <strong>de Entrega</strong>
+                                    <i class="ui icon dropdown floated right"></i>
+                                </div>
+                                <div class="active content" id="updateShippingPayment">
+                                    @Html.Action("ListaFretePagamento", "Checkout")
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="column">
@@ -66,21 +83,7 @@
                         @Html.Action("ValeCompra", "Checkout")
                     }
 
-                    <div class="column">
-                        <!-- Dados de Frete -->
-                        <div class="ui segment">
-                            <div class="ui accordion frete">
-                                <div class="active title">
-                                    <i class="icon shipping fast"></i>
-                                    Opções <strong>de Entrega</strong>
-                                    <i class="ui icon dropdown floated right"></i>
-                                </div>
-                                <div class="active content" id="updateShippingPayment">
-                                    @Html.Action("ListaFretePagamento", "Checkout")
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
                     @if (!Model.CartItems.FirstOrDefault().IsRecurrent)
                     {
                         <div class="column">

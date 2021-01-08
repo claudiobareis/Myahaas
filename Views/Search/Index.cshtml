@@ -11,7 +11,7 @@
         <div class="row">
             <div class="container">
                 <div class="column">
-                    <h1>Resultado da Busca</h1>
+                    <h1 class="title-internas">Resultado da Busca</h1>
                     <div class="ui breadcrumb text small">
                         <ol itemscope itemtype="http://schema.org/BreadcrumbList" class="ui breadcrumb">
                             <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
@@ -33,7 +33,7 @@
             </div>
         </div>
     </div>
-    <div class="ui divider"></div>
+    
 }
 
 @section banner {
@@ -56,32 +56,14 @@
         </div>
     </div>
 }
-<div class="twelve wide column">
+<div class="twelve wide column category">
     <div class="ui grid">
         <div class="row one column">
             <div class="column right aligned right floated">
-                <button class="ui mobile only left floated icon button basic filterbutton right labeled small" data-tooltip="Filtros" data-inverted="">
-                    <i class="filter icon"></i>
+                <button class="ui mobile only left floated icon button basic filterbutton right labeled small" data-tooltip="Filtros" data-inverted="">                    
                     Filtros
+                    <svg width="8" height="7" viewBox="0 0 8 7" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.813477 2.715H3.45348V0H4.53348V2.715H7.17348V3.795H4.53348V6.495H3.45348V3.795H0.813477V2.715Z" fill="#BBBBBB"/></svg>          
                 </button>
-                <div class="ui dropdown button basic dropdownitens small">
-                    <span class="text">@(Request.QueryString["pageSize"] != null ? Request.QueryString["pageSize"] : "Itens")</span>
-                    <i class="dropdown icon"></i>
-                    <div class="menu">
-                        <div class="item" data-value="12">
-                            12
-                        </div>
-                        <div class="item" data-value="18">
-                            18
-                        </div>
-                        <div class="item" data-value="24">
-                            24
-                        </div>
-                        <div class="item" data-value="30">
-                            30
-                        </div>
-                    </div>
-                </div>
                 <div class="ui dropdown button basic dropdownorder small">
                     <span class="text">Ordenar por</span>
                     <i class="dropdown icon"></i>
