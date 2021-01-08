@@ -8,7 +8,8 @@
   {
     <!--COMEÇO AGRUPAMENTO DE PRODUTO-->
       <div class="margin bottom small grouping">
-          <div class="margin bottom small grouping-name">@(Model.Name)</div>
+          <span class="hidden">@(Model.Name)</span>
+          <div class="margin bottom small grouping-name">Cor</div>
           <div class="ui grid margin none grouping-grid">
               @foreach (var prod in ProdutosAgrupamento)
               {
@@ -16,7 +17,7 @@
 
                   <div class="grouping-grid-item item-@Model.Type.ToLower() @checkedClass">
                       @if (Model.Type == "Cor")
-                      {
+                      {                          
                           <a href="@prod.UrlFriendly" class="grouping-grid-item-link" style="background-color: @(prod.Description) !important"></a>
                       }
                       else if (Model.Type == "Texto")

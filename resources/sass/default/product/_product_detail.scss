@@ -109,6 +109,7 @@ h6.codProduto {
                     width: 100%;
                     border-radius: 0;
                     padding: 1em;
+                    z-index: 999;
                 }
             }
             > .column {
@@ -233,6 +234,9 @@ h6.codProduto {
     justify-content: center;
     align-items: center;
     padding: 0 0 20px;
+    @media screen and (min-width: $tablet-bp-min){
+        justify-content: left;
+    }
     img{
         width: 20px;
         height: auto;

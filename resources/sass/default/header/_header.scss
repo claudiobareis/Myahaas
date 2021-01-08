@@ -133,7 +133,7 @@ headlogo {
         cursor: pointer;
         float: right;
         line-height: 36px;
-
+       
         .ui.basic.button {
             > span {
                 @media screen and (max-width: $mobile-bp) {
@@ -170,10 +170,14 @@ headlogo {
 
     & > div {
         padding: 10px;
+        @media screen and (min-width: $mobile-bp) {
+            margin: 0 10px 0 0;
+        }
         @media screen and (max-width: $mobile-bp) {
             margin-right: 5px;   
             padding: 8px 10px 10px 0;         
         }
+       
     }
 
     .cart-button {
