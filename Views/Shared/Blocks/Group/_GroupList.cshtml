@@ -1,7 +1,7 @@
 ﻿@model List<DomainProduct.Entities.Group>
 @if (Model.Any())
 {
-    <div class="column groupList margin bottom large">
+    <div class="column groupList margin bottom large hidden">
         <div class="ui segment">
             <div class="ui list divided relaxed">
                 @if (Model != null)
@@ -15,3 +15,50 @@
         </div>
     </div>
 }
+<div class="column groupList margin bottom large sidebar-groups">
+    <div class="ui vertical menu">
+        <div class="item">
+            <div class="header">Coleção 01</div>
+            <div class="menu">
+                <a class="item" href="/grupo/lancamentos">Lançamentos</a>
+                <a class="item" href="/grupo/sale">Sale</a>
+                <a class="item" href="/grupo/tachas-e-spikes">Tachas e Spikes</a>
+                <a class="item" href="/grupo/shape-quadrado">Shape Quadrado</a>
+                <a class="item" href="/grupo/vinil-e-transparencia">Vinil e Transparência</a>
+                <a class="item" href="/grupo/almofadado-e-tiras-fofas">Almofadado e Tiras Fofas</a>
+                <a class="item" href="/grupo/tirinhas-finas">Tirinhas Finas</a>
+                <a class="item" href="/grupo/salto-arquitetonico">Salto Arquitetônico</a>
+                <a class="item" href="/grupo/boyish-e-alfaiataria">Boyish e Alfaiataria</a>
+            </div>
+        </div>
+        <div class="item">
+            <div class="header">Coleção 02</div>
+            <div class="menu">
+                <a class="item" href="/grupo/ludico-super-fun">Lúdico Super Fun</a>
+                <a class="item" href="/grupo/nostalgia-suave">Nostalgia Suave</a>
+                <a class="item" href="/grupo/tudo-amarrado">Tudo Amarrado</a>
+                <a class="item" href="/grupo/comfy-em-casa">Comfy em Casa</a>
+                <a class="item" href="/grupo/menos-e-mais">Menos é Mais</a>
+                <a class="item" href="/grupo/cor-brilhante">Cor Brilhante</a>
+                <a class="item" href="/grupo/animal-print">Animal Print</a>
+                <a class="item" href="/grupo/tons-de-verde">Tons de Verde</a>
+                <a class="item" href="/grupo/tudo-rosado">Tudo Rosado</a>
+            </div>
+        </div>
+        <div class="item">
+            <div class="header">Coleção 03</div>
+            <div class="menu">
+                <a class="item" href="/grupo/tons-terrosos">Tons Terrosos</a>
+                <a class="item" href="/grupo/metalizado-invernal">Metalizado Invernal</a>
+                <a class="item" href="/grupo/classico">Clássico</a>
+                <a class="item" href="/grupo/tendencia">Tendência</a>
+                <a class="item" href="/grupo/esportivo">Esportivo</a>
+                <a class="item" href="/grupo/festa">Festa</a>
+                <a class="item" href="/grupo/praia-e-piscina">Praia e Piscina</a>
+                <a class="item" href="/grupo/homewear">Homewear</a>
+                <a class="item" href="/grupo/coisas-para-casa">Coisas para Casa</a>
+                <a class="item" href="/grupo/best-sellers">Best Sellers</a>
+            </div>
+        </div>
+    </div>
+</div>

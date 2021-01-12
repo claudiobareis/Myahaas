@@ -81,6 +81,7 @@ $colorLinkSubMenu: '#666';
                     align-items: baseline;
                     @media screen and (max-width: $mobile-bp) {
                         align-items: center;
+                        margin: 0 auto;
                     }
                 }
                 > .icon.dropdown {

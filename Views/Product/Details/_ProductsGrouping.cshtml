@@ -17,8 +17,14 @@
 
                   <div class="grouping-grid-item item-@Model.Type.ToLower() @checkedClass">
                       @if (Model.Type == "Cor")
-                      {                          
-                          <a href="@prod.UrlFriendly" class="grouping-grid-item-link" style="background-color: @(prod.Description) !important"></a>
+                      {
+                          if (!prod.Description.Contains("#")) {
+                            var cor = "#" + prod.Description;
+                            <a href="@prod.UrlFriendly" class="grouping-grid-item-link" style="background-color: @(cor) !important"></a>    
+                          }
+                          else {
+                            <a href="@prod.UrlFriendly" class="grouping-grid-item-link" style="background-color: @(prod.Description) !important"></a>
+                          }
                       }
                       else if (Model.Type == "Texto")
                       {
