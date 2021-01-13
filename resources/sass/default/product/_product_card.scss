@@ -183,7 +183,24 @@
                 border-top: 1px solid #BBBBBB;
                 border-bottom: 1px solid #BBBBBB;
                 flex-wrap: wrap;
-                min-height: 47px;
+                min-height: 47px;                
+                z-index: 99;
+                &:before{
+                    content: "|";   
+                    font-weight: 200;                 
+                    /* margin-left: 1em; */
+                    position: absolute;                   
+                    margin-left: auto;
+                    margin-right: auto;
+                    left: 0;
+                    right: 0;
+                    top: auto;
+                    text-align: center;
+                    font-size: 20px;                    
+                    color: #ccc;
+                    z-index: 1;
+                    width: 1px;
+                }
                 .dropdownreference{                   
                     line-height: initial;
                     width: auto;
@@ -195,16 +212,7 @@
                     border: 0;
                     outline: none;
                     box-shadow: none;
-                    &:after{
-                        content: "|";
-                        display: inline-block;
-                        /* margin-left: 1em; */
-                        position: absolute;
-                        right: -22px;
-                        font-size: 20px;
-                        top: -4px;
-                        color: #ccc;
-                    }
+                    
                     .menu {
                         &.transition{
                                                 
@@ -262,9 +270,8 @@
 
                 }
                 .btn-comprar-card{
-                    font-size: .8em;
-                    //border-left: 1px solid #ddd;
-                    padding: 3px 10px;
+                    font-size: .8em;                    
+                    padding: 3px 0 3px 10px;
                 }
                 .produto-esgotado-label {
                     color: $grey !important;

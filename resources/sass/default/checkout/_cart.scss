@@ -250,7 +250,7 @@ $radiusBox: 0px;
     text-align: left;
 
     @media screen and (max-width: $mobile-bp) {
-        min-width: 90%;
+        min-width: 100%; 
     }
 
     .fecharCarrinho {

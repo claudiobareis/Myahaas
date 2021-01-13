@@ -21,6 +21,9 @@
         @media screen and (max-width: $mobile-bp) {
             margin: 0;
         }
+        @media screen and (min-width: $tablet-bp-min){
+            margin: 20px 0;
+        }
         h3{
             line-height: 20px;
             @media screen and (max-width: $mobile-bp) {
@@ -35,12 +38,14 @@
         font-size: 19px;
         line-height: 122%;
         font-weight: 500;
+        letter-spacing: 1px;
         text-transform: uppercase;
         text-align: center;
         font-family: 'PT Sans', 'Helvetica Neue', Arial, Helvetica, sans-serif;
         position: relative;
         @media screen and (min-width: $tablet-bp-min){
-            padding: 10px 0 0;
+            padding: 25px 0 0;
+            font-size: 25px;
         }
         &:before{
             content: "";
@@ -64,7 +69,7 @@
                 left: 0;
                 top: 0;
                 background-repeat: no-repeat;
-                background-position: 53px 3px;
+                background-position: 74px 6px;
                 padding: 0 19px 0 0;
             }
         }

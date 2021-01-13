@@ -23,6 +23,24 @@
             display: none;
         }
     }
+    .slideshow{
+        .slick-prev{
+            @media screen and (min-width: $tablet-bp-min){
+                position: absolute;
+                left: -33px;
+                top: 50%;
+                bottom: auto;
+            }
+        }
+        .slick-next{
+            @media screen and (min-width: $tablet-bp-min){
+                position: absolute;
+                right: -33px;
+                top: 50%;
+                bottom: auto;
+            }
+        }
+    }
     .slick-dots{
         @media screen and (min-width: $tablet-bp-min){
             bottom: -20px;

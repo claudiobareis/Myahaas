@@ -392,10 +392,10 @@ h6.codProduto {
             margin-bottom: 2em;
         }
         .slick-slider .slick-prev{
-            left: -7%;
+            left: 0;
         }
         .slick-slider .slick-next{
-            right: -5%;
+            right: 0;
         }
         .slick-slider .slick-prev, .slick-slider .slick-next{
             bottom: 23%;
@@ -697,6 +697,7 @@ h6.codProduto {
     }
     .tabela-cep {
         width: 100%;
+        padding: 15px 0 0 0;
         tr, td{
             text-align: left;
             color: $ascent-6-color;

@@ -284,3 +284,18 @@
         }
     }
 }
+
+.ui {
+    &.grid {
+        .row {
+            .ui{
+                &.container{
+                    @media only screen and (max-width: 480px){
+                        padding-left: 0em !important;
+                        padding-right: 0em !important;
+                    }
+                }
+            }
+        }
+    }        
+}
