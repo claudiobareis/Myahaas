@@ -60,7 +60,10 @@
         border: 1px solid #cacaca;
         max-width: 450px;
         margin: 0 auto !important;
-
+        @media screen and (min-width: $tablet-bp-min) {
+           width: 550px;
+           margin: 20px auto !important;
+        }
         .field {
             @media screen and (max-width: $mobile-bp) {
                 padding-right: 0 !important;
@@ -93,6 +96,10 @@
 
             @media screen and (max-width: $mobile-bp) {
                 width: 255px;
+            }
+            @media screen and (min-width: $tablet-bp-min) {
+                font-size: 14px;
+                min-width: 360px;
             }
         }
 

@@ -263,6 +263,18 @@
         }
     }
 }
+.wsmenu-list{
+    li {
+        .item-ver-todos{
+            @media screen and (min-width: $tablet-bp-min) {
+                display: block;
+                width: 100%;
+                padding: 8px 15px;
+                font-weight: 600;                      
+            }  
+        }
+    }    
+}
 .sidebar-groups{
     .ui{
         &.vertical{
@@ -273,7 +285,7 @@
                     padding-bottom: 5px;
                     padding-top: 5px;
                     text-transform: uppercase;
-                    font-weight: 500;
+                    font-weight: 600;
                     & > .header:not(.ui){
                         color: #000;
                         padding: 15px 0 0 0;
@@ -284,7 +296,19 @@
         }
     }
 }
-
+.msg-none{
+    color: #664d03;
+    background-color: #fff3cd;
+    border-color: #ffecb5;
+    position: relative;
+    padding: 1rem 1rem;
+    margin: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    width: 100%;
+    text-align: center;
+    
+}
 .ui {
     &.grid {
         .row {

@@ -498,7 +498,44 @@
                                                               ">&nbsp;na assinatura&nbsp;<i class="info circle icon"></i></span>
                                                     </div>
                                                 }
-                                                <div class="sixteen wide computer sixteen wide tablet sixteen wide mobile column btnComprar">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--FIM PREÇOS-->
+
+                                    <!--COMEÇO VARIAÇÔES-->
+                                    if (!Model.FlagExhausted)
+                                    {
+                                        <input type="hidden" id="hdnShowProductOutOfStock" value="@(!LojaCorp.Control.Company._Company.ShowProductOutOfStock ? 0 : 1)" />
+                                        if (Model.AvailableReferences != null)
+                                        {
+                                            <div class="one column ui attached segment">
+                                                @if (Model.ProductGrouping != null)
+                                                {
+                                                    @Html.Partial("~/Views/Product/Details/_ProductsGrouping.cshtml", Model.ProductGrouping)
+                                                }
+                                                <div class="column">
+                                                    <div id="variations-container" class="grid-variations"></div>
+                                                </div>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            if (Model.ProductGrouping != null)
+                                            {
+                                                <div class="one column ui attached segment">
+                                                    <div class="column">
+                                                        @Html.Partial("~/Views/Product/Details/_ProductsGrouping.cshtml", Model.ProductGrouping)
+                                                    </div>
+                                                </div>
+                                            }
+                                        }
+
+                                        @*@Html.Action("Variations", "Product", new { reference = @Model.AvailableReferences, skuPadrao = @SKUPadrao, ListaSku = Model.SKUs })*@
+                                    }
+                                    <!--FIM VARIAÇÔES-->
+
+                                <div class="sixteen wide computer sixteen wide tablet sixteen wide mobile column btnComprar">
                                                     @if (!Model.ProductSignature)
                                                     {
                                                         <a class="@(Model.Stock == 0 || Model.FlagExhausted || Model.ProductSignature ? " disabled " : " ") ui button detalhes @(Session["EventList"] != null ? "btn-add-event-list" : "btn-comprar") @(Model.FlagExhausted || Model.ProductSignature || (Model.HaveSku && SKUPadrao.Stock == 0) || (Model.Stock == 0) ? "disabled action" : "action" )">
@@ -509,7 +546,7 @@
                                                         else
                                                         {
                                                             <div class="visible content">
-                                                                @(Session["EventList"] != null ? "ADICIONAR À LISTA" : "ADICIONAR AO CARRINHO")
+                                                                @(Session["EventList"] != null ? "ADICIONAR À LISTA" : "COMPRAR")
                                                             </div>
                                                         }
                                                             <div class="hidden content">
@@ -556,44 +593,6 @@
                                                         }
                                                     }
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--FIM PREÇOS-->
-
-                                    <!--COMEÇO VARIAÇÔES-->
-                                    if (!Model.FlagExhausted)
-                                    {
-                                        <input type="hidden" id="hdnShowProductOutOfStock" value="@(!LojaCorp.Control.Company._Company.ShowProductOutOfStock ? 0 : 1)" />
-                                        if (Model.AvailableReferences != null)
-                                        {
-                                            <div class="one column ui attached segment">
-                                                @if (Model.ProductGrouping != null)
-                                                {
-                                                    @Html.Partial("~/Views/Product/Details/_ProductsGrouping.cshtml", Model.ProductGrouping)
-                                                }
-                                                <div class="column">
-                                                    <div id="variations-container" class="grid-variations"></div>
-                                                </div>
-                                            </div>
-                                        }
-                                        else
-                                        {
-                                            if (Model.ProductGrouping != null)
-                                            {
-                                                <div class="one column ui attached segment">
-                                                    <div class="column">
-                                                        @Html.Partial("~/Views/Product/Details/_ProductsGrouping.cshtml", Model.ProductGrouping)
-                                                    </div>
-                                                </div>
-                                            }
-                                        }
-
-                                        @*@Html.Action("Variations", "Product", new { reference = @Model.AvailableReferences, skuPadrao = @SKUPadrao, ListaSku = Model.SKUs })*@
-                                    }
-                                    <!--FIM VARIAÇÔES-->
-
-
 
                                     if (Model.IsKit)
                                     {
