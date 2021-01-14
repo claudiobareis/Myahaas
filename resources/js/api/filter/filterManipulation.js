@@ -116,7 +116,7 @@ var newFilter = {
                             _alert("Atenção", "Preço 'DE' não pode ser maior que o preço 'ATÉ'", "warning");
 
                         if(initial === "")
-                            initial = "0.00"
+                            initial = "0.01"
 
                         if(final === "")
                             final = "99999999"
@@ -130,7 +130,7 @@ var newFilter = {
                         newFilter.getFilter(params);
 
                     } else {
-                        //_alert("Atenção", "Informe preço mínimo e/ou preço máximo!", "warning");
+                        _alert("Atenção", "Informe preço mínimo e/ou preço máximo!", "warning");
                     }
 
                 });

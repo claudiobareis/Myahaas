@@ -216,7 +216,9 @@ h6.codProduto {
                     margin: 0 0 25px !important;
                 }
                 
-
+                .btn-comprar{
+                    border-radius: 0;
+                }
                 .btn-comprar-oneclick {
                     margin-top: 20px;
                     font-size: .92857143rem;
@@ -531,20 +533,59 @@ h6.codProduto {
     }
 }
 #RelatedProducts{
+   
     .ui{
-        .slick-prev, .slick-next{
-            display: none !important;
+        .slick-prev{
+            display: none;
+            @media screen and (min-width: $tablet-bp-min){
+                display: block;
+                position: absolute;
+                left: -33px;
+                top: 50%;
+                bottom: auto;
+            }
+        }
+        .slick-next{
+            display: none;
+            @media screen and (min-width: $tablet-bp-min){
+                display: block;
+                position: absolute;
+                right: -33px;
+                top: 50%;
+                bottom: auto;
+            }
         }
         &.horizontal{
             font-size: .9em;
             font-weight: 600;
             color: $ascent-9-color;
+            @media screen and (min-width: $tablet-bp-min){
+                font-size: 20px;
+                text-align: center;
+                margin: 0 auto;
+                padding: 25px 0;
+                position: relative;
+            }
+
             @media screen and (max-width: $mobile-bp) {
                 padding-left: 1em;
             }
             &.divider{
                 &:before{
                     display: none;
+                    @media screen and (min-width: $tablet-bp-min){
+                        content: "";
+                        width: 88px;
+                        height: 2px;
+                        background: #E5E5E5;
+                        position: absolute;
+                        bottom: 10px;
+                        left: 0;
+                        right: 0;
+                        margin: 0 auto;
+                        display: block;
+                        top: auto;
+                    }
                 }
                 &:after{
                     display: none;
@@ -558,7 +599,23 @@ h6.codProduto {
     &.styled{
         &.accordion{
             &.product-acc{
-                box-shadow: none;        
+                box-shadow: none;
+                @media screen and (min-width: $tablet-bp-min){
+                    display: flex;
+                }
+                .acc-esq{
+                    @media screen and (min-width: $tablet-bp-min){
+                        width: 50%;
+                        padding: 0 10px 0 0;
+                    }
+                }
+                .acc-dir{
+                    @media screen and (min-width: $tablet-bp-min){
+                        width: 50%;
+                        padding: 0 0 0 10px;
+                    }
+                }
+
                 .info-add{
                     padding: 0;
                 }
@@ -593,6 +650,14 @@ h6.codProduto {
 #RelatedProducts {
     border-top: 1px solid rgba(34, 36, 38, 0.15);
     padding: 15px 0 0;
+    @media screen and (min-width: $tablet-bp-min){
+        padding: 20px 0;
+    }
+    .slick-dots{
+        @media screen and (min-width: $tablet-bp-min){
+            bottom: -13px;
+        }
+    }
     > .ui {
         &.container {
             @media screen and (max-width: $mobile-bp) {
@@ -767,6 +832,9 @@ h6.codProduto {
 
 .grid-variations {
     margin-top: -1.8em;
+    @media screen and (min-width: $tablet-bp-min) {
+        margin-top: 20px;
+    }
     .references {
         margin: 0;
         

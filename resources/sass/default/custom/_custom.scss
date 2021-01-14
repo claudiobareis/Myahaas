@@ -323,3 +323,33 @@
         }
     }        
 }
+@media screen and (min-width: $tablet-bp-min) {
+    #exibePartial{
+        .ui{
+            &.grid{
+                justify-content: space-evenly;
+                flex-direction: row-reverse;
+                flex-wrap: nowrap;
+                align-items: center;
+                &>.row{
+                    &.one{
+                        width: 30% !important;
+                    }
+                    .slick-next{
+                        transform: rotate(90deg);
+                        bottom: -37px;
+                        right: auto;
+                        left: 40%;
+                    }
+                    .slick-prev{
+                        transform: rotate(90deg);
+                        top: -37px;
+                        left: auto;
+                        right: 40%;
+                        bottom: auto;
+                    }
+                }
+            }            
+        }
+    }
+}

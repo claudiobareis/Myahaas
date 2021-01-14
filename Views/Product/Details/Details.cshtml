@@ -262,7 +262,7 @@
 
         <div class="row detalhes produto">
             <!-- FIM IMAGENS DO PRODUTO PRINCIPAL-->
-            <div class="sixteen wide mobile seven wide computer column" id="exibePartial">
+            <div class="sixteen wide mobile ten wide computer column" id="exibePartial">
                 @Html.Partial("~/Views/Product/Details/_Slide.cshtml", productImages.ToList())
             </div>
               <!-- COMEÇO MARCA MOBILE-->
@@ -310,7 +310,7 @@
             <!-- COMEÇO IMAGENS DO PRODUTO PRINCIPAL-->
             <div class="ui divider hidden"></div>
             <!-- COMEÇO INFORMAÇÕES DO PRODUTO-->
-            <div class="sixteen wide mobile nine wide computer column infoProduto">
+            <div class="sixteen wide mobile four wide computer column infoProduto">
                 <div class="ui grid">
                     <div class="mobile-hide row product information">
                         <div class="column">
@@ -694,190 +694,194 @@
         <div class="row">
 
             <div class="ui styled accordion product-acc">
-                <div class="title">
-                    Descrição
-                    <i class="dropdown icon"></i>                 
+                <div class="acc-esq">
+                    <div class="title">
+                        Descrição
+                        <i class="dropdown icon"></i>                 
+                    </div>
+                    <div class="content active">
+                        @Html.Raw(Model.DescriptionDetailSummary)
+                    </div>
                 </div>
-                <div class="content active">
-                    @Html.Raw(Model.DescriptionDetailSummary)
-                </div>
-                <div class="title">
-                    Composição e Detalhes
-                    <i class="dropdown icon"></i>                    
-                </div>
-                <div class="content">
-                    <p class="transition">
-                        <!--COMEÇO DETALHES PRODUTO-->
-                            <div class="ui bottom attached tab segment basic" data-tab="detalhes" id="detalhes">
-                                <div class="ui grid one column">
-                                    <div class="column hidden">
-                                        @Html.Raw(@Model.DescriptionDetail)
-                                    </div>
-                                    @if (Model.Attributes != null && Model.Attributes.Count() > 0)
-                                    {
-                                        var useFilter = Model.Attributes.Where(attr => attr.useFilter).ToList();
-                                        if (useFilter.Count > 0)
+                <div class="acc-dir">
+                    <div class="title">
+                        Composição e Detalhes
+                        <i class="dropdown icon"></i>                    
+                    </div>
+                    <div class="content">
+                        <p class="transition">
+                            <!--COMEÇO DETALHES PRODUTO-->
+                                <div class="ui bottom attached tab segment basic" data-tab="detalhes" id="detalhes">
+                                    <div class="ui grid one column">
+                                        <div class="column hidden">
+                                            @Html.Raw(@Model.DescriptionDetail)
+                                        </div>
+                                        @if (Model.Attributes != null && Model.Attributes.Count() > 0)
                                         {
-                                            <div class="info-add">
-                                                <h4>Informações Adicionais do Produto</h4>
-                                                @foreach (var atribute in Model.Attributes)
-                                                {
-                                                    if (atribute.useFilter)
+                                            var useFilter = Model.Attributes.Where(attr => attr.useFilter).ToList();
+                                            if (useFilter.Count > 0)
+                                            {
+                                                <div class="info-add">
+                                                    <h4>Informações Adicionais do Produto</h4>
+                                                    @foreach (var atribute in Model.Attributes)
                                                     {
-                                                        var attrValues = "";
-                                                        <p>
-                                                            <strong>@atribute.name: </strong>
-                                                            @foreach (var valor in atribute.attributeValues)
-                                                            {
-                                                                if (valor.active)
+                                                        if (atribute.useFilter)
+                                                        {
+                                                            var attrValues = "";
+                                                            <p>
+                                                                <strong>@atribute.name: </strong>
+                                                                @foreach (var valor in atribute.attributeValues)
                                                                 {
-                                                                    attrValues = attrValues != "" ? attrValues + "," + @valor.Value : @valor.Value;
+                                                                    if (valor.active)
+                                                                    {
+                                                                        attrValues = attrValues != "" ? attrValues + "," + @valor.Value : @valor.Value;
+                                                                    }
                                                                 }
-                                                            }
-                                                            @attrValues
-                                                        </p>
+                                                                @attrValues
+                                                            </p>
+                                                        }
                                                     }
-                                                }
+                                                </div>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            <!--FIM DETALHES PRODUTO-->
+                        </p>
+                    </div>
+                    <div class="title">
+                        Avaliações
+                        <i class="dropdown icon"></i>                    
+                    </div>
+                    <div class="content">
+                        <!-- COMEÇO AVALIAÇÂO-->
+                            <div class="column">
+                                <div class="ui comments fluid" id="lista_avaliacoes">
+                                    @{ int total = Model.ProductRatings.Count > 5 ? 5 : Model.ProductRatings.Count; }
+                                    @if (Model.ProductRatings != null && total > 0)
+                                    {
+                                        for (int i = 0; i < total; i++)
+                                        {
+                                            <div class="comment">
+                                                <div class="content">
+                                                    <a class="author">@Model.ProductRatings[i].Name</a>
+                                                    <div class="metadata">
+                                                        <div class="rating">
+                                                            <div class="ui mini star rating" data-rating="@Model.ProductRatings[i].Rate"></div>
+                                                        </div>
+                                                        <div class="date"></div>
+                                                        @if (Model.ProductRatings[i].LeavePublicEmail == true)
+                                                        {
+                                                            <div class="email">@Model.ProductRatings[i].Email</div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="email"></div>
+                                                        }
+                                                        <div class="date">@Model.ProductRatings[i].DateRegister</div>
+                                                        <div class="address">@Model.ProductRatings[i].AddressCity</div>
+                                                    </div>
+                                                    <div class="text">
+                                                        <h5>@Model.ProductRatings[i].Title</h5>
+                                                        <p>@Model.ProductRatings[i].Comment</p>
+                                                    </div>
+                                                </div>
                                             </div>
+                                            <div class="ui divider"></div>
                                         }
                                     }
-                                </div>
-                            </div>
-                        <!--FIM DETALHES PRODUTO-->
-                    </p>
-                </div>
-                <div class="title">
-                    Avaliações
-                    <i class="dropdown icon"></i>                    
-                </div>
-                <div class="content">
-                    <!-- COMEÇO AVALIAÇÂO-->
-                        <div class="column">
-                            <div class="ui comments fluid" id="lista_avaliacoes">
-                                @{ int total = Model.ProductRatings.Count > 5 ? 5 : Model.ProductRatings.Count; }
-                                @if (Model.ProductRatings != null && total > 0)
-                                {
-                                    for (int i = 0; i < total; i++)
+                                    else
                                     {
-                                        <div class="comment">
-                                            <div class="content">
-                                                <a class="author">@Model.ProductRatings[i].Name</a>
-                                                <div class="metadata">
-                                                    <div class="rating">
-                                                        <div class="ui mini star rating" data-rating="@Model.ProductRatings[i].Rate"></div>
-                                                    </div>
-                                                    <div class="date"></div>
-                                                    @if (Model.ProductRatings[i].LeavePublicEmail == true)
-                                                    {
-                                                        <div class="email">@Model.ProductRatings[i].Email</div>
-                                                    }
-                                                    else
-                                                    {
-                                                        <div class="email"></div>
-                                                    }
-                                                    <div class="date">@Model.ProductRatings[i].DateRegister</div>
-                                                    <div class="address">@Model.ProductRatings[i].AddressCity</div>
-                                                </div>
-                                                <div class="text">
-                                                    <h5>@Model.ProductRatings[i].Title</h5>
-                                                    <p>@Model.ProductRatings[i].Comment</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="ui divider"></div>
+                                        <div class="no-results">Até o momento não há avaliações para esse produto.</div>
                                     }
-                                }
-                                else
+                                </div>
+                                @if (Model.ProductRatings != null && Model.ProductRatings.Count > 5)
                                 {
-                                    <div class="no-results">Até o momento não há avaliações para esse produto.</div>
+                                    <div class="ui button teal tiny right icon" id="btn_carregar_avaliacoes">
+                                        <i class="icon refresh"></i>
+                                        Carregar mais avaliações
+                                    </div>
                                 }
                             </div>
-                            @if (Model.ProductRatings != null && Model.ProductRatings.Count > 5)
-                            {
-                                <div class="ui button teal tiny right icon" id="btn_carregar_avaliacoes">
-                                    <i class="icon refresh"></i>
-                                    Carregar mais avaliações
-                                </div>
-                            }
-                        </div>
-                        <!-- FIM AVALIAÇÂO-->
-                        <!-- COMEÇO FOMULÁRIO DE AVALIAÇÂO-->
-                        <div class="column">
-                            <form class="ui form" id="avaliar">
-                                <div class="field required">
-                                    <label>Nome</label>
-                                    <input type="text" name="Name" maxlength="100" placeholder="Nome" id="Name" required>
-                                </div>
-                                <div class="field required">
-                                    <label>E-mail</label>
-                                    <input type="text" name="email" maxlength="100" placeholder="Email" id="Email" required>
-                                </div>
-                                <div class="two fields">
-                                    <div class="field required" data-jet-revel="true">
-                                        <label>Cidade</label>
-                                        <div class="ui input">
-                                            <input type="text" maxlength="100" name="AddressCity" placeholder="Cidade" id="cidade" required>
-                                        </div>
+                            <!-- FIM AVALIAÇÂO-->
+                            <!-- COMEÇO FOMULÁRIO DE AVALIAÇÂO-->
+                            <div class="column">
+                                <form class="ui form" id="avaliar">
+                                    <div class="field required">
+                                        <label>Nome</label>
+                                        <input type="text" name="Name" maxlength="100" placeholder="Nome" id="Name" required>
                                     </div>
                                     <div class="field required">
-                                        <label>Estado</label>
-                                        <select class="ui dropdown search" id="estado_0" name="AddressState">
-                                            <option value="">Selecione</option>
-                                            <option value="AC">Acre</option>
-                                            <option value="AL">Alagoas</option>
-                                            <option value="AP">Amapá</option>
-                                            <option value="AM">Amazonas</option>
-                                            <option value="BA">Bahia</option>
-                                            <option value="CE">Ceará</option>
-                                            <option value="DF">Distrito Federal</option>
-                                            <option value="ES">Espírito Santo</option>
-                                            <option value="GO">Goiás</option>
-                                            <option value="MA">Maranhão</option>
-                                            <option value="MT">Mato Grosso</option>
-                                            <option value="MS">Mato Grosso do Sul</option>
-                                            <option value="MG">Minas Gerais</option>
-                                            <option value="PA">Pará</option>
-                                            <option value="PB">Paraíba</option>
-                                            <option value="PR">Paraná</option>
-                                            <option value="PE">Pernambuco</option>
-                                            <option value="PI">Piauí</option>
-                                            <option value="RJ">Rio de Janeiro</option>
-                                            <option value="RN">Rio Grande do Norte</option>
-                                            <option value="RS">Rio Grande do Sul</option>
-                                            <option value="RO">Rondônia</option>
-                                            <option value="RR">Roraima</option>
-                                            <option value="SC">Santa Catarina</option>
-                                            <option value="SP">São Paulo</option>
-                                            <option value="SE">Sergipe</option>
-                                            <option value="TO">Tocantins</option>
-                                        </select>
+                                        <label>E-mail</label>
+                                        <input type="text" name="email" maxlength="100" placeholder="Email" id="Email" required>
                                     </div>
-                                </div>
-                                <div class="field required" id="rating_st">
-                                    <label>Nota</label>
-                                    <div class="ui huge star rating" data-value="5" data-rating="5"></div>
-                                </div>
-                                <div class="field required">
-                                    <label>Título</label>
-                                    <input type="text" name="Title" maxlength="200" placeholder="Titulo" id="Title">
-                                </div>
-                                <div class="field required">
-                                    <label>Opinião</label>
-                                    <textarea id="Comment" maxlength="1000" name="Comment"></textarea>
-                                </div>
-                                <div class="field">
-                                    <div class="ui checkbox" id="ViewEmailCheck">
-                                        <input type="checkbox" tabindex="0" class="hidden" name="ViewEmail" id="ViewEmail">
-                                        <label>Mostrar Email?</label>
+                                    <div class="two fields">
+                                        <div class="field required" data-jet-revel="true">
+                                            <label>Cidade</label>
+                                            <div class="ui input">
+                                                <input type="text" maxlength="100" name="AddressCity" placeholder="Cidade" id="cidade" required>
+                                            </div>
+                                        </div>
+                                        <div class="field required">
+                                            <label>Estado</label>
+                                            <select class="ui dropdown search" id="estado_0" name="AddressState">
+                                                <option value="">Selecione</option>
+                                                <option value="AC">Acre</option>
+                                                <option value="AL">Alagoas</option>
+                                                <option value="AP">Amapá</option>
+                                                <option value="AM">Amazonas</option>
+                                                <option value="BA">Bahia</option>
+                                                <option value="CE">Ceará</option>
+                                                <option value="DF">Distrito Federal</option>
+                                                <option value="ES">Espírito Santo</option>
+                                                <option value="GO">Goiás</option>
+                                                <option value="MA">Maranhão</option>
+                                                <option value="MT">Mato Grosso</option>
+                                                <option value="MS">Mato Grosso do Sul</option>
+                                                <option value="MG">Minas Gerais</option>
+                                                <option value="PA">Pará</option>
+                                                <option value="PB">Paraíba</option>
+                                                <option value="PR">Paraná</option>
+                                                <option value="PE">Pernambuco</option>
+                                                <option value="PI">Piauí</option>
+                                                <option value="RJ">Rio de Janeiro</option>
+                                                <option value="RN">Rio Grande do Norte</option>
+                                                <option value="RS">Rio Grande do Sul</option>
+                                                <option value="RO">Rondônia</option>
+                                                <option value="RR">Roraima</option>
+                                                <option value="SC">Santa Catarina</option>
+                                                <option value="SP">São Paulo</option>
+                                                <option value="SE">Sergipe</option>
+                                                <option value="TO">Tocantins</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
-                                <input type="hidden" name="Rate" id="Rate" value="1" />
-                                @Html.Action("GetRecaptchaV3", "Company", new { Module = "Evaluation" })
-                                <br />
-                                <button class="ui button btn-avaliar" type="button" id="submitAval">Enviar</button>
-                            </form>
-                        </div>
-                        <!-- FIM FOMULÁRIO DE AVALIAÇÂO-->
+                                    <div class="field required" id="rating_st">
+                                        <label>Nota</label>
+                                        <div class="ui huge star rating" data-value="5" data-rating="5"></div>
+                                    </div>
+                                    <div class="field required">
+                                        <label>Título</label>
+                                        <input type="text" name="Title" maxlength="200" placeholder="Titulo" id="Title">
+                                    </div>
+                                    <div class="field required">
+                                        <label>Opinião</label>
+                                        <textarea id="Comment" maxlength="1000" name="Comment"></textarea>
+                                    </div>
+                                    <div class="field">
+                                        <div class="ui checkbox" id="ViewEmailCheck">
+                                            <input type="checkbox" tabindex="0" class="hidden" name="ViewEmail" id="ViewEmail">
+                                            <label>Mostrar Email?</label>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="Rate" id="Rate" value="1" />
+                                    @Html.Action("GetRecaptchaV3", "Company", new { Module = "Evaluation" })
+                                    <br />
+                                    <button class="ui button btn-avaliar" type="button" id="submitAval">Enviar</button>
+                                </form>
+                            </div>
+                            <!-- FIM FOMULÁRIO DE AVALIAÇÂO-->
+                    </div>
                 </div>
             </div>
         </div>

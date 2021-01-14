@@ -247,7 +247,7 @@ $radiusBox: 0px;
     background: #fff;
     padding: 0;
     min-width: 370px;
-    text-align: left;
+    text-align: left;    
 
     @media screen and (max-width: $mobile-bp) {
         min-width: 100%; 
@@ -384,7 +384,7 @@ $radiusBox: 0px;
         @media screen and (max-width: $mobile-bp) {
             .item {
                 margin: 0 !important;
-            }
+            } 
         }
     }
 
@@ -393,11 +393,14 @@ $radiusBox: 0px;
         @media screen and (min-width: $tablet-bp-min) {
             margin-bottom: 1rem;
             display: block;
+            border-radius: 0;
         }
     }
 
     #btn_finalizar{
         margin-top: -3em;
+        border-radius: 0;
+        text-transform: uppercase;
         @media screen and (min-width: $tablet-bp-min) {
             margin-top: 0;
         }
@@ -1247,7 +1250,7 @@ $radiusBox: 0px;
 
     #key {
         border: 1px solid #D4D4D4 !important;
-        border-radius: 3px !important;
+        border-radius: 0 !important;
         -webkit-box-flex: 1;
         -ms-flex: 1 0 auto;
         flex: 1 0 auto;
