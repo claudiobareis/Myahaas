@@ -60,9 +60,18 @@ headlogo {
     }
 
     .searchcolumn {
-        .ui.icon.input > i.icon {
-            opacity: initial;
+        .search{
+            @media only screen and(min-width: $desktop-bp-min) and(max-width: $desktop-bp) {
+                
+            }
         }
+        .ui.icon.input  {            
+            & > i.icon{
+                opacity: initial;
+            }            
+        }
+
+        
 
         @media screen and (max-width: $mobile-bp) {
             display: none !important;
@@ -166,6 +175,9 @@ headlogo {
     margin-left: 25px;
     @media screen and (max-width: $mobile-bp) {
         margin-left: 40px;
+    }
+    @media only screen and(min-width: $desktop-bp-min) and(max-width: $desktop-bp) {
+        margin-left: 20px;
     }
 
     & > div {

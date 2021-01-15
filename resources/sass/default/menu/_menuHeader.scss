@@ -21,7 +21,9 @@ $colorLinkSubMenu: '#666';
     min-height: $menuHeight;
     width: 100%;
     margin-left: 15px;
-
+    @media only screen and(min-width: $desktop-bp-min) and(max-width: $desktop-bp) {
+        margin-left: 0;
+    }
     .animated-arrow {
         left: -20px;
         top: 5px;
@@ -44,9 +46,12 @@ $colorLinkSubMenu: '#666';
         display: flex;
         font-weight: 400;
         min-height: 2.85714286em;
-        flex-wrap: wrap;
         margin: 0;
-
+        justify-content: space-between;
+        flex-wrap:nowrap;
+        @media only screen and(min-width: $desktop-bp-min) and(max-width: $desktop-bp) {
+            flex-wrap:nowrap;
+        }
         li {
             height: 57px;
             &:hover,
@@ -79,10 +84,20 @@ $colorLinkSubMenu: '#666';
                     height: 57px;
                     margin: 0 auto;
                     align-items: baseline;
+                    font-weight: 600;
                     @media screen and (max-width: $mobile-bp) {
                         align-items: center;
                         margin: 0 auto;
                     }
+                    @media only screen and(min-width: $desktop-bp-min) and(max-width: $desktop-bp) {
+                        font-size: 11px;
+                        padding-left: 5px !important;
+                    }
+                    @media only screen and(min-width: $desktop-bp) {
+                        font-size: 13px;
+                        padding-left: 10px !important;
+                        padding-right: 10px !important;
+                    }                    
                 }
                 > .icon.dropdown {
                     line-height: 18px;

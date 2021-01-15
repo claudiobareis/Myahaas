@@ -1198,6 +1198,8 @@ $radiusBox: 0px;
                 border-radius: 8px !important;
                 padding: 1em;
                 cursor: pointer;
+                border: 1px solid #ccc;
+                margin: 0 0 10px;
 
                 @media only screen and (max-width: $mobile-bp) {
                     width: 100%;

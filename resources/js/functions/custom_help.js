@@ -41,4 +41,21 @@ $(document).ready(function() {
             $(".simulador-frete table.tabela-cep").show();
         }
     });
+    $('#RelatedProducts .product-in-card a.ui.attached').removeClass('slide');
+    
+    setTimeout(function(){
+        $('.infoProduto .blocoInfo .blocoValores .btnComprar .btn-comprar').popup({
+            position : 'top center',
+            target   : '.infoProduto .blocoInfo .blocoValores .btnComprar .btn-comprar',
+            title    : 'Atenção',
+            content  : 'Antes de comprar, verifique se você selecionou o tamanho e a cor.',
+            visible     : 'visible',
+            delay: {
+                show: 50,
+                hide: 0
+            }
+        });
+    }, 1000);
+
+    $('.info .avise-card').parent().addClass('avise-me-txt');
 });
