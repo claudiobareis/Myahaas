@@ -42,7 +42,8 @@ $(document).ready(function() {
         }
     });
     $('#RelatedProducts .product-in-card a.ui.attached').removeClass('slide');
-    
+    /* 
+    função para mostrar aviso
     setTimeout(function(){
         $('.infoProduto .blocoInfo .blocoValores .btnComprar .btn-comprar').popup({
             position : 'top center',
@@ -56,6 +57,6 @@ $(document).ready(function() {
             }
         });
     }, 1000);
-
+    */
     $('.info .avise-card').parent().addClass('avise-me-txt');
 });

@@ -71,6 +71,10 @@
                 background-repeat: no-repeat;
                 background-position: 74px 6px;
                 padding: 0 19px 0 0;
+                @media screen and (max-width: $mobile-bp) {
+                    background-position: 58px 3px;
+                    background-size: 16px 18px;
+                }
             }
         }
 

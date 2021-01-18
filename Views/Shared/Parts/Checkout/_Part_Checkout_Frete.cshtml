@@ -50,7 +50,7 @@
                             }
                             else
                             {
-                                <label>@item.ShippingMode.Name <span>@item.ShippingMode.DeliveryTime dias @string.Format("{0}", ((bool)item.ShippingMode.UsefulDay) ? ((item.ShippingMode.DeliveryTime > 0 || item.ShippingMode.DeliveryTime == 0) ? "úteis" : "útil") : "")</span> </label>
+                                <label>@item.ShippingMode.Name <span>@item.ShippingMode.DeliveryTime @string.Format("{0}", ((bool)item.ShippingMode.UsefulDay) ? ((item.ShippingMode.DeliveryTime > 1 || item.ShippingMode.DeliveryTime == 0) ? "dias úteis" : "dia útil") : "")</span> </label>
                             }
 
                         </div>

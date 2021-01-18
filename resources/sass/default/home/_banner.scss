@@ -25,6 +25,11 @@
     }
     .slideshow{
         .slick-prev{
+            position: absolute;
+            left: 0;
+            top: 43%;
+            bottom: auto;
+            background: #fff !important;
             @media screen and (min-width: $tablet-bp-min){
                 position: absolute;
                 left: -33px;
@@ -33,6 +38,11 @@
             }
         }
         .slick-next{
+            position: absolute;
+            right: 0;
+            top: 43%;
+            bottom: auto;
+            background: #fff !important;
             @media screen and (min-width: $tablet-bp-min){
                 position: absolute;
                 right: -33px;
