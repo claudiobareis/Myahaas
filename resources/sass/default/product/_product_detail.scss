@@ -543,7 +543,12 @@ h6.codProduto {
    
     .ui{
         .slick-prev{
-            display: none;
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 55%;
+            bottom: auto;
+            background: #ffffff !important;
             @media screen and (min-width: $tablet-bp-min){
                 display: block;
                 position: absolute;
@@ -553,7 +558,12 @@ h6.codProduto {
             }
         }
         .slick-next{
-            display: none;
+            background: #ffffff !important;
+            display: block;
+            position: absolute;
+            right: 0;
+            top: 55%;
+            bottom: auto;
             @media screen and (min-width: $tablet-bp-min){
                 display: block;
                 position: absolute;
