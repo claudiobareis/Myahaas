@@ -4,7 +4,7 @@
         <div class="row one column">
             <div class="column">
                 <div class="ui doubling four cards centered slideshow" data-arrow="true" data-dots="false" data-qtd="4">
-                    @foreach (DomainProduct.Entities.Product product in Model.Take(8))
+                    @foreach (DomainProduct.Entities.Product product in Model.Take(12))
                     {
                         <!-- Page: ~/Views/Shared/Object/Product/_ProductInCard.cshtml -->
                         @Html.Partial("Object/Product/_ProductInCard", product)
