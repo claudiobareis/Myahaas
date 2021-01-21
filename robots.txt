@@ -1,0 +1,13 @@
+# Disallow all crawlers access to certain pages. 
+User-agent: * 
+Disallow: /img/ 
+Disallow: /Site/Carrinho.aspx 
+Disallow: /Site/Servicos.aspx 
+Disallow: /Control/ 
+Disallow: /Site/TagsMaisPopulares.aspx 
+Disallow: /Site/QuickView.aspx 
+Disallow: /Site/Produto_Listas.aspx 
+Disallow: /Site/ProdutoFrete.aspx 
+Disallow: /Site/TagDetalhe.aspx 
+Disallow: /busca 
+Disallow: /quick-view
