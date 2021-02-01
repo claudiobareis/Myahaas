@@ -59,4 +59,51 @@ $(document).ready(function() {
     }, 1000);
     */
     $('.info .avise-card').parent().addClass('avise-me-txt');
+
+    var trocaTam     = $('.grid-variations .references .variations .ui.variacao.check.select').length;
+    var trocaTamGrid = $('.grid-variations').length;
+    var cliqueTam    = $('.grid-variations .references .variations .ui.variacao.check');
+
+    var grupoCor     = $('.grouping-grid').length;
+    var grupoCorSel  = $('.grouping-grid .item-cor.checked').length;
+    var cliqueCor    = $('.grouping-grid .item-cor');
+    //se tem cor e tamanho
+    if(grupoCor > 0 && trocaTamGrid > 0){
+        if(trocaTam == 0 && trocaTamGrid > 0){
+            $('.btnComprar > a').addClass('disabled');
+        }else{
+            $('.btnComprar > a').removeClass('disabled');
+        }
+    }
+
+    // se tem só tamanho
+    if(trocaTamGrid > 0){
+        if(trocaTam == 0 && trocaTamGrid > 0){
+            $('.btnComprar > a').addClass('disabled');
+        }else{
+            $('.btnComprar > a').removeClass('disabled');
+        }
+    }
+
+    $("cliqueTam").click(function() {
+        if(grupoCor > 0 && grupoCorSel > 0 && cliqueTam > 0 && trocaTamGrid > 0){
+            $('.btnComprar > a').removeClass('disabled');
+        }else if(cliqueTam > 0 && trocaTamGrid > 0){
+            $('.btnComprar > a').removeClass('disabled');
+        }else if(cliqueTam > 0 && trocaTamGrid > 0){
+            $('.btnComprar > a').removeClass('disabled');
+        }else{
+            $('.btnComprar > a').addClass('disabled');
+        }        
+    });
+
+    $("cliqueCor").click(function() {
+        if(grupoCor > 0 && grupoCorSel > 0 && cliqueTam > 0 && trocaTamGrid > 0){
+            $('.btnComprar > a').removeClass('disabled');
+        }else if(cliqueTam > 0 && trocaTamGrid > 0){
+            $('.btnComprar > a').removeClass('disabled');
+        }else{
+            $('.btnComprar > a').addClass('disabled');
+        }        
+    });
 });
