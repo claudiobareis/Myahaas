@@ -46,11 +46,12 @@ require('../functions/lazy_load')
 //--------------------[ Start Document ]--------------------//
 $(document).ready(function() {
     'use strict'
-
-    setTimeout(function() {
+    /* 
+    setTimeout(function() { 
         $('.dropdown').dropdown()
     }, 3000)
-
+    */
+   
     setTimeout(function() {
         $('.intial-loader').fadeOut(800, function() {
             $(this).remove()
