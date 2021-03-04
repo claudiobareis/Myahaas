@@ -16,8 +16,19 @@
                     text-align: right;
                     width: initial;
                     i{
-                        display: none;
+                        display: none; 
                     }
+                }
+            }
+        }
+    }
+}
+.ui{
+    &.animated{
+        &.button {
+            .hidden{
+                &.content{
+                    display: block !important;
                 }
             }
         }
