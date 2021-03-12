@@ -217,7 +217,9 @@ h6.codProduto {
                 }
                 
                 .btn-comprar{
-                    border-radius: 0;
+                    min-width: 200px;
+                    font-size: 17px;
+                    font-weight: 500;
                 }
                 .btn-comprar-oneclick {
                     margin-top: 20px;

@@ -39,13 +39,44 @@
         &.card {            
             a{           
                 img{
-                    &.hidden{
+                    &.hidden{                        
                         &.content{
                             display: block !important;
                             @media screen and (max-width: $mobile-bp) {
                                 display: none;
                             }
-                        }                            
+                        } 
+                        
+                    }
+                }                
+            }            
+        }      
+    }
+}
+.produto{
+    &.detalhes {
+        .slick-slider {
+            a{
+                @media screen and (min-width: $tablet-bp-min){
+                    border: 1px solid #e7e7e7;
+                }
+            }
+        }
+    }
+}
+
+.products-carousel-mais, .products-carousel, #RelatedProducts{
+    .ui{
+        &.card {            
+            a{           
+                img{
+                    &.hidden{                        
+                        &.content{                            
+                            @media screen and (max-width: $mobile-bp) {
+                                filter: brightness(100);
+                            }
+                        } 
+                        
                     }
                 }                
             }            
@@ -81,6 +112,17 @@
 }
 
 @media screen and (max-width: $mobile-bp) {
+    .mobile-banner{
+        .footerHalf{
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            .slideshow-item{
+                img{
+                    width: 100%;
+                }
+            }
+        }
+    }
     .checkSuccess{
         padding: 0 0 1em;
         .box{
