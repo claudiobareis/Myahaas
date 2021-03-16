@@ -1,3 +1,8 @@
+html, body {
+    @media screen and (max-width: $mobile-bp) {
+        overscroll-behavior-x: none;
+    }
+}
 .hidden{
     display: none !important;    
 }

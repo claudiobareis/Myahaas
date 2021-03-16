@@ -2455,12 +2455,17 @@ function HabilitaBlocoPagamento(habilita) {
     if ($("#checkoutColumn2").length > 0) {
         if (habilita == true) {
             $("#checkoutColumn2").removeClass("disable_column");
+            /* 
             if (isMobile())
                 $('html, body').animate({ scrollTop: $("#checkoutColumn2").offset().top - 30 }, 1000);
+            */
+
         } else {
-            $("#checkoutColumn2").addClass("disable_column");
+            $("#checkoutColumn2").addClass("disable_column");            
+            /*
             if (isMobile())
                 $('html, body').animate({ scrollTop: $(".accordion.frete").offset().top - 30 }, 1000);
+            */
         }
     }
 }
