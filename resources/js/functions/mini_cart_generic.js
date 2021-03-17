@@ -138,7 +138,7 @@ export function UpdateCarrinho(showSidebar) {
                 isLoading("#miniCarrinho");
 
             if (showSidebar === true) {
-                $(".carrinho").sidebar('toggle');
+                //$(".carrinho").sidebar('toggle');
             }
         },
         onFailure: function (response) {
