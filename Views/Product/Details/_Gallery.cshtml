@@ -4,10 +4,11 @@
 <div class="car-gallery thumbnails slick-dotted">
     @foreach (var item in Model)
     {
-        <a href="@(item.ImageHighResolution != null ? item.ImageHighResolution : "#" )" data-standard="@item.ImageDefault">
+        <a href="@(item.ImageHighResolution != null ? item.ImageHighResolution : "#" )" data-standard="@item.ImageDefault" alt="Multifotos - @item.ImageDefault">
             @* HREF = Imagem ZOOMO / Data-starndard = Imagem Sem zoom*@
-            <img @*src="/assets/image/img_default.png" data-*@src="@item.ImageDefault" onerror="imgError(this)" class="ui image small centered"/>
+            <img @*src="/assets/image/img_default.png" data-*@src="@item.ImageDefault" onerror="imgError(this)" alt="@item.ImageDefault" class="ui image small centered"/>
         </a>
+        //@ObjectInfo.Print(@item)
     }
 </div>
 <div class="ui divider hidden"></div>
