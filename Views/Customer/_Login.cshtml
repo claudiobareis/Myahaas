@@ -7,7 +7,11 @@
         SocialLogin = (List<DomainSocialNetwork.Entities.SocialLogin>)ViewBag.SocialLogin;
     }
  }
-
+@section CustomSeo {
+    @{      
+        <meta name="Description" content="Acesse sua conta por aqui.">       
+    }
+}
 <div class="ui grid middle aligned center aligned">
     <div class="row">
         <div class="@(Model != null ? Model : "") ten wide computer sixteen wide tablet sixteen wide mobile">

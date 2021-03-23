@@ -4,6 +4,11 @@
     ViewBag.Title = "Fale Conosco";
     Layout = "~/Views/Shared/Base/_LayoutBreadCrumbContent.cshtml";
 }
+@section CustomSeo {
+    @{      
+        <meta name="Description" content="Fale conosco por aqui.">       
+    }
+}
 @section breadcrumbs {
     <div class="ui container">
         <div class="ui grid stackable middle aligned centered">

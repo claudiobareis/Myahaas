@@ -4,7 +4,11 @@
     ViewBag.Title = "Perguntas Frequentes";
     Layout = "~/Views/Shared/Base/_LayoutBreadCrumb.cshtml";
 }
-
+@section CustomSeo {
+    @{      
+        <meta name="Description" content="Veja as dúvidas mais frequentes.">       
+    }
+}
 @section breadcrumbs {
     <div class="ui container">
         <div class="ui two column grid stackable middle aligned">

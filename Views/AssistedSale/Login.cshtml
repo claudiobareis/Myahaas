@@ -2,7 +2,11 @@
     ViewBag.Title = "Login - Área do Vendedor";
     Layout = "~/Views/Shared/Base/_LayoutBreadCrumbContent.cshtml";
 }
-
+@section CustomSeo {
+    @{      
+        <meta name="Description" content="Faça seu login aqui.">
+    }
+}
 @section breadcrumbs {
     <div class="ui container">
         <div class="ui one column grid stackable middle aligned">
