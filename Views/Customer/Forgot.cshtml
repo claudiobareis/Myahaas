@@ -4,6 +4,11 @@
     ViewBag.Title = "Recuperar Senha ou E-mail";
     Layout = "~/Views/Shared/Base/_LayoutBreadCrumbContent.cshtml";
 }
+@section CustomSeo {
+    @{      
+        <meta name="Description" content="Recupere sua senha ou email aqui.">       
+    }
+}
 @section breadcrumbs {
     <div class="ui container">
         <div class="ui one column grid stackable middle aligned">

@@ -1,8 +1,13 @@
 ﻿@model DomainCustomer.Entities.Customer
 
 @{
-    ViewBag.Title = "Recuperar Senha";
+    ViewBag.Title = "Recuperar Senha";    
     Layout = "~/Views/Shared/Base/_LayoutBreadCrumbContent.cshtml";
+}
+@section CustomSeo {
+    @{      
+        <meta name="Description" content="Recupere sua senha aqui.">
+    }
 }
 @section breadcrumbs {
     <div class="ui container">
