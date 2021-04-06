@@ -19,6 +19,7 @@ export function updateQuantidadeTopoCarrinho() {
             if (data !== "") {
                 if (data.indexOf("|temporizador|") < 0) {
                     $("#total_itens_card").text(data);
+                    $("#total_itens_card_mobile").text(data);
                     _element.text((_segment === "b2c" ? "Meu Carrinho" : "Minha Lista") + " (" + data + ")");
                 } else {
                     $("#total_itens_card").text(data.split("|")[0]);

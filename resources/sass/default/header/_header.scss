@@ -197,7 +197,9 @@ headlogo {
         display: flex;
         align-items: center;
         justify-content: center;
-
+        @media screen and (max-width: $mobile-bp) {
+            display: none;
+        }
         svg {
             margin-top: -7px;
         }
@@ -210,6 +212,36 @@ headlogo {
             width: 100%;
             height: 100%;
             color: #9b9b9b;
+        }
+    }
+    .cart-mobile{
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 99;
+        @media screen and (min-width: $tablet-bp-min) {
+            display: none;
+        }
+        .cart-redirect{
+            display: block;
+            position: relative;
+            z-index: 9;
+        }
+        svg {
+            margin-top: -3px;
+        }
+
+        .total-itens {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            color: #9b9b9b;
+            font-weight: 600;
+            font-size: 14px;
         }
     }
 }

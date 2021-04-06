@@ -89,6 +89,28 @@ html, body {
         }      
     }
 }
+
+.ui{
+    &.visible{
+        &.right{
+            &.sidebar {
+                ~ .pusher, ~ .fixed{
+                    @media screen and (max-width: $mobile-bp) {
+                        transform: translate3d(0, 0, 0) !important;
+                    }
+                    &:after{
+                        @media screen and (max-width: $mobile-bp) {
+                            background: transparent !important;
+                            opacity: 0 !important;
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 .ui.grid > .stackable.stackable.row > .column{
     &.blocoPreco{
         padding: 0 0 0 15px !important;

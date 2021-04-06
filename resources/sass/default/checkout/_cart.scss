@@ -251,7 +251,10 @@ $radiusBox: 0px;
 
     @media screen and (max-width: $mobile-bp) {
         min-width: 100%; 
-    }
+        display: none;
+        transform: translate3d(0, 0, 0);
+        visibility: hidden;
+    }    
 
     .fecharCarrinho {
         position: absolute;
