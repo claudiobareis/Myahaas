@@ -59,5 +59,18 @@ $(document).ready(function() {
     }, 1000);
     */
     $('.info .avise-card').parent().addClass('avise-me-txt');
+
+   /* 
+    function retrievedata (){ 
+		var C_radio      =   sessionStorage.getItem("C_radio");
+		document.querySelector("#updateShippingPayment .checkbox input[name=radio]:checked").value = C_radio; 
+	}
+	retrievedata();
+	function savedata (){
+		var C_radio      =   document.querySelector("#updateShippingPayment .checkbox .shippingGet").value; 
+		sessionStorage.setItem('nome', C_radio);
+	}
+	savedata();
+    */
     
 });

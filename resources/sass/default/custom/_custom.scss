@@ -70,13 +70,14 @@ html, body {
     }
 }
 
-.products-carousel-mais, .products-carousel, #RelatedProducts{
+.slideshow, .products-carousel, #RelatedProducts{
     .ui{
         &.card {            
             a{           
                 img{
                     &.hidden{                        
                         &.content{                            
+                            filter: brightness(100);
                             @media screen and (max-width: $mobile-bp) {
                                 filter: brightness(100);
                             }
