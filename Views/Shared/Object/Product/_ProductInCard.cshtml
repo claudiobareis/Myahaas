@@ -56,9 +56,17 @@
         @if (Model.AlternativeImage != null)
         {
             <a class="ui masked reveal slide image fluid attached" itemprop="url" href="@(Model.UrlFriendlyCustom != null ? Model.UrlFriendlyCustom : Model.UrlFriendly)" title="@Model.Name">
-                <img itemprop="image" id="mainImageCard_@Model.IdProduct" src="/assets/image/img_default.png" data-src="@(Model.ImageHome != null ? Model.ImageHome : "/assets/image/img_default.png")" class="visible content" onerror="imgError(this)" alt="@Model.Name" title="@Model.Name">
-                <img src="@Model.AlternativeImage" class="hidden content" onerror="imgError(this)" alt="@Model.Name" title="@Model.Name">
-
+                @*
+                @ObjectInfo.Print(@Model);
+                *@
+                
+                @if (Request.Browser.IsMobileDevice) {
+                    <img itemprop="image" id="mainImageCard_@Model.IdProduct" src="/assets/image/img_default.png" data-src="@(Model.ImageHome != null ? Model.ImageHome : "/assets/image/img_default.png")" class="mobile visible content" onerror="imgError(this)" alt="@Model.Name" title="@Model.Name">
+                }else{
+                    <img itemprop="image" id="mainImageCard_@Model.IdProduct" src="/assets/image/img_default.png" data-src="@(Model.ImageHome != null ? Model.ImageHome : "/assets/image/img_default.png")" class="visible content" onerror="imgError(this)" alt="@Model.Name" title="@Model.Name">
+                    <img src="@Model.AlternativeImage" class="hidden content" onerror="imgError(this)" alt="@Model.Name" title="@Model.Name">
+                }
+                
                 @if (Model.SealStatus != null && Model.SealStatus.Name != "Normal")
                 {
                     <div class="ui top right attached label massive imagetag">
