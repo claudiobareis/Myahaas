@@ -269,7 +269,7 @@
               <!-- COMEÇO MARCA MOBILE-->
             <div class="mobile only column product-name">
                <h1 itemprop="name" class="nomeProduto" id="produto-nome">@Model.Name</h1>
-               <span class="sku-product">@Model.Code</span>
+               <span class="sku-product" itemprop="sku">@Model.Code</span>
                <div class="stars">
                     <img class="ui middle aligned image logo" src="/assets/image/stars.svg" alt="stars" title="stars">
                </div>
@@ -700,7 +700,7 @@
                         Descrição
                         <i class="dropdown icon"></i>                 
                     </div>
-                    <div class="content active">
+                    <div class="content active" itemprop="description">
                         @Html.Raw(Model.DescriptionDetailSummary)
                     </div>
                 </div>
