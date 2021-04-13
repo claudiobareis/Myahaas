@@ -67,6 +67,7 @@
             $('.products-carousel .slideshow').attr('data-dots','true');
             $('.products-carousel .slideshow').attr('data-arrow','false');            
             */
+           
         });
     </script>
 </section>
@@ -81,7 +82,7 @@
     </div>
     <div class="products-carousel-mais">
         <!-- Chamada de exibição de um grupo  -->        
-        @Html.Action("ProductsByGroup", "Product", new { id = 4940 })
+        @Html.Action("ProductsByGroup", "Product", new { id = 5081 })
     </div>
     <div class="category-cta">
         <a href="grupo/best-sellers/">VER TODOS</a>
@@ -169,3 +170,18 @@
     async data-usrc>
     </script>
 </section>
+
+<script type="application/ld+json">
+{
+"@@context": "https://schema.org/",
+"@@type": "BreadcrumbList",
+"itemListElement": [
+{
+"@@type": "ListItem",
+"position": "1",
+"name": "Home",
+"item": "https://www.myahaas.com.br/"
+}
+]
+}
+</script>
