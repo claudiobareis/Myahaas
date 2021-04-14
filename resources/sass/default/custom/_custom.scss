@@ -98,6 +98,21 @@ html, body {
         }
     }
 }
+.slideshow{
+    .card{
+        &.produto {
+            .content {
+                .info {
+                    .sku-options{
+                        @media screen and (max-width: $mobile-bp) {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 .wx-watermark{
     display: none;
 }
