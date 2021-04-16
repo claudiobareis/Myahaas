@@ -20,7 +20,7 @@ $colorLinkSubMenu: '#666';
     background-color: transparent;
     min-height: $menuHeight;
     width: 100%;
-    margin-left: 15px;
+    //margin-left: 15px;
     @media only screen and(min-width: $desktop-bp-min) and(max-width: $desktop-bp) {
         margin-left: 0;
     }

@@ -1,6 +1,10 @@
 {
-    "/assets/js/app.js": "/assets/js/app.js?id=bd1c2fc70e46ba75bf5c",
-    "/assets/css/style.css": "/assets/css/style.css?id=ac7ce79c6f9f8bb27439",
-    "/assets/js/vendor.js": "/assets/js/vendor.js?id=8c83adb7b63c2da91408",
-    "/assets/js/manifest.js": "/assets/js/manifest.js?id=e51178ee09619df91d8a"
+    "/assets/js/app.js": "/assets/js/app.js?id=4e4aae8fa4db5cd1dafd",
+    "/assets/css/style.css": "/assets/css/style.css?id=358c898ee531efc43436",
+    "/assets/js/app.js.map": "/assets/js/app.js.map?id=7ac34b0df79eba2696e7",
+    "/assets/css/style.css.map": "/assets/css/style.css.map?id=33eb35e5e957b1e7dadb",
+    "/assets/js/vendor.js": "/assets/js/vendor.js?id=a052a2c8c922f485ed1d",
+    "/assets/js/vendor.js.map": "/assets/js/vendor.js.map?id=ef86a9a20afe27faddf0",
+    "/assets/js/manifest.js": "/assets/js/manifest.js?id=d82724db4398b5e252f2",
+    "/assets/js/manifest.js.map": "/assets/js/manifest.js.map?id=fdf36f2cfd3eda73efe5"
 }
