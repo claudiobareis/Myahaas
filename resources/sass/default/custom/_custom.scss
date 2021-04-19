@@ -76,7 +76,8 @@ html, body {
             a{           
                 img{
                     &.hidden{                        
-                        &.content{                            
+                        &.content{          
+                            filter: brightness(100);                  
                             @media screen and (max-width: $mobile-bp) {
                                 filter: brightness(100);
                             }

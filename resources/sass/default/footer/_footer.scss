@@ -444,6 +444,24 @@ ul{
             padding: 0;
         }
 
+        h1 {
+            color: #333;
+            font-size: 12px;
+            font-weight: 800;
+            margin: 0 3px 10px 0;
+            display: inline-block;
+            border-right: 1px solid #a5a5a5;
+            padding: 0 5px 0 0;
+        }
+        
+        h2 {
+            color: #333;
+            font-size: 12px;
+            font-weight: normal;
+            margin: 0 0 10px 0;
+            display: inline-block;
+        }
+
         > h6 {
             color: #333;
             font-size: 12px;
