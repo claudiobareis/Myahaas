@@ -146,8 +146,15 @@
         <div class="ui column grid">
             <div class="row stackable">
                 <div class="column text small textoEmpresa">
-                    <h2>MyaHaas</h2>
-                    <h1>Sapatos Femininos, Bolsas e Acessórios</h1>
+                    <h3>MyaHaas</h3>
+                    @{
+                        string isHome = Request.Url.AbsolutePath.ToLower();
+                        if(isHome == "/"){
+                            <h1>Sapatos Femininos, Bolsas e Acessórios</h1>
+                        }else{
+                            <h2>Sapatos Femininos, Bolsas e Acessórios</h2>
+                        }
+                    }
                     <h6 class="hidden">@LojaCorp.Control.Company._Company.FantasyName</h6>
                     <address>
                         @LojaCorp.Control.Company._Company.ComplementText                        
