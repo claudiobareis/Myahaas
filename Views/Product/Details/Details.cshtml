@@ -267,47 +267,49 @@
                 @Html.Partial("~/Views/Product/Details/_Slide.cshtml", productImages.ToList())
             </div>
               <!-- COMEÇO MARCA MOBILE-->
-            <div class="mobile only column product-name">
-               <h1 itemprop="name" class="nomeProduto" id="produto-nome">@Model.Name</h1>
-               <span class="sku-product" itemprop="sku">@Model.Code</span>
-               <div class="stars">
-                    <img class="ui middle aligned image logo" src="/assets/image/stars.svg" alt="stars" title="stars">
-               </div>
-                @if (Model.Brand != null)
-                {
-                    /*<h5 itemprop="productBrand" class="marcaProduto">@Model.Brand.Name</h5>*/
-                }
-                else
-                {
-                    /*<h5 itemprop="productBrand" class="marcaProduto"></h5>*/
-                }
-                <!-- FIM MARCA MOBILE-->
-                <div class="ui two column grid hidden">
-                    <div class="column six wide mobile">
-                        <h6 itemprop="productID" class="codProduto">@Model.Code</h6>
-                    </div>
-                    <div class="column ten wide mobile">
-                        <div class="avaliacoes">
-                            <div class="ui tiny star rating" data-rating="@Model.Rate.Value.ToString().Replace(",", ".")"></div>
-                            @if (Model.ProductRatings != null)
-                            {
-                                if (Model.ProductRatings.Count() == 1)
+            @if (Request.Browser.IsMobileDevice) {
+                <div class="mobile only column product-name">
+                <h1 itemprop="name" class="nomeProduto" id="produto-nome">@Model.Name</h1>
+                <span class="sku-product" itemprop="sku">@Model.Code</span>
+                <div class="stars">
+                        <img class="ui middle aligned image logo" src="/assets/image/stars.svg" alt="stars" title="stars">
+                </div>
+                    @if (Model.Brand != null)
+                    {
+                        /*<h5 itemprop="productBrand" class="marcaProduto">@Model.Brand.Name</h5>*/
+                    }
+                    else
+                    {
+                        /*<h5 itemprop="productBrand" class="marcaProduto"></h5>*/
+                    }
+                    <!-- FIM MARCA MOBILE-->
+                    <div class="ui two column grid hidden">
+                        <div class="column six wide mobile">
+                            <h6 itemprop="productID" class="codProduto">@Model.Code</h6>
+                        </div>
+                        <div class="column ten wide mobile">
+                            <div class="avaliacoes">
+                                <div class="ui tiny star rating" data-rating="@Model.Rate.Value.ToString().Replace(",", ".")"></div>
+                                @if (Model.ProductRatings != null)
                                 {
-                                    <span>1 avaliação</span>
+                                    if (Model.ProductRatings.Count() == 1)
+                                    {
+                                        <span>1 avaliação</span>
+                                    }
+                                    else
+                                    {
+                                        <span>@Model.ProductRatings.Count() avaliações</span>
+                                    }
                                 }
                                 else
                                 {
-                                    <span>@Model.ProductRatings.Count() avaliações</span>
+                                    <span>0 avaliações</span>
                                 }
-                            }
-                            else
-                            {
-                                <span>0 avaliações</span>
-                            }
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            }
             <!-- COMEÇO IMAGENS DO PRODUTO PRINCIPAL-->
             <div class="ui divider hidden"></div>
             <!-- COMEÇO INFORMAÇÕES DO PRODUTO-->
@@ -315,7 +317,9 @@
                 <div class="ui grid">
                     <div class="mobile-hide row product information">
                         <div class="column">
-                            <h3 itemprop="name" class="nomeProduto" id="produto-nome">@Model.Name</h3>
+                            @if (!Request.Browser.IsMobileDevice) {
+                                <h1 itemprop="name" class="nomeProduto" id="produto-nome">@Model.Name</h1>
+                            }
                             @if (@Model.Brand != null)
                             {
                                 <h5 itemprop="productBrand" class="marcaProduto">@Model.Brand.Name</h5>
