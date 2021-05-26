@@ -56,8 +56,42 @@
         @if (Model.AlternativeImage != null)
         {
             <a class="ui masked reveal slide image fluid attached" itemprop="url" href="@(Model.UrlFriendlyCustom != null ? Model.UrlFriendlyCustom : Model.UrlFriendly)" title="@Model.Name">
-                <img itemprop="image" id="mainImageCard_@Model.IdProduct" src="/assets/image/img_default.png" data-src="@(Model.ImageHome != null ? Model.ImageHome : "/assets/image/img_default.png")" class="visible content" onerror="imgError(this)" alt="@Model.Name" title="@Model.Name">
-                <img src="@Model.AlternativeImage" class="hidden content" onerror="imgError(this)" alt="@Model.Name" title="@Model.Name">
+                                   
+                    @{ 
+                        var caminhoImg    = @Model.ImageHome;
+                        var caminhoImgAlt = @Model.AlternativeImage;
+                        
+                        var UrlImg        = caminhoImg.Split('/').Last();  
+                        var UrlImgAlt     = caminhoImgAlt.Split('/').Last();                               
+                        var UrlDef        = Request.Url.Host;
+                        
+                        //buscando a imagem
+                        var relativePath     = "produto/thumb/" + UrlImg;      
+                        //var absolutePath     = HttpContext.Server.MapPath(relativePath);
+                        var absolutePath = HttpContext.Current.Server.MapPath(relativePath);
+                        //var absolutePathImg = caminhoImg+"/produtos/thumbs/" + UrlImg;
+                        //var filePath = GetString("Item.ImagePath"); // e.g., /Files/Images/hest.png
+                        //string curFile = relativePath;
+                        //Console.WriteLine(File.Exists(curFile) ? "File exists." : "File does not exist.");    
+                        //string mimeType = MimeMapping.GetMimeMapping(relativePath);
+                    }     
+                
+                @if (Request.Browser.IsMobileDevice) {   
+                    @*  /*                    
+                        <picture>                    
+                            <source id="1_@Model.IdProduct" media="(max-width:465px)" srcset="https://static-myahaas.sbx1.plataformaneo.com.br/@relativePath">                                            
+                            <source id="2_@Model.IdProduct" srcset="@(Model.ImageHome != null ? Model.ImageHome : "/assets/image/img_default.png")">                                            
+                            <img itemprop="image" onerror="this.onerror=null;document.getElementById('1_@Model.IdProduct').srcset=document.getElementById('2_@Model.IdProduct').srcset=this.src;" id="mainImageCard_@Model.IdProduct" src="@(Model.ImageHome != null ? Model.ImageHome : "/assets/image/img_default.png")" srcset="@(Model.ImageHome != null ? Model.ImageHome : "/assets/image/img_default.png")" class="visible content" alt="@Model.Name" title="@Model.Name">
+                        </picture>
+                        */
+                    *@
+                    <object data="https://static-myahaas.sbx1.plataformaneo.com.br/@relativePath" type="image/jpg">
+                        <img class="visible content" src="@(Model.ImageHome != null ? Model.ImageHome : "/assets/image/img_default.png")" alt="@Model.Name">
+                    </object>
+                }else{
+                    <img itemprop="image" id="mainImageCard_@Model.IdProduct" src="/assets/image/img_default.png" data-src="@(Model.ImageHome != null ? Model.ImageHome : "/assets/image/img_default.png")" class="visible content" onerror="imgError(this)" alt="@Model.Name" title="@Model.Name">
+                    <img src="@Model.AlternativeImage" class="hidden content" onerror="imgError(this)" alt="@Model.Name" title="@Model.Name">
+                }
 
                 @if (Model.SealStatus != null && Model.SealStatus.Name != "Normal")
                 {

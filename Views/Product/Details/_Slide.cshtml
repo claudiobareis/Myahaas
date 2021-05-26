@@ -27,11 +27,19 @@
                 <div class="produto easyzoom easyzoom--overlay easyzoom--with-thumbnails easyzoom--with-toggle">
                     @if (Model != null && Model.Count() > 0)
                     {
-                        <a href="@(Model.FirstOrDefault().ImageHighResolution != null ? Model.FirstOrDefault().ImageHighResolution : "#" )">
+                        <a href="@(Model.FirstOrDefault().ImageDefault != null ? Model.FirstOrDefault().ImageHighResolution : "#" )">
                             @* Tem de Setar aqui a imagem de tamanho maior ZOOM!*@
-                            <img id="imagem-padrao" class="img" src="/assets/image/img_default.png" alt="Imagem Principal" data-src="@Model.FirstOrDefault().ImageDefault"  onerror="imgError(this)" />                            
+                            <img id="imagem-padrao" class="img" src="/assets/image/img_default.png" alt="Imagem Principal" data-src="@Model.FirstOrDefault().ImageHighResolution"  onerror="imgError(this)" />                            
                             <noscript>
-                                <img src="@Model.FirstOrDefault().ImageDefault" itemprop="image" alt="Imagem Principal" />                            
+                                <img src="@Model.FirstOrDefault().ImageHighResolution" itemprop="image" alt="Imagem Principal" />                            
+                            </noscript>
+                            <noscript>
+                                @*ObjectInfo.Print();*@
+                                @{ var caminhoImg = @Model.FirstOrDefault().ImageDefault; }
+                                @{ 
+                                    var UrlImg = caminhoImg.Split('/').Last();
+                                    @UrlImg;                                    
+                                }
                             </noscript>
                         </a>
                     }
