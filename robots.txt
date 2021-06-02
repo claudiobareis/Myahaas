@@ -1,5 +1,19 @@
-# Disallow all crawlers access to certain pages. 
-User-agent: * 
+# Allow Full Access
+
+User-agent:*
+Disallow:
+
+
+User-agent:       Googlebot-Image
+
+Disallow:
+
+
+# Disallow Access to All Folders
+
+User-agent:*
+
+
 Disallow: /img/ 
 Disallow: /Site/Carrinho.aspx 
 Disallow: /Site/Servicos.aspx 
@@ -11,3 +25,57 @@ Disallow: /Site/ProdutoFrete.aspx
 Disallow: /Site/TagDetalhe.aspx 
 Disallow: /busca 
 Disallow: /quick-view
+
+
+
+# Default Instructions
+
+Disallow: /lib/
+Disallow: /*.php$
+Disallow: /pkginfo/
+Disallow: /report/
+Disallow: /var/
+Disallow: /customer/
+Disallow: /sendfriend/
+Disallow: /review/
+Disallow: /*SID=
+
+# Restrict User Account & Checkout Pages
+
+Disallow: /checkout/
+Disallow: /onestepcheckout/
+Disallow: /customer/
+Disallow: /customer/account/
+Disallow: /customer/account/login/
+Disallow: /Customer/AccessKey
+
+Disallow: /customer/forgot
+Disallow: /Customer/Login
+Disallow: /fale-conosco
+Disallow: /assistedsale/login
+
+# Disallow Catalog Search Pages
+
+Disallow: /catalog/product_compare/
+Disallow: /*?dir*
+Disallow: /*?dir=desc
+Disallow: /*?dir=asc
+Disallow: /*?limit=all
+Disallow: /*?mode*
+
+# Restrict CMS Directories
+
+Disallow: /app/
+Disallow: /bin/
+Disallow: /dev/
+Disallow: /lib/
+Disallow: /phpserver/
+Disallow: /pub/
+
+
+ 
+# Allow pagination 
+Allow: /*?viewList=
+
+Sitemap: https://www.myahaas.com.br/sitemap.xml
+
