@@ -31,10 +31,10 @@ $(document).ready(function() {
         someTag();        
     });
 
-    $( ".wsmenu ul" ).prepend( "<li class='js-menu'><span class='wsmenu-click'></span><a href='/grupo/best-sellers' class='item' title='Best Sellers'>Best Sellers </a></li>" );
-    $( ".wsmenu ul" ).prepend( "<li class='js-menu'><span class='wsmenu-click'></span><a href='/grupo/lancamentos' class='item' title='Lançamentos'>Lançamentos </a></li>" );        
-    $( ".wsmenu ul" ).append( "<li class='js-menu'><span class='wsmenu-click'></span><a href='/grupo/sale' class='item' title='Lançamentos'>Sale </a></li>" );
-    $( ".wsmenu ul" ).append( "<li class='js-menu'><span class='wsmenu-click'></span><a href='https://blog.myahaas.com.br/' target='_blank' class='item' title='Blog da Mya'>Blog </a></li>" );
+    $( ".wsmenu ul" ).prepend( "<li class='js-menu'><span class='wsmenu-click'></span><a href='/grupo/best-sellers' class='item best' title='Best Sellers'>Best Sellers </a></li>" );
+    $( ".wsmenu ul" ).prepend( "<li class='js-menu'><span class='wsmenu-click'></span><a href='/grupo/lancamentos' class='item lancamentos' title='Lançamentos'>Lançamentos </a></li>" );        
+    $( ".wsmenu ul" ).append( "<li class='js-menu' class='item' title='Sale'><a href='/grupo/sale' class='item sale' title='Sale'>Sale </a></li>" );
+    $( ".wsmenu ul" ).append( "<li class='js-menu'><span class='wsmenu-click'></span><a href='https://blog.myahaas.com.br/' target='_blank' class='item blog' title='Blog da Mya'>Blog </a></li>" );
 
     $(".simulador-frete table.tabela-cep").hide();
     $(".simulador-frete #simular-frete-submit").click(function() {     

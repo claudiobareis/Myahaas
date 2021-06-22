@@ -391,10 +391,15 @@
     }
 
     .menuheader {
-        .ui.menu {
+        .ui.menu {            
             .item {
-                color: #333 !important;
-            }
+                color: #333 !important;        
+                &.sale{                   
+                    background: #e63590;
+                    color: #ffffff !important;                
+                    border-bottom: 5px solid #fff;                                           
+                }        
+            }            
         }
     }
     .wsmenu-list {
