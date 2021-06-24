@@ -90,8 +90,9 @@ $colorLinkSubMenu: '#666';
                         margin: 0 auto;
                     }
                     @media only screen and(min-width: $desktop-bp-min) and(max-width: $desktop-bp) {
-                        font-size: 11px;
-                        padding-left: 5px !important;
+                        font-size: 10px;
+                        padding-left: 7px!important;
+                        padding-right: 7px!important;
                     }
                     @media only screen and(min-width: $desktop-bp) {
                         font-size: 13px;
