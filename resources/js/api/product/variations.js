@@ -218,8 +218,8 @@ variations = {
             referenceDefault = $('.references:not([data-active])', container);
 
         //caso nao exista uma grade default, setamos a primeira opcao
-        //if($('.references .variacao.select', container).length == 0) {
-          if($('.references .variacao', container).length == 0) {            
+        if($('.references .variacao.select', container).length == 0) {
+        //if($('.references .variacao', container).length == 0) {            
             
 
             if($('.references', container).length > 1)
