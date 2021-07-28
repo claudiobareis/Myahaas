@@ -102,10 +102,10 @@
     </div>
     <div class="products-carousel">
         <!-- Chamada de exibição de uma categoria  -->
-        @Html.Action("GetProducts", "Product", new { category = 128952, pageSize = 8 })
+        @Html.Action("ProductsByGroup", "Product", new { id = 5403 })
     </div>
     <div class="category-cta">
-        <a href="/categoria/mya-bee-home">VER TODOS</a>
+        <a href="/grupo/linha-home-da-homepage">VER TODOS</a>
     </div>
     <script>
         $(document).ready(function () {            
