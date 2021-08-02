@@ -16,6 +16,19 @@
                 </div>
                 <div class="column">
                     <div class="ui accordion" id="filtroList">
+                        @{
+                            string getCatFilter = Request.Url.AbsolutePath.ToLower();            
+                            if(getCatFilter == "/grupo/lancamentos"){
+                                <h2 class="filtroList">Sapatos Femininos, Bolsas e Acessórios: Lançamentos da Semana</h2>
+                            }else if(getCatFilter == "/grupo/sale"){
+                                <h2 class="filtroList">Calçados femininos bolsas e acessórios | Promoção MYA</h2>
+                            }else if(getCatFilter == "/sapatos"){
+                                <h2 class="filtroList">Sapatos femininos da moda: Vantagens de comprar aqui na Mya!</h2>
+                            }else{
+                                
+                            }
+                        } 
+
                         @if (Model.GroupingTypes != null && Model.GroupingTypes.Count() > 0)
                         {
                             <!-- Page: ~/Views/Shared/Blocks/Product/_GroupingTypesFilters.cshtml -->

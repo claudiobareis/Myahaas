@@ -25,6 +25,12 @@
     }
     
     #filtroList {
+        .filtroList{
+          font-size: 15px;
+          font-weight: 500;
+          display: flex;
+          padding: 0 0 10px;         
+        }
         .field {
             &.default {
 
