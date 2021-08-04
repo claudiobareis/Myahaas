@@ -21,7 +21,14 @@
     <div class="row">
       <div class="container">
         <div class="column">
-          <h1 class="hidden">@(Model != null ? Model.Name : "")</h1>
+          @{
+            string getCat = Request.Url.AbsolutePath.ToLower();            
+            if(getCat == "/categoria/sapatos"){
+                <h1>Sapatos Femininos da Moda</h1>
+            }else{
+                <h1>@(Model != null ? Model.Name : "")</h1>
+            }
+          }          
           <div class="ui breadcrumb text small">
               <a class="section" href="/">Home</a>
               @{

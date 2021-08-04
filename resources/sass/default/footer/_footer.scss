@@ -96,7 +96,7 @@
         flex-direction: column;
     }
 
-    h4 {
+    h2 {
         color: #333;
         font-size: 22px;
         font-weight: 400;
@@ -216,13 +216,23 @@ ul{
     background-color: #fff !important;
     padding-bottom: 20px !important;
 
-    h4 {
+    h4{
         font-size: 22px !important;
         font-weight: 600 !important;
-        color: #555555 !important;
+        color: $ascent-9-color !important;
+    }
+    span {
+            &.header{
+                font-size: 16px !important;
+                font-weight: 600 !important;
+                color: $ascent-9-color !important;
+                padding: 0em 0em;
+                font-family: "PT Sans", "Helvetica Neue", Arial, Helvetica, sans-serif;
+                line-height: 1.28571429em;
+            }
     }
     i.icon {
-        color: #555555 !important;
+        color: $ascent-9-color !important;
     }
 
     > .ui.container {
@@ -490,10 +500,14 @@ ul{
         }
     }
 
-    .textoEmpresa {
+    .textoEmpresa {        
         text-align: center;
         color: #000;
         text-transform: uppercase;
+        p{
+            font-weight: 800;
+            margin: 0 0 .5em;
+        }
         @media screen and (max-width: $mobile-bp) {
             padding: 0;
         }

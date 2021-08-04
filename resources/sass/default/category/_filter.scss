@@ -25,6 +25,13 @@
     }
     
     #filtroList {
+        .filtroList{
+          margin: 0;
+          visibility: hidden;
+          min-height: initial;
+          font-size: unset;
+          line-height: 0;       
+        }
         .field {
             &.default {
 

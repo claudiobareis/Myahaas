@@ -17,7 +17,7 @@
             <div class="row stackable">
                 <div class="column">
                     <div class="ui form">
-                        <h4>Oi Amyga, vamos tomar um café? Me manda seu e-mail para combinarmos :)</h4>                        
+                        <h2> Oi Amyga, vamos conversar mais sobre as tendências na moda?! Manda seu e-mail para continuarmos nosso papo :)</h2>                        
                         <div class="inline fields margin none">
                             <div class="field">
                                 <div class="ui input">
@@ -36,6 +36,7 @@
         </div>
     </div>
 </div>
+@{<!--
 <div class="cards-footer">
     <div class="container">
         <div class="card-footer">
@@ -99,6 +100,8 @@
         </div>
     </div>
 </div>
+-->
+}
 <div class="ui container fluid vertical segment footer">
     <div class="ui container">
         <div class="ui four column stackable equal height grid">
@@ -208,16 +211,7 @@
         <div class="ui column grid">
             <div class="row stackable">
                 <div class="column text small textoEmpresa">
-                    <h3>MyaHaas</h3>
-                    @{
-                        string isHome = Request.Url.AbsolutePath.ToLower();
-                        if(isHome == "/"){
-                            <h1>Sapatos Femininos, Bolsas e Acessórios</h1>
-                        }else{
-                            <h2>Sapatos Femininos, Bolsas e Acessórios</h2>
-                        }
-                    }
-                    <h6 class="hidden">@LojaCorp.Control.Company._Company.FantasyName</h6>
+                    <p>MyaHaas | Sapatos Femininos, Bolsas e Acessórios</p>                                        
                     <address>
                         @LojaCorp.Control.Company._Company.ComplementText                        
                         @{

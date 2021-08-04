@@ -19,6 +19,12 @@
     <div class="ui vertical menu">
         <div class="item">
             <div class="header">Tendências</div>
+            @{
+                string getCatFilter = Request.Url.AbsolutePath.ToLower();            
+                if(getCatFilter == "/sapatos"){
+                    <h2 class="ocultoSeo">Sapatos femininos da moda: Quais são os modelos tendência da Mya?</h2>
+                }
+            }                     
             <div class="menu">                
                 <a class="item" href="/grupo/papete-trend">Papete Trend</a>
                 <a class="item" href="/grupo/tachas-e-spikes">Tachas e Spikes</a>
@@ -43,6 +49,11 @@
         </div>
         <div class="item">
             <div class="header">Estilo e Uso</div>
+            @{                      
+                if(getCatFilter == "/sapatos"){
+                    <h2 class="ocultoSeo">Modelos de sapatos femininos: Qual o ideal para cada ocasião?</h2>
+                }
+            } 
             <div class="menu">                
                 <a class="item" href="/grupo/classico">Clássico</a>
                 <a class="item" href="/grupo/tendencia">Tendência</a>
