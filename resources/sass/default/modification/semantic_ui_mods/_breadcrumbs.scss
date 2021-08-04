@@ -10,10 +10,11 @@
         }   
     }
     h1 {
-        margin: 1.8em 0 0 .4em;
-        font-size: 1em;
-        font-weight: 700;
-        text-transform: uppercase;
+        margin: 0;
+        visibility: hidden;
+        min-height: initial;
+        font-size: unset;
+        line-height: 0;
         &.title-internas{
             padding: 10px 0 0 6px;
             font-weight: 500;

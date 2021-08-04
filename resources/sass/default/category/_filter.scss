@@ -26,10 +26,11 @@
     
     #filtroList {
         .filtroList{
-          font-size: 15px;
-          font-weight: 500;
-          display: flex;
-          padding: 0 0 10px;         
+          margin: 0;
+          visibility: hidden;
+          min-height: initial;
+          font-size: unset;
+          line-height: 0;       
         }
         .field {
             &.default {

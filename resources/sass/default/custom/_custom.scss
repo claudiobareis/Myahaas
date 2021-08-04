@@ -321,6 +321,12 @@ html, body {
                     padding-top: 5px;
                     text-transform: uppercase;
                     font-weight: 600;
+                    .ocultoSeo{
+                        visibility: hidden;
+                        font-size: initial;
+                        line-height: 0;
+                        margin: 0;
+                    }
                     & > .header:not(.ui){
                         color: #000;
                         padding: 15px 0 0 0;
