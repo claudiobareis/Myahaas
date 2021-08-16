@@ -1,12 +1,12 @@
 # Allow Full Access
 
 User-agent:*
-Disallow:
+Allow: /
 
 
 User-agent:       Googlebot-Image
 
-Disallow:
+Allow: /
 
 
 # Disallow Access to All Folders
@@ -78,4 +78,4 @@ Disallow: /pub/
 Allow: /*?viewList=
 
 Sitemap: https://www.myahaas.com.br/sitemap.xml
-
+Sitemap: https://blog.myahaas.com.br/sitemap_index.xml
