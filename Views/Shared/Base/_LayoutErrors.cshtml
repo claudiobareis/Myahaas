@@ -2,6 +2,13 @@
 <html lang="pt-br">
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+     <!-- ~/Views/Shared/Common/_Header.cshtml -->
+    @Html.Partial("Common/_Header")
+    @RenderSection("CustomSeo", required: false)
+
+    <!-- CSS Styles -->
+    @Html.Partial("Common/_CommonCss")
+    @RenderSection("custom_css", required: false)
     <style>
         body {
             font-family: Tahoma;
@@ -93,6 +100,30 @@
     </style>
 </head>
 <body>
-    @RenderBody()
+      <!-- ~/Views/Shared/Common/_Cart.cshtml -->
+    @Html.Action("GetCartBySession", "Checkout")
+    
+    <div class="pusher">
+                
+        @Html.Partial("Common/_TopBar")
+                
+        <!-- ~/Views/Shared/Common/_Head.cshtml -->
+        @Html.Partial("Common/_Head")
+        
+        <!-- ~/Views/Shared/Common/_Menu.cshtml -->
+        @Html.Action("Menu", "Home")
+        
+        @RenderBody()
+        
+        <!-- ~/Views/Shared/Common/_Footer.cshtml -->
+        @Html.Partial("Common/_Footer")
+    </div>
+
+
+
+    <!-- Scripts -->
+    @Html.Partial("Common/_CommonJs")
+    @RenderSection("custom_js", required: false)
+
 </body>
 </html>

@@ -368,6 +368,38 @@
         @Html.Raw(termo)
     }
 </div>
+@if (!string.IsNullOrEmpty(termo))
+{
+    <div id="termo" class="ui modal modal-term">
+        <div class="scrolling content">
+            @if (termo != null)
+            {
+                @Html.Raw(termo)
+            }
+        </div>
+        <div class="actions">
+            <div class="ui basic button deny">
+                Fechar
+            </div>
+        </div>
+    </div>
+}
+
+
+@if (ViewBag.PolicyPrivacy)
+{
+    <div class="ui modal modal-policy">
+        <div class="scrolling content">
+            @Html.Raw(ViewBag.PolicyText)
+        </div>
+        <div class="actions">
+            <div class="ui basic button deny">
+                Fechar
+            </div>
+        </div>
+    </div> 
+}
+
 
 @section custom_js {
     <script>
