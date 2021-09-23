@@ -37,17 +37,12 @@ function SaveFrete(zipcode, idFrete, correiosEntrega, entregaAgendada, valorSoma
         success: function (response) {
             if (response.success) {
 
-<<<<<<< HEAD
-                if (valorFrete === "0,0") {
-=======
                 if (valorFrete === "0,0" || valorFrete === "0") {
->>>>>>> upstream/master
                     $.ajax({
                         method: "GET",
                         url: "/Checkout/UpdateValueCart",
                         async: false,
                         success: function (responseUpdateValueCard) {
-<<<<<<< HEAD
 
                         }
                     });
@@ -62,22 +57,6 @@ function SaveFrete(zipcode, idFrete, correiosEntrega, entregaAgendada, valorSoma
                     var discount = Number($('#desconto_checkout').html().replace('R$', '').replace(".", "").replace(",", "."));
                     var shipping = Number(valorFrete.toString().replace('R$', '').replace(".", "").replace(",", "."));
 
-=======
-
-                        }
-                    });
-                }
-
-
-                if($('#ShoppingVoucherValue').length > 0) {
-                    var shoppingVoucherValue = Number($('#ShoppingVoucherValue').val().replace(".", "").replace(",", "."));
-
-                    /*** Verificar se habilita forma de pagamento vale compra ***/
-                    var subTotal = Number($('.subtotal').html().replace('R$', '').replace(".", "").replace(",", "."));
-                    var discount = Number($('#desconto_checkout').html().replace('R$', '').replace(".", "").replace(",", ".").replace("&nbsp;", ""));
-                    var shipping = Number(valorFrete.toString().replace('R$', '').replace(".", "").replace(",", "."));
-
->>>>>>> upstream/master
                     var valorCompare = (subTotal - discount + shipping).toFixed(2);
 
                     if (shoppingVoucherValue.toFixed(2) === valorCompare) {
@@ -89,8 +68,6 @@ function SaveFrete(zipcode, idFrete, correiosEntrega, entregaAgendada, valorSoma
                     }
                 }
 
-<<<<<<< HEAD
-=======
                 var _codigoBandeira = $("#idBrandCard").val();
                 if (_codigoBandeira !== undefined) {
                     var _parcela = $("#parcCard").find(':selected').attr("data-InstallmentNumber");
@@ -103,7 +80,6 @@ function SaveFrete(zipcode, idFrete, correiosEntrega, entregaAgendada, valorSoma
                         }
                     }
                 }
->>>>>>> upstream/master
 
                 atualizaResumoCarrinho();
                 //------------------------------------
@@ -917,11 +893,6 @@ function OrderCreate() {
     $(".GerarPedido").click(function (event) {
         event.preventDefault();
 
-<<<<<<< HEAD
-        var $this = $(this);
-        var tipoVerificacao = $this.attr("data-Card");
-
-=======
 
         var $this = $(this);
         var tipoVerificacao = $this.attr("data-Card");
@@ -929,7 +900,6 @@ function OrderCreate() {
         $this.addClass("disabled");
         $this.addClass("loading");
 
->>>>>>> upstream/master
         if ((tipoVerificacao == "S" && $('#UseTwoCreditCards').is(':checked')) || (tipoVerificacao == "D" && $('#UseTwoDebitCards').is(':checked'))) {
             OrderCreateTwoCards($(this));
             return false;
@@ -1044,12 +1014,9 @@ function OrderCreate() {
                     usefulDay = (($('input[name=radio]:checked').data('usefullday') == "1") ? true : false);
                 }
                 var selectedRecurrentTime = $("#compraRecorrenteFrequencia").data('value');
-<<<<<<< HEAD
-=======
                 var emailCard = $('#emailCard').val();
                 var typeDocument = "";
                 var issuer = "";
->>>>>>> upstream/master
 
                 var validaFrete = "";
 
@@ -1228,8 +1195,6 @@ function OrderCreate() {
                                         confirmButtonText: 'OK'
                                     });
 
-<<<<<<< HEAD
-=======
                                     $(".GerarPedido").removeClass("loading");
                                     $(".GerarPedido").removeClass("disabled");
                                 }
@@ -1262,7 +1227,6 @@ function OrderCreate() {
                                         confirmButtonText: 'OK'
                                     });
 
->>>>>>> upstream/master
                                     $(".GerarPedido").removeClass("loading");
                                     $(".GerarPedido").removeClass("disabled");
                                 }
@@ -1352,16 +1316,13 @@ function onChangeParcelamento() {
 
             var total_parcela_selecionada = Number($("#parcCard").find(':selected').attr("data-installmenttotal"));
             var totalCheckout = Number($('#total_checkout').data("totalcheckout").replace("R$", "").replace(".", "").replace(",", "."));
-<<<<<<< HEAD
             var totalDiscount = Number($('#desconto_checkout').text().replace("R$", "").replace("&nbsp;", "").replace(".", "").replace(",", "."))
             var juros = total_parcela_selecionada - (totalCheckout - totalDiscount);
-=======
             //var totalDiscount = Number($('#desconto_checkout').text().replace("R$", "").replace("&nbsp;", "").replace(".", "").replace(",", "."))
             //var juros = total_parcela_selecionada - (totalCheckout - totalDiscount);
             //if ($('#hasPagSeguro').val() == "1" || $('#hasPagSeguroApp').val() == "1" || $('#hasMercadoPago').val() == "1") {
-            var juros = total_parcela_selecionada - totalCheckout;
+            //var juros = total_parcela_selecionada - totalCheckout;
             //}
->>>>>>> upstream/master
             $('#interest_checkout').html(juros.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }));
         });
     }

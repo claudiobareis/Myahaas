@@ -41,7 +41,6 @@
 }
 
 .ui.container {
-<<<<<<< HEAD
   @media only screen and(min-width: $desktop-xl) {
     width: 1320px;
   }
@@ -51,11 +50,6 @@
   @media only screen and(min-width: $desktop-bp-min) and(max-width: $desktop-bp) {
     width: 95%;
   }  
-=======
-    @media only screen and(min-width: $desktop-xl) {
-        width: 1320px;
-    }
->>>>>>> upstream/master
 }
 
 .ui.grid {

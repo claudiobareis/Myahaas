@@ -50,7 +50,6 @@ require('./modules/policy');
 require('./modules/multiCd');
 
 //--------------------[ Start Document ]--------------------//
-<<<<<<< HEAD
 $(document).ready(function() {
     'use strict'
     /* 
@@ -65,11 +64,6 @@ $(document).ready(function() {
         })
     }, 1000)
 })
-=======
-$(document).ready(function(){
-    "use strict";    
-});
->>>>>>> upstream/master
 
 window.imgError = function imgError(event) {
     $(event).attr('data-old-src', $(event).attr('src'))
