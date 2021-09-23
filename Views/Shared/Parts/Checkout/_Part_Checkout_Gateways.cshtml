@@ -21,6 +21,17 @@
             paymentLink = true;
         }
     }
+    bool paymentDescount = false;
+    DomainCheckout.Entities.PaymentMethod paymentMethodDescount = null;
+    if (paymentLink == true)
+    {
+        paymentMethodDescount = lstPaymentMethods.Where(i => i.IdPaymentMethod == 19).FirstOrDefault();
+
+        if (paymentMethodDescount != null)
+        {
+            paymentDescount = true;
+        }
+    }
 }
 
 @if (Model != null)
@@ -41,6 +52,15 @@
                         <!-- Pagamento com Link -->
                         @Html.Partial("~/Views/Shared/Parts/Checkout/_Part_Checkout_Pagamento_Link.cshtml", paymentMethodLink.PaymentBrands)
 
+<<<<<<< HEAD
+=======
+                        if (paymentDescount)
+                        {
+                            <a class="item itemTabPayment hideme" data-tab="paymentDescount"><div class="text"><i class="icon money bill alternate outline"></i><span>Pagamento com Desconto</span></div></a>
+                            <!-- Pagamento com Desconto -->
+                            @Html.Partial("~/Views/Shared/Parts/Checkout/_Part_Checkout_Pagamento_Desconto.cshtml", paymentMethodDescount.PaymentBrands)
+                        }
+>>>>>>> upstream/master
                     }
                     else
                     {
@@ -55,8 +75,11 @@
 
                                     break;
                                 case 2:
+<<<<<<< HEAD
                                     <a class="item itemTabPayment" data-tab="paymentOff"><div class="text"><i class="icon money bill alternate outline"></i><span>Pagamento Offline</span></div></a>
                                     <!-- Pagamento Offline -->
+=======
+>>>>>>> upstream/master
                                     @Html.Partial("~/Views/Shared/Parts/Checkout/_Part_Checkout_Pagamento_Offline.cshtml", itemM.PaymentBrands)
 
                                     break;
@@ -78,7 +101,11 @@
                                     @Html.Partial("~/Views/Shared/Parts/Checkout/_Part_Checkout_Pagamento_Cartao_Debito.cshtml", itemM)
                                     break;
                                 case 19:
+<<<<<<< HEAD
                                     <a class="item itemTabPayment hideme" data-tab="paymentDescount"><div class="text"><i class="icon money bill alternate outline"></i><span>Vale Compra</span></div></a>
+=======
+                                    <a class="item itemTabPayment hideme" data-tab="paymentDescount"><div class="text"><i class="icon money bill alternate outline"></i><span>Pagamento com Desconto</span></div></a>
+>>>>>>> upstream/master
                                     <!-- Pagamento com Desconto -->
                                     @Html.Partial("~/Views/Shared/Parts/Checkout/_Part_Checkout_Pagamento_Desconto.cshtml", itemM.PaymentBrands)
                                     break;
@@ -105,9 +132,26 @@
                                     <!-- PayPal Reference -->
                                     @Html.Partial("~/Views/Shared/Parts/Checkout/_Part_Checkout_Pagamento_PayPalCheckoutReference.cshtml", itemM.PaymentBrands)
                                     break;
+<<<<<<< HEAD
+=======
+                                case 26:
+                                    <a class="item itemTabPayment" data-tab="mercadoPagoCheckoutVPRO"><div class="text"><i class="icon money"></i><span>Mercado Pago</span></div></a>
+                                    <!-- Mercado Pago Checkout VPRO -->
+                                    @Html.Partial("~/Views/Shared/Parts/Checkout/_Part_Checkout_Pagamento_MercadoPagoCheckoutVPRO.cshtml", itemM.PaymentBrands)
+                                    break;
+                                case 27:
+                                    <a class="item itemTabPayment" data-tab="pix"><div class="text"><i class="icon qrcode"></i><span>PIX</span></div></a>
+                                    <!-- Mercado Pago PIX -->
+                                    @Html.Partial("~/Views/Shared/Parts/Checkout/_Part_Checkout_Pagamento_Pix.cshtml", itemM.PaymentBrands)
+                                    break;
+>>>>>>> upstream/master
                             }
                         }
                     }
+
+                    <input type="hidden" name="hasMercadoPago" id="hasMercadoPago" value="@Session["MercadoPago"]" />
+                    <input type="hidden" name="MercadoPagoPublicKey" id="MercadoPagoPublicKey" value="@Session["MercadoPagoPublicKey"]" />
+                    <input type="hidden" name="MercadoPagoEmail" id="MercadoPagoEmail" value="@Session["MercadoPagoEmail"]" />
                     <input type="hidden" name="hasPagSeguro" id="hasPagSeguro" value="@Session["PagSeguro"]" />
                     <input type="hidden" name="hasPagSeguroApp" id="hasPagSeguroApp" value="@Session["PagSeguroApp"]" />
                     <input type="hidden" name="SessionPayment" id="PaymentSession" value="" />

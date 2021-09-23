@@ -18,14 +18,14 @@ function printDiv(divID) {
 
 function openShopline(clearShopline = false) {
     if (clearShopline) {
-        $(".ui.modal").modal({
+        $(".ui.modal.itau-shopline").modal({
             onHidden: function () {
                 $("#itauShopline").remove();
                 $(this).remove();
             }
         }).modal('show');
     } else {
-        $(".ui.modal").modal('show')
+        $(".ui.modal.itau-shopline").modal('show')
     }
 }
 
@@ -169,6 +169,10 @@ $(document).ready(function () {
 
     $(document).on("click", "#btnOpenPaymentLink", function () {
         $('.ui.modal.pagseguro').modal('show');
+    });
+
+    $(document).on("click", "#btnOpenMercadoPagoPix", function () {
+        $('.ui.modal.mercadopago-pix').modal('show');
     });
 
     $(document).on("keypress", ".prompt_pedidos", function (event) {

@@ -64,7 +64,7 @@ $.fn.search.settings.templates.autoComplete = function (response, fields) {
 
 $(document).on("keypress", ".prompt", function (e) {
     let value = encodeURIComponent($(".searchMobile").is(":visible") ? $(".searchMobile .prompt").val() : $(".prompt:visible").val());
-    
+
     if (e.which === 13) {
         if (value.length >= minCharacters)
             location.href = `/busca?n=${value}&mdf=${$("#metaDataField").val()}&mdv=${$("#metaDataValue").val()}`;
@@ -88,7 +88,7 @@ $(document).on("click", ".busca_lista_btn", function (e) {
 
 $(document).on("click", ".searchMobile .search-results", function (e) {
     let value = encodeURIComponent($(".searchMobile").is(":visible") ? $(".searchMobile .prompt").val() : $(".prompt:visible").val());
-    
+
     if (value.length >= minCharacters)
         location.href = `/busca?n=${value}&mdf=${$("#metaDataField").val()}&mdv=${$("#metaDataValue").val()}`;
     else
@@ -132,13 +132,8 @@ $(document).ready(function () {
         duration: 300,
         apiSettings: {
             beforeSend: function (settings) {
-                let promptValue = "";
-                $(".prompt").each(function () {
-                    if ($(this).val().length > 0) {
-                        promptValue = $(this).val();
-                    }
-                });
-                settings.data.n = encodeURIComponent(promptValue);
+
+                settings.data.n = $(".prompt:visible").val();
                 // Quando for utilizar a busca com metadata separados por "|"
                 // settings.data.mdf = 'feature';
                 // settings.data.mdv = 'produto';
@@ -148,7 +143,7 @@ $(document).ready(function () {
             onResponse: function (searchResponse) {
                 var response = {
                     results: [],
-                    query: this.urlData.query,
+                    query: decodeURIComponent(this.urlData.query),
                     metadatafield: this.urlData.metadatafield,
                     metadatavalue: this.urlData.metadatavalue
                 };
@@ -193,7 +188,6 @@ $(document).ready(function () {
 function showResultsClone() {
     $(".results-clone").removeClass("closed");
     $("#closeResultsMobile").removeClass("disabled");
-
 }
 
 function hideResultsClone() {

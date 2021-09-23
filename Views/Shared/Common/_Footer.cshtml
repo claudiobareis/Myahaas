@@ -1,4 +1,5 @@
-﻿@{
+﻿@using System.Text.RegularExpressions
+@{
     List<DomainSocialNetwork.Entities.SocialNetwork> redesSociais = Session["SocialNetworkLinks"] != null ? (List<DomainSocialNetwork.Entities.SocialNetwork>)Session["SocialNetworkLinks"] : new List<DomainSocialNetwork.Entities.SocialNetwork>();
 }
 <div class="footer-divider">
@@ -10,6 +11,8 @@
         <div class="line"></div>
     </div>
 </div>
+
+@Html.Action("GetPrivacyPolicyAlertText", "Company")
 
 <div class="ui container fluid newsletter-bar">
     <div class="ui container">
@@ -29,6 +32,7 @@
                                     Ok
                                 </button>
                             </div>
+                            @Html.Action("GetRecaptchaV3", "Company", new { Module = "Newsletter" })
                         </div>
                     </div>
                 </div>

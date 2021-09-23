@@ -1,6 +1,7 @@
 ﻿import {_alert, _confirm} from '../../functions/message';
 import { validarEmail } from "../../functions/validate";
 import { generateRecaptcha } from "../../ui/modules/recaptcha";
+import { openModalPolicy } from "../../ui/modules/policy";
 
 $(document).ready(function () {
     //checkEmail();
@@ -32,6 +33,8 @@ function checkLogin() {
             $.ajax({
                 method: "POST",
                 url: "/checkout/CheckLogin",
+                cache: false,
+                async:false,
                 data: {
                     email: isValidEmail ? strLogin : "",
                     cpfCnpj: (isValidCpf || isValidCnpj) ? strLogin : "",
@@ -39,22 +42,49 @@ function checkLogin() {
                 },
                 success: function (response) {
                     if (response.success) {
-
-                        if ($('#payPalCheckoutInCart').val() === "true") {
-                            swal({
-                                title: '',
-                                html: "Identificamos que você já possui uma conta em nossa loja e lhe redirecionaremos para a página de pagamento. Por gentileza, revise seu pedido antes de concluí-lo!",
-                                type: 'success',
-                                showCancelButton: false,
-                                confirmButtonColor: '#3085d6',
-                                cancelButtonColor: '#d33',
-                                confirmButtonText: 'OK'
-                            }).then(function () {
-                                window.location.href = response.action;
-                            });
+                        
+                        if(response.modalPrivacyType !== "") {
+                            $(".modal-policy").modal({
+                                closable  : false,
+                                onHidden : function() {
+                                    $.ajax({
+                                        method: "POST",
+                                        url: "/Customer/PrivacyPolicyAcceptUser",
+                                        success: function () {
+                                            window.location.href = '/Checkout/' + response.action;
+                                        }
+                                    });
+                                },
+                                onVisible: function() {
+                                    $(".check-policy-modal").checkbox({
+                                        onChecked: function () {                                            
+                                            $("#btn-payment-go").removeClass("disabled")
+                                        },
+                                        onUnchecked: function () {
+                                            $("#btn-payment-go").addClass("disabled")
+                                        }
+                                    });
+                                }
+                            }).modal('show')
                         } else {
-                            window.location.href = response.action;
+                            if ($('#payPalCheckoutInCart').val() === "true") {
+                                swal({
+                                    title: '',
+                                    html: "Identificamos que você já possui uma conta em nossa loja e lhe redirecionaremos para a página de pagamento. Por gentileza, revise seu pedido antes de concluí-lo!",
+                                    type: 'success',
+                                    showCancelButton: false,
+                                    confirmButtonColor: '#3085d6',
+                                    cancelButtonColor: '#d33',
+                                    confirmButtonText: 'OK'
+                                }).then(function () {
+                                    window.location.href = '/Checkout/' + response.action;
+                                });
+                            } else {
+                                window.location.href = '/Checkout/' + response.action;
+                            }
                         }
+
+                        
                     }
                     else
                     {
