@@ -2031,16 +2031,6 @@ function AtualizaResumoCarrinhocomDesconto(codigoBandeira, codigoPaymentMethod, 
             $("#desconto_checkout").text(new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(TotalDiscount));
         }
 
-<<<<<<< HEAD
-    } else {
-        var obj_parcelamento;
-        if (($('#hasPagSeguro').val() !== "0" && $('#hasPagSeguro').val() !== undefined) || ($('#hasPagSeguroApp').val() !== "0" && $('#hasPagSeguroApp').val() !== undefined)) {
-            obj_parcelamento = buscaTotalParcelamentoValor(codigoBandeira, codigoPaymentMethod, 1);
-            var valor = $('#parcCard > option:selected').data('installmenttotal');
-            obj_parcelamento.result = valor;
-        } else {
-            obj_parcelamento = buscaTotalParcelamento(codigoBandeira, codigoPaymentMethod, parcela_selecionada);
-=======
     }
     else {
         var obj_parcelamento;
@@ -2056,7 +2046,6 @@ function AtualizaResumoCarrinhocomDesconto(codigoBandeira, codigoPaymentMethod, 
             obj_parcelamento.juros = valor - obj_parcelamento.result;
             if (obj_parcelamento.juros < 0) obj_parcelamento.juros = 0;
             obj_parcelamento.result = valor;
->>>>>>> upstream/master
         }
         //var obj_carrinho = buscaValorFinalCarrinho();
         if (Object.keys(obj_parcelamento).length > 0) {
@@ -3194,11 +3183,8 @@ function UpdateValueTwoDebitCards(obj) {
 
 
 var availableDates = [];
-<<<<<<< HEAD
-=======
 //var mp;
 //var cardForm;
->>>>>>> upstream/master
 
 $(document).ready(function () {
     $("#formas-pagamento .itemTabPayment").appendTo($("#formas-pagamento #tabPayment"));
@@ -3213,9 +3199,6 @@ $(document).ready(function () {
 
     // $("#formas-pagamento #tabPayment .itemTabPayment").tab();
     $("#formas-pagamento #tabPayment .itemTabPayment").tab({
-<<<<<<< HEAD
-        onVisible: function() {
-=======
         onVisible: function (tabPath) {
             if (tabPath != "cardCredit" && $('#CreditCard').val() != "") {
                 $('#parcCard').empty().append("<option value='0'>Informe o numero do cartão primeiro</option>");
@@ -3230,7 +3213,6 @@ $(document).ready(function () {
                 atualizaResumoCarrinho();
             }
 
->>>>>>> upstream/master
             $(">iframe", "#paypal-cc-form").css("width", "100%");
         }
     });
@@ -3730,7 +3712,6 @@ $(document).ready(function () {
         })
     }
 
-<<<<<<< HEAD
     $(document).on('click', '#PaymentLinkCopy', function (e) {
         e.preventDefault();
         e.stopPropagation();
@@ -3788,7 +3769,6 @@ $(document).ready(function () {
         }
     });
 
-=======
     
 
     $(document).on('click', '#CopyQrCode', function (e) {
@@ -3874,7 +3854,6 @@ $(document).ready(function () {
         }
     });
 
->>>>>>> upstream/master
     //Botão de imprimir da página
     $(document).on("click", "#ProcessBankSlip", function (e) {
         e.stopPropagation()
@@ -4248,7 +4227,6 @@ $(document).ready(function () {
     }
 });
 
-<<<<<<< HEAD
 var _logoutPaymentLink = true;
 function LimpaSessaoLinkPagamento() {
     if (window.location.pathname.toLowerCase().trim() == "/checkout/payment") {
@@ -4273,8 +4251,6 @@ window.addEventListener('unload', function (event) {
     LimpaSessaoLinkPagamento();
 });
 
-=======
->>>>>>> upstream/master
 window.onload = function () {
 
     $(".blocoTypePayment").on("click", function () {
