@@ -219,7 +219,7 @@ variations = {
 
         //caso nao exista uma grade default, setamos a primeira opcao
         if($('.references .variacao.select', container).length == 0) {
-        //if($('.references .variacao', container).length == 0) {            
+            
             
 
             if($('.references', container).length > 1)
@@ -249,7 +249,7 @@ variations = {
             if($(this.config.getSession).length === 0)
                 this.haveInWishList($('#produto-id').val(), $("#produto-sku").val(), null);
 
-        } else { 
+        } else {
             //recuperando a grade padrao e escondendo as demais
             $('.references:not([data-active]) .variacao.select', container).each(function() {
                 selectInitial.push($(this).data('reference') + ':' + $(this).data('variation'))
@@ -418,33 +418,7 @@ variations = {
             slidesToShow: 3,
             mobileFirst:true,
             useTransform:false,
-            infinite:false,
-            responsive: [
-                {
-                  breakpoint: 1024,
-                  settings: {
-                    vertical: true,
-                    verticalSwiping: true
-                  }
-                },
-                {
-                  breakpoint: 600,
-                  settings: {
-                    vertical: true,
-                    verticalSwiping: true
-                  }
-                },
-                {
-                  breakpoint: 480,
-                  settings: {
-                    vertical: false,
-                    verticalSwiping: false
-                  }
-                }
-                // You can unslick at a given breakpoint now by adding:
-                // settings: "unslick"
-                // instead of a settings object
-              ]
+            infinite:false
         });
 
         this.thumbAction()
@@ -603,7 +577,7 @@ variations = {
         //setando as variacoes selecionadas para utilizacao no aviseme
         var variationSelect = new Array();
 
-        $('.references .variacao.select', this.config.container).each(function() {
+        $('.references .variacao.select', "#variations-container").each(function() {
             variationSelect.push($(this).data('variation'))
         });
 
