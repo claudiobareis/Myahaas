@@ -4,11 +4,7 @@
 
     var _paypalCheckoutInCart = Session["PreOrderPayPalCheckoutInCart"] != null ? "true" : "false";
 }
-@section logo {
-    <a href="/Home" title="@LojaCorp.Control.Company._Company.FantasyName">
-        <img class="ui middle aligned image logo" src="~/assets/image/logo/logo.png" />
-    </a>
-}
+
 @section steps{
     <div class="jet checkout jBreadCrumb ">
         <div class="jCrumb">
@@ -50,9 +46,9 @@
             <div class="twelve wide computer sixteen wide tablet sixteen wide mobile column">
                 <form action="" method="POST" id="identificationForm" class="ui large form jet checkout">
                     @Html.AntiForgeryToken()
-                    <input type="hidden" name="email" id="email" value="" />
-                    <input type="hidden" name="cpfCnpj" id="cpfCnpj" value="" />
-                    <input type="hidden" name="payPalCheckoutInCart" id="payPalCheckoutInCart" value="@_paypalCheckoutInCart" />
+                    <input type="hidden" name="email" id="email" value=""/>
+                    <input type="hidden" name="cpfCnpj" id="cpfCnpj" value=""/>
+                    <input type="hidden" name="payPalCheckoutInCart" id="payPalCheckoutInCart" value="@_paypalCheckoutInCart"/>
                     <div class="ui segment">
                         <div class="ui grid very relaxed stackable">
                             <div class="row one column left aligned">
@@ -72,7 +68,7 @@
                                         </div>
                                     </button>
                                 </div>
-                                @Html.Action("GetRecaptchaV3", "Company", new { Module = "FirstAccess" })
+                                @Html.Action("GetRecaptchaV3", "Company", new {Module = "FirstAccess"})
                             </div>
                         </div>
                     </div>
@@ -96,27 +92,5 @@
     </div>
 </div>
 
-
-@if (ViewBag.PolicyPrivacy)
-{
-    <div class="ui modal modal-policy">
-        <div class="scrolling content">
-            @Html.Raw(ViewBag.PolicyText)
-        </div>
-        <div class="actions padding top bottom no">
-            <div class="ui grid two column stackable middle aligned">
-                <div class="column eleven wide text left">
-                    <div class="inline field">
-                        <div class="ui checkbox check-policy-modal">
-                            <input id="valida-modal" type="checkbox">
-                            <label for="valida-modal">Declaro que li e aceito os termos da <strong>Política de Privacidade</strong>.</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="column five wide"><div class="ui basic button deny action disabled" id="btn-payment-go">Continuar</div></div>
-            </div>
-        </div>
-    </div>
-
-
-}
+<!-- ~/Views/Shared/Parts/Customer/_Part_Customer_Password.cshtml -->
+@Html.Partial("Parts/Customer/_Part_Customer_Password", "/checkout/Payment")

@@ -1,98 +1,44 @@
 ﻿<!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <style>
-        body {
-            font-family: Tahoma;
-            /*background: url(/assets/image/error/bcg.png);*/
-            width: 100%;
-            height: 100%;
-            margin: 0;
-            text-align: center;
-        }
-        .list-products-menu{
-            display: flex;
-            justify-content: center;
-            padding: 15px 0;
-            flex-wrap: wrap;
-        }
-        .list-products-menu li{
-            list-style-type: none;
-            min-height: 45px;
-        }
-        
-        .list-products-menu li a{
-            background: #000;
-            margin: 0 3px;
-            color: #fff;
-            text-decoration: none;
-            padding: 10px;
-            border-radius: 5px;
-        }
-        .oops{
-            max-width: 100px;
-            margin: 40px auto 0;
-        }
-        .quatrocentos{
-            max-width: 150px;
-            margin: 0 auto;
-        }
-        .vertical-center {
-            min-height: 100%;
-            display: flex;
-            align-items: center;
-            margin-top: 50px;
-        }
+    
+    
+    <!-- ~/Views/Shared/Common/_Header.cshtml -->
+    @Html.Partial("Common/_Header")
+    @RenderSection("CustomSeo", required: false)
 
-        .horizontal-center {
-            margin: 0 auto;
-        }
+    <!-- CSS Styles -->
+    @Html.Partial("Common/_CommonCss")
+    @RenderSection("custom_css", required: false)
 
-        .content {
-            margin: 0 15px;
-        }
 
-        .customImg img {
-            max-width: 100%;
-            display: block;
-            margin: 0 auto;
-        }
-
-        .customImgLogo img {
-            width: 100px;
-            max-width: 100%;
-            display: block;
-            margin: 25px auto;
-        }
-
-        .text-1 {
-            color: #000;
-            font-size: 35px;
-            margin: 15px 0 0;
-        }
-
-        .text-2 {
-            color: #000;
-            font-size: 20px;
-            margin: 5px 0 20px;
-        }
-
-        button {
-            background: #fff;
-            border: 1px solid #000;
-            border-radius: 5px;
-            color: #000;
-            text-align: center;
-            padding: 15px 30px;
-            cursor: pointer;
-            margin: 25px 0;
-            font-weight: 500;
-            font-size: 15px;
-        }
-    </style>
+    
 </head>
 <body>
-    @RenderBody()
+    <!-- ~/Views/Shared/Common/_Cart.cshtml -->
+    @Html.Action("GetCartBySession", "Checkout")
+    
+    <div class="pusher">
+                
+        @Html.Partial("Common/_TopBar")
+                
+        <!-- ~/Views/Shared/Common/_Head.cshtml -->
+        @Html.Partial("Common/_Head")
+        
+        <!-- ~/Views/Shared/Common/_Menu.cshtml -->
+        @Html.Action("Menu", "Home")
+        
+        @RenderBody()
+        
+        <!-- ~/Views/Shared/Common/_Footer.cshtml -->
+        @Html.Partial("Common/_Footer")
+    </div>
+
+
+
+    <!-- Scripts -->
+    @Html.Partial("Common/_CommonJs")
+    @RenderSection("custom_js", required: false)
+
 </body>
 </html>

@@ -1,15 +1,8 @@
 ﻿@{
     List<DomainSocialNetwork.Entities.SocialNetwork> redesSociais = Session["SocialNetworkLinks"] != null ? (List<DomainSocialNetwork.Entities.SocialNetwork>)Session["SocialNetworkLinks"] : new List<DomainSocialNetwork.Entities.SocialNetwork>();
 }
-<div class="footer-divider">
-    <div class="ui container">
-        <div class="line"></div>
-        <svg width="31" height="19" viewBox="0 0 31 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M29.3882 9.73973C28.7766 10.2832 28.0067 10.6231 27.1878 10.7112C27.6596 10.1105 28.1844 9.55204 28.7559 9.04226C29.4135 8.46933 30.2735 8.76824 29.3882 9.73973ZM21.143 17.661C19.3151 17.0692 17.4015 16.7747 15.4775 16.7892C13.5535 16.7747 11.6399 17.0692 9.81204 17.661C8.81433 15.6835 7.53701 13.8552 6.0182 12.2307C7.31515 12.6279 8.65783 12.8622 10.0144 12.9282C11.1211 12.8808 12.1989 12.5649 13.1519 12.0087C14.105 11.4525 14.9038 10.6731 15.4775 9.73973C16.063 10.6546 16.867 11.4144 17.8193 11.9528C18.7716 12.4912 19.8432 12.7919 20.9406 12.8285C22.2972 12.7629 23.6399 12.5285 24.9368 12.1311C23.408 13.7937 22.1303 15.6646 21.143 17.6859V17.661ZM14.6428 3.73647C14.6428 1.54441 15.2499 0.846933 15.4269 0.846933C15.604 0.846933 16.211 1.54441 16.211 3.73647C16.1932 5.05443 15.9184 6.35675 15.4016 7.57258C14.8854 6.35656 14.6107 5.05436 14.5923 3.73647H14.6428ZM1.56676 9.73973C0.681532 8.74333 1.56676 8.46933 2.19907 9.04226C2.77062 9.55204 3.29537 10.1105 3.76719 10.7112C2.9483 10.6231 2.17838 10.2832 1.56676 9.73973ZM30.2988 7.87149C28.6042 6.92492 26.7578 9.26644 25.4932 11.1347C24.044 11.5388 22.5478 11.7565 21.0418 11.7823C20.0498 11.7467 19.0834 11.4626 18.2337 10.9571C17.3841 10.4515 16.6792 9.74107 16.1857 8.89279C16.9781 7.34419 17.4183 5.64408 17.4756 3.91084C17.4756 1.41986 16.7421 0 15.604 0C14.4658 0 13.7323 1.5195 13.7323 3.91084C13.7896 5.64408 14.2298 7.34419 15.0222 8.89279C14.523 9.75984 13.8037 10.4843 12.9346 10.9952C12.0656 11.5061 11.0768 11.7859 10.065 11.8072C8.55898 11.7815 7.06273 11.5638 5.61352 11.1596C4.3489 9.29135 2.50257 6.94983 0.807985 7.8964C-0.886595 8.84297 0.42862 10.5617 1.61736 11.2094C2.54683 11.6819 3.54508 12.0097 4.57654 12.1809C5.0557 12.65 5.50347 13.1493 5.91703 13.6755C7.19489 15.1828 8.25068 16.8599 9.05326 18.6574C9.08097 18.7249 9.12204 18.7863 9.17408 18.8379C9.22612 18.8896 9.28809 18.9305 9.35637 18.9584C9.42465 18.9862 9.49787 19.0003 9.57176 19C9.64565 18.9996 9.71873 18.9848 9.78674 18.9564C11.6218 18.281 13.5694 17.9515 15.5281 17.9849C17.4868 17.9515 19.4344 18.281 21.2694 18.9564C21.3374 18.9848 21.4105 18.9996 21.4844 19C21.5583 19.0003 21.6315 18.9862 21.6998 18.9584C21.7681 18.9305 21.83 18.8896 21.8821 18.8379C21.9341 18.7863 21.9752 18.7249 22.0029 18.6574C22.8055 16.8599 23.8613 15.1828 25.1391 13.6755C25.5509 13.1478 25.9988 12.6485 26.4796 12.1809C27.5104 12.007 28.5083 11.6794 29.4388 11.2094C30.6276 10.5617 31.8163 8.71842 30.2482 7.8964" fill="#E5E5E5"/>
-        </svg>
-        <div class="line"></div>
-    </div>
-</div>
+
+@Html.Action("GetPrivacyPolicyAlertText", "Company")
 
 <div class="ui container fluid newsletter-bar">
     <div class="ui container">
@@ -17,16 +10,27 @@
             <div class="row stackable">
                 <div class="column">
                     <div class="ui form">
-                        <h2> Oi Amyga, vamos conversar mais sobre as tendências na moda?! Manda seu e-mail para continuarmos nosso papo :)</h2>                        
                         <div class="inline fields margin none">
                             <div class="field">
-                                <div class="ui input">
+                                <span>
+                                    <i class="icon envelope"></i>
+                                    <h4 class="header">Newsletter</h4>
+                                </span>
+                            </div>
+                            <div class="field textNews">
+                                <span class="text">
+                                    Cadastre seu e-mail e receba novidades e promoções.
+                                </span>
+                            </div>
+                            <div class="field">
+                                <div class="ui left icon input">
+                                    <i class="mail icon"></i>
                                     <input type="text" placeholder="seu@email.com.br" id="email_news">
                                 </div>
                             </div>
                             <div class="field">
                                 <button class="ui button red" id="btn_news">
-                                    Ok
+                                    Cadastrar
                                 </button>
                             </div>
                         </div>
@@ -36,92 +40,65 @@
         </div>
     </div>
 </div>
-@{<!--
-<div class="cards-footer">
-    <div class="container">
-        <div class="card-footer">
-            <a href="/grupo/lancamentos">
-                <div class="card-svg">
-                    <svg width="30" height="23" viewBox="0 0 30 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M22.1766 17.7132C22.1766 17.7132 22.1581 17.7327 22.1246 17.7652C20.1987 16.9944 18.0493 17.5602 16.3681 16.052C14.669 14.5283 13.3862 12.1375 11.98 10.3286C10.4329 8.33704 8.83773 6.38339 7.21634 4.45258C6.06271 3.07989 5.00477 1.49104 3.52473 0.450585C3.31537 0.0396502 3.12593 -0.130844 2.7898 0.11154C2.63437 0.146513 2.51439 0.270862 2.46436 0.422412C2.27346 0.638566 2.04614 0.942638 1.76441 1.35357C-0.151344 4.15386 -0.446187 6.58546 0.585521 9.38623C1.61723 12.1865 1.39622 22.0611 1.39622 22.0611C1.39622 22.0611 1.83873 22.6503 2.28075 22.3555C2.72326 22.0611 1.69155 12.7019 2.50225 11.5963C2.50225 11.5963 5.96556 9.6801 8.91351 16.239C11.8615 22.7975 13.2614 22.9447 15.3248 22.9447C17.3887 22.9447 23.4313 23.0923 27.8525 22.2811C32.2732 21.4709 29.6201 19.85 22.1766 17.7132ZM15.4715 18.8183C12.8184 15.7232 6.4071 5.0379 4.78619 2.8273C4.75656 2.78747 4.72936 2.74716 4.70167 2.70733C5.57114 3.68269 6.34541 4.78483 7.13133 5.72036C9.08692 8.04851 10.9716 10.4364 12.8179 12.8515C13.9122 14.283 14.8555 15.881 16.2049 17.091C17.6889 18.4224 19.6299 17.9056 21.3698 18.4283C20.0515 19.4721 17.394 21.0619 15.4715 18.8183Z" fill="black"/>
-                    </svg>
-                </div>
-                <div class="card-text">
-                        <h2>Lançamentos da Semana</h2>
-                        <h3>Confira os Lançamentos de Sapatos Femininos, Bolsas e Acessórios</h3>
-                </div>
-            </a>
-        </div>
-        <div class="card-footer">
-            <a href="/grupo/best-sellers">
-                <div class="card-svg">
-                    <svg width="30" height="28" viewBox="0 0 30 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M22.0312 0.757812C20.4033 0.757812 18.9108 1.27367 17.5953 2.29109C16.3341 3.2665 15.4944 4.50887 15 5.41227C14.5056 4.50881 13.6659 3.2665 12.4047 2.29109C11.0892 1.27367 9.59666 0.757812 7.96875 0.757812C3.42586 0.757812 0 4.47365 0 9.40121C0 14.7247 4.274 18.3669 10.7443 23.8808C11.843 24.8172 13.0884 25.8785 14.3829 27.0105C14.5535 27.1599 14.7727 27.2422 15 27.2422C15.2273 27.2422 15.4465 27.1599 15.6171 27.0106C16.9117 25.8784 18.157 24.8171 19.2564 23.8802C25.726 18.3669 30 14.7247 30 9.40121C30 4.47365 26.5741 0.757812 22.0312 0.757812Z" fill="black"/>
-                    </svg>
-                </div>
-                <div class="card-text">
-                        <h2>Mais Vendidos</h2>
-                        <h3>Calçados femininos, Bolsas e Acessórios</h3>
-                </div>
-            </a>
-        </div>
-        <div class="card-footer">
-            <a href="/categoria/mya-bee-home">
-                <div class="card-svg">
-                    <svg width="30" height="29" viewBox="0 0 30 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 3.85883C2.20688 0.812182 5.17687 -0.0183767 9.06891 1.34726C12.1908 2.44299 14.3494 4.65624 15.7509 7.58971C15.9961 8.10301 15.6834 9.45255 15.2878 9.62728C11.6386 11.2354 7.78922 12.2979 4.04531 10.2523C2.44594 9.37868 1.33359 7.59634 0 6.22644C0 5.43708 0 4.64819 0 3.85883Z" fill="black"/>
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M30 21.8527C29.8425 22.1027 29.6447 22.3361 29.5331 22.6061C27.9319 26.4842 27.0797 26.702 24.3877 23.5763C21.2677 19.952 19.9317 15.7892 21.1589 11.0085C24.4322 10.7344 27.3717 12.4831 28.965 15.5567C29.3156 16.232 29.6559 16.9124 30 17.591C30 19.0115 30 20.4321 30 21.8527Z" fill="black"/>
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M19.1677 11.037C18.2887 17.7075 20.4019 23.1416 25.7377 27.2011C21.9197 30.0408 18.45 29.5318 16.1494 25.5793C14.9817 23.5735 14.1863 21.3114 13.4564 19.0873C12.0666 14.8507 13.5277 12.7615 19.1677 11.037Z" fill="black"/>
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M10.6842 17.2931C12.3609 21.3271 13.8403 24.8861 15.4097 28.6615C13.3223 28.1079 11.1577 27.5975 9.03375 26.9492C7.56797 26.5017 7.1325 25.3103 7.67719 23.9608C8.57156 21.7476 9.63141 19.6034 10.6842 17.2931Z" fill="black"/>
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M24.2808 2.21807C24.2466 4.91336 22.0303 7.76681 19.9434 8.23559C19.4925 8.3374 18.7073 8.05139 18.4416 7.67826C17.0316 5.70319 17.8336 1.73555 19.9748 0.506286C20.752 0.060228 22.0542 -0.188845 22.7639 0.17482C23.573 0.588679 23.9873 1.78764 24.2808 2.21807Z" fill="black"/>
-                    </svg>
-                </div>
-                <div class="card-text">
-                        <h2>MYA: Linha Home</h2>
-                        <h3>Sapatos Femininos, Bolsas e Acessórios</h3>
-                </div>
-            </a>
-        </div>
-        <div class="card-footer">
-            <a href="javascript:;">
-                <div class="card-svg">
-                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M29.8918 23.5454L28.1494 18.4745C28.9893 16.7576 29.4331 14.8481 29.4361 12.9269C29.4412 9.58627 28.1488 6.42765 25.7967 4.03292C23.4442 1.63772 20.3093 0.289413 16.9694 0.236502C13.5062 0.181776 10.251 1.49908 7.8037 3.94631C5.44389 6.30606 4.13503 9.41699 4.0936 12.7414C1.76777 14.4925 0.394979 17.2227 0.399491 20.1388C0.401659 21.5035 0.708808 22.86 1.29082 24.0867L0.0906424 27.5793C-0.115667 28.1797 0.0350368 28.8317 0.483983 29.2806C0.799921 29.5966 1.21646 29.7648 1.64484 29.7648C1.82508 29.7648 2.00742 29.7351 2.18526 29.6739L5.67798 28.4738C6.90464 29.0558 8.26115 29.3629 9.6258 29.3651C9.63072 29.3651 9.63541 29.3651 9.64033 29.3651C12.5999 29.365 15.3509 27.9568 17.0956 25.574C18.9113 25.5261 20.7077 25.0866 22.3318 24.2922L27.4027 26.0346C27.614 26.1072 27.8307 26.1426 28.0448 26.1426C28.5539 26.1426 29.0489 25.9427 29.4244 25.5671C29.9579 25.0336 30.1369 24.2589 29.8918 23.5454ZM9.64021 27.5794C9.6364 27.5794 9.63236 27.5794 9.62855 27.5794C8.4207 27.5776 7.22122 27.2798 6.16003 26.7183C5.94183 26.603 5.68565 26.583 5.45233 26.6632L1.8709 27.8938L3.10155 24.3124C3.1817 24.079 3.16178 23.8229 3.04635 23.6047C2.4849 22.5435 2.18713 21.3441 2.18526 20.1361C2.18227 18.1932 2.93807 16.3517 4.25977 14.9727C4.69149 17.6045 5.94581 20.0297 7.89007 21.9394C9.81998 23.835 12.2459 25.0419 14.8634 25.4365C13.4813 26.7987 11.6182 27.5794 9.64021 27.5794ZM28.1616 24.3044C28.1108 24.3552 28.0506 24.369 27.9828 24.3457L22.5542 22.4803C22.46 22.4479 22.3619 22.4319 22.2641 22.4319C22.1201 22.4319 21.9765 22.4667 21.8466 22.5355C20.2966 23.3555 18.5451 23.7904 16.7813 23.7931C16.7755 23.7931 16.7703 23.7931 16.7645 23.7931C10.8545 23.7931 5.97288 18.9922 5.87925 13.0837C5.83208 10.108 6.964 7.31136 9.0664 5.20895C11.1688 3.10655 13.9659 1.97504 16.9412 2.02192C22.8554 2.11572 27.6595 7.00638 27.6504 12.9241C27.6476 14.6879 27.2128 16.4394 26.3929 17.9893C26.2775 18.2074 26.2575 18.4636 26.3377 18.697L28.203 24.1256C28.2263 24.1935 28.2124 24.2537 28.1616 24.3044Z" fill="black"/>
-                    <path d="M22.0835 8.17448H11.4452C10.9521 8.17448 10.5523 8.57426 10.5523 9.06733C10.5523 9.56046 10.9521 9.96019 11.4452 9.96019H22.0835C22.5766 9.96019 22.9763 9.5604 22.9763 9.06733C22.9763 8.57426 22.5766 8.17448 22.0835 8.17448Z" fill="black"/>
-                    <path d="M22.0835 11.8467H11.4452C10.9521 11.8467 10.5523 12.2465 10.5523 12.7395C10.5523 13.2326 10.9521 13.6324 11.4452 13.6324H22.0835C22.5766 13.6324 22.9763 13.2326 22.9763 12.7395C22.9763 12.2465 22.5766 11.8467 22.0835 11.8467Z" fill="black"/>
-                    <path d="M17.9884 15.5186H11.445C10.9519 15.5186 10.5522 15.9183 10.5522 16.4114C10.5522 16.9045 10.952 17.3043 11.445 17.3043H17.9883C18.4815 17.3043 18.8812 16.9045 18.8812 16.4114C18.8812 15.9183 18.4815 15.5186 17.9884 15.5186Z" fill="black"/>
-                    </svg>
-                </div>
-                <div class="card-text">
-                        <h2>Opiniões</h2>
-                        <h3>Opiniões de Quem Compra Online :)</h3>
-                </div>
-            </a>
-        </div>
-    </div>
-</div>
--->
-}
+
 <div class="ui container fluid vertical segment footer">
     <div class="ui container">
-        <div class="ui four column stackable equal height grid">
+        <div class="ui four column stackable inverted equal height grid">
             <div class="ten wide table six wide computer column">
                 <div class="ui grid stackable">
                     <div class="row two column no padding listMobile">
                         @Html.Action("CustomPages", "Home")
-                        <div class="column eight wide tablet sixteen wide computer margin top large mobile-hide hidden">
+                        <div class="column eight wide tablet sixteen wide computer margin top large mobile-hide">
                             <h4 class="ui inverted header">Siga nos</h4>
-                            <ul class="social-icons">
-                                <li><a href="https://facebook.com/MyaHaas/">
-                                    <img class="icon-social" src="/assets/image/facebook.svg" alt="https://facebook.com/MyaHaas/" title="https://facebook.com/MyaHaas/">
-                                </a></li>
-                                <li><a href="https://www.instagram.com/myahaas/">
-                                    <img class="icon-social" src="/assets/image/instagram.svg" alt="https://www.instagram.com/myahaas/" title="https://www.instagram.com/myahaas/">
-                                </a></li>
-                                <li><a href="https://www.youtube.com/user/MyaHaas">
-                                    <img class="icon-social" src="/assets/image/youtube.svg" alt="https://www.youtube.com/user/MyaHaas" title="https://www.youtube.com/user/MyaHaas">
-                                </a></li>
-                            </ul>
+                            <socialbar>
+                                @if (redesSociais.Find(f => f.Identifier == "facebook") != null)
+                                {
+                                    <a class="text color white" href="@redesSociais.Find(f => f.Identifier == "facebook").Content" target="_blank">
+                                        <i class="facebook icon"></i>
+                                    </a>
+                                }
+                                @if (redesSociais.Find(f => f.Identifier == "instagram") != null)
+                                {
+                                    <a class="text color white" href="@redesSociais.Find(f => f.Identifier == "instagram").Content" target="_blank">
+                                        <i class="instagram icon"></i>
+                                    </a>
+                                }
+                                @if (redesSociais.Find(f => f.Identifier == "twitter") != null)
+                                {
+                                    <a class="text color white" href="@redesSociais.Find(f => f.Identifier == "twitter").Content" target="_blank">
+                                        <i class="twitter icon"></i>
+                                    </a>
+                                }
+                                @if (redesSociais.Find(f => f.Identifier == "youtube") != null)
+                                {
+                                    <a class="text color white" href="@redesSociais.Find(f => f.Identifier == "youtube").Content" target="_blank">
+                                        <i class="youtube icon"></i>
+                                    </a>
+                                }
+                                @if (redesSociais.Find(f => f.Identifier == "google plus") != null)
+                                {
+                                    <a class="text color white" href="@redesSociais.Find(f => f.Identifier == "google plus").Content" target="_blank">
+                                        <i class="google plus icon"></i>
+                                    </a>
+                                }
+                                @if (redesSociais.Find(f => f.Identifier.ToUpper() == "WHATSAPP") != null)
+                                {
+                                    string urlWhasapp = HttpContext.Current.Request.Url.ToString();
+                                    if (urlWhasapp.Contains("?"))
+                                    {
+                                        urlWhasapp = urlWhasapp.Split('?')[0];
+                                    }
+                                    <a class="text color white" href="https://api.whatsapp.com/send?text=@urlWhasapp" target="_blank" title="WHATSAPP">
+                                        <i class="whatsapp icon"></i>
+                                    </a>
+                                }
+                                @if (redesSociais.Find(f => f.Identifier.ToUpper() == "BLOGER") != null)
+                                {
+                                    <a class="text color white" href="@redesSociais.Find(f => f.Identifier == "bloger").Content" target="_blank" title="Blogger">
+                                        <i class="wpforms icon"></i>
+                                    </a>
+                                }
+                            </socialbar>
                         </div>
                     </div>
                 </div>
@@ -132,19 +109,11 @@
                     <div class="row one column no padding listMobile">
                         @Html.Action("GetList", "EventList")
                         <div class="column">
-                            <h4 class="ui header">Central de Relacionamento <i class="ui icon chevron right mobile only"></i></h4>
-                            <div class="ui link list">
-                                <p>Nosso Team Mya está à disposição para tirar suas dúvidas pelos canais abaixo:</p>
-                                <div class="central-rel">
-                                    <ul>
-                                        <li><span>E-mail:</span><a href="mailto:contato@myahaas.com.br" title="contato@myahaas.com.br">contato@myahaas.com.br</a></li>
-                                        <li><span>Whatsapp:</span><a href="https://api.whatsapp.com/send?phone=5511993006707" target="_blank">11 99300-6707</a></li>
-                                        <li><span>Loja física:</span><a href="tel:1122682361">11 2268-2361</a></li>
-                                         
-                                    </ul>
-                                </div>
-                                <h5>SAC: @LojaCorp.Control.Company._Company.Phone1</h5>                                
-                                <a href="https://api.whatsapp.com/send?phone=5511993006707" target="_blank" class="ui button text uppercase tireDuvidas margin top bottom medium">Tem dúvidas? Mande aqui!</a>
+                            <h4 class="ui inverted header">Central de Relacionamento <i class="ui icon chevron right mobile only"></i></h4>
+                            <div class="ui inverted link list">
+                                <p>Preparada para esclarecer suas dúvidas e problemas.</p>
+                                <h5>SAC: @LojaCorp.Control.Company._Company.Phone1</h5>
+                                <a href="/fale-conosco" class="ui button text uppercase tireDuvidas margin top bottom medium">Tire suas dúvidas</a>
                             </div>
                         </div>
                     </div>
@@ -155,11 +124,11 @@
                 <div class="ui grid stackable">
                     <div class="row one column no padding">
                         <div class="column seven wide tablet sixteen wide computer margin bottom large">
-                            <h4 class="ui header">FORMAS DE PAGAMENTO</h4>
+                            <h4 class="ui inverted header">FORMAS DE PAGAMENTO</h4>
                             @Html.Partial("~/Views/Shared/Common/_Payments_List.cshtml")
                         </div>
-                        <div class="column seven wide tablet sixteen wide computer middle aligned hidden">
-                            <h4 class="ui header">SEGURANÇA</h4>
+                        <div class="column seven wide tablet sixteen wide computer middle aligned">
+                            <h4 class="ui inverted header">SEGURANÇA</h4>
                             <div class="ui horizontal list selos">
                                 @Html.Action("EBit", "Company")
                                 @Html.Action("GetCompanySeal", "Company")
@@ -174,46 +143,21 @@
                 </div>
             </div>
         </div>
-
-        <div class="column eight wide tablet sixteen wide computer siga-nos">
-            <h4 class="ui header">Siga nos</h4>
-            <ul class="social-icons">
-                <li><a href="https://facebook.com/MyaHaas/">
-                    <img class="icon-social" src="/assets/image/facebook.svg" alt="https://facebook.com/MyaHaas/" title="https://facebook.com/MyaHaas/">
-                </a></li>
-                <li><a href="https://www.instagram.com/myahaas/">
-                    <img class="icon-social" src="/assets/image/instagram.svg" alt="https://www.instagram.com/myahaas/" title="https://www.instagram.com/myahaas/">
-                </a></li>
-                <li><a href="https://www.youtube.com/user/MyaHaas">
-                    <img class="icon-social" src="/assets/image/youtube.svg" alt="https://www.youtube.com/user/MyaHaas" title="https://www.youtube.com/user/MyaHaas">
-                </a></li>
-            </ul>
-        </div>
-        @{
-        //<div class="row text center">
-        //    <div class="ui divider"></div>
-        //    @Html.Partial("Common/_JetLogo")
-        //</div>
-        }
-    </div>
-</div>
-
-<div class="ui container fluid vertical security">
-    <div class="ui container">
-        <div class="ui column grid">
-            <img class="icon-social" src="/assets/image/lets.png" alt="Segurança" title="Segurança">
+        <div class="row text center">
+            <div class="ui divider"></div>
+            @Html.Partial("Common/_JetLogo")
         </div>
     </div>
 </div>
-
 <div class="ui container fluid vertical subFooter">
     <div class="ui container">
         <div class="ui column grid">
             <div class="row stackable">
                 <div class="column text small textoEmpresa">
-                    <p>MyaHaas | Sapatos Femininos, Bolsas e Acessórios</p>                                        
+                    <h6>@LojaCorp.Control.Company._Company.FantasyName</h6> -
                     <address>
-                        @LojaCorp.Control.Company._Company.ComplementText                        
+                        @LojaCorp.Control.Company._Company.ComplementText
+                        <br />
                         @{
                             string complementAddress = LojaCorp.Control.Company._Company.Complement != "" ? " " + LojaCorp.Control.Company._Company.Complement + ", " : "";
                         }
@@ -226,25 +170,4 @@
         </div>
     </div>
 </div>
-
-<div class="ui container fluid vertical assinatura">
-    <div class="ui container">
-        <div class="ui column grid">
-            <div class="ass-footer">
-                <div class="ass-one">
-                    <p>Powered by</p>
-                    <a href="https://helpecommerce.com.br/" target="_blank">
-                        <img class="logo-agencia" src="/assets/image/help-commerce.svg" alt="Helpecommerce" title="Tenha uma Loja virtual ou Website rápidos com foco em resultados.">
-                    </a>
-               </div>
-               <div class="ass-two">
-                   <a href="https://www.jetecommerce.com.br/" target="_blank">
-                      <img class="logo-agencia" src="/assets/image/jet-svg.svg" alt="Plataforma de ecommerce e loja virtual para vendas online - JET" title="Plataforma de ecommerce e loja virtual para vendas online - JET">
-                    </a>                
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 <div class="modal-block"></div>
