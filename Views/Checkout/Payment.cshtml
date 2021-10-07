@@ -45,13 +45,21 @@
         <div class="row one column">
             <div class="column" id="checkoutColumn1">
             
-                <div class="ui grid one column stackable summary">
+                <div class="ui grid two column stackable summary">
                     <div class="column">
                         <!-- Dados do Cliente -->
                         <div class="ui segment" id="dadosClienteUpdate">
                             @Html.Action("ListaDadosCliente", "Checkout", new {zipCodeCart = Model.ZipCode, idShippingModeCart = Model.IdShippingMode})
                         </div>
                     </div>
+                    <div class="column">
+                        <!-- Produtos do Carrinho -->
+                        @Html.Partial("~/Views/Shared/Parts/Checkout/_Part_Checkout_Carrinho.cshtml", Model)
+                    </div>
+                </div>
+            
+                <div class="ui grid one column stackable">
+
                     <div class="column">
                         <!-- Dados de Frete -->
                         <div class="ui segment">
@@ -67,23 +75,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="column">
-                        <!-- Produtos do Carrinho -->
-                        @Html.Partial("~/Views/Shared/Parts/Checkout/_Part_Checkout_Carrinho.cshtml", Model)
-                    </div>
-                </div>
-            
-                <div class="ui grid one column stackable">
-                    
                     @if (!Model.CartItems.FirstOrDefault().IsRecurrent)
                     {
                         <!-- Vale Compras -->
                         @Html.Action("ValeCompra", "Checkout")
-                    }
-
-                    
-                    @if (!Model.CartItems.FirstOrDefault().IsRecurrent)
-                    {
+                        
                         <div class="column">
                             <!-- Cupom Desconto -->
                             @Html.Partial("~/Views/Shared/Parts/Checkout/_Part_Checkout_Desconto.cshtml")
