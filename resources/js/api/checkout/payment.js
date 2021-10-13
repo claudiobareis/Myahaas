@@ -253,12 +253,8 @@ function GerarPedidoCompleto(
                     if (response.urlRedirect != "") {
                         if (response.typeRedirect == "1") {
                             window.location.href = "/Checkout/Success?orderId=" + response.idPedido + "&d=" + response.urlRedirect;
-<<<<<<< HEAD
-                        } else {
-=======
                         }
                         else {
->>>>>>> 2.71.48
                             window.location.href = response.urlRedirect;
                         }
                     } else {
