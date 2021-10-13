@@ -47,6 +47,7 @@ require('../functions/lazy_load')
 require('./modules/policy');
 
 //--------------------[ Start Document ]--------------------//
+<<<<<<< HEAD
 $(document).ready(function() {
     'use strict'
     /* 
@@ -61,6 +62,11 @@ $(document).ready(function() {
         })
     }, 1000)
 })
+=======
+$(document).ready(function(){
+    "use strict";    
+});
+>>>>>>> 2.71.48
 
 window.imgError = function imgError(event) {
     $(event).attr('data-old-src', $(event).attr('src'))

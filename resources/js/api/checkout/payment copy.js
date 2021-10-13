@@ -34,6 +34,7 @@ function SaveFrete(zipcode, idFrete, correiosEntrega, entregaAgendada, valorSoma
             valueShipping: valorFrete
         },
         success: function (response) {
+<<<<<<< HEAD
             if (response.success) {
 
                 if (valorFrete === "0,0") {
@@ -56,6 +57,30 @@ function SaveFrete(zipcode, idFrete, correiosEntrega, entregaAgendada, valorSoma
                     var discount = Number($('#desconto_checkout').html().replace('R$', '').replace(".", "").replace(",", "."));
                     var shipping = Number(valorFrete.toString().replace('R$', '').replace(".", "").replace(",", "."));
 
+=======
+            if (response.success) {            
+              
+                if (valorFrete === "0,0") {
+                    $.ajax({
+                        method: "GET",
+                        url: "/Checkout/UpdateValueCart",
+                        async: false,
+                        success: function (responseUpdateValueCard) {
+                           
+                        }
+                    });
+                }
+                
+                
+                if($('#ShoppingVoucherValue').length > 0) {
+                    var shoppingVoucherValue = Number($('#ShoppingVoucherValue').val().replace(".", "").replace(",", "."));
+
+                    /*** Verificar se habilita forma de pagamento vale compra ***/
+                    var subTotal = Number($('.subtotal').html().replace('R$', '').replace(".", "").replace(",", "."));
+                    var discount = Number($('#desconto_checkout').html().replace('R$', '').replace(".", "").replace(",", "."));
+                    var shipping = Number(valorFrete.toString().replace('R$', '').replace(".", "").replace(",", "."));
+
+>>>>>>> 2.71.48
                     var valorCompare = (subTotal - discount + shipping).toFixed(2);
 
                     if (shoppingVoucherValue.toFixed(2) === valorCompare) {
@@ -253,8 +278,12 @@ function GerarPedidoCompleto(
                     if (response.urlRedirect != "") {
                         if (response.typeRedirect == "1") {
                             window.location.href = "/Checkout/Success?orderId=" + response.idPedido + "&d=" + response.urlRedirect;
+<<<<<<< HEAD
+                        } else {
+=======
                         }
                         else {
+>>>>>>> 2.71.48
                             window.location.href = response.urlRedirect;
                         }
                     } else {
@@ -423,6 +452,11 @@ function clickShipping() {
 function disparaAjaxShipping(zipcode, idFrete, correiosEntrega, entregaAgendada, valorAdicional, dataperiodoentregaescolhida, dataentregaescolhida, idPeridoescolhido, carrier, mode, hub, valorFrete) {
 
     isLoading("#resumoCheckout")
+<<<<<<< HEAD
+
+=======
+    
+>>>>>>> 2.71.48
     if (entregaAgendada == "True") {
         //isLoading(".ui.accordion.frete");
         BuscaFreteEntregaAgendada(zipcode, idFrete, correiosEntrega, entregaAgendada);
@@ -1223,11 +1257,18 @@ function onChangeParcelamento() {
                 AtualizaResumoCarrinhocomDesconto(codigoBandeira, id_tipo, parcela_selecionada);
             }
 
+<<<<<<< HEAD
             var total_parcela_selecionada = Number($("#parcCard").find(':selected').attr("data-installmenttotal"));
             var totalCheckout = Number($('#total_checkout').data("totalcheckout").replace("R$", "").replace(".", "").replace(",", "."));
             var totalDiscount = Number($('#desconto_checkout').text().replace("R$", "").replace("&nbsp;", "").replace(".", "").replace(",", "."))
             var juros = total_parcela_selecionada - (totalCheckout - totalDiscount);
             $('#interest_checkout').html(juros.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }));
+=======
+                var total_parcela_selecionada = Number($("#parcCard").find(':selected').attr("data-installmenttotal"));
+                var totalCheckout = Number($('#total_checkout').data("totalcheckout").replace("R$", "").replace(".", "").replace(",", "."));
+                var juros = total_parcela_selecionada - totalCheckout;
+                $('#interest_checkout').html(juros.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }));
+>>>>>>> 2.71.48
         });
     }
 
@@ -1957,9 +1998,15 @@ export function atualizaResumoCarrinho(oneclick) {
         method: "POST",
         url: "LoadResumoPayment",
         success: function (data) {
+<<<<<<< HEAD
 
             isLoading("#resumoCheckout")
 
+=======
+            
+            isLoading("#resumoCheckout")
+            
+>>>>>>> 2.71.48
             $("#resumoCheckout").html(data);
 
             var codigoBandeira = $("#idBrandCard").val();
@@ -2100,6 +2147,7 @@ function applyDiscount() {
                 success: function success(response) {
                     if (response.success) {
                         atualizaResumoCarrinho();
+<<<<<<< HEAD
                         if ($('.ui.accordion.shopping-voucher').length > 0) {
                             $.ajax({
                                 async: false,
@@ -2113,6 +2161,21 @@ function applyDiscount() {
                                 }
                             });
                         }
+=======
+                         if ($('.ui.accordion.shopping-voucher').length > 0) {
+                             $.ajax({
+                                 async: false,
+                                 method: "PUT",
+                                 url: "/Checkout/ValeCompraRemover",
+                                 success: function (responseValeCompra) {
+                                     $('#btnGerarPedidoValeCompra').attr("disabled", true);
+                                     $(".ui.accordion.shopping-voucher").accordion('close', 0);
+                                     $('#formas-pagamento').removeClass("disable_column");
+                                     ValeCompraRefresh();
+                                 }
+                             });
+                         }
+>>>>>>> 2.71.48
                         atualizaEnderecos();
                         if (response.couponfreeshipping) {
                             _alert("Cupom aplicado com sucesso!", response.msg, "success");
@@ -2573,6 +2636,11 @@ function ValeCompraRefresh() {
         success: function (responseValeCompra) {
 
             if (responseValeCompra.success) {
+<<<<<<< HEAD
+
+=======
+                
+>>>>>>> 2.71.48
                 var balance = ("" + responseValeCompra.valeCompra.balanceAmount).replace(",", ".");
 
                 $('#ShoppingVoucherValue').data('balance', balance);
