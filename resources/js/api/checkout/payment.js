@@ -253,7 +253,8 @@ function GerarPedidoCompleto(
                     if (response.urlRedirect != "") {
                         if (response.typeRedirect == "1") {
                             window.location.href = "/Checkout/Success?orderId=" + response.idPedido + "&d=" + response.urlRedirect;
-                        } else {
+                        }
+                        else {
                             window.location.href = response.urlRedirect;
                         }
                     } else {
@@ -422,7 +423,6 @@ function clickShipping() {
 function disparaAjaxShipping(zipcode, idFrete, correiosEntrega, entregaAgendada, valorAdicional, dataperiodoentregaescolhida, dataentregaescolhida, idPeridoescolhido, carrier, mode, hub, valorFrete) {
 
     isLoading("#resumoCheckout")
-
     if (entregaAgendada == "True") {
         //isLoading(".ui.accordion.frete");
         BuscaFreteEntregaAgendada(zipcode, idFrete, correiosEntrega, entregaAgendada);
@@ -2573,7 +2573,6 @@ function ValeCompraRefresh() {
         success: function (responseValeCompra) {
 
             if (responseValeCompra.success) {
-
                 var balance = ("" + responseValeCompra.valeCompra.balanceAmount).replace(",", ".");
 
                 $('#ShoppingVoucherValue').data('balance', balance);

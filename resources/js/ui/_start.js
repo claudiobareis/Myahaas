@@ -43,6 +43,9 @@ require('./modules/jquery-ui.min')
 //--------------------[ LazyLoad ]--------------------//
 require('../functions/lazy_load')
 
+//--------------------[ Policy ]--------------------//
+require('./modules/policy');
+
 //--------------------[ Start Document ]--------------------//
 $(document).ready(function() {
     'use strict'
