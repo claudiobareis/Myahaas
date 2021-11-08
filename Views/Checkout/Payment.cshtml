@@ -84,6 +84,9 @@
                     
                     @if (!Model.CartItems.FirstOrDefault().IsRecurrent)
                     {
+                        <!-- Vale Compras -->
+                        @Html.Action("ValeCompra", "Checkout")
+                        
                         <div class="column">
                             <!-- Cupom Desconto -->
                             @Html.Partial("~/Views/Shared/Parts/Checkout/_Part_Checkout_Desconto.cshtml")
