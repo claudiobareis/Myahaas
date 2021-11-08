@@ -338,7 +338,7 @@ html, body {
     }
 }
 .cro-category{
-    padding: 20px 0 0 20px;
+    padding: 40px 0 0 20px;
     width: 100%;
     .title{
         display: flex;
@@ -350,11 +350,11 @@ html, body {
         h2{
             margin: 0;
             padding: 0;
-            font-size: 14px;
+            font-size: 13px;
         }
     }
     .content{
-        padding: 10px 0 20px 23px !important;
+        padding: 10px 0 20px 0 !important;
         p{
             font-size: 12px;
         }
