@@ -177,8 +177,7 @@
                 justify-content: space-between;
                 align-items: center;
                 opacity: 1;
-                padding: 10px 0;
-                
+                padding: 10px 0;                
                 text-align: left;
                 bottom: 100%;
                 transition-duration: .3s;
@@ -206,6 +205,12 @@
                         z-index: 1;
                         width: 1px;
                     }
+                &.no-size{
+                    justify-content: center;
+                    &:before{
+                        display: none;
+                    }
+                }    
                 &.avise-me-txt{
                     justify-content: center;
                     &::before{
