@@ -144,7 +144,7 @@
 
                         <span id="produto-esgotado_@Model.IdProduct" class="text center produto-esgotado-label hideme @(Model.FlagExhausted ? " " : "hideme" )">Produto Esgotado</span>
                         
-            <div class="sku-options @(Model.AvailableReferences != null ? "mask" : "") @(Session["segment"] != null && Session["segment"].ToString() == "b2b" ? "hideme" : string.Empty)">
+            <div class="sku-options @(Model.AvailableReferences != null ? "mask" : "no-size") @(Session["segment"] != null && Session["segment"].ToString() == "b2b" ? "hideme" : string.Empty)">
                 
                 @if (Model.AvailableReferences != null)
                 {
