@@ -423,6 +423,7 @@ function clickShipping() {
 function disparaAjaxShipping(zipcode, idFrete, correiosEntrega, entregaAgendada, valorAdicional, dataperiodoentregaescolhida, dataentregaescolhida, idPeridoescolhido, carrier, mode, hub, valorFrete) {
 
     isLoading("#resumoCheckout")
+
     if (entregaAgendada == "True") {
         //isLoading(".ui.accordion.frete");
         BuscaFreteEntregaAgendada(zipcode, idFrete, correiosEntrega, entregaAgendada);
@@ -1227,6 +1228,7 @@ function onChangeParcelamento() {
             var totalCheckout = Number($('#total_checkout').data("totalcheckout").replace("R$", "").replace(".", "").replace(",", "."));
             var totalDiscount = Number($('#desconto_checkout').text().replace("R$", "").replace("&nbsp;", "").replace(".", "").replace(",", "."))
             var juros = total_parcela_selecionada - (totalCheckout - totalDiscount);
+            //var juros = total_parcela_selecionada - totalCheckout;
             $('#interest_checkout').html(juros.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }));
         });
     }
@@ -2573,6 +2575,7 @@ function ValeCompraRefresh() {
         success: function (responseValeCompra) {
 
             if (responseValeCompra.success) {
+
                 var balance = ("" + responseValeCompra.valeCompra.balanceAmount).replace(",", ".");
 
                 $('#ShoppingVoucherValue').data('balance', balance);

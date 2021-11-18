@@ -356,10 +356,13 @@
                         </div>
                     </div>
                     <!--COMEÇO DICA DE COMPRA-->
-                    <div id="dica_compra_partial">
-                        @Html.Action("BuyingTips", "Product", new { productID = @Model.IdProduct, skuID = SKUPadrao != null ? SKUPadrao.IdSku : 0 })
-                    </div>
+                    
+                    @Html.Action("BuyingTips", "Product", new { productID = @Model.IdProduct, skuID = SKUPadrao != null ? SKUPadrao.IdSku : 0 })
                     <!--FIM DICA DE COMPRA-->
+
+                   @Html.Partial("~/Views/Product/Details/_FlagDiscount.cshtml", Model)
+
+
                     <div class="row product-grid">
                         <div class="column blocoInfo">
                             <div class="ui middle aligned margin bottom medium blocoValores">
@@ -370,9 +373,10 @@
                                 }
                                 else
                                 {
-
+                                    <!-- CONFLITO - ALTERADO PADRÃO TEMA BASE--->                                    
                                     <!--INÍCIO PREÇOS-->
                                     <div class="column ui attached segment">
+
                                         <div class="ui grid">
                                             <div class="row stackable two column">
                                                 <div class="hidden column middle aligned padding-top no blocoQtd">
@@ -381,7 +385,7 @@
                                                             <i class="minus icon"></i>
                                                         </button>
                                                         <input type="number" min="1" step="1" size="3" value="1"
-                                                               name="quantidade" id="quantidade" class="text center" />
+                                                                name="quantidade" id="quantidade" class="text center" />
                                                         <button class="ui grey icon button qtdplus" id="qtdplus-detalhes">
                                                             <i class="add icon"></i>
                                                         </button>
@@ -496,11 +500,11 @@
                                                     <div class="sixteen wide column text right signature-line">
                                                         <span itemprop="price" class="signature-value" data-preco-inicial="@Model.PricepromotionCA">@string.Format("R${0:0.00}", Model.PricepromotionCA)</span>
                                                         <span class="recurrentperiods" data-html="Périodos de Assinatura Disponível:<br/>
-                                                              @foreach (var item in Model.ProductRecurrentPeriod)
-                                                              {
-                                                                  @Html.Raw(" - " + item.TipoEntrega + "<br/>")
-                                                              }
-                                                              ">&nbsp;na assinatura&nbsp;<i class="info circle icon"></i></span>
+                                                    @foreach (var item in Model.ProductRecurrentPeriod)
+                                                    {
+                                                        @Html.Raw(" - " + item.TipoEntrega + "<br/>")
+                                                    }
+                                                    ">&nbsp;na assinatura&nbsp;<i class="info circle icon"></i></span>
                                                     </div>
                                                 }
                                             </div>
@@ -543,7 +547,8 @@
                                 <div class="sixteen wide computer sixteen wide tablet sixteen wide mobile column btnComprar">
                                                     @if (!Model.ProductSignature)
                                                     {
-                                                        <a class="@(Model.Stock == 0 || Model.FlagExhausted || Model.ProductSignature ? " disabled " : " ") ui button detalhes @(Session["EventList"] != null ? "btn-add-event-list" : "btn-comprar") @(Model.FlagExhausted || Model.ProductSignature || (Model.HaveSku && SKUPadrao.Stock == 0) || (Model.Stock == 0) ? "disabled action" : "action" )">
+                                                        <!-- CONFLITO - ALTERADO PADRÃO TEMA BASE--->
+                                                        <a class="@(Model.Stock == 0 || Model.FlagExhausted || Model.ProductSignature ? " disabled " : " ") ui animated button detalhes @(Session["EventList"] != null ? "btn-add-event-list" : "btn-comprar") @(Model.FlagExhausted || Model.ProductSignature || (Model.HaveSku && SKUPadrao.Stock == 0) || (Model.Stock == 0) ? "disabled action" : "action" )">
                                                         @if (Model.FlagExhausted || (Model.HaveSku && SKUPadrao.Stock == 0) || (Model.Stock == 0))
                                                         {
                                                                 <div class="visible content">PRODUTO ESGOTADO</div>
@@ -563,10 +568,10 @@
                                                     {
                                                         <a class="ui animated button recurring btn-comprar-assinar detalhes">
                                                             <div class="visible content">ASSINAR PRODUTO</div>
-                                                        <div class="hidden content">
-                                                            <i class="add to cart icon"></i>
-                                                        </div>
-                                                    </a>
+                                                            <div class="hidden content">
+                                                                <i class="add to cart icon"></i>
+                                                            </div>
+                                                        </a>
                                                     }
                                                     <br />
                                                     @if (!Model.ProductSignature)
