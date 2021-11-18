@@ -365,6 +365,7 @@
 
                     <div class="row product-grid">
                         <div class="column blocoInfo">
+                               <!-- CONFLITO - ALTERADO PADRÃO TEMA BASE--->                                    
                             <div class="ui middle aligned margin bottom medium blocoValores">
                                 @if (hasOpenSku && Model.SKUs != null && Session["EventList"] == null)
                                 {
@@ -372,8 +373,7 @@
                                     @Html.Partial("~/Views/Product/Details/_GradeSkuB2B.cshtml", Model, new ViewDataDictionary { { "useOneCLick", useOneClickMaxiPago }, { "isB2B", false }, { "hasOpenSku", hasOpenSku } });
                                 }
                                 else
-                                {
-                                    <!-- CONFLITO - ALTERADO PADRÃO TEMA BASE--->                                    
+                                {                                 
                                     <!--INÍCIO PREÇOS-->
                                     <div class="column ui attached segment">
 
@@ -543,11 +543,10 @@
                                         @*@Html.Action("Variations", "Product", new { reference = @Model.AvailableReferences, skuPadrao = @SKUPadrao, ListaSku = Model.SKUs })*@
                                     }
                                     <!--FIM VARIAÇÔES-->
-
+                                    <!-- CONFLITO - ALTERADO PADRÃO TEMA BASE--->
                                 <div class="sixteen wide computer sixteen wide tablet sixteen wide mobile column btnComprar">
                                                     @if (!Model.ProductSignature)
-                                                    {
-                                                        <!-- CONFLITO - ALTERADO PADRÃO TEMA BASE--->
+                                                    {                                                        
                                                         <a class="@(Model.Stock == 0 || Model.FlagExhausted || Model.ProductSignature ? " disabled " : " ") ui animated button detalhes @(Session["EventList"] != null ? "btn-add-event-list" : "btn-comprar") @(Model.FlagExhausted || Model.ProductSignature || (Model.HaveSku && SKUPadrao.Stock == 0) || (Model.Stock == 0) ? "disabled action" : "action" )">
                                                         @if (Model.FlagExhausted || (Model.HaveSku && SKUPadrao.Stock == 0) || (Model.Stock == 0))
                                                         {
