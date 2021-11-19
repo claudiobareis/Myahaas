@@ -540,7 +540,7 @@
                                     }
                                     <!--FIM VARIAÇÔES-->
 
-                                <div class="sixteen wide computer sixteen wide tablet sixteen wide mobile column btnComprar">
+                                <div id="btn_comprar" class="sixteen wide computer sixteen wide tablet sixteen wide mobile column btnComprar">
                                                     @if (!Model.ProductSignature)
                                                     {
                                                         <a class="@(Model.Stock == 0 || Model.FlagExhausted || Model.ProductSignature ? " disabled " : " ") ui button detalhes @(Session["EventList"] != null ? "btn-add-event-list" : "btn-comprar") @(Model.FlagExhausted || Model.ProductSignature || (Model.HaveSku && SKUPadrao.Stock == 0) || (Model.Stock == 0) ? "disabled action" : "action" )">
