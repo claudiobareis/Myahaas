@@ -28,31 +28,38 @@
                                     _exibeDescontoDebito = ViewBag.TotalCarrinho - (ViewBag.TotalCarrinho * brand.Discount) / 100;
                                 }
                             }
-                                <div class="item">
-                                    <div class="content">
-                                        <p class="ui header">
-                                            <span class="text small color green left floated">
-                                                No @brand.NamePayment (@brand.Discount% de desconto)
-                                            </span>
-                                            <span class="ui label green margin none right floated">@string.Format("{0}", _exibeDescontoDebito.ToString("C"))</span>
-                                        </p>
+                            if (ViewBag.TotalCarrinho > _exibeDescontoDebito)
+                                {
+                                    <div class="item">
+                                        <div class="content">
+                                            <p class="ui header">
+                                                <span class="text small color green left floated">
+                                                    No @brand.NamePayment (@brand.Discount% de desconto)
+                                                </span>
+                                                <span class="ui label green margin none right floated">@string.Format("{0}", _exibeDescontoDebito.ToString("C"))</span>
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
-                        }
+                                }
+                            }
                         else
                         {
                             if (brand.Installments.Count() > 0)
                             {
-                                <div class="item">
-                                    <div class="content">
-                                        <p class="ui header">
-                                            <span class="text small color green left floated">
-                                                No @brand.NamePayment (@brand.Discount% de desconto)
-                                            </span>
-                                            <span class="ui label green margin none right floated">@string.Format("{0}", brand.Installments != null && brand.Installments.Count() > 0 ? brand.Installments.FirstOrDefault().Total.ToString("C") : "0")</span>
-                                        </p>
+                                decimal _exibeDescontoInstallment = brand.Installments != null && brand.Installments.Count() > 0 ? brand.Installments.FirstOrDefault().Total : 0;
+                                if (ViewBag.TotalCarrinho > _exibeDescontoInstallment)
+                                    {
+                                    <div class="item">
+                                        <div class="content">
+                                            <p class="ui header">
+                                                <span class="text small color green left floated">
+                                                    No @brand.NamePayment (@brand.Discount% de desconto)
+                                                </span>
+                                                <span class="ui label green margin none right floated">@string.Format("{0}", _exibeDescontoInstallment.ToString("C"))</span>
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
+                                }
                             }
                             else
                             {
@@ -68,6 +75,8 @@
                                         _exibeDescontoBoleto = ViewBag.TotalCarrinho - (ViewBag.TotalCarrinho * brand.Discount) / 100;
                                     }
                                 }
+                                if (ViewBag.TotalCarrinho > _exibeDescontoBoleto)
+                                {
                                 <div class="item">
                                     <div class="content">
                                         <p class="ui header">
@@ -84,5 +93,6 @@
                 }
             }
         }
+    }
     }
 </div>

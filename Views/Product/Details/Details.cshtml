@@ -152,20 +152,26 @@
 
 @section CustomSeo {
     @{
-                        /**/
-
+        /**/
         if (!String.IsNullOrEmpty(Model.MetaDescription))
         {
             <meta name="Description" content="@Model.MetaDescription">
+            <meta property="og:description" content="@Model.MetaDescription">
+            <meta name="twitter:description" content="@Model.MetaDescription">
         }
 
         if (!String.IsNullOrEmpty(Model.MetaKeyWords))
         {
             <meta name="Keywords" content="@Model.MetaKeyWords">
         }
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="@HttpUtility.HtmlEncode(Request.Url)">
+        <meta name="twitter:url" content="@HttpUtility.HtmlEncode(Request.Url)">
+        <meta property="og:title" content="@Html.Raw(ViewBag.Title)">
+        <meta name="twitter:title" content="@Html.Raw(ViewBag.Title)">
+        <meta property="og:image" content="@productImages.FirstOrDefault()?.ImageDefault">
     }
 }
-
 
 @section breadcrumbs {
     <div class="ui two column centered grid stackable middle aligned">

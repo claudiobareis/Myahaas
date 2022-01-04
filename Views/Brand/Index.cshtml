@@ -10,8 +10,16 @@
     if (!String.IsNullOrEmpty(Model.MetaDescription))
     {
       <meta name="Description" content="@Model.MetaDescription">
+      <meta property="og:description" content="@Model.MetaDescription">
+      <meta name="twitter:description" content="@Model.MetaDescription">    
     }
-  }
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="@HttpUtility.HtmlEncode(Request.Url)">
+        <meta name="twitter:url" content="@HttpUtility.HtmlEncode(Request.Url)">
+        <meta property="og:title" content="@Html.Raw(ViewBag.Title)">
+        <meta name="twitter:title" content="@Html.Raw(ViewBag.Title)">
+        <meta property="og:image" content="/assets/image/logo/logo.png"> 
+    }
 }
 
 @section breadcrumbs {
@@ -26,13 +34,13 @@
                 <span itemprop="name">Home</span>
                 <meta itemprop="url" content="/">
               </a>
-              <meta itemprop="position" content="1" />
+              <meta itemprop="position" content="1"/>
               <i class="right angle icon divider"></i>
             </li>
             <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
               <span itemprop="name">@(Model != null ? Model.Name : "")</span>
               <meta itemprop="url" content="/@(Model.Name)">
-              <meta itemprop="position" content="2" />
+              <meta itemprop="position" content="2"/>
             </li>
           </ol>
         </div>
@@ -45,14 +53,14 @@
   @if (Model != null)
   {
     <div class="ui grid">
-      @Html.Action("BannerBrand", "Banner", new { brandID = Model.IdBrand, bannerType = 'F' })
+      @Html.Action("BannerBrand", "Banner", new {brandID = Model.IdBrand, bannerType = 'F'})
     </div>
   }
 }
 
 
 @section footerHalfbanner {
-  @Html.Action("BannerBrand", "Banner", new { brandID = Model.IdBrand, bannerType = 'R' })
+  @Html.Action("BannerBrand", "Banner", new {brandID = Model.IdBrand, bannerType = 'R'})
 }
 
 
@@ -62,7 +70,7 @@
       <!-- Page: ~/Views/Shared/Common/_FilterMenu.cshtml -->
       @if (LojaCorp.Control.Company._Company.ViewProductFiltersUrl)
       {
-        @Html.Action("FilterMenuNew", "Product", new { category = "", brand = Model.IdBrand, group = "", keyword = "" })
+        @Html.Action("FilterMenuNew", "Product", new {category = "", brand = Model.IdBrand, group = "", keyword = ""})
       }
       else
       {
@@ -71,7 +79,7 @@
     </div>
     <div class="row">
       <!-- Page: ~/Views/Shared/Blocks/Banner/_SideHalfBanner.cshtml -->
-      @Html.Action("SideHalfBannerBrand", "Banner", new { brandId = Model.IdBrand })
+      @Html.Action("SideHalfBannerBrand", "Banner", new {brandId = Model.IdBrand})
     </div>
   </div>
 }
@@ -166,8 +174,8 @@
     }
   </div>
 </div>
-<input type="hidden" name="CurrentPage" id="CurrentPage" value="brand" />
-<input type="hidden" name="GenericPageFilter" id="GenericPageFilter" value="@Model.IdBrand" />
-<input type="hidden" name="infinityPage" id="infinityPage" value="@LojaCorp.Control.Company._Company.InfiniteScrolling.ToString()" />
-<input type="hidden" name="itensPage" id="itensPage" value="@LojaCorp.Control.Company._Company.QuantityItemsPage" />
-<input type="hidden" name="ViewProductFiltersUrl" id="ViewProductFiltersUrl" value="@LojaCorp.Control.Company._Company.ViewProductFiltersUrl.ToString()" />
+<input type="hidden" name="CurrentPage" id="CurrentPage" value="brand"/>
+<input type="hidden" name="GenericPageFilter" id="GenericPageFilter" value="@Model.IdBrand"/>
+<input type="hidden" name="infinityPage" id="infinityPage" value="@LojaCorp.Control.Company._Company.InfiniteScrolling.ToString()"/>
+<input type="hidden" name="itensPage" id="itensPage" value="@LojaCorp.Control.Company._Company.QuantityItemsPage"/>
+<input type="hidden" name="ViewProductFiltersUrl" id="ViewProductFiltersUrl" value="@LojaCorp.Control.Company._Company.ViewProductFiltersUrl.ToString()"/>

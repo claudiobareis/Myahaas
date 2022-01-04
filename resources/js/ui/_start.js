@@ -1,54 +1,58 @@
+
 /**
  * Validadores de Formulários - Semantic UI
  */
-require('../vendors/validators')
+require('../vendors/validators');
 //--------------------[ Correios ]--------------------//
-require('../functions/correios')
+require('../functions/correios');
 
 //--------------------[ Help Ecommerce ]--------------------//
-require('../functions/custom_help.js')
+require('../functions/custom_help.js');
 
 //--------------------[ Form Starters ]--------------------//
-require('./starters/formManipulation')
+require('./starters/formManipulation');
 
 //--------------------[ PayPal ]--------------------//
-require('./modules/paypal')
+require('./modules/paypal');
 
 //--------------------[ Menu ]--------------------//
 //Mega Menu
-require('./modules/menu')
+require('./modules/menu');
 //Menu Flutuante
-require('./modules/floatingMenu.js')
+require('./modules/floatingMenu.js');
 //--------------------[ CheckOut ]--------------------//
-require('./modules/checkout')
-require('./modules/mini_cart')
+require('./modules/checkout');
+require('./modules/mini_cart');
 
 //--------------------[ Filters ]--------------------//
-require('./modules/filters')
+require('./modules/filters');
 //--------------------[ Product ]--------------------//
-require('./modules/product')
-require('./modules/product_details')
+require('./modules/product');
+require('./modules/product_details');
 //--------------------[ Review ]--------------------//
-require('./modules/review')
+require('./modules/review');
 //--------------------[ Slideshow ]--------------------//
-require('./modules/slideshow')
+require('./modules/slideshow');
 //--------------------[ Client Register ]--------------------//
-require('./modules/register')
+require('./modules/register');
 //--------------------[ Client Edit ]--------------------//
-require('./modules/editCustomer')
+require('./modules/editCustomer');
 //--------------------[ Client Mascára ]--------------------//
-require('./modules/mask')
+require('./modules/mask');
 //--------------------[ DatePicker ]--------------------//
-require('./modules/jquery-ui.min')
+require('./modules/jquery-ui.min');
 //--------------------[ LazyLoad ]--------------------//
-require('../functions/lazy_load')
+require('../functions/lazy_load');
 
 //--------------------[ Policy ]--------------------//
 require('./modules/policy');
 
+//--------------------[ MultiCD ]--------------------//
+require('./modules/multiCd');
+
 //--------------------[ Start Document ]--------------------//
 $(document).ready(function() {
-    'use strict'
+    'use strict';
     /* 
     setTimeout(function() { 
         $('.dropdown').dropdown()

@@ -259,6 +259,46 @@
                                 </div>
                             </div>
                         </div>
+                        @if (Session["MercadoPagoCards"] != null && Session["MercadoPagoCards"].ToString() != "0")
+                        {
+                            <div class="field hidden" id="issuerField">
+                                <label class="labelCheckPayment">Banco emissor</label>
+                                <div class="ui left icon input">
+                                    <select name="issuer" id="issuer" class="fieldCheckPayment"></select>
+                                </div>
+                            </div>
+                            <div class="field hidden" id="emailField">
+                                <label class="labelCheckPayment">
+                                    E-mail
+                                </label>
+                                <div class="ui left icon input">
+                                    <i class="user icon"></i>
+                                    <input type="text" class="fieldCheckPayment" maxlength="100" name="emailCard" id="emailCard" placeholder="E-mail" data-type="email">
+                                </div>
+                            </div>
+                            <div class="two fields">
+                                <div class="field hidden" id="docTypeField">
+                                    <label class="labelCheckPayment">
+                                        Tipo de Documento
+                                    </label>
+                                    <div class="ui left icon input">
+                                        <select class="fieldCheckPayment" name="docType" id="docType" data-checkout="docType"></select>
+                                    </div>
+                                </div>
+                                <div class="field hidden" id="docNumberField">
+                                    <label class="labelCheckPayment">
+                                        Número do documento
+                                    </label>
+                                    <div class="ui left icon input">
+                                        <i class="user icon"></i>
+                                        <input type="text" class="fieldCheckPayment" maxlength="100" name="docNumber" id="docNumber" placeholder="Número do documento" data-type="cpfCnpj">
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" name="paymentMethodId" id="paymentMethodId" value="" />
+                        }
+                        else
+                        {
                         <div class="field hidden" id="documentField">
                             <label class="labelCheckPayment">
                                 CPF
@@ -288,6 +328,7 @@
                                 </div>
                             </div>
                         </div>
+                        }
                         <div class="field required">
                             <label class="labelCheckPayment">Desejo Parcelar em:</label>
                             <div class="ui left icon input">
