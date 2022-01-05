@@ -5,7 +5,8 @@ import { generateRecaptcha } from "../../ui/modules/recaptcha";
 import { CompraRecorrenteStorage } from "../../functions/recurringPurchase";
 import { PayPalCheckoutTransparent, PayPalCheckoutInCart, PayPalCheckoutReference } from "../../ui/modules/paypal";
 import { createModelExhausted } from './mini_cart'
-import { buscaCepCD, changeCdCheckout } from "../../ui/modules/multiCd";
+import { buscaCepCD, changeCdCheckout, changeCd } from "../../ui/modules/multiCd";
+import { bpmpi_load, bpmpi_environment, bpmpi_unload } from "../../vendors/braspag-3ds20";
 
 import { isMobile } from "../../functions/mobile";
 import swal from 'sweetalert2';
@@ -15,7 +16,7 @@ function gettoken() {
     return token;
 }
 
-function SaveFrete(zipcode, idFrete, correiosEntrega, entregaAgendada, valorSomaFrete, data_periodo_selecionada, data_selecionada, idEntrega, idPeriodoEntrega, carrier, mode, hub, valorFrete) {
+function SaveFrete(zipcode, idFrete, correiosEntrega, entregaAgendada, valorSomaFrete, data_periodo_selecionada, data_selecionada, idEntrega, idPeriodoEntrega, carrier, mode, hub, valorFrete, correiosEntregaNome) {
     $.ajax({
         method: "POST",
         url: "SaveFrete",
@@ -32,7 +33,8 @@ function SaveFrete(zipcode, idFrete, correiosEntrega, entregaAgendada, valorSoma
             carrier: carrier,
             mode: mode,
             hub: hub,
-            valueShipping: valorFrete
+            valueShipping: valorFrete,
+            correiosEntregaNome: correiosEntregaNome
         },
         success: function (response) {
             if (response.success) {
@@ -209,7 +211,7 @@ var useAntiFraudMaxiPago = false;
 function GerarPedidoCompleto(
     idCustomer, idAddress, presente, mensagem, idInstallment, idPaymentBrand, card, nameCard, expDateCard, cvvCard, brandCard, installmentNumber, kind, document, idOneClick,
     saveCardOneClick, userAgent, hasScheduledDelivery, paymentSession, paymentHash, shippingMode, dateOfBirth, phone, installmentValue, installmentTotal, cardToken,
-    googleResponse, deliveryTime, usefulDay, SelectedRecurrentTime, labelOneClick, typeDocument
+    googleResponse, deliveryTime, usefulDay, SelectedRecurrentTime, labelOneClick, typeDocument, has3DS20, cavv3DS20, xid3DS20, eci3DS20, version3DS20, referenceId3DS20
 ) {
     if ($("#PaymentLinkChangeBrand").val() == undefined || $("#PaymentLinkChangeBrand").val() == "0") {
         var stop = false;
@@ -253,7 +255,13 @@ function GerarPedidoCompleto(
             usefulDay: usefulDay,
             SelectedRecurrentTime: SelectedRecurrentTime,
             labelOneClick: labelOneClick,
-            typeDocument: typeDocument
+            typeDocument: typeDocument,
+            has3DS20: has3DS20,
+            cavv3DS20: cavv3DS20,
+            xid3DS20: xid3DS20,
+            eci3DS20: eci3DS20,
+            version3DS20: version3DS20,
+            referenceId3DS20: referenceId3DS20
         },
         success: function (response) {
             if (response.success === true) {
@@ -300,6 +308,10 @@ function GerarPedidoCompleto(
                         cancelButtonColor: '#d33',
                         confirmButtonText: 'OK'
                     }).then(function () {
+                        if (has3DS20 == "true") {
+                            bpmpi_unload();
+                        }
+
                         if (response.urlRedirect !== "")
                             window.location.href = response.urlRedirect;
                     });
@@ -361,6 +373,7 @@ function LoadIframeAntiFraudMaxiPago(idCustomer, idInstallment, idPaymentBrand, 
 }
 
 function clickShipping() {
+
     var zipcode = $("#zipcode").val();
     var valorFrete = "";
     var valorAdicional = "";
@@ -371,6 +384,7 @@ function clickShipping() {
     var hub = "";
     var entregaAgendada = "";
     var exclusivaEntregaAgendada = "";
+    var correiosEntregaNome = "";
 
     $("#GetShippping .card").click(function () {
 
@@ -401,6 +415,7 @@ function clickShipping() {
         valorAdicional = $(ponteiroCurrent).data("addvalue");
         idFrete = $(ponteiroCurrent).attr("data-id");
         correiosEntrega = $(ponteiroCurrent).attr("data-correios");
+        correiosEntregaNome = $(ponteiroCurrent).attr("data-correios-name");
         carrier = $(ponteiroCurrent).data("carrier");
         mode = $(ponteiroCurrent).data("mode");
         hub = $(ponteiroCurrent).data("hub");
@@ -428,12 +443,12 @@ function clickShipping() {
             else
                 HabilitaBlocoPagamento(true);
 
-            disparaAjaxShipping(zipcode, idFrete, correiosEntrega, entregaAgendada, valorAdicional, dataperiodoentregaescolhida, dataentregaescolhida, idPeridoescolhido, carrier, mode, hub, valorFrete);
+            disparaAjaxShipping(zipcode, idFrete, correiosEntrega, entregaAgendada, valorAdicional, dataperiodoentregaescolhida, dataentregaescolhida, idPeridoescolhido, carrier, mode, hub, valorFrete, correiosEntregaNome);
         }
     });
 }
 
-function disparaAjaxShipping(zipcode, idFrete, correiosEntrega, entregaAgendada, valorAdicional, dataperiodoentregaescolhida, dataentregaescolhida, idPeridoescolhido, carrier, mode, hub, valorFrete) {
+function disparaAjaxShipping(zipcode, idFrete, correiosEntrega, entregaAgendada, valorAdicional, dataperiodoentregaescolhida, dataentregaescolhida, idPeridoescolhido, carrier, mode, hub, valorFrete, correiosEntregaNome) {
 
     isLoading("#resumoCheckout")
 
@@ -442,7 +457,7 @@ function disparaAjaxShipping(zipcode, idFrete, correiosEntrega, entregaAgendada,
         BuscaFreteEntregaAgendada(zipcode, idFrete, correiosEntrega, entregaAgendada);
     }
     else
-        SaveFrete(zipcode, idFrete, correiosEntrega, entregaAgendada, valorAdicional, dataperiodoentregaescolhida, dataentregaescolhida, idFrete, idPeridoescolhido, carrier, mode, hub, valorFrete);
+        SaveFrete(zipcode, idFrete, correiosEntrega, entregaAgendada, valorAdicional, dataperiodoentregaescolhida, dataentregaescolhida, idFrete, idPeridoescolhido, carrier, mode, hub, valorFrete, correiosEntregaNome);
 }
 
 function OrderCreateTwoCards(obj) {
@@ -898,6 +913,10 @@ function OrderCreate() {
         $this.addClass("disabled");
         $this.addClass("loading");
 
+
+        checkValidatePersonalization()
+
+
         if ((tipoVerificacao == "S" && $('#UseTwoCreditCards').is(':checked')) || (tipoVerificacao == "D" && $('#UseTwoDebitCards').is(':checked'))) {
             OrderCreateTwoCards($(this));
             return false;
@@ -1017,6 +1036,7 @@ function OrderCreate() {
                 var issuer = "";
 
                 var validaFrete = "";
+                var hasBraspag3DS20 = $('#hasBraspag3DS20').val();
 
                 switch ($this.prop("id")) {
                     case "btnCardDebit":
@@ -1230,6 +1250,62 @@ function OrderCreate() {
                                 }
                             });
                         }
+                        else if (hasBraspag3DS20 == "true" && (tipoVerificacao === "S" || tipoVerificacao === "D")) {
+                            $.ajax({
+                                method: "POST",
+                                url: "/Checkout/LoadBrasPag3DS20",
+                                data: {
+                                    idCustomer: idCustomer,
+                                    idInstallment: idInstallment,
+                                    idPaymentBrand: idPaymentBrand,
+                                    idAddress: idAddress,
+                                    msgPedido: mensagem,
+                                    card: card,
+                                    cardExpirationMonth: validaMes,
+                                    cardExpirationYear: validaAno,
+                                    installmentNumber: installmentNumber
+                                },
+                                async: false,
+                                success: function (response) {
+                                    var count3DS20BraspagClick = 0;
+
+                                    if ($('.divBraspag3DS20').length > 0) {
+                                        $('.divBraspag3DS20').remove();
+                                    }
+                                    $("body").append(response);
+
+                                    bpmpi_load();
+
+
+                                    $(window).unbind("jetCheckoutBraspag3DS20");
+                                    //window.removeEventListener("jetCheckoutBraspag3DS20", function (e) { });
+
+                                    $(window).bind("jetCheckoutBraspag3DS20", function (e) {
+
+                                        if (e['detail'] != null && e['detail'] != undefined) {
+                                            if (e.detail.status == "success") {
+                                                if (count3DS20BraspagClick == 0) {
+                                                    GerarPedidoCompleto(idCustomer, idAddress, presente, mensagem, idInstallment, idPaymentBrand, card, nameCard, expDateCard, cvvCard, brandCard, installmentNumber, kind, document, idOneClick, saveCardOneClick, userAgent, hasScheduledDelivery, PaymentSession, PaymentHash, shippingMode, dateOfBirth, phone, installmentValue, installmentTotal, cardToken, googleResponse, deliveryTime, usefulDay, selectedRecurrentTime, labelOneClick, typeDocument, hasBraspag3DS20, e.detail.cavv, e.detail.xid, e.detail.eci, e.detail.version, e.detail.referenceId);
+                                                    count3DS20BraspagClick++;
+                                                }
+                                            } else {
+                                                //_alert("", e.detail.message, "warning");
+                                                _alert("", "Falha ao realizar autorização. [" + e.detail.status + "]", "warning");
+                                                $(".GerarPedido").removeClass("disabled");
+                                                $(".GerarPedido").removeClass("loading");
+                                            }
+                                        }
+
+                                    });
+                                    
+                                },
+                                error: function (response) {
+                                    _alert("", "Falha ao realizar autorização no 3DS.", "warning");
+                                    $(".GerarPedido").removeClass("disabled");
+                                    $(".GerarPedido").removeClass("loading");
+                                }
+                            });
+                        }
                         else//Caso não utilize, segue o fluxo de gerar pedido normalmente sem iframe e sem atraso   
                         {
                             GerarPedidoCompleto(idCustomer, idAddress, presente, mensagem, idInstallment, idPaymentBrand, card, nameCard, expDateCard, cvvCard, brandCard, installmentNumber, kind, document, idOneClick, saveCardOneClick, userAgent, hasScheduledDelivery, PaymentSession, PaymentHash, shippingMode, dateOfBirth, phone, installmentValue, installmentTotal, cardToken, googleResponse, deliveryTime, usefulDay, selectedRecurrentTime, labelOneClick, typeDocument);
@@ -1311,7 +1387,7 @@ function onChangeParcelamento() {
             if (codigoBandeira != "" && parcela_selecionada != "") {
                 AtualizaResumoCarrinhocomDesconto(codigoBandeira, id_tipo, parcela_selecionada);
             }
-
+            
             var total_parcela_selecionada = Number($("#parcCard").find(':selected').attr("data-installmenttotal"));
             var totalCheckout = Number($('#total_checkout').data("totalcheckout").replace("R$", "").replace(".", "").replace(",", "."));
             //var totalDiscount = Number($('#desconto_checkout').text().replace("R$", "").replace("&nbsp;", "").replace(".", "").replace(",", "."))
@@ -1661,7 +1737,7 @@ function atualizaParcelamento(codigoBandeira, oneclick, idOnBlur, slParcelamento
                         }
                         $("#checkOneClickField").hide();
 
-                        var totalCheckout = $('#total_checkout').html().replace("R$", "").replace(".", "").replace(",", ".");
+                        var totalCheckout = Number($('#total_checkout').data("totalcheckout").replace("R$", "").replace(".", "").replace(",", "."));
 
                         var ccNumber = $(idOnBlur).val().replace(/[ .-]/g, '').slice(0, 6);
                         var maximumInstallmentWithoutInterest = $('#MaximumInstallmentWithoutInterest').val();
@@ -1734,7 +1810,7 @@ function atualizaParcelamento(codigoBandeira, oneclick, idOnBlur, slParcelamento
                         }
                         $("#checkOneClickField").hide();
 
-                        var totalCheckoutApp = $('#total_checkout').html().replace("R$", "").replace(".", "").replace(",", ".").replace('&nbsp;', '');
+                        var totalCheckoutApp = Number($('#total_checkout').data("totalcheckout").replace("R$", "").replace(".", "").replace(",", "."));
 
                         var ccNumberApp = $(idOnBlur).val().replace(/[ .-]/g, '').slice(0, 6);
                         var maximumInstallmentWithoutInterestApp = $('#MaximumInstallmentWithoutInterest').val();
@@ -1815,7 +1891,7 @@ function atualizaParcelamento(codigoBandeira, oneclick, idOnBlur, slParcelamento
 
                         window.Mercadopago.getIdentificationTypes();
 
-                        var _totalCheckout = parseFloat($('#total_checkout').text().replace("R$", "").replace(".", "").replace(",", ".").replace("&nbsp;", "").trim());
+                        var _totalCheckout = Number($('#total_checkout').data("totalcheckout").replace("R$", "").replace(".", "").replace(",", "."));
 
                         if (objParcelamento.length > 0) {
                             _totalCheckout = objParcelamento[0].Total;
@@ -1857,7 +1933,7 @@ function atualizaParcelamento(codigoBandeira, oneclick, idOnBlur, slParcelamento
                                                         $("#parcCard").append('<option value="000" data-InstallmentValue="' + payerCost.installment_amount + '" data-InstallmentNumber="' + payerCost.installments + '" data-InstallmentTotal="' + payerCost.total_amount + '">' + payerCost.recommended_message + '</option>');
                                                     });
                                                     $("#emailCard").val($("#MercadoPagoEmail").val());
-                                                    
+
                                                 } else {
                                                     alert(`installments method info error: ${response__}`);
                                                 }
@@ -2032,34 +2108,33 @@ function AtualizaResumoCarrinhocomDesconto(codigoBandeira, codigoPaymentMethod, 
         var obj_parcelamento;
         if (($('#hasPagSeguro').val() !== "0" && $('#hasPagSeguro').val() !== undefined) || ($('#hasPagSeguroApp').val() !== "0" && $('#hasPagSeguroApp').val() !== undefined) || ($('#hasMercadoPago').val() !== "0" && $('#hasMercadoPago').val() !== undefined)) {
             obj_parcelamento = buscaTotalParcelamentoValor(codigoBandeira, codigoPaymentMethod, 1);
-            var valor = $('#parcCard > option:selected').data('installmenttotal');
-            obj_parcelamento.juros = valor - obj_parcelamento.result;
-            if (obj_parcelamento.juros < 0) obj_parcelamento.juros = 0;
-            obj_parcelamento.result = valor;
         } else {
             obj_parcelamento = buscaTotalParcelamento(codigoBandeira, codigoPaymentMethod, parcela_selecionada);
+        }
+        setTimeout(function() {
             var valor = $('#parcCard > option:selected').data('installmenttotal');
             obj_parcelamento.juros = valor - obj_parcelamento.result;
             if (obj_parcelamento.juros < 0) obj_parcelamento.juros = 0;
             obj_parcelamento.result = valor;
-        }
-        //var obj_carrinho = buscaValorFinalCarrinho();
-        if (Object.keys(obj_parcelamento).length > 0) {
-            var desconto_inicial = $("#desconto_checkout").attr("data-discount-initial");
 
-            if (desconto_inicial.indexOf(',') != -1) {
-                desconto_inicial = desconto_inicial.substring(0, desconto_inicial.indexOf(','));
+
+            //var obj_carrinho = buscaValorFinalCarrinho();
+            if (Object.keys(obj_parcelamento).length > 0) {
+                var desconto_inicial = $("#desconto_checkout").attr("data-discount-initial");
+
+                if (desconto_inicial.indexOf(',') != -1) {
+                    desconto_inicial = desconto_inicial.substring(0, desconto_inicial.indexOf(','));
+                }
+                desconto_inicial = desconto_inicial.replace(/[^0-9\.-]+/g, "");
+                desconto_inicial = parseFloat(desconto_inicial);
+
+                $("#desconto_checkout").text(new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(obj_parcelamento.discount + desconto_inicial));
+                $("#total_checkout").text(new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(obj_parcelamento.result));
+                $("#interest_checkout").text(new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(obj_parcelamento.juros));
             }
-            desconto_inicial = desconto_inicial.replace(/[^0-9\.-]+/g, "");
-            desconto_inicial = parseFloat(desconto_inicial);
-
-            $("#desconto_checkout").text(new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(obj_parcelamento.discount + desconto_inicial));
-            $("#total_checkout").text(new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(obj_parcelamento.result));
-            $("#interest_checkout").text(new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(obj_parcelamento.juros));
-        }
+        }, 1000)        
     }
 }
-
 
 function listAddressPayment() {
     $("#listAddressPayment").click(function () {
@@ -2073,10 +2148,11 @@ function listAddressPayment() {
             var response = localStorage.getItem('multiCdAddress');
             localStorage.removeItem('multiCdAddress');
             $('.ui.modal.lista-endereco-cliente')
+                .modal({closable: false})
                 .modal({
                     onHidden: function () {
                         if (response.indexOf('redirecionado') == -1) {
-                            changeCd(false, true, undefined, false)
+                            changeCd(false, true, undefined, false, true)
                         } else {
                             $.ajax({
                                 method: "POST",
@@ -2090,7 +2166,7 @@ function listAddressPayment() {
                 })
                 .modal('show');
         } else {
-            $('.ui.modal.lista-endereco-cliente').modal('show');
+            $('.ui.modal.lista-endereco-cliente').modal({closable: false}).modal('show');
         }
     });
 }
@@ -2100,6 +2176,8 @@ function showAddressPayment() {
         if ($(".addAddress").length > 0) {
             var jsonArray = [];
             var splittedFormData = $("#disparaForm").serialize().split('&');
+            if($("[id^=googleResponse]", "body").length > 0)
+                jsonArray['googleResponse'] = $("[id^=googleResponse]", "body").val();
 
             $.each(splittedFormData, function (key, value) {
                 var item = {};
@@ -2113,12 +2191,26 @@ function showAddressPayment() {
                 method: "POST",
                 url: "CreateAddress",
                 data: jsonArray,
+                dataType: "json",
                 success: function (responseDefault) {
                     if (responseDefault.success) {
-                        atualizaEnderecos(responseDefault);
+                        if ($("#multiCDActive").val().toLowerCase() == "true") {
+                            document.location.reload()
+                        } else {
+                            atualizaEnderecos(responseDefault);
+                        }
                     }
                     else {
                         _alert("", responseDefault.msg, "warning");
+                    }
+                },
+                complete: function() {
+                    if ($("[id^=googleVersion_]").length > 0 && typeof grecaptcha !== "undefined") {
+                        if ($("[id^=googleVersion_]").eq(0).val() === "2") {
+                            grecaptcha.reset()
+                        } else {
+                            generateRecaptcha($("[id^=googleModule]").val(), "body");
+                        }
                     }
                 }
             });
@@ -2291,6 +2383,7 @@ export function atualizaEnderecos(responseChange) {
         $("#zipcode").val(zipCode)
     }
 
+    $("#updateShippingPayment").html('<div class="row text center loading-shipping"><img src="/assets/image/loading.svg"></div>')
     $.ajax({
         method: "POST",
         url: "ListaFretePagamento",
@@ -2300,11 +2393,11 @@ export function atualizaEnderecos(responseChange) {
                 HabilitaBlocoPagamento(false);
                 $('.ui.modal').modal('hide');
             } else {
-                $("#updateShippingPayment").empty().append(data);
+                $("#updateShippingPayment").html(data);
                 clickShipping();
                 HabilitaBlocoPagamento(false);
                 CampoEntregaAgendada();
-                $('.ui.modal').modal('hide');
+                $('.ui.modal.lista-endereco-cliente').modal('hide');
 
                 if ($('#PaymentLinkChangeBrand').length > 0) {
                     if ($('#PaymentLinkChangeBrand').val() == "1") {
@@ -2365,7 +2458,7 @@ export function atualizaEnderecos(responseChange) {
             if (error.responseText.indexOf("CD") > -1) {
                 $("#updateShippingPayment").html("");
                 HabilitaBlocoPagamento(false);
-                $('.ui.modal').modal('hide');
+                $('.ui.modal.lista-endereco-cliente').modal('hide');
             }
         }
     });
@@ -2401,8 +2494,9 @@ function applyDiscount() {
                                 }
                             });
                         }
-                        atualizaEnderecos();
+                        
                         if (response.couponfreeshipping) {
+                            atualizaEnderecos();
                             _alert("Cupom aplicado com sucesso!", response.msg, "success");
                         } else {
                             _alert("Cupom de Desconto!", response.msg, "success");
@@ -2449,7 +2543,7 @@ function viewAddressLogged(form) {
         var userName = $(form + " .UserName").val();
         var password = $(form + " .password").val();
 
-        var googleResponse = $("[id^=googleResponse]", "body").length > 0 ? $("[id^=googleResponse]", "body").val() : "";
+        var googleResponse = $("[id^=googleResponse]", form).length > 0 ? $("[id^=googleResponse]", form).val() : "";
 
         if (googleResponse) {
 
@@ -2844,6 +2938,8 @@ function ValeCompraAplicar(_valor) {
                 //Atualiza dados do Frete
 
                 if ($('#freteGratisValeCompra').length > 0 && $('#freteGratisValeCompra').val() == "1") {
+                    $("#updateShippingPayment").html('<div class="row text center loading-shipping"><img src="/assets/image/loading.svg"></div>')
+
                     $.ajax({
                         method: "POST",
                         url: "ListaFretePagamento",
@@ -3022,7 +3118,7 @@ function CampoEntregaAgendada() {
             .end()
             .append('<option value="">Selecione</option>')
             .val('')
-            ;
+        ;
 
         $("#combo_dataperiodoagendada_" + idFrete).append(optionPeriodo);
         $("#combo_dataperiodoagendada_" + idFrete).trigger("chosen:updated");
@@ -3183,6 +3279,15 @@ var availableDates = [];
 //var cardForm;
 
 $(document).ready(function () {
+    
+    if($("#formas-pagamento").length > 0)
+        checkValidatePersonalization();
+    
+
+    if ($("#hasBraspag3DS20").val() == "true") {
+        bpmpi_environment($('#envBraspag3DS20').val());
+    }
+
     $("#formas-pagamento .itemTabPayment").appendTo($("#formas-pagamento #tabPayment"));
 
     var valueRecurrency = $("#checkout_products_list .item[data-recurrent='True']").length,
@@ -3402,6 +3507,7 @@ $(document).ready(function () {
             }
         });
     }
+
     if (document.location.pathname.toLowerCase() == "/checkout/payment") {
         GetStatusAntiFraudMaxiPago();
         var zipCode = $("#dadosClienteUpdate #zipcode").val();
@@ -3504,9 +3610,7 @@ $(document).ready(function () {
 
         listAddressPayment();
         changeAddressPayment();
-        if (!$("#multiCDActive").val().toLowerCase() == "true") {
-            showAddressPayment();
-        }
+        showAddressPayment();
         applyDiscount();
         CheckAccessKey("#ListaEnderecosCliente");
         ReEnviarCodigoEmail();
@@ -3661,7 +3765,7 @@ $(document).ready(function () {
 
     function PrintBankSlipSecurity() {
         let PaymentJson = readCookie("Payment").replace("Payment=", "")
-        
+
         $.ajax({
             method: "POST",
             url: "/Checkout/PrintBankSlipSecurity",
@@ -3708,7 +3812,7 @@ $(document).ready(function () {
         })
     }
 
-    
+
 
     $(document).on('click', '#CopyQrCode', function (e) {
         e.preventDefault();
@@ -4106,6 +4210,71 @@ $(document).ready(function () {
         });
     }
 });
+
+
+function checkValidatePersonalization() {
+
+    if ($("#PaymentLinkChangeBrand").val() == undefined || $("#PaymentLinkChangeBrand").val() == "0") {
+        //PersonalizationsValidation
+        $.ajax({
+            url: "/Checkout/PersonalizationsValidation",
+            method: "GET",
+            success: function (response) {
+                if (response.indexOf('modal-personalization-validate') > -1) {
+
+
+                    $("body").append(response);
+
+                    var modalPersonalizate = $(".modal-personalization-validate");
+
+                    if (modalPersonalizate.length > 0) {
+
+                        modalPersonalizate.modal({
+                            onHidden: function () {
+
+                                $.when(
+                                    $.ajax({
+                                        method: "GET",
+                                        url: "/Checkout/LoadProductsMiniCart",
+                                        cache: false,
+                                        success: function (loadProduct) {
+                                            if (loadProduct) {
+                                                if (loadProduct.indexOf("itemCartProduct_") === -1) {
+                                                    swal({
+                                                        title: 'Ops ... Seu carrinho agora está vazio!',
+                                                        html: 'Estamos te direcionando para a Home!',
+                                                        type: 'warning',
+                                                        showCancelButton: false,
+                                                        confirmButtonColor: '#3085d6',
+                                                        cancelButtonColor: '#d33',
+                                                        confirmButtonText: 'OK'
+                                                    }).then(function () {
+                                                        window.location.href = "/Home";
+                                                    });
+                                                } else {
+                                                    var retornoAjax = loadProduct.split("|$|");
+                                                    var listaProdutos = retornoAjax[0];
+                                                    $("#checkout_products_list").html(listaProdutos);
+                                                    $(".item:not(.exhausted) .removeCartItem, " +
+                                                        ".item:not(.exhausted) .description, " +
+                                                        ".item.exhausted .avaibility", "#checkout_products_list").remove()
+                                                }
+                                            }
+                                        }
+                                    })
+                                );
+                            },
+                        }).modal('show')
+                    }
+                }
+            },
+            complete: function () {
+                $(".GerarPedidoMercadoPagoCheckoutVPRO").removeClass("loading");
+                $(".GerarPedidoMercadoPagoCheckoutVPRO").removeClass("disabled");
+            }
+        });
+    }
+}
 
 window.onload = function () {
 
