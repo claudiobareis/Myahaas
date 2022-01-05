@@ -421,7 +421,33 @@ variations = {
             slidesToShow: 3,
             mobileFirst:true,
             useTransform:false,
-            infinite:false
+            infinite:false,
+            responsive: [
+                {
+                  breakpoint: 1024,
+                  settings: {
+                    vertical: true,
+                    verticalSwiping: true
+                  }
+                },
+                {
+                  breakpoint: 600,
+                  settings: {
+                    vertical: true,
+                    verticalSwiping: true
+                  }
+                },
+                {
+                  breakpoint: 480,
+                  settings: {
+                    vertical: false,
+                    verticalSwiping: false
+                  }
+                }
+                // You can unslick at a given breakpoint now by adding:
+                // settings: "unslick"
+                // instead of a settings object
+              ]
         });
 
         this.thumbAction()
