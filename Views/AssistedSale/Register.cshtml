@@ -3,6 +3,12 @@
 @{
     ViewBag.Title = "Cadastrar novo Cliente";
     Layout = "~/Views/Shared/Base/_LayoutBreadCrumbContent.cshtml";
+    
+    string termo = string.Empty;
+    if (@ViewBag.Termo != null)
+    {
+        termo = WebUtility.HtmlDecode(@ViewBag.Termo); ;
+    }
 }
 
 @section breadcrumbs {
@@ -427,6 +433,33 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- ADD BLOCO RELEASE 2.71.49-->
+                         <div class="row one column">
+                            <div class="column">
+                                @if (!string.IsNullOrEmpty(termo))
+                                {
+
+                                    <div class="@(!Request.Browser.IsMobileDevice ? "inline" : "") field">
+                                        <div class="ui checkbox termo aceite">
+                                            <input type="checkbox" data-validate="termo">
+                                            <label id="termo-aceite">Li e concordo com o termo de aceite</label>
+                                        </div>
+                                    </div>
+
+                                }
+                                @if (ViewBag.PolicyPrivacy)
+                                {
+
+                                    <div class="@(!Request.Browser.IsMobileDevice ? "inline" : "") field">
+                                        <div class="ui checkbox politica-privacidade">
+                                            <input type="checkbox" class="" data-validate="politica-privacidade" id="PolicyPrivacyAccepted" name="PolicyPrivacyAccepted" value="true">
+                                            <label>Li e concordo com a @Html.Raw(ViewBag.PolicyPrivacyLink)</label>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+
                         <div class="row">
                             <div class="column text right">
                                 @Html.Action("GetRecaptchaV3", "Company", new { Module = "Register" })
@@ -456,7 +489,38 @@
         </div>
     </div>
 </div>
+<!-- ADD BLOCO RELEASE 2.71.49-->
+@if (!string.IsNullOrEmpty(termo))
+{
+    <div id="termo" class="ui modal modal-term">
+        <div class="scrolling content">
+            @if (termo != null)
+            {
+                @Html.Raw(termo)
+            }
+        </div>
+        <div class="actions">
+            <div class="ui basic button deny">
+                Fechar
+            </div>
+        </div>
+    </div>
+}
 
+
+@if (ViewBag.PolicyPrivacy)
+{
+    <div class="ui modal modal-policy">
+        <div class="scrolling content">
+            @Html.Raw(ViewBag.PolicyText)
+        </div>
+        <div class="actions">
+            <div class="ui basic button deny">
+                Fechar
+            </div>
+        </div>
+    </div>
+}
 <script>
     function OnSuccess(response) {
 

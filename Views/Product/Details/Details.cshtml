@@ -360,6 +360,7 @@
                         @Html.Action("BuyingTips", "Product", new { productID = @Model.IdProduct, skuID = SKUPadrao != null ? SKUPadrao.IdSku : 0 })
                     </div>
                     <!--FIM DICA DE COMPRA-->
+                    @Html.Partial("~/Views/Product/Details/_FlagDiscount.cshtml", Model)
                     <div class="row product-grid">
                         <div class="column blocoInfo">
                             <div class="ui middle aligned margin bottom medium blocoValores">
@@ -605,7 +606,20 @@
                                     }
                                 }
                             </div>
-
+                            <!---ADD RELEASE 2.71.49--->
+                            @if (!Model.FlagExhausted)
+                            {
+                                <div id="pagamento-calculado">
+                                    @if (@Model.PricePromotion != null && @Model.PricePromotion > 0)
+                                    {
+                                        @Html.Action("Payment", "Product", new { valor = @Model.PricePromotion, flagExibir = Model.FlagExhausted == true || Model.Stock <= 0 ? false : true })
+                                    }
+                                    else
+                                    {
+                                        @Html.Action("Payment", "Product", new { valor = @Model.Price, flagExibir = Model.FlagExhausted == true || Model.Stock <= 0 ? false : true })
+                                    }
+                                </div>
+                            }
                             <!--INÍCIO TAG ALERT-->
                                 @Html.Partial("~/Views/Product/Details/_Tag.cshtml", productImages.ToList())
                             <!--FIM TAG ALERT-->                           
