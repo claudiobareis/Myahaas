@@ -69,19 +69,26 @@ $colorLinkSubMenu: '#666';
                 order: 3;
             }
             &:nth-child(4){
-                order: 6;
-            }
-            &:nth-child(5){
                 order: 4;
             }
+            &:nth-child(5){
+                order: 5;
+            }
             &:nth-child(6){
-                order: 7;
+                order: 6;
             }
             &:nth-child(7){
                 order: 8;
+                display: none;
             }
             &:nth-child(8){
-                order: 5;
+                order: 7;
+            }
+            &:nth-child(9){
+                order: 10;
+            }
+            &:nth-child(10){
+                display: none;
             }
             .category-image{
                 min-width: 30px;

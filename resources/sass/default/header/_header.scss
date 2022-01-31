@@ -61,11 +61,15 @@ headlogo {
 
     .searchcolumn {
         .search{
-            @media only screen and(min-width: $desktop-bp-min) and(max-width: $desktop-bp) {
-                
-            }
+           
         }
-        .ui.icon.input  {            
+        .ui.icon.input  {   
+            @media only screen and(min-width: $desktop-bp-min) {
+                
+            }    
+            .prompt{
+                text-align: left;
+            }     
             & > i.icon{
                 opacity: initial;
             }            
