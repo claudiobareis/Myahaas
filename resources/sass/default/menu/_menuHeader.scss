@@ -90,6 +90,9 @@ $colorLinkSubMenu: '#666';
             &:nth-child(10){
                 display: none;
             }
+            @media screen and (max-width: $mobile-bp) {
+                display: inline-table;
+            }
             .category-image{
                 min-width: 30px;
                 display: none;
