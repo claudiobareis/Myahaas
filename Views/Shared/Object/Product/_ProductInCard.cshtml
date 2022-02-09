@@ -72,6 +72,15 @@
                         <img src="@Model.SealStatus.Image" alt="@Model.SealStatus.Name" class="ui image tiny" onerror="imgError(this)" alt="@Model.Name" title="@Model.Name">
                     </div>
                 }
+                @if (Model.ProgressiveDiscount != null && (Session["segment"] == null || Session["segment"].ToString() != "b2b"))
+                {
+                    if (!String.IsNullOrEmpty(Model.ProgressiveDiscount.Image)) 
+                    {
+                        <div class="ui bottom attached label imageDiscount">        
+                            <img src="@Model.ProgressiveDiscount.Image" id="imgProgressiveDiscount" class="ui image"  alt="" title="">
+                        </div>
+                    }
+                }
             </a>
         }
         else
@@ -83,6 +92,15 @@
                     <div class="ui top right attached label massive imagetag">
                         <img src="@Model.SealStatus.Image" class="ui image tiny" onerror="imgError(this)" alt="@Model.Name" title="@Model.Name">
                     </div>
+                }
+                 @if (Model.ProgressiveDiscount != null && (Session["segment"] == null || Session["segment"].ToString() != "b2b"))
+                {
+                    if (!String.IsNullOrEmpty(Model.ProgressiveDiscount.Image))
+                    {
+                        <div class="ui bottom attached label imageDiscount">
+                            <img src="@Model.ProgressiveDiscount.Image" id="imgProgressiveDiscount" class="ui image" alt="" title="">
+                        </div>
+                    }
                 }
             </a>
         }
