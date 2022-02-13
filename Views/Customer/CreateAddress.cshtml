@@ -30,7 +30,9 @@
 <div class="ui grid middle aligned center aligned">
     <div class="row one column">
         <div class="column">
-            <form action="CreateAddress" method="POST">
+            <!--CHANGE RELEASE 2.71.67-->
+            @using (Ajax.BeginForm("CreateAddress", "Customer", new AjaxOptions {HttpMethod = "POST", OnSuccess = "OnSuccess", OnFailure = "OnFailure"}, new {@id = "edicao_cliente"}))
+            {
                 @Html.AntiForgeryToken()
                 <div class="ui segment">
                     <div class="ui grid stackable top aligned left aligned grid">
@@ -178,6 +180,12 @@
                     </div>
                 </div>
                 <div class="row">
+                <!--ADD RELEASE 2.71.67-->      
+                <div class="column text right">
+                        @Html.Action("GetRecaptchaV3", "Company", new {Module = "Register"})
+                    </div>
+                </div>
+                <div class="row">              
                     <div class="column">
                         <a href="javascript: history.go(-1)" class="ui animated button large basic left floated">
                             <div class="visible content">Cancelar</div>
@@ -195,8 +203,58 @@
                         </button>
                     </div>
                 </div>
-            </form>
+            }
         </div>
     </div>
 </div>
+<!--ADD RELEASE 2.71.67-->   
 
+@section custom_js {
+    <script>       
+
+        function OnSuccess(response) {
+            if (response.success == true) {
+                swal({
+                    title: '',
+                    text: response.msg,
+                    type: 'success',
+                    showCancelButton: false,
+                    confirmButtonColor: '#16ab39',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'OK',
+                    allowOutsideClick: false
+                }).then(function () {
+                    window.location.href = "/Customer/changeAddress";
+                });
+            } else {
+                swal({
+                    title: '',
+                    text: response.msg?.replace('0^Erros: ', ''),
+                    type: 'error',
+                    showCancelButton: false,
+                    confirmButtonColor: '#16ab39',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'OK',
+                    allowOutsideClick: false
+                }).then(function () {
+                    window.location.href = "/Customer/changeAddress";
+                });
+            }
+        }
+
+        function OnFailure(response) {
+            if (response.Success == false) {
+                swal({
+                    title: '',
+                    text: response.msg,
+                    type: 'error',
+                    showCancelButton: false,
+                    confirmButtonColor: '#16ab39',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'OK',
+                    allowOutsideClick: false
+                });
+            }
+        }
+    </script>
+}
