@@ -65,6 +65,7 @@
                 <div class="content">
                     <div class="header">
                         <div class="ui radio checkbox @_classCheckFrete">
+                            <!-- ADD RELEASE 2.71.67 -->
                             <input type="radio" 
                                    name="radio" 
                                    id="radio_@item.ShippingMode.IdShippingMode" 
@@ -73,6 +74,7 @@
                                    data-id="@item.ShippingMode.IdShippingMode" 
                                    data-value="@string.Format("{0}", item.ValueShipping)" 
                                    data-correios="@string.Format("{0}", item.ShippingMode.DeliveredByTheCorreiosService)" 
+                                   data-correios-name="@item.ShippingMode.Name"
                                    data-entregaagendada="@item.ShippingMode.ScheduledDelivery" 
                                    data-exclusiva-entregaagendada="@item.ShippingMode.ExclusiveScheduledDelivery" 
                                    data-carrier="@item.ShippingMode.carrier" 
@@ -91,7 +93,8 @@
                             }
                             else
                             {
-                                <label>@item.ShippingMode.Name <span>@item.ShippingMode.DeliveryTime dia(s) @string.Format("{0}", ((bool)item.ShippingMode.UsefulDay) ? ((item.ShippingMode.DeliveryTime > 0 || item.ShippingMode.DeliveryTime == 0) ? "úteis" : "útil") : "")</span> </label>
+                                <!-- CHANGE RELEASE 2.71.67 -->
+                                <label>@item.ShippingMode.Name <span>(@item.ShippingMode.DeliveryTime dia(s) @string.Format("{0}", ((bool)item.ShippingMode.UsefulDay) ? ((item.ShippingMode.DeliveryTime > 0 || item.ShippingMode.DeliveryTime == 0) ? "úteis" : "útil") : ""))</span> </label>
                             }
 
                         </div>
