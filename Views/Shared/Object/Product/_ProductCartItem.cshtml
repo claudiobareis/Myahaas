@@ -1,7 +1,7 @@
 ﻿@using DomainCheckout.Entities
 @model DomainCheckout.Entities.CartItem
-
-<div class="item @(Model.Stock == 0 || Model.FlagExhausted == EnumeratorsCommons.EnumYesNo.Yes ? "exhausted" : "")" data-signature="@Model.IsRecurrent" data-id-cart="@Model.IdCartItem" data-id-produto="@Model.IdProduct" id="itemCartProduct_@Model.IdCartItem">
+<!--CHANGE RELEASE 2.71.66-->
+<div class="item @(Model.Stock == 0 || Model.Stock < Model.Quantity || Model.FlagExhausted == EnumeratorsCommons.EnumYesNo.Yes ? "exhausted" : "")" data-signature="@Model.IsRecurrent" data-id-cart="@Model.IdCartItem" data-id-produto="@Model.IdProduct" id="itemCartProduct_@Model.IdCartItem">
     <div class="ui image small">
         <img src="@Model.ProductImage.ImageDefault"  onerror="imgError(this)">
     </div>
@@ -23,7 +23,8 @@
         }
 
         <div class="description">
-            @if (Model.Stock == 0 || Model.FlagExhausted == EnumeratorsCommons.EnumYesNo.Yes)
+            <!--CHANGE RELEASE 2.71.66-->
+            @if (Model.Stock == 0 || Model.Stock < Model.Quantity || Model.FlagExhausted == EnumeratorsCommons.EnumYesNo.Yes)
             {
                 <table class="ui very basic unstackable table margin top medium exhausted">
                     <thead>
@@ -34,7 +35,8 @@
                     <tbody>
                     <tr>
                         <td>
-                            <button class="removeCartItem" data-id="@Model.IdCartItem">
+                            <!--CHANGE RELEASE 2.71.66-->
+                            <button class="removeCartItem" data-id="@Model.IdCartItem" data-id-personalization-cart="@(Model.IdCartPersonalization != null ? Model.IdCartPersonalization : Model.IdCartItem)" >
                                 <i class="trash alternate outline icon"></i>
                             </button>
                         </td>
@@ -56,20 +58,23 @@
                     <tr>
                         <td data-idCartItem="@Model.IdCartItem">
                             <div class="ui qtd action mini input">
-                                <button class="ui icon button qtdAction" data-id="@Model.IdCartItem" data-action="minus">
+                                <!--CHANGE RELEASE 2.71.66-->
+                                <button class="ui icon button qtdAction" data-id="@Model.IdCartItem" data-action="minus" data-id-personalization-cart="@(Model.IdCartPersonalization != null ? Model.IdCartPersonalization : 0)">
                                     <i class="minus icon"></i>
                                 </button>
-                                <input type="hidden" id="qtdInicial_@Model.IdCartItem" value="@Model.Quantity"/>
-                                <input type="hidden" value="@Model.Stock" name="stock_@Model.IdCartItem" id="stock_@Model.IdCartItem"/>
-                                <input type="number" class="text center" min="0" step="1" size="3" value="@Model.Quantity" name="@Model.IdCartItem" id="qtd_@Model.IdCartItem" data-id="@Model.IdCartItem" data-action="ipt"/>
-                                <button class="ui icon button qtdAction" data-id="@Model.IdCartItem" data-action="plus">
+                                <input type="hidden" id="qtdInicial_@Model.IdCartItem" value="@Model.Quantity" />
+                                <input type="hidden" value="@Model.Stock" name="stock_@Model.IdCartItem" id="stock_@Model.IdCartItem" />
+                                <input type="number" class="text center" min="0" step="1" size="3" value="@Model.Quantity" name="@Model.IdCartItem" id="qtd_@Model.IdCartItem" data-id="@Model.IdCartItem" data-action="ipt" data-id-personalization-cart="@(Model.IdCartPersonalization != null ? Model.IdCartPersonalization : 0)"/>
+                                <button class="ui icon button qtdAction" data-id="@Model.IdCartItem" data-action="plus" data-id-personalization-cart="@(Model.IdCartPersonalization != null ? Model.IdCartPersonalization : 0)">
                                     <i class="add icon"></i>
                                 </button>
                             </div>
                         </td>
-                        <td id="preco_unitario_@Model.IdCartItem" data-qtd="@Model.Quantity">@(Model.Quantity > 1 ? Model.Quantity + "x" : "") @string.Format("{0:c}", Model.PriceProduct)</td>
+                        <!--CHANGE RELEASE 2.71.66-->
+                         <td id="preco_unitario_@Model.IdCartItem" data-qtd="@Model.Quantity" data-id-personalization-cart="@(Model.IdCartPersonalization != null ? Model.IdCartPersonalization : 0)">@(Model.Quantity > 1 ? Model.Quantity + "x" : "") @string.Format("{0:c}", Model.PriceProduct)</td>
                         <td>
-                            <button class="removeCartItem" data-id="@Model.IdCartItem">
+                            <!--CHANGE RELEASE 2.71.66-->
+                            <button class="removeCartItem" data-id="@Model.IdCartItem" data-id-personalization-cart="@(Model.IdCartPersonalization != null ? Model.IdCartPersonalization : 0)">
                                 <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M14 1H10.5L9.5 0H4.5L3.5 1H0V3H14V1ZM1 16C1 16.5304 1.21071 17.0391 1.58579 17.4142C1.96086 17.7893 2.46957 18 3 18H11C11.5304 18 12.0391 17.7893 12.4142 17.4142C12.7893 17.0391 13 16.5304 13 16V4H1V16Z" fill="#BDBDBD"/>
                                 </svg>

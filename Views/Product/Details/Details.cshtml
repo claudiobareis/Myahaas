@@ -133,7 +133,9 @@
         {
             productImages = Model.ProductImages;
         }
-    }
+    }    
+    @* Atualização release 2.71.66 *@
+    ViewBag.PurchaseRecurring = "false";
 }
 
 <script>
@@ -562,6 +564,8 @@
                                                     }
                                                     @if (Model.PurchaseRecurring && Model.Stock > 0 && !Model.FlagExhausted)
                                                     {
+                                                        <!--ATUALIZAÇÃO RELEASE 2.71.66-->
+                                                        ViewBag.PurchaseRecurring = "true";
                                                         <a class="ui animated button recurring btn-comprar-assinar detalhes">
                                                             <div class="visible content">ASSINAR PRODUTO</div>
                                                         <div class="hidden content">
@@ -609,6 +613,11 @@
                             <!---ADD RELEASE 2.71.49--->
                             @if (!Model.FlagExhausted)
                             {
+                                <!---ADD RELEASE 2.71.66--->
+                                if (Model.Personalizations != null)
+                                {
+                                    @Html.Partial("~/Views/Product/Details/_Personalizations.cshtml", Model.Personalizations)
+                                }
                                 <div id="pagamento-calculado">
                                     @if (@Model.PricePromotion != null && @Model.PricePromotion > 0)
                                     {

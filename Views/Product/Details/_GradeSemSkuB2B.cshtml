@@ -133,6 +133,16 @@
         </div>
         @if (!Model.FlagExhausted)
         {
+            <!--ADD RELEASE 2.71.66-->
+             if (Model.Personalizations != null)
+             {
+                 <div class="row margin top medium">
+                     <div class="column">
+                         @Html.Partial("~/Views/Product/Details/_Personalizations.cshtml", Model.Personalizations)
+                     </div>
+                 </div>
+             }
+
             <div id="pagamento-calculado">
                 @if (@Model.PricePromotion != null && @Model.PricePromotion > 0)
                 {
