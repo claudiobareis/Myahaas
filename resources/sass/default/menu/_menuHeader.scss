@@ -45,15 +45,16 @@ $colorLinkSubMenu: '#666';
         box-shadow: none;
         display: flex;
         font-weight: 400;
-        min-height: 2.85714286em;
+        /*min-height: 2.85714286em;*/
         margin: 0;
-        justify-content: space-around;
+        justify-content: space-between;
         flex-wrap:nowrap;
+        padding: 0 3.5em;
         @media only screen and(min-width: $desktop-bp-min) and(max-width: $desktop-bp) {
             flex-wrap:nowrap;
         }
         li {
-            height: 57px;
+            /*height: 57px;*/
             &:hover,
             &.active,
             &:focus {
@@ -113,9 +114,9 @@ $colorLinkSubMenu: '#666';
                     text-transform: uppercase;
                     margin: 0;
                     font-size: 14px;
-                    line-height: $menuHeight;
+                    /*line-height: $menuHeight;*/
                     color: #333;
-                    height: 57px;
+                    /*height: 57px;*/
                     margin: 0 auto;
                     align-items: baseline;
                     font-weight: 600;
@@ -143,9 +144,9 @@ $colorLinkSubMenu: '#666';
                 text-transform: uppercase;
                 margin: 0;
                 font-size: 14px;
-                line-height: $menuHeight;
+                /*line-height: $menuHeight;*/
                 color: #333;
-                height: 57px;
+                /*height: 57px;*/
                 &:after {
                     content: 'Ver todos';
                     font-size: 10px;
@@ -230,6 +231,10 @@ $colorLinkSubMenu: '#666';
             transition: opacity 0.3s ease-in-out;
         }
     }
+}
+
+.ui.menu:after {
+    display: none;
 }
 /* Mega Menu Start */
 @import 'wsmenu/style';
