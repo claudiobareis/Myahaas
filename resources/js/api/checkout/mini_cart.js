@@ -6,6 +6,7 @@ import { montaListaProdutos } from "../../ui/modules/mini_cart";
 import { SomenteNumerosPositivos } from "../../functions/form-control";
 import { CompraRecorrenteCart, CompraRecorrenteStorage } from '../../functions/recurringPurchase';
 import { atualizaResumoCarrinho } from './payment'
+import { buscaCepCD, changeCd } from "../../ui/modules/multiCd";
 
 $(document).ready(function () {
 
@@ -52,14 +53,38 @@ $(document).ready(function () {
                 url: "/Checkout/GetShippingValues",
                 data: { zipCode: zipCode },
                 success: function (data) {
-                    $("#CallServiceShippingMiniCart").removeClass("loading");
-                    $(".description.frete").hide();
-                    //Coloca as infoamções no Bloco HMTL com os valores corretos
-                    $(".description.resultado .valor").html(data);
-                    //$(".tabela.frete").dropdown('refresh');
-                    $(".description.resultado").show();
+                    if (data.indexOf("|@|&RR0RM&SS@G&|@|CD:") > -1)
+                    {
+                        $("#CallServiceShippingMiniCart").removeClass("loading");
+                        $("#zipcode").val(zipCode);
+                        buscaCepCD(zipCode).then(function () {
+                            changeCd(true, false, "#CallServiceShippingMiniCart", false).then(function (response) {
+                                LoadCarrinho();
+                            });
+                        });
+                    }
+                    else
+                    {
+                        $("#CallServiceShippingMiniCart").removeClass("loading");
+                        $(".description.frete").hide();
+                        //Coloca as infoamções no Bloco HMTL com os valores corretos
+                        $(".description.resultado .valor").html(data);
+                        //$(".tabela.frete").dropdown('refresh');
+                        $(".description.resultado").show();
 
-                    ChangeFrete();
+                        ChangeFrete();
+                    }
+                },
+                error: function (error) {
+                    $("#CallServiceShippingMiniCart").removeClass("loading");
+                    if (error.responseText.indexOf("CD:1") > -1 || error.responseText.indexOf("CD:2") > -1) {
+                        $("#zipcode").val(zipCode)
+                        buscaCepCD(zipCode).then(function () {
+                            changeCd(true, false, "#CallServiceShippingMiniCart", false).then(function (response) {
+                                LoadCarrinho()
+                            });
+                        })
+                    }
                 }
             });
         } else {
@@ -101,7 +126,9 @@ $(document).ready(function () {
             window.location.href = "/Checkout";
         }
         else {
-
+            if ($("#zipcode") != null && $("#zipcode").val().length > 0) {
+                $('#shipping').val($("#zipcode").val());
+            }
 
             LoadCarrinho();
             $(".carrinho").sidebar('toggle');
@@ -140,46 +167,82 @@ $(document).ready(function () {
 
     $(document).on("click", "#miniCarrinho .removeCartItem", function (e) {
         var idCurrent = new Number($(this).attr("data-id"));
-        excluirProdutoCarrinho(idCurrent);
+        var idCartPersonalization = new Number($(this).attr("data-id-personalization-cart"));
+        excluirProdutoCarrinho(idCurrent, idCartPersonalization);
         e.stopPropagation();
     });
 
 
     $(document).on("keyup", "#miniCarrinho input[id^='qtd_']", function (e) {
-        var valor_final = SomenteNumerosPositivos($(this).val());
-        $(this).val(valor_final);
+        if ($(this).val().length > 0) {
+            var valor_final = SomenteNumerosPositivos($(this).val());
+            $(this).val(valor_final);
 
-        limparFrete();
+            limparFrete();
 
-        var action = $(this).attr("data-action");
-        var idCurrent = $(this).attr("data-id");
-        var valorInput = new Number($("#qtd_" + idCurrent).val());
-        var valorStock = new Number($("#stock_" + idCurrent).val());
+            var action = $(this).attr("data-action");
+            var idCurrent = $(this).attr("data-id");
+            var idCartPersonalization = $(this).attr("data-id-personalization-cart");
+            var valorInput = valor_final;            
+            var valorStock = new Number($("#stock_" + idCurrent).val());            
 
-        if (valorInput <= valorStock && valorInput < 1000) {
-            disparaAjaxUpdate(idCurrent, valorInput, action, true);
+            if (valorInput <= valorStock && valorInput < 1000) {
+                disparaAjaxUpdate(idCurrent, valorInput, action, idCartPersonalization, true);
+            }
+            else {
+                _alert("Ops ... Encontramos um problema", "Produto sem Estoque!", "warning");
+                valorInput -= 1;
+                disparaAjaxUpdate(idCurrent, valorInput, action, idCartPersonalization, true);
+            }
+            e.stopPropagation();
         }
-        else {
-            _alert("Ops ... Encontramos um problema", "Produto sem Estoque!", "warning");
-            valorInput -= 1;
-            disparaAjaxUpdate(idCurrent, valorInput, action, true);
-        }
-        e.stopPropagation();
     });
 
+    $(document).on("blur", "#miniCarrinho input[id^='qtd_']", function (e) {
+        if ($(this).val().length == 0) {
+            $(this).val(1);
+
+            limparFrete();
+
+            var action = $(this).attr("data-action");
+            var idCurrent = $(this).attr("data-id");
+            var valorInput = new Number($(this).val());
+            var valorStock = new Number($("#stock_" + idCurrent).val());
+            var idCartPersonalization = $(this).attr("data-id-personalization-cart");
+
+            if (valorInput <= valorStock && valorInput < 1000) {
+                isLoading("#miniCarrinho");
+                disparaAjaxUpdate(idCurrent, valorInput, action, idCartPersonalization, true);
+            }
+            else {
+                _alert("Ops ... Encontramos um problema", "Produto sem Estoque!", "warning");
+                valorInput -= 1;
+                isLoading("#miniCarrinho");
+                disparaAjaxUpdate(idCurrent, valorInput, action, idCartPersonalization, true);
+            }
+            e.stopPropagation();
+        }
+    });
 
     $(document).on("click", ".qtdActionMiniCart", function (event) {
         // CancelarCalculoFreteCart(1);
         $(".qtdActionMiniCart").off("click");
         var action = $(this).attr("data-action");
         var idCurrent = $(this).attr("data-id");
-        var valorInput = new Number($("#qtd_" + idCurrent).val());
-        var valorStock = new Number($("#stock_" + idCurrent).val());
+        var idCartPersonalization = $(this).attr("data-id-personalization-cart");
+        
+        if(idCartPersonalization && idCartPersonalization > 0)
+            var valorInput = new Number($("[id^=qtd_" + idCurrent + "][data-id-personalization-cart='"+idCartPersonalization+"']").val());
+        else
+            var valorInput = new Number($("#qtd_" + idCurrent).val());
+       
+        var valorStock = new Number($("#stock_" + idCurrent).val());        
 
         if (action == "plus") {
             valorInput += 1;
             if (valorInput <= valorStock && valorInput < 1000) {
-                disparaAjaxUpdate(idCurrent, valorInput, action);
+                isLoading("#miniCarrinho");
+                disparaAjaxUpdate(idCurrent, valorInput, action, idCartPersonalization);
             }
             else {
                 _alert("Ops ... Encontramos um problema", "Produto sem Estoque!", "warning");
@@ -193,7 +256,7 @@ $(document).ready(function () {
             }
             else {
                 isLoading("#miniCarrinho");
-                disparaAjaxUpdate(idCurrent, valorInput, action, true);
+                disparaAjaxUpdate(idCurrent, valorInput, action, idCartPersonalization, true);
             }
         }
         $("#qtd_" + idCurrent).val(valorInput);
@@ -205,11 +268,13 @@ $(document).ready(function () {
         UpdateCarrinho();
     });
 
+    //Limpar os Fretes que consta no carrinho a cada refresh
+    CancelarCalculoFreteCart(1);
 
 });
 
 
-function excluirProdutoCarrinho(idCurrent) {
+function excluirProdutoCarrinho(idCurrent, idCartPersonalization) {
     _confirm({
         title: "Deseja realmente remover esse produto do carrinho?",
         text: "",
@@ -227,7 +292,8 @@ function excluirProdutoCarrinho(idCurrent) {
                 url: "/Checkout/DeleteProduct",
                 async: false,
                 data: {
-                    idCartItem: idCurrent
+                    idCartItem: idCurrent,
+                    idCartPersonalization
                 },
                 success: function (data) {
                     if (data.success === false) {
@@ -276,7 +342,7 @@ export function CancelarCalculoFreteCart(flagUpdate) {
 }
 
 
-export function disparaAjaxUpdate(idCurrent, valorInput, action, loading = false) {
+export function disparaAjaxUpdate(idCurrent, valorInput, action, idCartPersonalization = 0, loading = false) {
     CancelarCalculoFreteCart(0);
 
     var qtdInicial = $("#qtdInicial_" + idCurrent).val();
@@ -294,7 +360,8 @@ export function disparaAjaxUpdate(idCurrent, valorInput, action, loading = false
         data: {
             idCartItem: idCurrent,
             Quantity: valorInput,
-            idCompraAutomaticaTipoEntrega
+            idCompraAutomaticaTipoEntrega,
+            idCartPersonalization
         },
         success: function (data) {
             if (data.success === true) {
@@ -392,14 +459,45 @@ export function RecalcularFrete(zipCode) {
             url: "/Checkout/GetShippingValues",
             data: { zipCode: zipCode },
             success: function (data) {
-                $("#CallServiceShippingMiniCart").removeClass("loading");
-                $(".description.frete").hide();
-                //Coloca as infoam��es no Bloco HMTL com os valores corretos
-                $(".description.resultado .valor").html(data);
-                //$(".tabela.frete").dropdown('refresh');
-                $(".description.resultado").show();
+                if (data.indexOf("|@|&RR0RM&SS@G&|@|CD:") > -1)
+                {
+                    $("#CallServiceShippingMiniCart").removeClass("loading");
+                    $("#zipcode").val(zipCode);
+                    buscaCepCD(zipCode).then(function () {
+                        changeCd(true, false, "#CallServiceShippingMiniCart", false).then(function (response) {
+                            LoadCarrinho();
+                        });
+                    });
+                }
+                else
+                {
+                    $("#CallServiceShippingMiniCart").removeClass("loading");
+                    $(".description.frete").hide();
+                    //Coloca as infoam��es no Bloco HMTL com os valores corretos
+                    $(".description.resultado .valor").html(data);
+                    //$(".tabela.frete").dropdown('refresh');
+                    $(".description.resultado").show();
 
-                ChangeFrete();
+                    ChangeFrete();
+                }
+            },
+            error: function (error) {
+                $("#CallServiceShippingMiniCart").removeClass("loading");
+                if (error.responseText.indexOf("Mudanca de CD.") > -1) {
+                    $("#zipcode").val(zipCode)
+                    buscaCepCD(zipCode).then(function () {
+                        changeCd(true, false, "#CallServiceShippingMiniCart", false).then(function (response) {
+                            LoadCarrinho()
+                        });
+                    })
+                } else if (error.responseText.indexOf("Nenhum CD configurado.") > -1) {
+                    $("#zipcode").val(zipCode)
+                    buscaCepCD(zipCode).then(function () {
+                        changeCd(true, false, "#CallServiceShippingMiniCart", false).then(function (response) {
+                            LoadCarrinho()
+                        });
+                    })
+                }
             }
         });
     }
@@ -480,14 +578,16 @@ export function createModelExhausted(element) {
         $(">.item.exhausted", element).each(function() {
             
             var $this = $(this),
-                $idCart = $this.data("id-cart");
+                $idCart = $this.data("id-cart"),
+                idCartPersonalization = $this.data('id-personalization-cart');
 
             $.ajax({
                 method: "POST",
                 url: "/Checkout/DeleteProduct",
                 async: false,
                 data: {
-                    idCartItem: $idCart
+                    idCartItem: $idCart,
+                    idCartPersonalization
                 },
                 success: function (data) {
 

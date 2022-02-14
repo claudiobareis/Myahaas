@@ -35,6 +35,9 @@ export function UpdateCarrinho(showSidebar) {
 
                 for (var i = 0; i < objCarrinho.cartItems.length; i++) {
                     var idCartItem = objCarrinho.cartItems[i].idCartItem;
+                    /*ADD RELEASE 2.71.66*/
+                    var idCartPersonalization = objCarrinho.cartItems[i].idCartPersonalization;
+                    var dataPersonalization;
                     var precoTotal = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(objCarrinho.cartItems[i].priceTotalProduct);
                     var precoUnt = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(objCarrinho.cartItems[i].priceProduct);
                     var quantidade = objCarrinho.cartItems[i].quantity;
@@ -43,11 +46,15 @@ export function UpdateCarrinho(showSidebar) {
                         $("#availability_" + idCartItem).text("Produto Esgotado");
                         $("#itemCartProduct_" + idCartItem).addClass("exhausted");
                     }
-
-                    $("#preco_total_" + idCartItem).text(precoTotal);
-                    $("#preco_unitario_" + idCartItem).text(precoUnt);
-                    $("#qtd_" + idCartItem).val(quantidade);
-                    $("#priceProduct_" + idCartItem).html(objCarrinho.cartItems[i].quantity > 1 ? objCarrinho.cartItems[i].quantity+"x "+precoUnt : precoUnt)
+                    /*CHANGE RELEASE 2.71.66*/
+                    if (idCartPersonalization && idCartPersonalization > 0) 
+                        dataPersonalization = "[data-id-personalization-cart='"+idCartPersonalization+"']";
+                        
+                    $("#qtd_" + idCartItem + dataPersonalization).val(quantidade);
+                    $("#priceProduct_" + idCartItem + dataPersonalization).html(objCarrinho.cartItems[i].quantity > 1 ? objCarrinho.cartItems[i].quantity + "x " + precoUnt : precoUnt)
+                    $("#preco_total_" + idCartItem + dataPersonalization).text(precoTotal);
+                    $("#preco_unitario_" + idCartItem + dataPersonalization).text(objCarrinho.cartItems[i].quantity > 1 ? objCarrinho.cartItems[i].quantity + "x " + precoUnt : precoUnt);
+                    
 
                     if ($("#itemCartProduct_" + idCartItem).attr("data-signature") != null && $("#itemCartProduct_" + idCartItem).attr("data-signature").toLowerCase() == "false")
                         isRecurringPurchase = false;

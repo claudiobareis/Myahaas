@@ -10,6 +10,9 @@ var detalhes_maiorParc = 0, detalhes_valorParc = 0, detalhes_descricao = "";
 var carregar_resumo_parcelamento = true;
 
 $(document).ready(function () {
+
+    personalization.init();
+    
     $(".b2b_minus.detalhes, .b2b_plus.detalhes").click(function () {
         let skuID = $(this).parents(".sku_b2b").attr("data-sku-id");
         let quantidade_selecionada = parseInt($("#quantidade_b2b_"+skuID).val());
@@ -33,19 +36,37 @@ $(document).ready(function () {
         });
     });
 
-    $("#btn_comprar_b2b, #btn_comprar_continuar, #btn_comprar_oneclick_b2b").click(function () {
+    $("#btn_comprar_b2b, #btn_comprar_continuar, #btn_comprar_oneclick_b2b").click(function (e) {
         var exibeMiniCarrinho = $(this)[0].id === "btn_comprar_b2b" ? true : false;
 
+        if($(personalization.config.container).length > 0) {
+
+            var valid = personalization.validFields()
+
+            if (valid === undefined || valid === false) {
+
+                e.preventDefault();
+                return;
+            }
+        }
+        
         $(this).addClass(".loading");
         let Cart = [];
         let _contProducts = 0;
         let _msgErrors = "";
         $("#grade_sku .sku_b2b").each(function(posicao) {
-            let CartItem = new Object();
+            
+            let CartItem = new Object(),
+                personaliza = personalization.renderArray();
             CartItem.IdProduct = $(this).data("produto-id");
             CartItem.IdSku = $(this).data("sku-id");
             CartItem.Quantity = $(this).find(".quantidade_b2b").val();
             CartItem.Stock = $(this).find(".quantidade_b2b").data("qtd-max") !== undefined ? $(this).find(".quantidade_b2b").data("qtd-max") :0;
+
+            if (personaliza.length > 0) {
+                CartItem.personalizations = personalization.renderArray();
+                CartItem.personalizationString = $("#json-personalizations").val()
+            }
 
             if (CartItem.Quantity > 0 && CartItem.Quantity <= CartItem.Stock) {
                 Cart.push(CartItem);
@@ -194,6 +215,7 @@ export function CarregarParcelamento(isB2b) {
     $("#parcelamento_info").html(html);
     CarregaParcelamentoPagSeguro();
     CarregaParcelamentoPagSeguroApp();
+    CarregaParcelamentoMercadoPago();
 
     if ($('#pagSeguroParcelamento').length) {
         carregar_resumo_parcelamento = false;
@@ -551,6 +573,72 @@ export function CarregaParcelamentoPagSeguroApp() {
 
                     });
                 });
+            }
+        });
+    }
+}
+
+export function CarregaParcelamentoMercadoPago() {
+    if ($('.mercadoPagoParcelamento').length > 0) {
+        $('.mercadoPagoParcelamento').html("Carregando...");
+
+        $.ajax({
+            url: '/Checkout/LoadConfigMercadoPago',
+            type: 'GET',
+            success: function (publicKey) {
+                $.getScript("https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js", function () {
+                    window.Mercadopago.setPublishableKey(publicKey);
+
+                    var totalCheckout = 0;
+
+                    if ($('#preco').length > 0)
+                        totalCheckout = SomenteNumeros($('#preco').text());
+                    else
+                        totalCheckout = SomenteNumeros($('#conjunto-total-final').text());
+
+                    $.each($('.mercadoPagoParcelamento'), function (keyBrand, itemBrand) {
+                        var externalCode = $(itemBrand).data("externalcode");
+
+                        window.Mercadopago.getIssuers(
+                            externalCode,
+                            function (status_, response_) {
+                                if (status_ == 200) {
+                                    var issuerID = response_[0].id;
+
+                                    window.Mercadopago.getInstallments({
+                                        "payment_method_id": externalCode
+                                        , "amount": totalCheckout
+                                        , "issuer_id": issuerID
+                                    }, function (status__, response__) {
+                                        if (status__ == 200) {
+                                            $(itemBrand).empty();
+                                            response__[0].payer_costs.forEach(payerCost => {
+                                                $(itemBrand).append(
+                                                    '<span class="item parcelamentos">' +
+                                                    '<span class="parcelas">' + payerCost.installments + ' x </span>' +
+                                                    '<span class="valor">' + payerCost.installment_amount.toLocaleString('en-US', { style: 'currency', currency: 'BRL' }) + ' </span>' +
+                                                    '<span class="modelo">(' + ((payerCost.installment_rate == 0) ? 'Sem juros' : 'Com juros') + ')</span>' +
+                                                    '<span class="total">Total Parcelado: ' + payerCost.total_amount.toLocaleString('en-US', { style: 'currency', currency: 'BRL' }) + '</span>' +
+                                                    '</span>'
+                                                );
+                                            });
+                                        } else {
+                                            $(itemBrand).parent().parent().prev().remove();
+                                            $(itemBrand).parent().parent().remove();
+                                        }
+                                    });
+                                } else {
+                                    $(itemBrand).parent().parent().prev().remove();
+                                    $(itemBrand).parent().parent().remove();
+                                }
+                            }
+                        );
+
+                    });
+                });
+            },
+            error: function (request, error) {
+                $('#pagamento-calculado').remove();
             }
         });
     }

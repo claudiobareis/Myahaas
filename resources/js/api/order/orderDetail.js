@@ -18,14 +18,14 @@ function printDiv(divID) {
 
 function openShopline(clearShopline = false) {
     if (clearShopline) {
-        $(".ui.modal").modal({
+        $(".ui.modal.itau-shopline").modal({
             onHidden: function () {
                 $("#itauShopline").remove();
                 $(this).remove();
             }
         }).modal('show');
     } else {
-        $(".ui.modal").modal('show')
+        $(".ui.modal.itau-shopline").modal('show')
     }
 }
 
@@ -43,7 +43,7 @@ function createHtmlItau(el) {
                       target="openShopline">
                   <input type="hidden" name="DC" id="tokenBankSlip" value="" />
                 </form>
-                <div class="ui modal">
+                <div class="ui modal itau-shopline">
                   <i class="close icon"></i>
                   <div class="content">
                     <iframe name="openShopline" id="openShopline" style="width: 100%; height: 33em; border: none;"></iframe>
@@ -171,6 +171,10 @@ $(document).ready(function () {
         $('.ui.modal.pagseguro').modal('show');
     });
 
+    $(document).on("click", "#btnOpenMercadoPagoPix", function () {
+        $('.ui.modal.mercadopago-pix').modal('show');
+    });
+
     $(document).on("keypress", ".prompt_pedidos", function (event) {
         var val = event.target.value;
         var filtered = val.replace(/[^0-9]/g, '');
@@ -182,6 +186,21 @@ $(document).ready(function () {
         if (filtered != "") {
             if (event.which === 13) {
                 location.href = `/Order/Index?n=${$(".prompt_pedidos").val()}`;
+            }
+        }
+    });
+
+    $(document).on("keypress", ".prompt_pedidos_vendedor", function (event) {
+        var val = event.target.value;
+        var filtered = val.replace(/[^0-9]/g, '');
+
+        if (filtered !== val) {
+            event.target.value = filtered;
+        }
+
+        if (filtered != "") {
+            if (event.which === 13) {
+                location.href = `/assistedsale/consultarPedidos?n=${$(".prompt_pedidos_vendedor").val()}`;
             }
         }
     });
