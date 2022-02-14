@@ -4,23 +4,21 @@
   string _classMiniCart = Session["idEventList"] == null && Session["EventList"] == null ? "mini-cart" : "mini-cart-list-event";
 }
 <div class="ui container fluid _header">
-    <div class="ui container">
+    <div class="ui container fluid">
         <div class="ui middle aligned three column centered grid">
-            <div class="row">
+            <div class="row first-row-header">
                 <div class="ui four wide mobile only five wide tablet only">
                    @Html.Action("Menu", "Home")
                 </div>
-                <div class="ui center aligned ten wide mobile six wide tablet two wide computer column">
+                <div class="ui center aligned ten wide mobile six wide tablet three wide computer column">
                     <a href="https://www.myahaas.com.br" title="Página Inicial" class="brand">
                         <img class="ui middle aligned image logo" src="/assets/image/logo/logo.svg" alt="@LojaCorp.Control.Company._Company.FantasyName" title="@LojaCorp.Control.Company._Company.FantasyName">
                     </a>
                 </div>
                 
-                <div class="ui four wide computer column only desktop-menu">
-                   @Html.Action("Menu", "Home")
-                </div>
                 
-                <div class="ui center aligned three wide tablet two wide computer column searchcolumn">
+                
+                <div class="ui center aligned three wide tablet eleven wide computer column searchcolumn">
                     <div class="ui category @_classSearch">
                         <div class="ui icon input fluid">
                             <input class="prompt" type="text" placeholder="Buscar...">
@@ -107,9 +105,15 @@
                     </div>
                 </div>
             </div>
+            <div class="row sec-row-header">
+                <div class="ui four wide computer column only desktop-menu">
+                   @Html.Action("Menu", "Home")
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
 <div class="ui container search-container">
     <div class="row">
             <div class="ui searchMobile mobile only">
