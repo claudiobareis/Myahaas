@@ -30,7 +30,7 @@
 </section>
 }
 
-<section class="ui container category-1">
+<section class="ui container fluid category-1">
     <div class="title">
         <h2>Sapatos Femininos, Bolsas e Acessórios: Novidades da Semana na MYA!</h2>
         <h3>Lançamento da tendência toda semana para você se apaixonar </h3>
@@ -46,37 +46,21 @@
         $(document).ready(function () {  
             $('.products-carousel .slideshow').attr('data-dots','true');
             $('.products-carousel .slideshow').attr('data-arrow','true'); 
+            $('.products-carousel .slideshow').attr('data-qtd','5');               
             $('.category-1 .product-in-card a.ui.attached').removeClass('slide');  
-          
-            /*          
-              $(".category-1 .products-carousel .doubling--").addClass("owl-carousel").addClass("owl-theme").owlCarousel({
-                loop:true,
-                margin:10,
-                nav:false,
-                responsive:{
-                    0:{
-                        items:2
-                    },
-                    600:{
-                        items:2
-                    },
-                    1000:{
-                        items:4
-                    }
-                }
-            });
-            $('.products-carousel .slideshow').attr('data-dots','true');
-            $('.products-carousel .slideshow').attr('data-arrow','false');            
-            */
-           
         });
     </script>
+    <style>
+        .products-carousel{
+            padding: 0 3.5em;
+        }
+    </style>
 </section>
 
 <!-- ~/Views/Shared/Blocks/_CentralHalfBanner.cshtml -->
 @Html.Action("CentralHalfBanner", "Banner")
 
-<section class="ui container category-2">
+<section class="ui container fluid category-2">
     <div class="title">
         <h2>Calçados Femininos, Bolsas e Acessórios Mais Vendidos</h2>
         <h3>os best sellers da mya reunidos aqui</h3>
@@ -93,9 +77,14 @@
             $('.products-carousel-mais .column > div').removeClass('slideshow');            
         });
     </script>
+    <style>
+        .products-carousel-mais{
+            padding: 0 3.5em;
+        }
+    </style>
 </section>
 
-<section class="ui container category-3">
+<section class="ui container fluid category-3">
     <div class="title">
         <h2 class="bee"><span class="bee">mya: linha</span>home</h2>
         <h3>Mya Bee Home: coisinhas incríveis para tornar a sua casa o seu lugar favorito</h3>
@@ -112,6 +101,7 @@
             $('.category-3 .cards').addClass('slideshow');
             $('.category-3 .slideshow').attr('data-dots','true');
             $('.category-3 .slideshow').attr('data-arrow','true');  
+            $('.category-3 .slideshow').attr('data-qtd','5');   
             $('.category-3 .product-in-card a.ui.attached').removeClass('slide');          
         });
     </script>   

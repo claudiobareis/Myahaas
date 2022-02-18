@@ -268,3 +268,14 @@
     }
   }
 }
+
+#filtroList{
+  .imageAtribute{
+    max-width: 25%;
+    background-color: transparent;    
+  }
+  .ui.checkbox label {
+    display: flex;
+    align-items: center;
+  }
+}

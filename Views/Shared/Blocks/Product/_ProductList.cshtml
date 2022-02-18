@@ -1,9 +1,9 @@
 ﻿@model IList<DomainProduct.Entities.Product>
-<div class="ui container">
+<div class="ui container fluid">
     <div class="ui grid">
         <div class="row one column">
             <div class="column">
-                <div class="ui doubling four cards centered slideshow" data-arrow="true" data-dots="false" data-qtd="4">
+                <div class="ui doubling six cards centered slideshow" data-arrow="true" data-dots="false" data-qtd="4">
                     @foreach (DomainProduct.Entities.Product product in Model.Take(12))
                     {
                         <!-- Page: ~/Views/Shared/Object/Product/_ProductInCard.cshtml -->
