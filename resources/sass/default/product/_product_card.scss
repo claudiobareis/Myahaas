@@ -68,7 +68,7 @@
                 position: absolute;
                 left: 0;
                 right: 0;
-                bottom: 52px;
+                top: 70px;
 
                 i {
                     text-decoration: line-through;
@@ -102,6 +102,7 @@
                 display: block;
                 text-align: center;
             }
+            
         }
         .info {
             background-color: white;
@@ -405,6 +406,15 @@
                 }
             }
         }
+    }
+
+    .disponibilidade{
+        display: block;
+        text-align: center;
+        font-style: italic;
+        color: #888;
+        font-size: 12px;
+        margin-top: 1em;
     }
 }
 
