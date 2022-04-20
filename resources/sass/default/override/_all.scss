@@ -5,3 +5,9 @@
         border-right-color: #000 !important;
     }
 }
+
+.ui.card .content img, 
+.ui.cards>.card .content img,
+.product-in-card.ui.card a img.hidden.content{
+    max-width: 300px;
+}
