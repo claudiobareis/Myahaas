@@ -60,7 +60,7 @@
 }
 
 .wsmobileheader {
-    display: none;
+    display: none;    
 }
 
 .overlapblackbg {
@@ -389,11 +389,24 @@
     @media screen and (max-width: $desktop-bp-min) {
         display: none !important;
     }
-
+    .megamenu {
+        .row{
+            .sixteen {                
+                .list{                    
+                    .divider{
+                        display: none;
+                    }               
+                    .item{
+                        display: none;
+                    }     
+                }
+            }            
+        }
+    }
     .menuheader {
         .ui.menu {            
             .item {
-                color: #333 !important;        
+                color: #333 !important;                        
                 &.sale{                   
                     background: #e63590;
                     color: #ffffff !important;                
