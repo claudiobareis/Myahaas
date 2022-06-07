@@ -324,5 +324,21 @@ headlogo {
 }
 
 .wsmenu{
-    min-height: auto;
+    min-height: auto;   
+    .mobile-sub{
+        .megamenu{
+            .row{
+                .sixteen{
+                    .list{
+                        .divider{
+                            display: none;
+                        }
+                        .item{
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }    
 }
