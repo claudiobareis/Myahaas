@@ -69,7 +69,9 @@
                 left: 0;
                 right: 0;
                 top: 70px;
-
+                @media screen and (max-width: $mobile-bp) {
+                    top: 42px;
+                }
                 i {
                     text-decoration: line-through;
                 }
