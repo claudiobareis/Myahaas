@@ -7,15 +7,23 @@
         <div class="ui form">
             <div class="grouped fields">
                 @foreach (var category in Model.OrderBy(c => c.Level).ThenBy(c => c.Name))
-                {
-                    
+                    {    
                     <div class="field @(category.Level.Length == 2 ? "default" : "children")">
-                        <div class="ui checkbox checkCategory" data-type="idCategories" id="@category.IdCategory" name="@category.Name" data-reference="Categorias">
-                            <input type="checkbox" name="@category.Name" id="checkCategory_@category.IdCategory" tabindex="0" value="@category.IdCategory">
-                            <label>@category.Name</label>
+                        @if (category.Level.Length == 6) {
+                                <div class="ui checkbox checkCategory" style="margin-left:1.5rem;" data-type="idCategories" id="@category.IdCategory" name="@category.Name" data-reference="Categorias">
+                        <input type="checkbox" name="@category.Name" id="checkCategory_@category.IdCategory" tabindex="0" value="@category.IdCategory">
+                        <label>@category.Name</label>
                         </div>
-                    </div>
-                }
+                        }
+                        else
+                        {
+                                <div class="ui checkbox checkCategory" data-type="idCategories" id="@category.IdCategory" name="@category.Name" data-reference="Categorias">
+                                <input type="checkbox" name="@category.Name" id="checkCategory_@category.IdCategory" tabindex="0" value="@category.IdCategory">
+                                <label>@category.Name</label>
+                                </div>
+                        }
+                        </div>
+                    }
             </div>
         </div>
     </div>
