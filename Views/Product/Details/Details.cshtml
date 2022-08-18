@@ -942,3 +942,7 @@
         @Html.Action("LoginPartial", "Customer", new { _class = "modal-login", returnURL = Model.UrlFriendlyCustom != null ? $"/Customer/AutoAddProductInWishListBeforeLogin?redirectToPage={Model.UrlFriendlyCustom}" : $"/Customer/AutoAddProductInWishListBeforeLogin?redirectToPage={Model.UrlFriendly}" })
     </div>
 </div>
+
+<script>
+    fbq('track', 'ViewContent');
+ </script>
