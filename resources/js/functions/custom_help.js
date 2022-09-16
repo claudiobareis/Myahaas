@@ -62,4 +62,11 @@ $(document).ready(function() {
     */
     $('.info .avise-card').parent().addClass('avise-me-txt');
     
+    //Mensagem Tabela de Frete
+    $("#loadFrete .grouped .field label:contains('Receba hoje')").click(function() {         
+        if($('.msg-recebahoje').length == 0){        
+            $("#loadFrete .grouped .field label:contains('Receba hoje')").append("<div class='ui yellow message msg-recebahoje'>Pedidos feitos até as 12hs serão entregues hoje até as 21hs</div>");        
+        }
+    });
+
 });
