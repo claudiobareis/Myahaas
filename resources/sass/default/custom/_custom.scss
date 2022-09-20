@@ -575,7 +575,15 @@ html, body {
                         padding: 0 30px;
                         text-align: center;
                     }
-
+                    img{
+                        max-width: 300px;
+                        height: auto;
+                        @media screen and (max-width: $mobile-bp) {
+                            margin: 0 auto;
+                            filter: invert(1);
+                            max-width: 90%;
+                        }
+                    }
                     h1{
                         text-transform: uppercase;
                         font-size: 43px;
@@ -587,17 +595,16 @@ html, body {
                             font-size: 38px;
                         }
                     }
-                    h2{
-                        text-transform: uppercase;
-                        font-size: 23px;
+                    h2{                        
+                        font-size: 21px;
                         font-weight: 500;
                         font-family: $font-mont-name;                        
                         color: #000;
                         margin: 0;
-                        padding-bottom: 15px;
+                        padding: 50px 0;
                         @media screen and (max-width: $mobile-bp) {
                             font-size: 19px;
-                            padding: 18px 0;
+                            padding: 31px 0 11px;
                             line-height: 28px;
                             color: #fff;
                         }                        
@@ -615,14 +622,16 @@ html, body {
                         background-color: #000;
                         color: #fff;
                         padding: 15px 30px;
-                        font-size: 17px;
+                        font-size: 12px;
                         text-transform: uppercase;
                         width: fit-content;
+                        display: none;
                         @media screen and (max-width: $mobile-bp) {
                             margin: 0 auto;
                             background-color: #fff;
                             color: #000;
                             margin: 20px auto 0;
+                            display: block;
                         }  
                     }
                 }
@@ -634,7 +643,7 @@ html, body {
                     video{
                         @media screen and (max-width: $mobile-bp) {
                             width: 100%;
-                            filter: brightness(.3);
+                            filter: brightness(.6);
                             max-height: 530px;
                             background-color: #000;
                         }
@@ -652,7 +661,7 @@ html, body {
                 text-align: center;
                 h2{
                     text-transform: uppercase;
-                    font-size: 23px;
+                    font-size: 26px;
                     font-weight: 500;
                     font-family: $font-mont-name;                        
                     color: #000;
@@ -679,6 +688,11 @@ html, body {
                     padding: 20px;
                 }
                 .card.produto .content {
+                    .dados{
+                        h3{
+                            font-family: $font-mont-name;  
+                        }
+                    }
                     .info {
                         .sku-options {
                             &:before{
@@ -687,6 +701,12 @@ html, body {
                                 }
                             }
                             .dropdown {
+                                .icon{
+                                    right: 13px;
+                                    @media screen and (max-width: $mobile-bp) {
+                                        right: 0;
+                                    }
+                                }
                                 .text{
                                     @media screen and (max-width: $mobile-bp) {
                                         font-size: 10px;
@@ -707,10 +727,25 @@ html, body {
                         padding: 1em 0.8em;
                     }
                 }
+                .call-to-action-box{
+                    display: flex;
+                    justify-content: center;
+                    padding-top: 40px;
+                    .btn-call-to-action{
+                        font-family: $font-mont-name;  
+                        background-color: #000;
+                        color: #fff;
+                        padding: 15px 30px;
+                        font-size: 12px;
+                        text-transform: uppercase;                    
+                     
+                    }
+                }
+                
             }
         }
         .sec-03{
-            padding: 80px 0 0;
+            padding: 30px 0 0;
             .title{
                 text-align: center;
                 h2{
@@ -745,15 +780,22 @@ html, body {
                     width: 100%;
                     margin: 10px;
                     border-radius: 5px;
-                    min-height: 129px;
+                    min-height: 165px;
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
                     box-shadow: 0 0 11px #0000000d;
+                    h3{
+                        font-family: $font-mont-name;  
+                        font-size: 13px;
+                        font-weight: 400;
+                    }
                     h4{
                         font-family: $font-mont-name;  
                         font-size: 15px;
                         font-weight: 600;
+                        padding: 0 0 10px;
+                        margin: 0;
                     }
                     svg{
                         max-width: 16px;
@@ -782,8 +824,11 @@ html, body {
                         left: 25px;
                         top: 50%;
                         bottom: auto;
+                        background: transparent;
+                        border: 0;
                         &:before{
-                            content: '<';
+                            content: "\f060";
+                            font-family: 'Icons';
                             font-size: 20px;
                             line-height: 1;
                             opacity: .75;
@@ -795,9 +840,12 @@ html, body {
                         position: absolute;
                         right: 25px;
                         top: 50%;
-                        bottom: auto;   
+                        bottom: auto;  
+                        background: transparent;
+                        border: 0; 
                         &:before{
-                            content: ">";
+                            content: "\f061";
+                            font-family: 'Icons';
                             font-size: 20px;
                             line-height: 1;
                             opacity: .75;

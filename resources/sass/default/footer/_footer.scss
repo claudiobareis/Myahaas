@@ -586,3 +586,53 @@ ul{
         fill: rgba(255, 0, 0, 1);
     }
 }
+
+.lojas-footer{
+    .lojas{
+        padding: 10px 0;
+        .infos{
+            padding-bottom: 6px;
+            @media screen and (max-width: $mobile-bp) {
+                padding-bottom: 12px;
+            }
+            h3{
+                margin: 0;
+                padding: 0;
+                font-size: 13px;
+                font-weight: 500;
+                color: #999999;
+                padding-bottom: 3px;
+            }
+            h4{
+                margin: 0;
+                padding: 0;
+                font-size: 14px !important;
+                font-weight: 500 !important;
+            }
+            a{
+                
+                font-size: 12px;
+                margin-bottom: 0;
+                &.whatsapp{
+                    display: none;
+                    @media screen and (max-width: $mobile-bp) {
+                        display: flex;
+                    }
+                }
+                &.phone{
+                    display: none;
+                    @media screen and (max-width: $mobile-bp) {
+                        display: flex;
+                    }
+                }
+                svg{
+                    max-width: 15px;
+                    margin-right: 6px;
+                    @media screen and (max-width: $mobile-bp) {
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+}
