@@ -10,9 +10,9 @@
 
 <h1 class="ocultoSeo">Sapatos Femininos, Bolsas e Acessórios</h1>
 
+<!-- ~/Views/Shared/Blocks/Banner/_FullBanner.cshtml -->
 @if (!Request.Browser.IsMobileDevice) {    
-<section class="mobile-hide tablet-hide hero-banner">
-    <!-- ~/Views/Shared/Blocks/Banner/_FullBanner.cshtml -->
+<section class="mobile-hide tablet-hide hero-banner">    
         @Html.Action("FullBanner", "Banner")
         <script>
             $(document).ready(function () {            
@@ -29,7 +29,71 @@
     @Html.Action("FooterHalfBanner", "Banner")
 </section>
 }
-
+@if (!Request.Browser.IsMobileDevice) {
+    <section class="pitbar-home desk">
+        <div class="item first">
+            <h3>frete grátis</h3>
+        </div>
+        <div class="item">
+            <h4>São Paulo e Grande São Paulo</h4>
+            <p>em compras <span>acima de R$350</span></p>
+        </div>
+        <div class="item">
+            <h4>Sul / Sudeste / Centro/Oeste</h4>
+            <p>em compras <span>acima de R$400</span></p>
+        </div>
+        <div class="item">
+            <h4>Norte e Nordeste</h4>
+            <p>em compras <span>acima de R$500</span></p>
+        </div>    
+    </section>
+}
+@if (Request.Browser.IsMobileDevice) {   
+    <section class="pitbar-home mobile slick-pit">
+        <div class="item">
+            <div class="box">
+                <span class="frete">frete grátis</span>
+                <div>
+                    <h4>São Paulo e Grande São Paulo</h4>
+                    <p>em compras <span>acima de R$350</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="box">
+                <span class="frete">frete grátis</span>
+                <div>
+                    <h4>Sul / Sudeste / Centro / Oeste</h4>
+                    <p>em compras <span>acima de R$400</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="box">
+                <span class="frete">frete grátis</span>
+                <div>
+                    <h4>Norte e Nordeste</h4>
+                    <p>em compras <span>acima de R$500</span></p>
+                </div>
+            </div>
+        </div>    
+    </section>
+    <script>
+        $(document).ready(function () {
+            $('.slick-pit').slick({
+                dots: false,
+                infinite: true,
+                speed: 300,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 5000,
+                prevArrow: false,
+                nextArrow: false
+            });
+        });
+    </script>
+}
 <section class="ui container fluid category-1">
     <div class="title">
         <h2>Sapatos Femininos, Bolsas e Acessórios: Novidades da Semana na MYA!</h2>
@@ -49,12 +113,7 @@
             $('.products-carousel .slideshow').attr('data-qtd','5');               
             $('.category-1 .product-in-card a.ui.attached').removeClass('slide');  
         });
-    </script>
-    <style>
-        .products-carousel{
-            padding: 0 3.5em;
-        }
-    </style>
+    </script>    
 </section>
 
 <!-- ~/Views/Shared/Blocks/_CentralHalfBanner.cshtml -->
@@ -76,22 +135,17 @@
         $(document).ready(function () {            
             $('.products-carousel-mais .column > div').removeClass('slideshow');            
         });
-    </script>
-    <style>
-        .products-carousel-mais{
-            padding: 0 3.5em;
-        }
-    </style>
+    </script>    
 </section>
 
 <section class="ui container fluid category-3">
     <div class="title">
-        <h2 class="bee"><span class="bee">mya: linha</span>home</h2>
-        <h3>Mya Bee Home: coisinhas incríveis para tornar a sua casa o seu lugar favorito</h3>
+        <h2>Bolsas</h2>
+        <h3>Confira os mais lindos modelos de bolsas femininas aqui na Mya Haas. Temos bolsas pequenas, grandes, de couro e mais em diversas cores e tendências!</h3>
     </div>
     <div class="products-carousel">
-        <!-- Chamada de exibição de uma categoria  -->
-        @Html.Action("ProductsByGroup", "Product", new { id = 5403 })
+        <!-- Chamada de exibição de uma categoria  -->        
+        @Html.Action("GetProducts", "Product", new { category = 128973 })
     </div>
     <div class="category-cta">
         <a href="/grupo/linha-home-da-homepage">VER TODOS</a>

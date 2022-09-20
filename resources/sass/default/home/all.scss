@@ -35,13 +35,13 @@
 
     h2 {
         font-style: normal;
-        font-size: 19px;
+        font-size: 17px;
         line-height: 122%;
         font-weight: 500;
         letter-spacing: 1px;
         text-transform: uppercase;
         text-align: center;
-        font-family: 'PT Sans', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+        font-family: $font-mont-name;
         position: relative;
         @media screen and (min-width: $tablet-bp-min){
             padding: 25px 0 0;
@@ -90,7 +90,7 @@
         font-weight: 100;        
         text-align: center;
         text-transform: none;
-        font-family: 'PT Sans', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+        font-family: $font-mont-name;
         color: #686868;
         @media only screen and (max-width: 767px) {
             margin: 15px 0 0;
