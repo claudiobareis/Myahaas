@@ -67,6 +67,11 @@
     
 }
 .car-banners {
+    &.slick-slider:not(.slick-dotted){
+        @media screen and (max-width: $mobile-bp) {
+            margin-bottom: 0 !important;
+        }
+    }    
     .container {
         position: relative;
         .description {

@@ -687,40 +687,53 @@ html, body {
                 @media screen and (max-width: $mobile-bp) {
                     padding: 20px;
                 }
-                .card.produto .content {
-                    .dados{
-                        h3{
-                            font-family: $font-mont-name;  
-                        }
+                .grup_01{
+                    .ui.grid > .column:only-child{
+                        padding-bottom: 0;
+                     }
+                }
+                .card.produto {
+                    @media screen and (max-width: $mobile-bp) {
+                        min-height: auto !important;
                     }
-                    .info {
-                        .sku-options {
-                            &:before{
-                                @media screen and (max-width: $mobile-bp) {
-                                    left: -9px;
-                                }
+                    .content{                        
+                        .dados{
+                            h3{
+                                font-family: $font-mont-name;  
                             }
-                            .dropdown {
-                                .icon{
-                                    right: 13px;
+                        }
+                        .info {
+                            display: none;
+                            .sku-options {
+                                &:before{
                                     @media screen and (max-width: $mobile-bp) {
-                                        right: 0;
+                                        left: -9px;
                                     }
                                 }
-                                .text{
+                                .dropdown {
+                                    .icon{
+                                        right: 13px;
+                                        @media screen and (max-width: $mobile-bp) {
+                                            right: 0;
+                                        }
+                                    }
+                                    .text{
+                                        @media screen and (max-width: $mobile-bp) {
+                                            font-size: 10px;
+                                        }
+                                    }
+                                }
+                                .btn-comprar-card{
                                     @media screen and (max-width: $mobile-bp) {
                                         font-size: 10px;
                                     }
                                 }
                             }
-                            .btn-comprar-card{
-                                @media screen and (max-width: $mobile-bp) {
-                                    font-size: 10px;
-                                }
-                            }
                         }
+                        
                     }
-                } 
+
+                }
                 .ui.cards > .card > .content, 
                 .ui.card > .content{
                     @media screen and (max-width: $mobile-bp) {

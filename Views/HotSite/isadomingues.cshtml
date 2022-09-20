@@ -28,9 +28,12 @@
                         <h2>Escolhas da Isa Domingues</h2>                        
                     </div>
                     <div class="products-carousel-mais">
-                        @{                            
-                            @Html.Action("ProductsByGroup", "Product", new { id = 7580 })
-                        }
+                        <div class="grup_01">
+                            @Html.Action("ProductsByGroup", "Product", new { id = 7580 });                                                        
+                        </div>                           
+                        <div class="grup_02">
+                            @Html.Action("ProductsByGroup", "Product", new { id = 7605 });
+                        </div>
                         <div class="call-to-action-box">
                             <a href="https://www.myahaas.com.br/" class="btn-call-to-action">conheca outros produtos da Mya</a>
                         </div>
@@ -106,10 +109,6 @@
             <img src="/assets/image/liveisa/16.jpg">
         </div>
     </div>
-
-    
-
-
 </div>
 <script>
     $(document).ready(function () {        

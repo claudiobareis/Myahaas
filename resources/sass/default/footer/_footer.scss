@@ -617,12 +617,14 @@ ul{
                     display: none;
                     @media screen and (max-width: $mobile-bp) {
                         display: flex;
+                        align-items: center;
                     }
                 }
                 &.phone{
                     display: none;
                     @media screen and (max-width: $mobile-bp) {
                         display: flex;
+                        align-items: center;
                     }
                 }
                 svg{
