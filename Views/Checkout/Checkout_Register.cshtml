@@ -100,11 +100,11 @@
                                                    tabindex="1">
                                         </div>
                                     </div>
-                                    <div class="three fields">
+                                    <div class="three fields" data-jet-active="true">
                                         @{
                                             if (ViewBag.EmailUser != null && ViewBag.EmailUser == "")
                                             {
-                                                <div class="field required">
+                                                <div class="field required" data-jet-active="true">
                                                     <label>Seu Email</label>
                                                     <div class="ui left icon input ">
                                                         <i class="checkmark box icon"></i>
@@ -116,7 +116,7 @@
                                             }
                                             else
                                             {
-                                                <div class="field required" id="valid_cpf_cnpj">
+                                                <div class="field required" id="valid_cpf_cnpj" data-jet-active="true">
                                                     <label>CPF / CNPJ</label>
                                                     <div class="ui left icon input">
                                                         <i class="icon id card"></i>
@@ -131,7 +131,7 @@
                                             }
                                         }
 
-                                        <div class="field required">
+                                        <div class="field required" data-jet-active="true">
                                             <label>Telefone</label>
                                             <div class="ui left icon input">
                                                 <i class="phone icon"></i>
@@ -141,7 +141,7 @@
                                                        tabindex="3">
                                             </div>
                                         </div>
-                                        <div class="field required pessoa fisica">
+                                        <div class="field required pessoa fisica" data-jet-active="true">
                                             <label>Data de Nascimento</label>
                                             <div class="ui input left icon">
                                                 <i class="calendar icon"></i>
@@ -151,7 +151,7 @@
                                                        tabindex="4">
                                             </div>
                                         </div>
-                                        <div class="field pessoa juridica">
+                                        <div class="field pessoa juridica" data-jet-active="true">
                                             <label>IE</label>
                                             <div class="ui left icon input">
                                                 <i class="icon id card"></i>
@@ -164,7 +164,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="field required pessoa juridica">
+                                    <div class="field required pessoa juridica" data-jet-active="true">
                                         <label>Responsável</label>
                                         <div class="ui left icon input">
                                             <i class="user icon"></i>
@@ -174,8 +174,8 @@
                                                    tabindex="6">
                                         </div>
                                     </div>
-                                    <div class="two fields pessoa juridica">
-                                        <div class="field required pessoa juridica">
+                                    <div class="two fields pessoa juridica" data-jet-active="true">
+                                        <div class="field required pessoa juridica" data-jet-active="true">
                                             <label>Razão Social</label>
                                             <div class="ui left icon input">
                                                 <i class="suitcase icon"></i>
@@ -185,7 +185,7 @@
                                                        tabindex="6">
                                             </div>
                                         </div>
-                                        <div class="field required  pessoa juridica">
+                                        <div class="field required  pessoa juridica" data-jet-active="true">
                                             <label>Nome Fantasia</label>
                                             <div class="ui left icon input">
                                                 <i class="suitcase icon"></i>
@@ -196,8 +196,8 @@
                                         </div>
                                     </div>
                                     <h4 class="ui dividing header" data-jet-active="false">Endereço</h4>
-                                    <div class="three fields required">
-                                        <div class="field required" data-jet-revel="true">
+                                    <div class="three fields required" data-jet-active="true">
+                                        <div class="field required" data-jet-revel="true" data-jet-active="true"> 
                                             <label>CEP</label>
                                             <div class="ui left icon input">
                                                 <i class="icon marker"></i>
@@ -209,7 +209,7 @@
                                                        tabindex="9">
                                             </div>
                                         </div>
-                                        <div class="field" data-jet-revel="true">
+                                        <div class="field" data-jet-revel="true" data-jet-active="true">
                                             <div class="busca cep">
                                                 <p>
                                                     Não sabe o seu CEP? <a href="http://www.buscacep.correios.com.br/sistemas/buscacep/"
@@ -218,7 +218,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="field required" data-jet-revel="true">
+                                    <div class="field required" data-jet-revel="true" data-jet-active="true">
                                         <label>Endereço</label>
                                         <div class="ui left icon input">
                                             <i class="icon home"></i>
@@ -227,8 +227,8 @@
                                                    tabindex="10">
                                         </div>
                                     </div>
-                                    <div class="three fields">
-                                        <div class="field required" data-jet-revel="true">
+                                    <div class="three fields" data-jet-active="true">
+                                        <div class="field required" data-jet-revel="true" data-jet-active="true">
                                             <label>Número</label>
                                             <div class="ui left icon input">
                                                 <i class="icon square outline"></i>
@@ -238,7 +238,7 @@
                                                        tabindex="11">
                                             </div>
                                         </div>
-                                        <div class="field" data-jet-revel="true">
+                                        <div class="field" data-jet-revel="true" data-jet-active="true">
                                             <label>Complemento</label>
                                             <div class="ui left icon input">
                                                 <i class="icon square outline"></i>
@@ -247,7 +247,7 @@
                                                        tabindex="12">
                                             </div>
                                         </div>
-                                        <div class="field required" data-jet-revel="true">
+                                        <div class="field required" data-jet-revel="true" data-jet-active="true">
                                             <label>Bairro</label>
                                             <div class="ui left icon input">
                                                 <i class="icon square outline"></i>
@@ -258,8 +258,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="two fields">
-                                        <div class="field required" data-jet-revel="true">
+                                    <div class="two fields" data-jet-active="true">
+                                        <div class="field required" data-jet-revel="true" data-jet-active="true">
                                             <label>Cidade</label>
                                             <div class="ui left icon input">
                                                 <i class="icon square outline"></i>
@@ -269,7 +269,7 @@
                                                        tabindex="14">
                                             </div>
                                         </div>
-                                        <div class="required field" data-jet-revel="true">
+                                        <div class="required field" data-jet-revel="true" data-jet-active="true">
                                             <label>Estado</label>
                                             <select class="ui dropdown search" id="estado_0"
                                                     name="Address[0].State" data-jet-validate="select"
@@ -308,7 +308,7 @@
                                     @if (!string.IsNullOrEmpty(termo))
                                     {
                                         <div class="@(!Request.Browser.IsMobileDevice ? "inline" : "") field required">
-                                            <div class="ui checkbox termo-checkout">
+                                            <div class="ui checkbox termo-checkout" data-jet-active="true">
                                                 <input type="checkbox" id="termo-aceite" name="termo-aceite" data-jet-validate="checkedTerm" value="true" tabindex="16">
                                                 <label>Li e concordo com o termo de aceite?</label>
                                             </div>
@@ -317,7 +317,7 @@
                                     @if (ViewBag.PolicyPrivacy)
                                     {
                                         <div class="@(!Request.Browser.IsMobileDevice ? "inline" : "") field required">
-                                            <div class="ui checkbox politica-privacidade">
+                                            <div class="ui checkbox politica-privacidade" data-jet-active="true">
                                                 <input type="checkbox" id="PolicyPrivacyAccepted" name="PolicyPrivacyAccepted" data-jet-validate="checkedPolicy" value="true" tabindex="17">
                                                 <label>Li e concordo com a @Html.Raw(ViewBag.PolicyPrivacyLink)</label>
                                             </div>
@@ -333,7 +333,7 @@
                                     }
                                 </div>
                             </div>
-                            <div class="row two column barra-finalizacao" data-jet-active="false">
+                            <div class="row two column barra-finalizacao" data-jet-active="true">
                                 <div class="column">
                                     <a href="/checkout" class="ui animated button basic left floated">
                                         <div class="visible content">Voltar para o Carrinho</div>
@@ -346,7 +346,7 @@
                                     <button type="submit"
                                             class="ui animated button submit action right floated continuar"
                                             tabindex="18"
-                                            id="goPayment">
+                                            id="goPayment" data-jet-active="true">
                                         <div class="visible content">Fazer o Pagamento</div>
                                         <div class="hidden content">
                                             <i class="arrow right icon"></i>
