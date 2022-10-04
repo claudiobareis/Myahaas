@@ -1,5 +1,4 @@
-﻿@model DomainCheckout.Entities.Cart
-@{
+﻿@{
     ViewBag.Title = "Identificação";
     Layout = "~/Views/Shared/Base/_LayoutCheckout.cshtml";
 
@@ -73,7 +72,7 @@
                                         </div>
                                     </button>
                                 </div>
-                                @Html.Action("GetRecaptchaV3", "Company", new {Module = "FirstAccess"})
+                                @Html.Action("GetRecaptchaV3", "Company", new { Module = "FirstAccess" })
                             </div>
                         </div>
                     </div>
@@ -96,7 +95,6 @@
         </div>
     </div>
 </div>
-
 
 
 @if (ViewBag.PolicyPrivacy)
@@ -122,5 +120,3 @@
 
 
 }
-<!-- ~/Views/Shared/Parts/Customer/_Part_Customer_Password.cshtml -->
-@Html.Partial("Parts/Customer/_Part_Customer_Password", "/checkout/Payment")

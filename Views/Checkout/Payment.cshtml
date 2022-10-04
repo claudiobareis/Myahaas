@@ -5,9 +5,38 @@
 @{
     ViewBag.Title = "Pagamento";
     Layout = "~/Views/Shared/Base/_LayoutCheckout.cshtml";
+    
+    if (Session["PaymentLinkChangeBrand"] == null)
+    {
+        Session["PaymentLinkChangeBrand"] = false;
+    }
+    
+    string _disabled = "";
+    string _disabledPaymentBrands = "disable_column";
+    string _paymentLinkChangeBrand = "0";
+    if (Session["PaymentLinkChangeBrand"] != null && (bool)Session["PaymentLinkChangeBrand"] == true)
+    {
+        _disabled = "disable_column";
+        _disabledPaymentBrands = "";
+        _paymentLinkChangeBrand = "1";
+    }
+}
+@section logo {
+    @if (_paymentLinkChangeBrand == "0")
+    {
+        <a href="/Home" title="@LojaCorp.Control.Company._Company.FantasyName">
+            <img class="ui middle aligned image logo" src="~/assets/image/logo/logo.png" />
+        </a>
+    }
+    else
+    {
+        <img class="ui middle aligned image logo" src="~/assets/image/logo/logo.png" />
+    }
 }
 
 @section steps{
+    @if (_paymentLinkChangeBrand == "0")
+    {
     <div class="jet checkout jBreadCrumb">
         <div class="jCrumb completed">
             <div class="jBullet">
@@ -35,7 +64,8 @@
         </div>
     </div>
 }
-
+}
+<input type="hidden" name="PaymentLinkChangeBrand" id="PaymentLinkChangeBrand" value="@_paymentLinkChangeBrand" />
 <input type="hidden" name="idShipping" id="idShipping" value="@Model.IdShippingMode" />
 <div class="ui tiny scrolling modal lista-endereco-cliente" id="ListaEnderecosCliente">
     @Html.Action("ListaEnderecosCliente", "Checkout")
@@ -87,7 +117,7 @@
                         <!-- Vale Compras -->
                         @Html.Action("ValeCompra", "Checkout")
                         
-                        <div class="column">
+                        <div class="column @_disabled">
                             <!-- Cupom Desconto -->
                             @Html.Partial("~/Views/Shared/Parts/Checkout/_Part_Checkout_Desconto.cshtml")
                         </div>
@@ -95,7 +125,7 @@
                     <!-- Embrulhar para presente -->
                     @if (ViewBag.Gift)
                     {
-                        <div class="column">
+                        <div class="column @_disabled">
                             <div class="ui segment presente">
                                 <div class="ui accordion compra">
                                     <div class="active title">
@@ -106,7 +136,7 @@
                                     <div class="content ui form">
                                         <div class="field">
                                             <div class="ui toggle checkbox margin left large" id="checkPresente">
-                                                <input type="checkbox" name="presente" id="presente" value="off"/>
+                                                <input type="checkbox" name="presente" id="presente" value="off" />
                                             </div>
                                         </div>
                                         <div class="field" id="exibeMsg">
@@ -120,7 +150,7 @@
                     }
                 </div>
             </div>
-            <div class="sixteen wide column jetCheckout disable_column margin top small" id="checkoutColumn2">
+            <div class="sixteen wide column jetCheckout @_disabledPaymentBrands margin top small" id="checkoutColumn2">
 
 
               
