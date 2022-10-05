@@ -2,8 +2,8 @@
 @model DomainCheckout.Entities.CartItem
 
 @{
-  string classe_qtd = "ui icon basic button ";
-  string classe_remove = "mini ui icon basic button produto ";
+  string classe_qtd = "ui icon button ";
+  string classe_remove = "mini ui icon red button produto ";
   string id_ipt_qtd = "qtd_";
   string classe_stock = "stock_";
   string classe_ipt_qtd = "";
@@ -21,7 +21,7 @@
   }
 }
 
-<div class="item item-cart-product @(Model.Stock == 0 || Model.FlagExhausted == EnumeratorsCommons.EnumYesNo.Yes ? "exhausted" : "")" data-id-produto="@Model.IdProduct" data-id-cart="@Model.IdCartItem" data-signature="@Model.IsRecurrent" id="itemCartProduct_@Model.IdCartItem">
+<div class="item item-cart-product @(Model.Stock == 0 || Model.Stock < Model.Quantity || Model.FlagExhausted == EnumeratorsCommons.EnumYesNo.Yes ? "exhausted" : "")" data-id-produto="@Model.IdProduct" data-id-cart="@Model.IdCartItem" data-signature="@Model.IsRecurrent" id="itemCartProduct_@Model.IdCartItem">
 
     <button class="@classe_remove" data-id="@Model.IdCartItem" data-id-produto="@Model.IdProduct" data-id-sku="@Model.IdSku">
         <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -63,7 +63,7 @@
 
         <div class="wrapper-qty-price">
             <div class="description">
-                @if (Model.Stock == 0 || Model.FlagExhausted == EnumeratorsCommons.EnumYesNo.Yes)
+                @if (Model.Stock == 0 || Model.Stock < Model.Quantity || Model.FlagExhausted == EnumeratorsCommons.EnumYesNo.Yes)
                 {
                     <span class="ui label basic primary exhausted">PRODUTO ESGOTADO</span>
                 }
@@ -89,8 +89,7 @@
                 <div class="priceProduct" id="priceProduct_@Model.IdCartItem">@(Model.Quantity > 1 ? Model.Quantity+"x" : "") @string.Format("{0:c}", Model.PriceProduct)</div>
             </div>
         </div>
-        
-        
+
     </div>
     
     <div class="ui divider"></div>
