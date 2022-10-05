@@ -21,7 +21,9 @@
         <meta property="og:image" content="/assets/image/logo/logo.png">
     }
 }
-
+@{
+  string canonical = !Request.Url.AbsoluteUri.Contains("www") ? "https://www." + Request.Url.Host + Request.Path : "https://" + Request.Url.Host + Request.Path;
+}
 @section breadcrumbs {
   <div class="ui two column centered grid stackable middle aligned margin top bottom no breadcrumbs">
     <div class="row">
