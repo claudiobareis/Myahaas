@@ -6,12 +6,20 @@
 }
 
 @section CustomSeo {
-  @{
-    if (!String.IsNullOrEmpty(Model.MetaDescription))
-    {
-      <meta name="Description" content="@Model.MetaDescription">
+    @{
+        if (!String.IsNullOrEmpty(Model.MetaDescription))
+        {
+            <meta name="Description" content="@Model.MetaDescription">
+            <meta property="og:description" content="@Model.MetaDescription">
+            <meta name="twitter:description" content="@Model.MetaDescription">
+        }
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="@Html.Raw(Request.Url)">
+        <meta name="twitter:url" content="@Html.Raw(Request.Url)">
+        <meta property="og:title" content="@Html.Raw(ViewBag.Title)">
+        <meta name="twitter:title" content="@Html.Raw(ViewBag.Title)">
+        <meta property="og:image" content="/assets/image/logo/logo.png">
     }
-  }
 }
 @{
   string canonical = !Request.Url.AbsoluteUri.Contains("www") ? "https://www." + Request.Url.Host + Request.Path : "https://" + Request.Url.Host + Request.Path;
@@ -38,7 +46,7 @@
               <span class="section" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
                 <span itemprop="name">@(Model != null ? Model.Name : "")</span>
                 <meta itemprop="url" content="/@(Model.Name)">
-                <meta itemprop="position" content="2" />
+                <meta itemprop="position" content="2"/>
               </span>
             </div>
           </div>
@@ -75,13 +83,12 @@
   </script>
 }
 
-
+<!-- ~/Views/Shared/Blocks/Banner/_BannerCategory.cshtml -->
 @section banner {
   @if (Model != null)
   {
-    <div class="ui grid">
-      <!-- ~/Views/Shared/Blocks/Banner/_BannerCategory.cshtml -->
-      @Html.Action("BannerGroup", "Banner", new { groupID = Model.IdGroup, bannerType = 'F' })
+    <div class="ui grid">      
+      @Html.Action("BannerGroup", "Banner", new {groupID = Model.IdGroup, bannerType = 'F'})
     </div>
   }
 }
@@ -91,7 +98,7 @@
       <!-- Page: ~/Views/Shared/Common/_FilterMenu.cshtml -->
       @if (LojaCorp.Control.Company._Company.ViewProductFiltersUrl)
       {
-        @Html.Action("FilterMenuNew", "Product", new { category = "", brand = "", group = Model.IdGroup, keyword = "" })
+        @Html.Action("FilterMenuNew", "Product", new {category = "", brand = "", group = Model.IdGroup, keyword = ""})
       }
       else
       {
@@ -99,7 +106,7 @@
       }
     </div>
     <div class="row">
-      @Html.Action("BannerGroup", "Banner", new { groupID = Model.IdGroup, bannerType = 'L' })
+      @Html.Action("BannerGroup", "Banner", new {groupID = Model.IdGroup, bannerType = 'L'})
     </div>
   </div>
 }
@@ -184,13 +191,13 @@
 </div>
 <div class="sixteen wide column">
   <!-- ~/Views/Shared/Blocks/Banner/_BannerCategory.cshtml -->
-  @Html.Action("BannerGroup", "Banner", new { groupID = Model.IdGroup, bannerType = 'R' })
+  @Html.Action("BannerGroup", "Banner", new {groupID = Model.IdGroup, bannerType = 'R'})
 </div>
-<input type="hidden" name="CurrentPage" id="CurrentPage" value="group" />
-<input type="hidden" name="GenericPageFilter" id="GenericPageFilter" value="@Model.IdGroup" />
-<input type="hidden" name="infinityPage" id="infinityPage" value="@LojaCorp.Control.Company._Company.InfiniteScrolling.ToString()" />
-<input type="hidden" name="itensPage" id="itensPage" value="@LojaCorp.Control.Company._Company.QuantityItemsPage" />
-<input type="hidden" name="ViewProductFiltersUrl" id="ViewProductFiltersUrl" value="@LojaCorp.Control.Company._Company.ViewProductFiltersUrl.ToString()" />
+<input type="hidden" name="CurrentPage" id="CurrentPage" value="group"/>
+<input type="hidden" name="GenericPageFilter" id="GenericPageFilter" value="@Model.IdGroup"/>
+<input type="hidden" name="infinityPage" id="infinityPage" value="@LojaCorp.Control.Company._Company.InfiniteScrolling.ToString()"/>
+<input type="hidden" name="itensPage" id="itensPage" value="@LojaCorp.Control.Company._Company.QuantityItemsPage"/>
+<input type="hidden" name="ViewProductFiltersUrl" id="ViewProductFiltersUrl" value="@LojaCorp.Control.Company._Company.ViewProductFiltersUrl.ToString()"/>
 
 <script>
   fbq('track', 'ViewCategory');

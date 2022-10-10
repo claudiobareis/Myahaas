@@ -54,7 +54,18 @@
                                                     <div class="header">@Html.Raw(((DomainCustomer.Entities.Customer)Session["UserAuthenticated"]).Name.ToString())</div>
                                                     <div class="description">
                                                         <p>@Html.Raw(((DomainCustomer.Entities.Customer)Session["UserAuthenticated"]).Email.ToString())</p>
-                                                        <p>CPF: @(Convert.ToUInt64(((DomainCustomer.Entities.Customer)Session["UserAuthenticated"]).Cpf_cnpj).ToString(@"000\.000\.000\-00"))</p>
+                                                        <p>
+                                                            CPF:
+                                                            @{
+                                                                string CpfCnpj = ((DomainCustomer.Entities.Customer)Session["UserAuthenticated"]).Cpf_cnpj;
+
+                                                                if (!CpfCnpj.Contains("*"))
+                                                                {
+                                                                    CpfCnpj = Convert.ToUInt64(CpfCnpj).ToString(@"000\.000\.000\-00");
+                                                                }
+                                                            }
+                                                            @CpfCnpj
+                                                        </p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -103,7 +114,8 @@
                     </div>
                     <!-- Fim Venda Assistida -->
                 }
-                <input type="hidden" id="permiteVenda" value="@permiteVenda.ToString()" />        </div>
+                <input type="hidden" id="permiteVenda" value="@permiteVenda.ToString()" />
+            </div>
     </div>
     <div class="ui grid horizontal" id="ListProductsCheckoutCompleto">
         <div class="row">
@@ -152,8 +164,7 @@
                                                                class="masked mask_zipcode" size="9" name="shipping"
                                                                value="@Model.ZipCode"
                                                                id="shipping">
-                                                        <button class="ui right labeled icon button frete calcular" id="CallServiceShipping">
-                                                            <i class="shipping icon"></i>
+                                                        <button class="ui right labeled icon button frete calcular" id="CallServiceShipping">                                                            
                                                             Calcular
                                                         </button>
                                                     </div>
