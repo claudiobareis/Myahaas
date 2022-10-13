@@ -2,7 +2,9 @@
 
 @foreach (var item in Model)
 {
-    <div class="ui tab segment paymentOff hidden" data-tab="paymentOff">   
+    <a class="item itemTabPayment hidden" data-tab="paymentOff"><div class="text"><i class="icon money bill alternate outline"></i><span>@item.NamePayment</span></div></a>
+    <!-- Pagamento Offline -->
+    <div class="ui tab segment" data-tab="paymentOff">   
         <div class="content">
             <p class="transition hidden"></p>
             <div class="field">

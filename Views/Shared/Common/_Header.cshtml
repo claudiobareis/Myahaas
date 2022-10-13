@@ -18,7 +18,7 @@ string[] words = urlCanonical.Split('/');
 
 if (words[1] == "" || words[1].ToLower() == "home")
 {
-<link rel="canonical" href="@(!Request.Url.Host.Contains("www") ? "https://www." + Request.Url.Host : "https://" + Request.Url.Host)"/>
+<link rel="canonical" href="@(!Request.Url.Host.Contains("www") ? "https://www." + Request.Url.Host : "https://" + Request.Url.Host)" />
 }
 else
 {
@@ -28,6 +28,8 @@ else
 <link rel="alternate" hreflang="pt-br" href="@canonical" />
 
 @Html.Partial("Common/_SEO")
+
+@Html.Action("GetMultiCDModal", "Company")
 
 <script type="application/ld+json">
     {

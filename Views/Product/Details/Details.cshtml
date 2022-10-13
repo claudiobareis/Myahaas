@@ -134,6 +134,8 @@
             productImages = Model.ProductImages;
         }
     }
+
+    ViewBag.PurchaseRecurring = "false";
 }
 
 <script>
@@ -166,11 +168,11 @@
         }
         
         <meta property="og:type" content="website">
-        <meta property="og:url" content="@Html.Raw(Request.Url)">
-        <meta name="twitter:url" content="@Html.Raw(Request.Url)">
+        <meta property="og:url" content="@HttpUtility.HtmlEncode(Request.Url)">
+        <meta name="twitter:url" content="@HttpUtility.HtmlEncode(Request.Url)">
         <meta property="og:title" content="@Html.Raw(ViewBag.Title)">
         <meta name="twitter:title" content="@Html.Raw(ViewBag.Title)">
-        <meta property="og:image" content="@productImages.FirstOrDefault().ImageDefault">
+        <meta property="og:image" content="@productImages.FirstOrDefault()?.ImageDefault">
     }
 }
 
@@ -245,6 +247,9 @@
 <input type="hidden" id="variacoesSelecionadas" value="" />
 <input type="hidden" id="has-open-sku" value="@((hasOpenSku == true) ? "true" : "false")" />
 <input type="hidden" id="b2b" value="false" />
+
+
+
 
 <!-- FIM - Váriaveis Produto Principal-->
 <!-- COMEÇO - Váriaveis Produto Unitário-->
@@ -379,40 +384,7 @@
                                 else
                                 {
 
-                                    <input type="hidden" id="hdnShowProductOutOfStock" value="@(!LojaCorp.Control.Company._Company.ShowProductOutOfStock ? 0 : 1)" />
-                                    if (Model.AvailableReferences != null)
-                                    {
-                                        <div class="one column ui attached segment">
-                                            @if (Model.ProductGrouping != null)
-                                            {
-                                                @Html.Partial("~/Views/Product/Details/_ProductsGrouping.cshtml", Model.ProductGrouping)
-                                            }
-                                            <div class="column">
-                                                <div id="variations-container" class="grid-variations"></div>
-                                            </div>
-                                        </div>
-                                    }
-                                    else
-                                    {
-                                        if (Model.ProductGrouping != null)
-                                        {
-                                            <div class="one column ui attached segment">
-                                                <div class="column">
-                                                    @Html.Partial("~/Views/Product/Details/_ProductsGrouping.cshtml", Model.ProductGrouping)
-                                                </div>
-                                            </div>
-                                        }
-                                    }
-
-                                    @*@Html.Action("Variations", "Product", new { reference = @Model.AvailableReferences, skuPadrao = @SKUPadrao, ListaSku = Model.SKUs })*@
-                                    
-                                    <!--FIM VARIAÇÔES-->
-
-                                    if (Model.IsKit)
-                                    {
-                                        @Html.Partial("~/Views/Product/Details/_ProductsKit.cshtml", Model.KitProducts)
-                                    }
-
+                                 
                                     <!--INÍCIO PREÇOS-->
                                     <div class="column ui attached segment">
                                         <div class="ui grid">
@@ -581,6 +553,7 @@
                                         @*@Html.Action("Variations", "Product", new { reference = @Model.AvailableReferences, skuPadrao = @SKUPadrao, ListaSku = Model.SKUs })*@
                                     }
                                     <!--FIM VARIAÇÔES-->
+                                    
 
                                 <div id="btn_comprar" class="sixteen wide computer sixteen wide tablet sixteen wide mobile column btnComprar">
                                                     @if (!Model.ProductSignature)
@@ -603,6 +576,7 @@
                                                     }
                                                     @if (Model.PurchaseRecurring && Model.Stock > 0 && !Model.FlagExhausted)
                                                     {
+                                                        ViewBag.PurchaseRecurring = "true";
                                                         <a class="ui animated button recurring btn-comprar-assinar detalhes">
                                                             <div class="visible content">ASSINAR PRODUTO</div>
                                                         <div class="hidden content">
@@ -647,7 +621,7 @@
                                     }
                                 }
                             </div>
-                            <!---ADD RELEASE 2.71.49--->
+                            
                             @if (!Model.FlagExhausted)
                             {
                                 <div id="pagamento-calculado">

@@ -52,7 +52,7 @@
                         <!-- Pagamento com Link -->
                         @Html.Partial("~/Views/Shared/Parts/Checkout/_Part_Checkout_Pagamento_Link.cshtml", paymentMethodLink.PaymentBrands)
 
-                         if (paymentDescount)
+                        if (paymentDescount)
                         {
                             <a class="item itemTabPayment hideme" data-tab="paymentDescount"><div class="text"><i class="icon money bill alternate outline"></i><span>Pagamento com Desconto</span></div></a>
                             <!-- Pagamento com Desconto -->
@@ -72,8 +72,6 @@
 
                                     break;
                                 case 2:
-                                    <a class="item itemTabPayment hidden paymentOff" data-tab="paymentOff"><div class="text"><i class="icon money bill alternate outline"></i><span>Pagamento Offline</span></div></a>
-                                    <!-- Pagamento Offline -->
                                     @Html.Partial("~/Views/Shared/Parts/Checkout/_Part_Checkout_Pagamento_Offline.cshtml", itemM.PaymentBrands)
 
                                     break;
@@ -95,7 +93,7 @@
                                     @Html.Partial("~/Views/Shared/Parts/Checkout/_Part_Checkout_Pagamento_Cartao_Debito.cshtml", itemM)
                                     break;
                                 case 19:
-                                    <a class="item itemTabPayment hideme" data-tab="paymentDescount"><div class="text"><i class="icon money bill alternate outline"></i><span>Vale Compra</span></div></a>
+                                    <a class="item itemTabPayment hideme" data-tab="paymentDescount"><div class="text"><i class="icon money bill alternate outline"></i><span>Pagamento com Desconto</span></div></a>
                                     <!-- Pagamento com Desconto -->
                                     @Html.Partial("~/Views/Shared/Parts/Checkout/_Part_Checkout_Pagamento_Desconto.cshtml", itemM.PaymentBrands)
                                     break;
@@ -135,7 +133,7 @@
                             }
                         }
                     }
-                    
+
                     <input type="hidden" name="hasMercadoPago" id="hasMercadoPago" value="@Session["MercadoPago"]" />
                     <input type="hidden" name="MercadoPagoPublicKey" id="MercadoPagoPublicKey" value="@Session["MercadoPagoPublicKey"]" />
                     <input type="hidden" name="MercadoPagoEmail" id="MercadoPagoEmail" value="@Session["MercadoPagoEmail"]" />

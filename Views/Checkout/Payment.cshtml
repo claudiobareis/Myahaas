@@ -33,7 +33,6 @@
         <img class="ui middle aligned image logo" src="~/assets/image/logo/logo.png" />
     }
 }
-
 @section steps{
     @if (_paymentLinkChangeBrand == "0")
     {
@@ -79,7 +78,7 @@
                     <div class="column">
                         <!-- Dados do Cliente -->
                         <div class="ui segment" id="dadosClienteUpdate">
-                            @Html.Action("ListaDadosCliente", "Checkout", new {zipCodeCart = Model.ZipCode, idShippingModeCart = Model.IdShippingMode})
+                            @Html.Action("ListaDadosCliente", "Checkout", new { zipCodeCart = Model.ZipCode, idShippingModeCart = Model.IdShippingMode })
                         </div>
                     </div>
                     <div class="column">
