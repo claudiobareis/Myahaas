@@ -37,7 +37,7 @@
                     if (!isb2b && !isAssistedSale)
                     {
 
-                            <div>
+                        <div>
                                @if ((Session["UserAuthenticated"] == null || (Convert.ToBoolean(Session["Guest"]) == true)) && Session["Seller"] == null)
                         {
                             <div class="item">
@@ -94,7 +94,7 @@
 
                     }
                 }
-                    <div id="cartButton" class="ui labeled button cartbutton no margin bottom @_classMiniCart" tabindex="0" data-segment="@(Session["segment"] != null ? Session["segment"] : "b2c")">
+                    <div id="cartButton" class="ui labeled button cartbutton no margin bottom @_classMiniCart" tabindex="0" data-segment="@(Session["segment"] != null ? Session["segment"] : "b2c")">                    
                         <div class="cart-button " title="@(Session["idEventList"] == null && Session["EventList"] == null ? "Meu Carrinho" : "Minha Lista")">
                             <a class="total-itens" id="total_itens_card"></a>
                             <svg width="19" height="22" viewBox="0 0 19 22" fill="none" xmlns="http://www.w3.org/2000/svg">
