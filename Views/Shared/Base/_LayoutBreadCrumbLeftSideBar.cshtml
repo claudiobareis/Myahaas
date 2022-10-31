@@ -50,8 +50,19 @@
         <!-- End Google Tag Manager (noscript) -->
     }
 
-    <!-- ~/Views/Shared/Common/_Cart.cshtml -->
-    @Html.Action("GetCartBySession", "Checkout")
+    @{
+         bool isb2b = Session["segment"] != null && Session["segment"].ToString() == "b2b";
+ 
+         if (isb2b)
+         {
+             <!-- ~/Views/Shared/Common/_Cart.cshtml -->
+             @Html.Action("GetCartBySession", "Checkout")
+         }
+         else
+         {
+             @Html.Partial("~/Views/Shared/Common/_CartB2C.cshtml")
+         }
+     }
 
         <div class="pusher">
           <!-- ~/Views/Shared/Common/_TopBar.cshtml -->
@@ -62,12 +73,13 @@
 
           <!-- ~/Views/Shared/Common/_Menu.cshtml -->
           <!-- @Html.Action("Menu", "Home") -->
-
+          
+        @RenderSection("breadcrumbs", required: true)
           <div class="row one column">
             @RenderSection("banner", required: false)
           </div>
 
-          @RenderSection("breadcrumbs", required: true)
+          
 
           <div class="ui container fluid margin bottom large margin left large margin right large ">
             <div class="ui grid">

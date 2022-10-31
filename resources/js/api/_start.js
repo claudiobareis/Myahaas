@@ -40,7 +40,7 @@ require("./customer/register");
 require("./customer/newsletter");
 require("./customer/AccessKey");
 require("./customer/login");
-require("./customer/wishlist");
+require("./customer/wishList");
 require("./customer/contact");
 require("./customer/changeEmail");
 require('./customer/recurrent');
