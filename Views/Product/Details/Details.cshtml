@@ -134,6 +134,8 @@
             productImages = Model.ProductImages;
         }
     }
+
+    ViewBag.PurchaseRecurring = "false";
 }
 
 <script>
@@ -166,11 +168,11 @@
         }
         
         <meta property="og:type" content="website">
-        <meta property="og:url" content="@Html.Raw(Request.Url)">
-        <meta name="twitter:url" content="@Html.Raw(Request.Url)">
+        <meta property="og:url" content="@HttpUtility.HtmlEncode(Request.Url)">
+        <meta name="twitter:url" content="@HttpUtility.HtmlEncode(Request.Url)">
         <meta property="og:title" content="@Html.Raw(ViewBag.Title)">
         <meta name="twitter:title" content="@Html.Raw(ViewBag.Title)">
-        <meta property="og:image" content="@productImages.FirstOrDefault().ImageDefault">
+        <meta property="og:image" content="@productImages.FirstOrDefault()?.ImageDefault">
     }
 }
 
@@ -258,6 +260,7 @@
 }
 <input type="hidden" value="@AvailableReferences" id="principal-produto-referecias" name="principal-produto-referecias" />
 <input type="hidden" value="@JsonDetail" id="json-detail" name="json-detail" />
+<input type="hidden" value="@Json.Encode(Model.Personalizations)" id="json-personalizations" name="json-personalizations" />
 <input type="hidden" value="@ViewBag.DescontoBoleto" id="desconto_boleto" name="desconto_boleto" />
 <!-- FIM - Váriaveis Produto Unitário-->
 <div class="ui container" itemscope itemtype="http://schema.org/Product">
@@ -585,7 +588,7 @@
                                 <div id="btn_comprar" class="sixteen wide computer sixteen wide tablet sixteen wide mobile column btnComprar">
                                                     @if (!Model.ProductSignature)
                                                     {
-                                                        <a class="@(Model.Stock == 0 || Model.FlagExhausted || Model.ProductSignature ? " disabled " : " ") ui button detalhes @(Session["EventList"] != null ? "btn-add-event-list" : "btn-comprar") @(Model.FlagExhausted || Model.ProductSignature || (Model.HaveSku && SKUPadrao.Stock == 0) || (Model.Stock == 0) ? "disabled action" : "action" )">
+                                                        <a class="@(Model.Stock == 0 || Model.FlagExhausted || Model.ProductSignature ? " disabled " : " ") ui animated button detalhes @(Session["EventList"] != null ? "btn-add-event-list" : "btn-comprar") @(Model.FlagExhausted || Model.ProductSignature || (Model.HaveSku && SKUPadrao.Stock == 0) || (Model.Stock == 0) ? "disabled action" : "action" )">
                                                         @if (Model.FlagExhausted || (Model.HaveSku && SKUPadrao.Stock == 0) || (Model.Stock == 0))
                                                         {
                                                                 <div class="visible content">PRODUTO ESGOTADO</div>
@@ -603,6 +606,7 @@
                                                     }
                                                     @if (Model.PurchaseRecurring && Model.Stock > 0 && !Model.FlagExhausted)
                                                     {
+                                                        ViewBag.PurchaseRecurring = "true";
                                                         <a class="ui animated button recurring btn-comprar-assinar detalhes">
                                                             <div class="visible content">ASSINAR PRODUTO</div>
                                                         <div class="hidden content">
@@ -650,6 +654,11 @@
                             <!---ADD RELEASE 2.71.49--->
                             @if (!Model.FlagExhausted)
                             {
+                                if (Model.Personalizations != null)
+                                {
+                                    @Html.Partial("~/Views/Product/Details/_Personalizations.cshtml", Model.Personalizations)
+                                }
+                                
                                 <div id="pagamento-calculado">
                                     @if (@Model.PricePromotion != null && @Model.PricePromotion > 0)
                                     {
