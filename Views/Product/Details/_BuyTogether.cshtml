@@ -26,7 +26,7 @@
                             }
                             else
                             {
-                                <img src="/assets/image/img_default.png" data-src="@Model.ProductImages.FirstOrDefault().ImageDefault" alt="@Model.Name"  onerror="imgError(this)">
+                                <img src="/assets/image/img_default.png" data-src="@Model.ProductImages.FirstOrDefault()?.ImageDefault" alt="@Model.Name"  onerror="imgError(this)">
                             }
                         </div>
                         <div class="content">
@@ -73,7 +73,7 @@
 
                     <input type="hidden" value="" name="buy-together-skus" id="buy-together-skus" />
 
-                    @foreach (var item in Model.BuyTogether)
+                    @foreach (var item in Model.BuyTogether.Where(c => !c.HasPersonalizations))
                     {
                         string variacaoSelecionada = string.Empty;
 
