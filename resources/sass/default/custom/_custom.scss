@@ -6,6 +6,11 @@ html, body {
 .hidden{
     display: none !important;    
 }
+.product-grid{
+    #messageStock{
+        display: none;
+    }
+}
 .ui{
     &.labeled{
         &.icon{
