@@ -134,8 +134,6 @@
             productImages = Model.ProductImages;
         }
     }
-
-    ViewBag.PurchaseRecurring = "false";
 }
 
 <script>
@@ -154,27 +152,20 @@
 
 @section CustomSeo {
     @{
-        /**/
+                        /**/
+
         if (!String.IsNullOrEmpty(Model.MetaDescription))
         {
             <meta name="Description" content="@Model.MetaDescription">
-            <meta property="og:description" content="@Model.MetaDescription">
-            <meta name="twitter:description" content="@Model.MetaDescription">
         }
 
         if (!String.IsNullOrEmpty(Model.MetaKeyWords))
         {
             <meta name="Keywords" content="@Model.MetaKeyWords">
         }
-        
-        <meta property="og:type" content="website">
-        <meta property="og:url" content="@HttpUtility.HtmlEncode(Request.Url)">
-        <meta name="twitter:url" content="@HttpUtility.HtmlEncode(Request.Url)">
-        <meta property="og:title" content="@Html.Raw(ViewBag.Title)">
-        <meta name="twitter:title" content="@Html.Raw(ViewBag.Title)">
-        <meta property="og:image" content="@productImages.FirstOrDefault()?.ImageDefault">
     }
 }
+
 
 @section breadcrumbs {
     <div class="ui two column centered grid stackable middle aligned">
@@ -248,9 +239,6 @@
 <input type="hidden" id="has-open-sku" value="@((hasOpenSku == true) ? "true" : "false")" />
 <input type="hidden" id="b2b" value="false" />
 
-
-
-
 <!-- FIM - Váriaveis Produto Principal-->
 <!-- COMEÇO - Váriaveis Produto Unitário-->
 <input type="hidden" value="@Model.Price" id="preco-unidade" name="preco-unidade" />
@@ -263,7 +251,6 @@
 }
 <input type="hidden" value="@AvailableReferences" id="principal-produto-referecias" name="principal-produto-referecias" />
 <input type="hidden" value="@JsonDetail" id="json-detail" name="json-detail" />
-<input type="hidden" value="@Json.Encode(Model.Personalizations)" id="json-personalizations" name="json-personalizations" />
 <input type="hidden" value="@ViewBag.DescontoBoleto" id="desconto_boleto" name="desconto_boleto" />
 <!-- FIM - Váriaveis Produto Unitário-->
 <div class="ui container" itemscope itemtype="http://schema.org/Product">
@@ -384,44 +371,6 @@
                                 }
                                 else
                                 {
-
-                                    <input type="hidden" id="hdnShowProductOutOfStock" value="@(!LojaCorp.Control.Company._Company.ShowProductOutOfStock ? 0 : 1)" />
-                                    if (Model.AvailableReferences != null && !string.IsNullOrEmpty(JsonDetail))
-                                    {
-                                        <div class="one column ui attached segment">
-                                            @if (Model.ProductGrouping != null)
-                                            {
-                                                @Html.Partial("~/Views/Product/Details/_ProductsGrouping.cshtml", Model.ProductGrouping)
-                                            }
-                                            <div class="column">
-                                                <div id="variations-container" class="grid-variations"></div>
-                                            </div>
-                                        </div>
-                                    }
-
-                                    if (Model.ProductGrouping != null && Model.ProductGrouping.Products != null)
-                                    {
-                                        <div class="one column ui attached segment">
-                                            <div class="column">
-                                                @Html.Partial("~/Views/Product/Details/_ProductsGrouping.cshtml", Model.ProductGrouping)
-                                            </div>
-                                        </div>
-                                    }
-                                    
-                                    if (Model.Personalizations != null)
-                                    {
-                                        @Html.Partial("~/Views/Product/Details/_Personalizations.cshtml", Model.Personalizations)
-                                    }
-                                    
-
-                                    @*@Html.Action("Variations", "Product", new { reference = @Model.AvailableReferences, skuPadrao = @SKUPadrao, ListaSku = Model.SKUs })*@
-                                    
-                                    <!--FIM VARIAÇÔES-->
-
-                                    if (Model.IsKit)
-                                    {
-                                        @Html.Partial("~/Views/Product/Details/_ProductsKit.cshtml", Model.KitProducts)
-                                    }
 
                                     <!--INÍCIO PREÇOS-->
                                     <div class="column ui attached segment">
@@ -595,7 +544,7 @@
                                 <div id="btn_comprar" class="sixteen wide computer sixteen wide tablet sixteen wide mobile column btnComprar">
                                                     @if (!Model.ProductSignature)
                                                     {
-                                                        <a class="@(Model.Stock == 0 || Model.FlagExhausted || Model.ProductSignature ? " disabled " : " ") ui animated button detalhes @(Session["EventList"] != null ? "btn-add-event-list" : "btn-comprar") @(Model.FlagExhausted || Model.ProductSignature || (Model.HaveSku && SKUPadrao.Stock == 0) || (Model.Stock == 0) ? "disabled action" : "action" )">
+                                                        <a class="@(Model.Stock == 0 || Model.FlagExhausted || Model.ProductSignature ? " disabled " : " ") ui button detalhes @(Session["EventList"] != null ? "btn-add-event-list" : "btn-comprar") @(Model.FlagExhausted || Model.ProductSignature || (Model.HaveSku && SKUPadrao.Stock == 0) || (Model.Stock == 0) ? "disabled action" : "action" )">
                                                         @if (Model.FlagExhausted || (Model.HaveSku && SKUPadrao.Stock == 0) || (Model.Stock == 0))
                                                         {
                                                                 <div class="visible content">PRODUTO ESGOTADO</div>
@@ -613,7 +562,6 @@
                                                     }
                                                     @if (Model.PurchaseRecurring && Model.Stock > 0 && !Model.FlagExhausted)
                                                     {
-                                                        ViewBag.PurchaseRecurring = "true";
                                                         <a class="ui animated button recurring btn-comprar-assinar detalhes">
                                                             <div class="visible content">ASSINAR PRODUTO</div>
                                                         <div class="hidden content">
@@ -661,11 +609,6 @@
                             <!---ADD RELEASE 2.71.49--->
                             @if (!Model.FlagExhausted)
                             {
-                                if (Model.Personalizations != null)
-                                {
-                                    @Html.Partial("~/Views/Product/Details/_Personalizations.cshtml", Model.Personalizations)
-                                }
-                                
                                 <div id="pagamento-calculado">
                                     @if (@Model.PricePromotion != null && @Model.PricePromotion > 0)
                                     {
@@ -745,15 +688,15 @@
                             <div class="one column row hidden">
                                 <div class="column">
                                     @*<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5915ec2f00f07226"></script>
-                    <div class="addthis_inline_share_toolbox"></div>
-                <div class="fb-share-button" data-href="@Request.Url.AbsoluteUri.ToString()" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A52868%2FProduct%2FDetails%2F20081&amp;src=sdkpreparse">Compartilhar</a></div>
-                <div class="g-plus" data-action="share"></div>
-                <a href="https://twitter.com/share" class="twitter-share-button" data-text="testes" data-show-count="false">Tweet</a>
-                <a href="whatsapp://send?text=http://google.com.br">Compartilhar</a>
-                <a href="https://api.whatsapp.com/send?text=@Request.Url.AbsoluteUri"><img style="max-width: 80px;" src="~/assets/image/whats.jpg" /></a>*@
-                                    <!-- Go to www.addthis.com/dashboard to customize your tools
-            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-59dc437c87fdb766"></script>
-            Go to www.addthis.com/dashboard to customize your tools -->                                   
+                                            <div class="addthis_inline_share_toolbox"></div>
+                                        <div class="fb-share-button" data-href="@Request.Url.AbsoluteUri.ToString()" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A52868%2FProduct%2FDetails%2F20081&amp;src=sdkpreparse">Compartilhar</a></div>
+                                        <div class="g-plus" data-action="share"></div>
+                                        <a href="https://twitter.com/share" class="twitter-share-button" data-text="testes" data-show-count="false">Tweet</a>
+                                        <a href="whatsapp://send?text=http://google.com.br">Compartilhar</a>
+                                        <a href="https://api.whatsapp.com/send?text=@Request.Url.AbsoluteUri"><img style="max-width: 80px;" src="~/assets/image/whats.jpg" /></a>*@
+                                    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                                    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-59dc437c87fdb766"></script>
+                                    <!-- Go to www.addthis.com/dashboard to customize your tools -->
                                     <div class="addthis_inline_share_toolbox"></div>
                                 </div>
                             </div>
@@ -962,7 +905,7 @@
             </div>
         </div>
         <!--FIM DESCRIÇÃO-->
-@if (!Model.FlagExhausted && !hasOpenSku && Model.Personalizations == null)
+        @if (!Model.FlagExhausted && !hasOpenSku)
         {
             <div class="row" id="buy-together">
                 @if (Model.BuyTogether != null && Model.BuyTogether.Count > 0 && Session["EventList"] == null)
@@ -972,8 +915,7 @@
             </div>
         }
     
-        @if (Model.AlsoProductsPurchased != null && Model.AlsoProductsPurchased.Count > 0) 
-        {
+        @if (Model.AlsoProductsPurchased != null && Model.AlsoProductsPurchased.Count > 0) {
             <div class="row" id="AlsoProducts">
             @Html.Partial("~/Views/Product/Details/_AlsoPurchased.cshtml", Model.AlsoProductsPurchased)
             </div>
