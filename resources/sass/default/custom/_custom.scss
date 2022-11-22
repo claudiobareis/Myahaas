@@ -894,3 +894,38 @@ input[data-mode="Receba hoje"] + label span:before {
     margin: 10px 0;
     border-radius: 5px;
 }
+
+/*black friday*/
+._header {
+    &.fixed{
+        .first-row-header{
+            background-color: #000;
+            .logo{                
+                filter: invert(1);                
+            }
+            svg{
+                path{
+                    fill: #fff;
+                }
+            }
+        }
+    }
+}
+.desktop-menu .menuheader .ui.menu .item.sale{
+    background-color: #000;
+}
+
+.menuheader .animated-arrow span{
+    background-color: #fff;
+}
+
+.menuheader .animated-arrow span:before, .menuheader .animated-arrow span:after{
+    background: #fff;
+}
+.wsoffcanvasopener .animated-arrow{
+    background: #000;
+}
+
+.wsoffcanvasopener .animated-arrow span {
+    background-color: transparent;
+}
