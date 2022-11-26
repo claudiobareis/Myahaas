@@ -34,7 +34,6 @@
             <img src="@Model.ProductImage.ImageDefault" onerror="imgError(this)">
         </a>
     </div>
-
     <div class="content">
         <div class="nameProduct">
             <a href="/Product/Details/@Model.IdProduct" class="product title" id="name_@Model.IdCartItem">
@@ -63,8 +62,7 @@
 
         <div class="priceProduct" data-id-personalization-cart="@(Model.IdCartPersonalization != null ? Model.IdCartPersonalization : Model.IdCartItem)" id="priceProduct_@Model.IdCartItem">@(Model.Quantity > 1 ? Model.Quantity+"x" : "") @string.Format("{0:c}", Model.PriceProduct)</div>
 
-        <div class="wrapper-qty-price">
-            <div class="description">
+        <div class="description">
                 @if (Model.Stock == 0 || Model.Stock < Model.Quantity || Model.FlagExhausted == EnumeratorsCommons.EnumYesNo.Yes)
                 {
                     <span class="ui label basic primary exhausted">PRODUTO ESGOTADO</span>
@@ -76,9 +74,9 @@
                         <button class="@classe_qtd mini" data-id="@Model.IdCartItem" data-action="minus" data-id-produto="@Model.IdProduct" data-id-sku="@Model.IdSku" data-id-personalization-cart="@(Model.IdCartPersonalization != null ? Model.IdCartPersonalization : 0)">
                             <i class="icon minus"></i>
                         </button>
-                        <input type="hidden" id="qtdInicial_@Model.IdCartItem" value="@Model.Quantity"/>
-                        <input type="hidden" value="@Model.Stock" name="stock_@Model.IdCartItem" id="stock_@Model.IdCartItem"/>
-                        <input type="number" class="text center quantidade" min="0" step="1" size="3" value="@Model.Quantity" name="@Model.IdCartItem" id="qtd_@Model.IdCartItem" data-id="@Model.IdCartItem" data-action="ipt"  data-id-personalization-cart="@(Model.IdCartPersonalization != null ? Model.IdCartPersonalization : 0)"/>
+                        <input type="hidden" id="qtdInicial_@Model.IdCartItem" value="@Model.Quantity" />
+                    <input type="hidden" value="@Model.Stock" name="stock_@Model.IdCartItem" id="stock_@Model.IdCartItem" />
+                    <input type="number" class="text center quantidade" min="0" step="1" size="3" value="@Model.Quantity" name="@Model.IdCartItem" id="qtd_@Model.IdCartItem" data-id="@Model.IdCartItem" data-action="ipt" data-id-personalization-cart="@(Model.IdCartPersonalization != null ? Model.IdCartPersonalization : 0)" />
 
                         <button class="@classe_qtd mini" data-id="@Model.IdCartItem" data-action="plus" data-id-produto="@Model.IdProduct" data-id-sku="@Model.IdSku" data-id-personalization-cart="@(Model.IdCartPersonalization != null ? Model.IdCartPersonalization : 0)">
                             <i class="icon plus"></i>
@@ -86,13 +84,16 @@
                     </div>
                 }
             </div>
-            <div class="price">
-                <span>VALOR</span>
-                <div class="priceProduct" id="priceProduct_@Model.IdCartItem">@(Model.Quantity > 1 ? Model.Quantity+"x" : "") @string.Format("{0:c}", Model.PriceProduct)</div>
+            @if (Model.RestrictedDelivery)
+        {
+            <div class="ui tiny hidden warning message productRestrictedMessage">
+                <div class="header">
+                    Este produto não pode ser entregue para este endereço. Remova-o ou selecione uma opção de retirada na loja.
+                </div>
             </div>
-        </div>
+        }
 
-        <button class="@classe_remove hidden" data-id="@Model.IdCartItem" data-id-produto="@Model.IdProduct" data-id-sku="@Model.IdSku" data-id-personalization-cart="@(Model.IdCartPersonalization != null ? Model.IdCartPersonalization : 0)">
+        <button class="@classe_remove" data-id="@Model.IdCartItem" data-id-produto="@Model.IdProduct" data-id-sku="@Model.IdSku" data-id-personalization-cart="@(Model.IdCartPersonalization != null ? Model.IdCartPersonalization : 0)" data-restricted-delivery="@Model.RestrictedDelivery">
             <i class="trash alternate outline icon"></i>
         </button>
     </div>
@@ -100,4 +101,3 @@
     <div class="ui divider"></div>
     
 </div>
-
