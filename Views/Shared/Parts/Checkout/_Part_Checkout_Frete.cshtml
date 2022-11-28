@@ -31,7 +31,7 @@
             decimal.TryParse(Session["PaymentLinkShippingValue"].ToString(), out _value);
 
             if (_hub.HasValue) {
-                var _shipping = Model.FirstOrDefault(f => f.ShippingMode.hub == _hub && f.ShippingMode.carrier == _carrier && f.ShippingMode.mode == _mode);
+                var _shipping = Model.FirstOrDefault(f => f.ShippingMode.hub == _hub && f.ShippingMode.mode == _mode);
                 if (_shipping != null)
                 {
                     IdShippingModeCart = _shipping.ShippingMode.IdShippingMode;
@@ -80,7 +80,8 @@
                                    data-mode="@item.ShippingMode.mode" 
                                    data-hub="@item.ShippingMode.hub" 
                                    data-deliverytime="@item.ShippingMode.DeliveryTime" 
-                                   data-usefullday="@((item.ShippingMode.UsefulDay == true) ? "1" : "0")" @_checkFrete>
+                                   data-usefullday="@((item.ShippingMode.UsefulDay == true) ? "1" : "0")" @_checkFrete
+                                   data-pickupstore="@item.ShippingMode.PickUpInStore">
                             
                             @if (item.ShippingMode.ScheduledDelivery)
                             {
@@ -152,9 +153,11 @@
                 </div>
             </div>
         }
+        <input type="hidden" id="recalculatedRestrictedProducts" value="@Model.FirstOrDefault().RecalculatedRestrictedProducts.ToString()" />
     }
     else
     {
+        <input type="hidden" id="recalculatedRestrictedProducts" value="true" />
         <div class="row margin top left bottom small">
             @Html.Raw("Nenhum Frete foi encontrado")
         </div>

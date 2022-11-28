@@ -1,10 +1,22 @@
 ﻿@model DomainCheckout.Entities.Cart
 
 <div id="miniCarrinho" class="ui right sidebar carrinho ui grid">
-    <input type="hidden" name="sessionId" id="sessionId" value="@(Session["SessionId"] != null ? Session["SessionId"].ToString() : string.Empty)" />
     <div class="row">
         <div class="column">
             <div class="ui grid top aligned elementos">
+                <div class="row two column head middle aligned">
+                    <div class="column">
+                        <h3 class="text center left floated">Meu Carrinho</h3>
+                    </div>
+                    <div class="column right aligned">
+                        <a class="ui button icon fecharCarrinho"><i class="remove icon"></i></a>
+                    </div>
+                </div>
+                <div class="row black info">
+                    <div class="column">
+                        <i class="lock icon"></i>Compra 100% Segura
+                    </div>
+                </div>
                 <div class="row elemento">
                     <div class="column">
                         <div class="ui divided items relaxed listaItems" id="ListProductsCheckout">
@@ -32,8 +44,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--ESCONDENDO FRETE NA V1-->
-                            @*<div class="item detalhes">
+                           
+                            <div class="item detalhes hidden">
                                 <div class="content">
                                     <div class="description frete">
                                         <div class="ui form">
@@ -64,7 +76,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>*@
+                            </div>
+
                             <div class="item detalhes">
                                 <div class="content">
                                     <h3>Total a pagar: <span id="totalCarrinho">@string.Format("{0:c}", Model != null ? Model.Total : 0)</span></h3>

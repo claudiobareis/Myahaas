@@ -1,6 +1,7 @@
 ﻿@model DomainCheckout.Entities.Cart
 @{
   bool permiteVenda = true;
+  var currentClient = (DomainCustomer.Entities.Customer) Session["UserAuthenticated"];
 }
 @if (Model != null)
 {
@@ -49,10 +50,8 @@
                         
                     </div>
 
-                    @if (Session["UserAuthenticated"] != null && Session["Seller"] != null)
+                   @if (currentClient != null && currentClient.User != null && currentClient.User.UserName != null && Session["Seller"] != null)
                     {
-                        if (((DomainCustomer.Entities.Customer)Session["UserAuthenticated"]).User.UserName != null)
-                        {
                             <!-- Comeco Venda Assistida (Com Cliente) -->
                             <div class="row two column stackable venda-assistida">
                                 <div class="column">
@@ -63,13 +62,13 @@
                                                     <i class="user circle outline icon"></i> <span>Cliente</span>
                                                 </div>
                                                 <div class="content align-self-center">
-                                                    <div class="header">@Html.Raw(((DomainCustomer.Entities.Customer)Session["UserAuthenticated"]).Name.ToString())</div>
+                                                    <div class="header">@Html.Raw(currentClient.Name.ToString())</div>
                                                     <div class="description">
-                                                        <p>@Html.Raw(((DomainCustomer.Entities.Customer)Session["UserAuthenticated"]).Email.ToString())</p>
+                                                       <p>@Html.Raw(currentClient.Email.ToString())</p>
                                                         <p>
                                                             CPF: 
                                                             @{
-                                                            string CpfCnpj = ((DomainCustomer.Entities.Customer)Session["UserAuthenticated"]).Cpf_cnpj;
+                                                            string CpfCnpj = currentClient.Cpf_cnpj;
 
                                                             if (!CpfCnpj.Contains("*"))
                                                             {
@@ -92,8 +91,8 @@
                             </div>
                             <!-- Fim Venda Assistida -->
                         }
-                    }
-                    @if (Session["Seller"] != null && ((DomainCustomer.Entities.Customer)Session["UserAuthenticated"]).Name == null)
+
+                    @if (Session["Seller"] != null && (currentClient == null || currentClient.User == null || currentClient.User.UserName == null))
                     {
                         permiteVenda = false;
                         <!-- Comeco Venda Assistida (Sem Cliente) -->
@@ -164,20 +163,20 @@
                                     </div>
                                      <div class="item detalhes hidden">
                                         <div class="content">
-                                            <div class="description frete">
-                                                <div class="ui form">
-                                                    <div class="inline field">
-                                                        <label>Calcular Frete</label>
-                                                        <div class="ui action input">
-                                                            <input type="text" placeholder="00000-000"
-                                                                   class="masked mask_zipcode" size="9" name="cep" id="shipping">
-                                                            <button class="ui right labeled icon button frete calcular buttonsMiniCart" id="CallServiceShippingMiniCart">
-                                                                <i class="shipping icon"></i>
-                                                                Calcular
-                                                            </button>
+                                        <div class="description frete">
+                                                    <div class="ui form">
+                                                        <div class="inline field">
+                                                            <label>Calcular Frete</label>
+                                                            <div class="ui action input">
+                                                                <input type="text" placeholder="00000-000"
+                                                                    class="masked mask_zipcode" size="9" name="cep" id="shipping">
+                                                                <button class="ui right labeled icon button frete calcular buttonsMiniCart" id="CallServiceShippingMiniCart">
+                                                                    <i class="shipping icon"></i>
+                                                                    Calcular
+                                                                </button>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
                                             </div>
                                             <div class="description resultado">
                                                 <div class="ui form">
