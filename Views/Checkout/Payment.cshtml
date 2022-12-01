@@ -104,19 +104,12 @@
                 </div>
             
                 <div class="ui grid one column stackable">
-                    
+                                   
                     @if (!Model.CartItems.FirstOrDefault().IsRecurrent)
                     {
                         <!-- Vale Compras -->
-                        @Html.Action("ValeCompra", "Checkout")
-                    }
+                        @Html.Action("valeCompra", "checkout")
 
-                    
-                    @if (!Model.CartItems.FirstOrDefault().IsRecurrent)
-                    {
-                        <!-- Vale Compras -->
-                        @Html.Action("ValeCompra", "Checkout")
-                        
                         <div class="column @_disabled">
                             <!-- Cupom Desconto -->
                             @Html.Partial("~/Views/Shared/Parts/Checkout/_Part_Checkout_Desconto.cshtml")
