@@ -1,12 +1,12 @@
 ﻿<!DOCTYPE html>
 <html lang="pt-br">
 <head>
-      <!-- ~/Views/Shared/Common/_Header.cshtml -->
+
+
+    <!-- ~/Views/Shared/Common/_Header.cshtml -->
     @Html.Partial("Common/_Header")
     @RenderSection("CustomSeo", required: false)
     
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
     <!-- CSS Styles -->
     @Html.Partial("Common/_CommonCss")
     @RenderSection("custom_css", required: false)
@@ -99,7 +99,7 @@
 </head>
 <body>
     <!-- ~/Views/Shared/Common/_Cart.cshtml -->
-    @Html.Action("GetCartBySession", "Checkout")
+    @Html.Action("getCartBySession", "checkout")
     
     <div class="pusher">
                 
@@ -109,7 +109,7 @@
         @Html.Partial("Common/_Head")
         
         <!-- ~/Views/Shared/Common/_Menu.cshtml -->
-        @Html.Action("Menu", "Home")
+        @Html.Action("menu", "home")
         
         @RenderBody()
         

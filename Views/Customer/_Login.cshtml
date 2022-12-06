@@ -7,11 +7,7 @@
         SocialLogin = (List<DomainSocialNetwork.Entities.SocialLogin>)ViewBag.SocialLogin;
     }
  }
-@section CustomSeo {
-    @{      
-        <meta name="Description" content="Acesse sua conta por aqui.">       
-    }
-}
+
 <div class="ui grid middle aligned center aligned">
     <div class="row">
         <div class="@(Model != null ? Model : "") ten wide computer sixteen wide tablet sixteen wide mobile">
@@ -40,14 +36,14 @@
                                             <input type="password" name="password" maxlength="100" id="password" placeholder="Senha">
                                         </div>
                                     </div>
-                                    @Html.Action("GetRecaptchaV3", "Company", new { Module = "Login" })
+                                    @Html.Action("getRecaptchaV3", "company", new { Module = "Login" })
                                     <br />
                                     <button type="button" class="ui fluid large submit primary button text uppercase" id="submitForm">
                                         Entrar
                                     </button>
                                     <div class="ui divider"></div>
                                     <p>Esqueceu sua senha? <a href="/customer/forgot">Recuperar senha</a></p>
-                                    <input type="hidden" name="returnUrl" id="returnUrl" value="@(ViewBag.ReturnURL != null ? ViewBag.ReturnURL : "")" />
+                                    <input type="hidden" name="returnUrl" id="returnUrl" value="@(ViewBag.ReturnURL != null ? ViewBag.ReturnURL : "/Customer/Index")" />
                                 </form>
                             </div>
                             <div class="divider-column">
@@ -56,7 +52,7 @@
                                 </div>
                             </div>
                             <div class="column">
-                                <a href="/Customer/AccessKey" class="ui primary button fluid large text uppercase">
+                                <a href="/customer/accessKey" class="ui primary button fluid large text uppercase">
                                     <i class="add user icon"></i>
                                     Primeiro acesso? <br />Cadastre-se
                                 </a>

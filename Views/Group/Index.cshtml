@@ -14,8 +14,8 @@
             <meta name="twitter:description" content="@Model.MetaDescription">
         }
         <meta property="og:type" content="website">
-        <meta property="og:url" content="@Html.Raw(Request.Url)">
-        <meta name="twitter:url" content="@Html.Raw(Request.Url)">
+<meta property="og:url" content="@HttpUtility.HtmlEncode(Request.Url)">
+        <meta name="twitter:url" content="@HttpUtility.HtmlEncode(Request.Url)">
         <meta property="og:title" content="@Html.Raw(ViewBag.Title)">
         <meta name="twitter:title" content="@Html.Raw(ViewBag.Title)">
         <meta property="og:image" content="/assets/image/logo/logo.png">
@@ -88,25 +88,27 @@
   @if (Model != null)
   {
     <div class="ui grid">      
-      @Html.Action("BannerGroup", "Banner", new {groupID = Model.IdGroup, bannerType = 'F'})
+          <!-- ~/Views/Shared/Blocks/Banner/_BannerCategory.cshtml -->
+          @Html.Action("bannerGroup", "banner", new {groupID = Model.IdGroup, bannerType = 'F'})
     </div>
   }
 }
+
 @section filters {
   <div class="three wide column filterColumn">
     <div class="row one column filterBlock" id="filterBlock">
       <!-- Page: ~/Views/Shared/Common/_FilterMenu.cshtml -->
       @if (LojaCorp.Control.Company._Company.ViewProductFiltersUrl)
       {
-        @Html.Action("FilterMenuNew", "Product", new {category = "", brand = "", group = Model.IdGroup, keyword = ""})
+        @Html.Action("filterMenuNew", "product", new {category = "", brand = "", group = Model.IdGroup, keyword = ""})
       }
       else
       {
-        @Html.Action("FilterMenu", "Product")
+        @Html.Action("filterMenu", "product")
       }
     </div>
     <div class="row">
-      @Html.Action("BannerGroup", "Banner", new {groupID = Model.IdGroup, bannerType = 'L'})
+      @Html.Action("bannerGroup", "banner", new {groupID = Model.IdGroup, bannerType = 'L'})
     </div>
   </div>
 }
@@ -168,7 +170,7 @@
     {
       <div class="groupProducts">
         
-          @Html.Action("GetProductsGroup", "Product",
+          @Html.Action("getProductsGroup", "product",
               new
                    {
                        category = Request.QueryString["category"] != null ? Request.QueryString["category"] : "",
@@ -191,7 +193,7 @@
 </div>
 <div class="sixteen wide column">
   <!-- ~/Views/Shared/Blocks/Banner/_BannerCategory.cshtml -->
-  @Html.Action("BannerGroup", "Banner", new {groupID = Model.IdGroup, bannerType = 'R'})
+   @Html.Action("bannerGroup", "banner", new {groupID = Model.IdGroup, bannerType = 'R'})
 </div>
 <input type="hidden" name="CurrentPage" id="CurrentPage" value="group"/>
 <input type="hidden" name="GenericPageFilter" id="GenericPageFilter" value="@Model.IdGroup"/>

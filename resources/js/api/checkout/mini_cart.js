@@ -306,8 +306,7 @@ function excluirProdutoCarrinho(idCurrent, idCartPersonalization, restrictedDeli
         cancel: {
             text: "Cancelar"
         },
-        callback: function () {
-            CancelarCalculoFreteCart(0);
+        callback: function () {            
             $.ajax({
                 method: "POST",
                 url: "/Checkout/DeleteProduct",

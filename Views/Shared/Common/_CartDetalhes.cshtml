@@ -44,8 +44,8 @@
                                     </div>
                                 </div>
                             </div>
-                           
-                            <div class="item detalhes hidden">
+                            <!--ESCONDENDO FRETE NA V1-->
+                            @*<div class="item detalhes">
                                 <div class="content">
                                     <div class="description frete">
                                         <div class="ui form">
@@ -76,8 +76,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-
+                            </div>*@
                             <div class="item detalhes">
                                 <div class="content">
                                     <h3>Total a pagar: <span id="totalCarrinho">@string.Format("{0:c}", Model != null ? Model.Total : 0)</span></h3>
@@ -97,7 +96,7 @@
                         </a>
                     </div>
                     <div class="column">
-                        <a type="submit" class="ui animated button fluid large submit action" tabindex="0" href="@(Session["UserAuthenticated"] == null ? "/checkout/Identification" : "/checkout/Payment")" >
+                        <a type="submit" class="ui animated button fluid large submit action" tabindex="0" href="@(Session["UserAuthenticated"] == null ? "/checkout/identification" : "/checkout/payment")" >
                             <div class="visible content">Finalizar Compra</div>
                             <div class="hidden content">
                                 <i class="right arrow icon"></i>

@@ -464,7 +464,7 @@ function AdicionarProdutosCompreJuntoAjx() {
             dataType: 'json',
             success: function (response) {
                 if (response.success === true) {
-                    //window.location.href = "/Checkout/Index";
+                    //window.location.href = "/checkout/index";
                     LoadCarrinho();
                     $(".carrinho").sidebar('toggle');
                 } else {
@@ -552,7 +552,7 @@ function AdicionarProdutoAjx(productSKU, productID, quantity, oneclick, signatur
                     LoadCarrinho();
                     $(".carrinho").sidebar('toggle');
                 }
-                //window.location.href = "/Checkout/Index";
+                //window.location.href = "/checkout/index";
                 
             }
             else {
@@ -779,7 +779,12 @@ function calcShipping() {
                             $('#listSimulateFreight').append(strTr);
                         });
                     } else {
-                        if (response.message == "CD:1" || response.message == "CD:2") {
+                        if (response.message == "CD:1") {
+                            $("#zipcode").val(ZipCode)
+                            buscaCepCD(ZipCode).then(function () {
+                                changeCd(true, true, "#simular-frete-submit", true, true);
+                            })
+                        } else if (response.message == "CD:2") {
                             $("#zipcode").val(ZipCode)
                             buscaCepCD(ZipCode).then(function () {
                                 changeCd(true, true, "#simular-frete-submit", true, true);
