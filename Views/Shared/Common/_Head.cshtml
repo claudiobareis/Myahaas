@@ -1,8 +1,8 @@
-﻿
-@{
+﻿@{
   string _classSearch = Session["idEventList"] == null ? "search" : "filterListEventsProducts";
   string _classMiniCart = Session["idEventList"] == null && Session["EventList"] == null ? "mini-cart" : "mini-cart-list-event";
 }
+
 <div class="ui container fluid _header">
     <div class="ui container fluid">
         <div class="ui middle aligned three column centered grid">
@@ -11,7 +11,7 @@
                    @Html.Action("Menu", "Home")
                 </div>
                 <div class="ui center aligned ten wide mobile six wide tablet three wide computer column">
-                    <a href="https://www.myahaas.com.br" title="Página Inicial" class="brand">
+                    <a href="/home" title="Página Inicial" class="brand">
                         <img class="ui middle aligned image logo" src="/assets/image/logo/logo.svg" alt="@LojaCorp.Control.Company._Company.FantasyName" title="@LojaCorp.Control.Company._Company.FantasyName">
                     </a>
                 </div>
@@ -142,3 +142,4 @@
             </div>
      </div>
 </div>
+

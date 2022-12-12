@@ -118,8 +118,12 @@
             </div>
     </div>
     <div class="ui grid horizontal" id="ListProductsCheckoutCompleto">
+        @if (Session["MsgCartHash"] != null)
+        {
+            <input type="hidden" name="MsgCartHash" id="MsgCartHash" value="@Session["MsgCartHash"]" />
+            Session["MsgCartHash"] = null;
+        }
         <div class="row">
-            <input type="hidden" name="sessionId" id="sessionId" value="@(Session["SessionId"] != null ? Session["SessionId"].ToString() : string.Empty)" />
 
             @if (Model != null && Model.CartItems != null)
             {
@@ -215,7 +219,6 @@
                                             <i class="right arrow icon"></i>
                                         </div>
                                     </button>
-
                                     @if (Active)
                                     {
                                         <input type="hidden" name="EnvPayPallCheckoutInCart" id="EnvPayPalCheckoutInCartlCheckoutInCart" value="@Env" />
