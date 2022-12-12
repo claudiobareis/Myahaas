@@ -932,3 +932,9 @@ input[data-mode="Receba hoje"] + label span:before {
 }
 */
 /*black friday*/
+@media screen and (max-width: $mobile-bp) {
+    .ui.visible.right.sidebar~.pusher {
+        -webkit-transform: translate3d(-500px,0,0);
+        transform: translate3d(-500px,0,0);
+    }
+}
