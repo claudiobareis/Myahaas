@@ -55,47 +55,37 @@
         }
         @if (Model.AlternativeImage != null)
         {
-            <a class="ui masked reveal slide image fluid attached" itemprop="url" href="@(Model.UrlFriendlyCustom != null ? Model.UrlFriendlyCustom : Model.UrlFriendly)" title="@Model.Name">
-                
+            <a class="ui slide masked reveal image fluid attached" itemprop="url" href="@(Model.UrlFriendlyCustom != null ? Model.UrlFriendlyCustom : Model.UrlFriendly)" title="@Model.Name">
                 <img itemprop="image" id="mainImageCard_@Model.IdProduct" src="/assets/image/img_default.png" data-src="@(Model.ImageHome != null ? Model.ImageHome : "/assets/image/img_default.png")" class="visible content" onerror="imgError(this)" alt="@Model.Name" title="@Model.Name">
                 <img src="@Model.AlternativeImage" class="hidden content" onerror="imgError(this)" alt="@Model.Name" title="@Model.Name">
-                <noscript>                    
-                    @{ 
-                        var caminhoImg = @Model.ImageHome;
-                        var UrlImg = caminhoImg.Split('/').Last();
-                                                            
-                    }
-                </noscript>
+
+                @if (Model.BuyXGetYSeal != null)
+                {
+                    <div class="ui top left attached label imagetag">
+                        <img src="@Model.BuyXGetYSeal" class="ui image tiny" onerror="imgError(this)">
+                    </div>
+                }
+
                 @if (Model.SealStatus != null && Model.SealStatus.Name != "Normal")
                 {
-                    <div class="ui top right attached label massive imagetag">
+                    <div class="ui top right attached label imagetag seals">
+                        @foreach (var _sealStatus in Model.SealsStatus)
+                        {
+                            if (_sealStatus.Name != "Normal")
+                            {
+                                <img src="@_sealStatus.Image" class="ui image tiny" onerror="imgError(this)" alt="@Model.Name" title="@Model.Name">
+                            }
+                        }
+                    </div>
+                }
+                else if (Model.SealStatus != null && Model.SealStatus.Name != "Normal")
+                {
+                    <div class="ui top right attached label imagetag seals">
                         <img src="@Model.SealStatus.Image" alt="@Model.SealStatus.Name" class="ui image tiny" onerror="imgError(this)" alt="@Model.Name" title="@Model.Name">
                     </div>
                 }
 
-                @if (Model.ProgressiveDiscount != null && (Session["segment"] == null || Session["segment"].ToString() != "b2b"))
-                {
-                    if (!String.IsNullOrEmpty(Model.ProgressiveDiscount.Image)) 
-                    {
-                        <div class="ui bottom attached label imageDiscount">        
-                            <img src="@Model.ProgressiveDiscount.Image" id="imgProgressiveDiscount" class="ui image" alt="" title="">
-                        </div>
-                    }
-                }
-            </a>
-        }
-        else
-        {
-            <a class="ui image fluid attached" itemprop="url" href="@(Model.UrlFriendlyCustom != null ? Model.UrlFriendlyCustom : Model.UrlFriendly)" title="@Model.Name">
-                <img id="mainImageCard_@Model.IdProduct" src="/assets/image/img_default.png" data-src="@(Model.ImageHome != null ? Model.ImageHome : "/assets/image/img_default.png")" class="visible content" onerror="imgError(this)" alt="@Model.Name" title="@Model.Name">
-                @if (Model.SealStatus != null && Model.SealStatus.Name != "Normal")
-                {
-                    <div class="ui top right attached label massive imagetag">
-                        <img src="@Model.SealStatus.Image" class="ui image tiny" onerror="imgError(this)" alt="@Model.Name" title="@Model.Name">
-                    </div>
-                }
-
-                @if (Model.ProgressiveDiscount != null && (Session["segment"] == null || Session["segment"].ToString() != "b2b"))
+                @if (Model.ProgressiveDiscount != null)
                 {
                     if (!String.IsNullOrEmpty(Model.ProgressiveDiscount.Image))
                     {
@@ -106,7 +96,146 @@
                 }
             </a>
         }
-        
+        else
+        {
+            <a class="ui image fluid attached" itemprop="url" href="@(Model.UrlFriendlyCustom != null ? Model.UrlFriendlyCustom : Model.UrlFriendly)" title="@Model.Name">
+                <img id="mainImageCard_@Model.IdProduct" src="/assets/image/img_default.png" data-src="@(Model.ImageHome != null ? Model.ImageHome : "/assets/image/img_default.png")" class="visible content" onerror="imgError(this)" alt="@Model.Name" title="@Model.Name">
+                @if (Model.BuyXGetYSeal != null)
+                {
+                    <div class="ui top left attached label imagetag">
+                        <img src="@Model.BuyXGetYSeal" class="ui image tiny" onerror="imgError(this)">
+                    </div>
+                }
+
+                 @if (Model.SealsStatus != null && Model.SealsStatus.Count > 0)
+                {
+                    <div class="ui top right attached label imagetag seals">
+                        @foreach (var _sealStatus in Model.SealsStatus)
+                        {
+                            if (_sealStatus.Name != "Normal")
+                            {
+                                <img src="@_sealStatus.Image" class="ui image tiny" onerror="imgError(this)" alt="@Model.Name" title="@Model.Name">
+                            }
+                        }
+                    </div>
+                }
+
+                @if (Model.ProgressiveDiscount != null)
+                {
+                    if (!String.IsNullOrEmpty(Model.ProgressiveDiscount.Image))
+                    {
+                        <div class="ui bottom attached label imageDiscount">
+                            <img src="@Model.ProgressiveDiscount.Image" id="imgProgressiveDiscount" class="ui image" alt="" title="">
+                        </div>
+                    }
+                }
+            </a>
+        }
+
+
+        <div class="ui horizontal divider avaliacao">
+            <div class="ui tiny star rating" data-rating="@Model.Rate.Value.ToString().Replace(",", ".")" data-max-rating="5"></div>
+        </div>
+
+        <div class="info">
+
+            <div class="sku-options mobile-hide tablet-hide @(Model.AvailableReferences != null ? "mask" : "") @(Session["segment"] != null && Session["segment"].ToString() == "b2b" ? "hideme" : string.Empty)">
+
+                <span id="produto-esgotado_@Model.IdProduct" class="text center produto-esgotado-label hideme">Produto Esgotado</span>
+
+                @if (Model.AvailableReferences != null)
+                {
+                    <input type="hidden" name="produto-sku" id="produto-sku" value="" />
+                    foreach (var reference in Model.AvailableReferences)
+                    {
+                        <div id="referencefromproduct_@Model.IdProduct" class="ui fluid selection dropdown dropdownreference" data-total-referencia="@(Model.AvailableReferences != null ? Model.AvailableReferences.Count() : 0)" data-idproduct="@Model.IdProduct">
+                            <input type="hidden" name="reference_@Model.IdProduct" data-id-reference="@reference.IdReference" id="@reference.Name">
+                            <i class="dropdown icon"></i>
+                            <span class="text">@reference.Name</span>
+                            <div class="menu">
+                                <div class="header">
+                                    @reference.Name
+                                </div>
+
+                                <div class="scrolling menu">
+                                    @foreach (var variation in reference.Variations)
+                                    {
+                                        combinacoes = "";
+                                        if (Model.SKUs != null)
+                                        {
+                                            foreach (var skus in Model.SKUs)
+                                            {
+                                                if (!LojaCorp.Control.Company._Company.ShowProductOutOfStock || (LojaCorp.Control.Company._Company.ShowProductOutOfStock && skus.Stock > 0 && (skus.Price > 0 || skus.PricePromotion > 0)))
+                                                {
+                                                    if (skus.Variations.Where(c => c.IdVariation == variation.IdVariation).ToArray().Count() > 0)
+                                                    {
+                                                        var sku = skus.Variations;
+                                                        foreach (var Variacao in skus.Variations)
+                                                        {
+                                                            combinacoes += "|" + Variacao.IdVariation;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        if (combinacoes != "")
+                                        {
+                                            <div class="item" data-value="@variation.IdVariation" data-sku="@combinacoes">
+                                                @if (variation.Color != null)
+                                                {
+                                                    <div class="ui empty circular label" style="background-color: @LojaCorp.Control.Static.HexaToRgb(variation.Color) !important; border-color: #1B1C1D !important;"></div>
+                                                }
+                                                @variation.Name
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui small divider hidden"></div>
+                    }
+                }
+                <!-- Verificar se o produto é conjunto -->
+                @if (Model.HasConjunct || Model.HasPersonalizations)
+                {
+                    <a href="@(Model.UrlFriendlyCustom != null ? Model.UrlFriendlyCustom : Model.UrlFriendly)" title="Comprar" class="ui labeled icon button action fluid btn-comprar text uppercase" data-idproduct="@Model.IdProduct" data-name="Model.Name">
+                        <i id="btn-icon-card-@Model.IdProduct" class="@(Model.HasPersonalizations ? "icon add to cart" : "icon announcement")"></i>
+                        Comprar
+                    </a>
+                }
+                else if (Model.FlagExhausted || Model.Stock <= 0)
+                {
+                    <a id="btn-comprar-card-@Model.IdProduct" title="Avise-me" class="ui labeled icon button grey fluid avise-card avise-me-modal text uppercase" data-idproduct="@Model.IdProduct" data-name="@Model.Name">
+                        <i id="btn-icon-card-@Model.IdProduct" class="icon announcement"></i>
+                        Avise-me
+                    </a>
+                }
+                else if (Session["EventList"] != null)
+                {
+                    <a id="add-event-list-@Model.IdProduct" title="Adicionar à Lista" class="ui labeled icon button primary fluid add-event-list text uppercase" data-idproduct="@Model.IdProduct" data-name="@Model.Name">
+                        <i id="btn-icon-card-@Model.IdProduct" class="icon add to cart"></i>
+                        Adicionar à Lista
+                    </a>
+                }
+                else
+                {
+                    if (Model.PurchaseRecurring == true)
+                    {
+                        <a id="btn-assinatura-card-@Model.IdProduct" title="Assinar" class="ui labeled icon button recurring fluid btn-assinatura-card text uppercase" data-idproduct="@Model.IdProduct" data-name="@Model.Name">
+                            <i id="btn-icon-card-@Model.IdProduct" class="icon add to cart"></i>
+                            Assinar
+                        </a>
+                        <div class="ui small divider hidden"></div>
+                    }
+                    if (Model.ProductSignature == false)
+                    {
+                        <a id="btn-comprar-card-@Model.IdProduct" title="Comprar" class="ui labeled icon button action fluid btn-comprar-card text uppercase" data-idproduct="@Model.IdProduct" data-name="@Model.Name">
+                            <i id="btn-icon-card-@Model.IdProduct" class="icon add to cart"></i>
+                            Comprar
+                        </a>
+                    }
+                }
+            </div>
             <div class="dados">
                 <a href="@(Model.UrlFriendlyCustom != null ? Model.UrlFriendlyCustom : Model.UrlFriendly)" title="@Model.Name">
                     <h3>
@@ -120,7 +249,7 @@
                     <meta itemprop="priceCurrency" content="BRL" />
                     @if (Model.PricePromotion != null && Model.PricePromotion > 0)
                     {
-                        <span id="basePrice_@Model.IdProduct" class="precoBase">@string.Format("{0:c}", Model.Price) @(Session["segment"] != null && Session["segment"].ToString() == "b2b" && Model.AvailableReferences != null ? "a partir de" : string.Empty)</span>
+                        <span id="basePrice_@Model.IdProduct" class="precoBase">de <i>@string.Format("{0:c}", Model.Price)</i> por @(Session["segment"] != null && Session["segment"].ToString() == "b2b" && Model.AvailableReferences != null ? "a partir de" : string.Empty)</span>
                         <span class="preco">R$ <span>@string.Format("{0:n2}", Model.PricePromotion)</span></span>
                         <meta itemprop="price" content="@string.Format("{0:n2}", Model.PricePromotion).Replace(".", "").Replace(",", ".")" />
                     }
@@ -137,7 +266,7 @@
                     @if (Model.InstallmentMax != null)
                     {
                         <span class="parcelamento">
-                            <span class="installmentMaxNumber">@Model.InstallmentMax.MaxNumber</span>
+                            ou em <span class="installmentMaxNumber">@Model.InstallmentMax.MaxNumber</span>
                             x de <span class="installmentMaxValue">@string.Format("{0:c}", Model.InstallmentMax.Value)</span>
                         </span>
                     }
@@ -160,114 +289,13 @@
 
                 </div>
             </div>
-                    <div class="info">
-
-                        <span id="produto-esgotado_@Model.IdProduct" class="text center produto-esgotado-label hideme @(Model.FlagExhausted ? " " : "hideme" )">Produto Esgotado</span>
-                        
-            <div class="sku-options @(Model.AvailableReferences != null ? "mask" : "no-size") @(Session["segment"] != null && Session["segment"].ToString() == "b2b" ? "hideme" : string.Empty)">
-                
-                @if (Model.AvailableReferences != null)
-                {
-                    <input type="hidden" name="produto-sku" id="produto-sku" value="" />
-                    foreach (var reference in Model.AvailableReferences)
-                    {
-                        <div id="referencefromproduct_@Model.IdProduct" class="ui fluid selection dropdown dropdownreference" data-total-referencia="@(Model.AvailableReferences != null ? Model.AvailableReferences.Count() : 0)" data-idproduct="@Model.IdProduct">
-                            <input type="hidden" name="reference_@Model.IdProduct" data-id-reference="@reference.IdReference" id="@reference.Name">
-                            <i class="dropdown icon"></i>
-                            <span class="text">@reference.Name</span>
-                            <div class="menu">
-                                <div class="header">
-                                    @reference.Name
-                                </div>
-                                <div class="scrolling menu">
-                                    @foreach (var variation in reference.Variations)
-                                    {
-                                        combinacoes = "";
-                                        if (Model.SKUs != null)
-                                        {
-                                            foreach (var skus in Model.SKUs)
-                                            {
-                                                if (!LojaCorp.Control.Company._Company.ShowProductOutOfStock || (LojaCorp.Control.Company._Company.ShowProductOutOfStock && skus.Stock > 0 && (skus.Price > 0 || skus.PricePromotion > 0)))
-                                                {
-                                                    if (skus.Variations.Where(c => c.IdVariation == variation.IdVariation).ToArray().Count() > 0)
-                                                    {
-                                                        var sku = skus.Variations;
-                                                        foreach (var Variacao in skus.Variations)
-                                                        {
-                                                            combinacoes += "|" + Variacao.IdVariation;
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                    if (combinacoes != "")
-                    {
-                                            <div class="item" data-value="@variation.IdVariation" data-sku="@combinacoes">
-                                                @if (variation.Color != null)
-                                                {
-                                                    <div class="ui empty circular label" style="background-color: @LojaCorp.Control.Static.HexaToRgb(variation.Color) !important; border-color: #1B1C1D !important;"></div>
-                                                }
-                                                @variation.Name
-                                            </div>
-                                        }
-                                    }
-                                </div>
-                            </div>
-                        </div>
-                        
-                    }
-                }
+            <div class="botoes centered">
                 <!-- Verificar se o produto é conjunto -->
                 @if (Model.HasConjunct || Model.HasPersonalizations)
                 {
-                    <a href="@(Model.UrlFriendlyCustom != null ? Model.UrlFriendlyCustom : Model.UrlFriendly)" title="Comprar" class="ui labeled icon button action fluid btn-comprar text uppercase" data-idproduct="@Model.IdProduct" data-name="Model.Name">                        
-                        eu quero 
-                        <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.813477 3.61978H3.45348V0.904785H4.53348V3.61978H7.17348V4.69978H4.53348V7.39979H3.45348V4.69978H0.813477V3.61978Z" fill="#BBBBBB"/></svg>
-                    </a>
-                }
-                else if (Model.FlagExhausted || Model.Stock <= 0)
-                {
-                    <a id="btn-comprar-card-@Model.IdProduct" title="Avise-me" class="ui labeled icon button grey fluid avise-card avise-me-modal text uppercase" data-idproduct="@Model.IdProduct" data-name="@Model.Name">
-                        <i id="btn-icon-card-@Model.IdProduct" class="icon announcement"></i>
-                        Avise-me
-                    </a>
-                    <script>
-                        $('.info .avise-card').parent().addClass('avise-me-txt');
-                    </script>
-                }
-                else if (Session["EventList"] != null)
-                {
-                    <a id="add-event-list-@Model.IdProduct" title="Adicionar à Lista" class="ui labeled icon button primary fluid add-event-list text uppercase" data-idproduct="@Model.IdProduct" data-name="@Model.Name">
-                        <i id="btn-icon-card-@Model.IdProduct" class="icon add to cart"></i>
-                        Adicionar à Lista
-                    </a>
-                }
-                else
-                {
-          if (Model.PurchaseRecurring == true)
-          {
-            <a id="btn-assinatura-card-@Model.IdProduct" title="Assinar" class="ui labeled icon button recurring fluid btn-assinatura-card text uppercase" data-idproduct="@Model.IdProduct" data-name="@Model.Name">
-              <i id="btn-icon-card-@Model.IdProduct" class="icon add to cart"></i>
-              Assinar
-            </a>
-            
-          }
-          if (Model.ProductSignature == false)
-          {
-                    <a id="btn-comprar-card-@Model.IdProduct" title="Comprar 03" class="ui labeled icon fluid btn-comprar-card text uppercase" data-idproduct="@Model.IdProduct" data-name="@Model.Name">
-                        eu quero 
-                        <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.813477 3.61978H3.45348V0.904785H4.53348V3.61978H7.17348V4.69978H4.53348V7.39979H3.45348V4.69978H0.813477V3.61978Z" fill="#BBBBBB"/></svg>
-                    </a>
-                }
-        }
-        </div>
-            <div class="botoes centered">
-                <!-- Verificar se o produto é conjunto -->
-                @if (Model.HasConjunct)
-                {
                     <a href="@(Model.UrlFriendlyCustom != null ? Model.UrlFriendlyCustom : Model.UrlFriendly)" title="Comprar" class="ui labeled icon button action fluid text uppercase btnComprar" data-idproduct="@Model.IdProduct" data-name="Model.Name">
-                        eu quero 
-                        <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.813477 3.61978H3.45348V0.904785H4.53348V3.61978H7.17348V4.69978H4.53348V7.39979H3.45348V4.69978H0.813477V3.61978Z" fill="#BBBBBB"/></svg>
+                        <i id="btn-icon-card-@Model.IdProduct" class="@(Model.HasPersonalizations ? "icon add to cart" : "icon announcement")"></i>
+                        Comprar
                     </a>
                 }
                 else if (Model.FlagExhausted || Model.Stock <= 0)
@@ -292,13 +320,14 @@
                         <a id="btn-assinatura-card-@Model.IdProduct" title="Assinar" class="ui labeled icon button recurring fluid btn-assinatura-card tablet-and-mobile-only text uppercase" data-idproduct="@Model.IdProduct" data-name="@Model.Name">
                             <i id="btn-icon-card-@Model.IdProduct" class="icon add to cart"></i>
                             Assinar
-                        </a>                        
+                        </a>
+                        <div class="ui small divider hidden"></div>
                     }
                     if (Model.ProductSignature == false)
                     {
                         <a href="@(Model.UrlFriendlyCustom != null ? Model.UrlFriendlyCustom : Model.UrlFriendly)" id="btn-comprar-card-@Model.IdProduct" title="Comprar" class="ui labeled icon button action fluid text uppercase btnComprar" data-idproduct="@Model.IdProduct" data-name="@Model.Name">
                             <i id="btn-icon-card-@Model.IdProduct" class="icon add to cart"></i>
-                            Eu Quero
+                            Comprar
                         </a>
                     }
                 }
