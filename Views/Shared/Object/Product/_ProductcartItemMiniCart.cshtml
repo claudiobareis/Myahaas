@@ -30,13 +30,13 @@
     </button>
 
     <div class="image">
-        <a href="/Product/Details/@Model.IdProduct" class="product image" id="name_@Model.IdCartItem">
+        <a href="/product/details/@Model.IdProduct" class="product image" id="name_@Model.IdCartItem">
             <img src="@Model.ProductImage.ImageDefault" onerror="imgError(this)">
         </a>
     </div>
     <div class="content">
         <div class="nameProduct">
-            <a href="/Product/Details/@Model.IdProduct" class="product title" id="name_@Model.IdCartItem">
+            <a href="/product/details/@Model.IdProduct" class="product title" id="name_@Model.IdCartItem">
                 @Html.Raw(Model.NameProduct)
             </a>
         </div>
@@ -93,9 +93,7 @@
             </div>
         }
 
-        <button class="@classe_remove" data-id="@Model.IdCartItem" data-id-produto="@Model.IdProduct" data-id-sku="@Model.IdSku" data-id-personalization-cart="@(Model.IdCartPersonalization != null ? Model.IdCartPersonalization : 0)" data-restricted-delivery="@Model.RestrictedDelivery">
-            <i class="trash alternate outline icon"></i>
-        </button>
+       
     </div>
     
     <div class="ui divider"></div>

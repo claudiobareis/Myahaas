@@ -3,7 +3,7 @@
 @{
     string JsonPaymentMethod = Newtonsoft.Json.JsonConvert.SerializeObject(@Model);
     var LstOneClick = (List<DomainPayment.Entities.MaxiPago.OneClickMaxiPago>)Session["LstOneClick"];
-    var temOneClickSalvo = LstOneClick.Count() > 0 ? true : false;
+    var temOneClickSalvo = LstOneClick.Count > 0 ? true : false;
     var UseTwoCards = (bool)Session["UseTwoCards"];
     decimal MinimumValueTwoCards = (decimal)Session["MinimumValueTwoCards"];
     decimal TotalCart = (decimal)Session["TotalCart"];
@@ -12,7 +12,7 @@
     if (temOneClickSalvo == false)
     {
         LstOneClickPagSeguroV4 = (List<DomainPayment.Entities.PagSeguroV4.PagSeguroV4_OneClick>)Session["LstOneClickPagSeguroV4"];
-        temOneClickSalvo = LstOneClickPagSeguroV4.Count() > 0 ? true : false;
+        temOneClickSalvo = LstOneClickPagSeguroV4.Count > 0 ? true : false;
         btnExcluiOneClick = true;
     }
 
@@ -259,7 +259,7 @@
                                 </div>
                             </div>
                         </div>
-                        @if (Session["MercadoPago"] != null && Session["MercadoPago"].ToString() != "0")
+                        @if (Session["MercadoPagoCards"] != null && Session["MercadoPagoCards"].ToString() != "0")
                         {
                             <div class="field hidden" id="issuerField">
                                 <label class="labelCheckPayment">Banco emissor</label>

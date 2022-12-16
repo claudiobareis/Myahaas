@@ -3,6 +3,14 @@
 @{
     ViewBag.Title = string.IsNullOrEmpty(Model.Title) ? Model.Name : Model.Title;
     Layout = "~/Views/Shared/Base/_LayoutBreadCrumbLeftSideBar.cshtml";
+
+    string PathLogo = "/assets/image/logo/logo.png";
+
+    Uri Url = System.Web.HttpContext.Current.Request.Url;
+
+    string UrlLogoStore = Url.Scheme + "://" + Url.Host + PathLogo;
+
+    string UrlLogo = String.IsNullOrEmpty(Model.Logo) ? UrlLogoStore : Url.Scheme + ":" + Model.Logo;
 }
 
 @section CustomSeo {
@@ -14,11 +22,11 @@
             <meta name="twitter:description" content="@Model.MetaDescription">
         }
         <meta property="og:type" content="website">
-        <meta property="og:url" content="@Html.Raw(Request.Url)">
-        <meta name="twitter:url" content="@Html.Raw(Request.Url)">
+        <meta property="og:url" content="@HttpUtility.HtmlEncode(Request.Url)">
+        <meta name="twitter:url" content="@HttpUtility.HtmlEncode(Request.Url)">
         <meta property="og:title" content="@Html.Raw(ViewBag.Title)">
         <meta name="twitter:title" content="@Html.Raw(ViewBag.Title)">
-        <meta property="og:image" content="/assets/image/logo/logo.png">
+        <meta property="og:image" content="@UrlLogo">
     }
 }
 
@@ -30,7 +38,7 @@
                     <h1>@Model.Name</h1>
                     <ol itemscope itemtype="http://schema.org/BreadcrumbList" class="ui breadcrumb">
                         <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-                            <a itemscope itemtype="http://schema.org/Thing" itemprop="item" href="/">
+                            <a itemscope itemtype="http://schema.org/Thing" itemid="/" itemprop="item" href="/home">
                                 <span itemprop="name">Home</span>
                                 <meta itemprop="url" content="/">
                             </a>
@@ -53,14 +61,14 @@
     @if (Model != null)
     {
         <div class="ui grid">
-            @Html.Action("BannerBrand", "Banner", new {brandID = Model.IdBrand, bannerType = 'F'})
+            @Html.Action("bannerBrand", "banner", new {brandID = Model.IdBrand, bannerType = 'F'})
         </div>
     }
 }
 
 
 @section footerHalfbanner {
-    @Html.Action("BannerBrand", "Banner", new {brandID = Model.IdBrand, bannerType = 'R'})
+    @Html.Action("bannerBrand", "banner", new {brandID = Model.IdBrand, bannerType = 'R'})
 }
 
 
@@ -70,16 +78,16 @@
             <!-- Page: ~/Views/Shared/Common/_FilterMenu.cshtml -->
             @if (LojaCorp.Control.Company._Company.ViewProductFiltersUrl)
             {
-                @Html.Action("FilterMenuNew", "Product", new {category = "", brand = Model.IdBrand, group = "", keyword = ""})
+                @Html.Action("filterMenuNew", "product", new {category = "", brand = Model.IdBrand, group = "", keyword = ""})
             }
             else
             {
-                @Html.Action("FilterMenu", "Product")
+                @Html.Action("filterMenu", "product")
             }
         </div>
         <div class="row">
             <!-- Page: ~/Views/Shared/Blocks/Banner/_SideHalfBanner.cshtml -->
-            @Html.Action("SideHalfBannerBrand", "Banner", new {brandId = Model.IdBrand})
+            @Html.Action("sideHalfBannerBrand", "banner", new {brandId = Model.IdBrand})
         </div>
     </div>
 }
@@ -155,7 +163,7 @@
         @if (Model != null)
         {
             <div class="brandProducts">
-                @Html.Action("GetProductsBrand", "Product", new
+                @Html.Action("getProductsBrand", "product", new
                 {
                     category = Request.QueryString["category"] ?? "",
                     viewList = Request.QueryString["viewList"] ?? "",

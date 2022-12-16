@@ -8,6 +8,18 @@ $(document).ready(function () {
         forgotByEmailToVendor();
     });
 
+    $(document).on("keypress", "#emailAssisted", function (e) {
+        if (e.which == 13) {
+            event.preventDefault();
+            return false;
+        }
+    })
+
+    $(document).on("keypress", "#passwordAssisted", function (e) {
+        if (e.which == 13)
+            preLoginVendaAssistida();
+    });
+
     $(document).on("click", "#loginVendaAssistida", function () {
         preLoginVendaAssistida();
     })
@@ -34,10 +46,24 @@ function AttachClient() {
                         cancelButtonColor: '#d33',
                         confirmButtonText: 'OK'
                     }).then(function () {
-                        window.location.href = "/Home/index";
+                        window.location.href = "/home/index";
                     });
                 }
-                else {
+                else if (response.SneezedSession)
+                {
+                    swal({
+                        text: "Você ficou mais que 5 min sem realizar nenhuma atividade e sua sessão expirou, realize o login novamente.",
+                        type: response.type,
+                        showCancelButton: false,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'OK'
+                    }).then(function () {
+                        window.location.href = "/assistedsale/login";
+                    });
+                }
+                else
+                {
                     swal({
                         text: response.Message,
                         type: response.type,
@@ -96,8 +122,13 @@ $(document).on("keypress", ".busca_lista_cliente", function (e) {
     }
 });
 
+$(document).on("click", ".searchOrder .search.link", function (e) {
+    location.href = `/assistedsale?search=${$(".busca_lista_cliente").val()}&page=${$("#metaDataField").val()}&pagesize=${$("#metaDataValue").val()}`;
+});
+
+
 function preLoginVendaAssistida() {
-    if ($("#email").val().length > 0 && $("#password").val().length > 0) {
+    if ($("#emailAssisted").val().length > 0 && $("#passwordAssisted") && $("#passwordAssisted").val().length > 0) {
         $("#loginVendaAssistida").addClass("loading");
         LoginVendaAssistida();
     }
@@ -129,11 +160,11 @@ function LoginVendaAssistida() {
                 }
                 else {
                     $("#loginVendaAssistida").removeClass("loading");
-                    location.href = response.redirectUrl;
+                    location.href = response.redirectUrl.toLowerCase();
                 }
             }
         },
-        error: function () {
+        error: function (response) {
             if (response.success == false) {
                 $(".ui.message.form-message p").text(response.message);
                 $(".ui.message.form-message").show();

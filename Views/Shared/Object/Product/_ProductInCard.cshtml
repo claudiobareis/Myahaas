@@ -18,7 +18,7 @@
 
             if (Request.Cookies["WishList"] == null)
             {
-                @Html.Action("LoadWishListCookie", "Customer")
+                @Html.Action("loadWishListCookie", "customer")
             }
 
             wishList = Newtonsoft.Json.JsonConvert.DeserializeObject<List<DomainCustomer.Entities.Wishlist.WishlistItem>>(Request.Cookies["WishList"] != null ? HttpUtility.UrlDecode(Request.Cookies["WishList"].Value) : string.Empty);
@@ -78,7 +78,7 @@
                     if (!String.IsNullOrEmpty(Model.ProgressiveDiscount.Image)) 
                     {
                         <div class="ui bottom attached label imageDiscount">        
-                            <img src="@Model.ProgressiveDiscount.Image" id="imgProgressiveDiscount" class="ui image"  alt="" title="">
+                            <img src="@Model.ProgressiveDiscount.Image" id="imgProgressiveDiscount" class="ui image" alt="" title="">
                         </div>
                     }
                 }

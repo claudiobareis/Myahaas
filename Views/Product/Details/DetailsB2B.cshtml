@@ -12,6 +12,14 @@
 
     //GRADE ABERTA B2C
     var hasOpenSku = ViewBag.HasOpenSku != null ? ViewBag.HasOpenSku : false;
+
+    string PathLogo = "/assets/image/logo/logo.png";
+
+    Uri Url = System.Web.HttpContext.Current.Request.Url;
+
+    string UrlLogo = Url.Scheme + "://" + Url.Host + PathLogo;
+
+    string ImageOpenGraph = Model.ProductImages.Count > 0 ? Url.Scheme + ":" + Model.ProductImages.FirstOrDefault().ImageDefault : UrlLogo;
 }
 
 <script>
@@ -24,7 +32,7 @@
 }
 @section remarketing{
     <!-- Google Remarketing -->
-    @Html.Action("GoogleRemarketing", "Common", new { origin = ViewContext.RouteData.Values["controller"] })
+    @Html.Action("googleRemarketing", "common", new { origin = ViewContext.RouteData.Values["controller"] })
     <!-- End Google Remarketing -->
 }
 @section CustomSeo {
@@ -38,6 +46,8 @@
         {
             <meta name="Keywords" content="@Model.MetaKeyWords">
         }
+        
+        <meta property="og:image" content="@ImageOpenGraph"/>
     }
 }
 
@@ -231,7 +241,7 @@
                     </div>
                     <!--COMEÇO DICA DE COMPRA-->
                     <div id="dica_compra_partial">
-                        @Html.Action("BuyingTips", "Product", new { productID = @Model.IdProduct, skuID = Model.SKUPadrao != null ? Model.SKUPadrao.IdSku : 0 })
+                        @Html.Action("buyingTips", "product", new { productID = @Model.IdProduct, skuID = Model.SKUPadrao != null ? Model.SKUPadrao.IdSku : 0 })
                     </div>
                     <!--FIM DICA DE COMPRA-->
                     @Html.Partial("~/Views/Product/Details/_FlagDiscount.cshtml", Model)
@@ -449,7 +459,7 @@
                                     </div>
                                 </div>
                                 <input type="hidden" name="Rate" id="Rate" value="" />
-                                @Html.Action("GetRecaptchaV3", "Company", new { Module = "Evaluation" })
+                                @Html.Action("getRecaptchaV3", "company", new { Module = "Evaluation" })
                                 <br />
                                 <button class="ui button btn-avaliar" type="button" id="submitAval">Enviar</button>
                             </form>

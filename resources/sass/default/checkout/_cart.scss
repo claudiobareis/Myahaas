@@ -1235,10 +1235,11 @@ $radiusBox: 0px;
 
 .blc-key {
     width: 100%;
-    max-width: 300px;
+    max-width: 215px;
     padding: 0 0 0 1em;
+    position: relative;
     @media screen and (max-width: $mobile-bp) {
-        max-width: 97%;
+        max-width: 58%;
     }
 
     label {
@@ -1252,7 +1253,7 @@ $radiusBox: 0px;
 
     #key {
         border: 1px solid #D4D4D4 !important;
-        border-radius: 0 !important;
+        border-radius: 5 !important;
         -webkit-box-flex: 1;
         -ms-flex: 1 0 auto;
         flex: 1 0 auto;
@@ -1261,10 +1262,17 @@ $radiusBox: 0px;
     }
 
     #applyDiscount {
-        background: transparent;
-        position: absolute;
-        right: 0;
+        background: #000;        
         line-height: 30px;
+        color: #fff;
+    }
+    #deleteDiscount{
+        position: absolute;
+        right: -141px;
+        top: -21px;
+        border-radius: 50px;
+        font-size: 12px;
+        padding: 7px 9px;
     }
 }
 #containerPayment{

@@ -1,6 +1,12 @@
 ﻿@{
     ViewBag.Title = string.IsNullOrEmpty(LojaCorp.Control.Company._Company.Title) ? LojaCorp.Control.Company._Company.NameStore : LojaCorp.Control.Company._Company.Title;
     Layout = "~/Views/Shared/Base/_Layout.cshtml";
+    string PathLogo = "/assets/image/logo/logo.png";
+
+    Uri Url = System.Web.HttpContext.Current.Request.Url;
+
+    string UrlLogo = Url.Scheme + "://" + Url.Host + PathLogo;
+
 }
 <!-- ~/Views/Shared/Blocks/_Owl.cshtml -->
 @Html.Partial("Blocks/_Owl")
@@ -121,8 +127,8 @@
 
 <section class="ui container fluid category-2">
     <div class="title">
-        <h2>Promoção Destravando o Hexa</h2>
-        <h3>A cada vitória do Brasil, novas surpresas destravadas</h3>
+        <h2>CALÇADOS FEMININOS, BOLSAS, E ACESSÓRIOS MAIS VENDIDOS</h2>
+        <h3>os best sellers da Mya reunidos aqui</h3>
     </div>
     <div class="products-carousel-mais">
         <!-- Chamada de exibição de um grupo  -->        

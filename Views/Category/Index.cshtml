@@ -3,6 +3,14 @@
   ViewBag.Title = string.IsNullOrEmpty(Model.Title) ? Model.Name : Model.Title;
   Layout = "~/Views/Shared/Base/_LayoutBreadCrumbLeftSideBar.cshtml";
   var returnUrl = HttpContext.Current.Request.Url.AbsolutePath;
+
+   string PathLogo = "/assets/image/logo/logo.png";
+
+    Uri Url = System.Web.HttpContext.Current.Request.Url;
+
+    string UrlLogoStore = Url.Scheme + "://" + Url.Host + PathLogo;
+
+    string UrlLogo = String.IsNullOrEmpty(Model.Image) ? UrlLogoStore : Url.Scheme + ":" + Model.Image;
 }
 
 @section CustomSeo {
@@ -14,11 +22,11 @@
             <meta name="twitter:description" content="@Model.MetaDescription">
         }
         <meta property="og:type" content="website">
-        <meta property="og:url" content="@Html.Raw(Request.Url)">
-        <meta name="twitter:url" content="@Html.Raw(Request.Url)">
+<meta property="og:url" content="@HttpUtility.HtmlEncode(Request.Url)">
+        <meta name="twitter:url" content="@HttpUtility.HtmlEncode(Request.Url)">
         <meta property="og:title" content="@Html.Raw(ViewBag.Title)">
         <meta name="twitter:title" content="@Html.Raw(ViewBag.Title)">
-        <meta property="og:image" content="/assets/image/logo/logo.png">
+        <meta property="og:image" content="@UrlLogo">
     }
 }
 @{
@@ -91,12 +99,12 @@
 @section banner {
   @if (Model != null)
   {
-    @Html.Action("BannerCategory", "Banner", new {id = Model.IdCategory, type = 'F'})
+    @Html.Action("bannerCategory", "banner", new {id = Model.IdCategory, type = 'F'})
   }
 }
 
 @section footerHalfbanner {
-  @Html.Action("BannerCategory", "Banner", new {id = Model.IdCategory, type = 'R'})
+  @Html.Action("bannerCategory", "banner", new {id = Model.IdCategory, type = 'R'})
 }
 
 @section filters {
@@ -105,16 +113,16 @@
       <!-- Page: ~/Views/Shared/Common/_FilterMenu.cshtml -->
       @if (LojaCorp.Control.Company._Company.ViewProductFiltersUrl)
       {
-        @Html.Action("FilterMenuNew", "Product", new {category = Model.IdCategory, brand = "", group = "", keyword = ""})
+        @Html.Action("filterMenuNew", "product", new {category = Model.IdCategory, brand = "", group = "", keyword = ""})
       }
       else
       {
-        @Html.Action("FilterMenu", "Product")
+        @Html.Action("filterMenu", "product")
       }
     </div>
     <div class="row">
       <!-- Page: ~/Views/Shared/Blocks/Banner/_SideHalfBanner.cshtml -->
-      @Html.Action("SideHalfBannerCategory", "Banner", new {categoryId = Model.IdCategory})
+      @Html.Action("sideHalfBannerCategory", "banner", new {categoryId = Model.IdCategory})
     </div>
   </div>
 }
@@ -193,7 +201,7 @@
         <!-- ~/Views/Shared/Blocks/Product/_ProductsCategoryGrid.cshtml -->
         @if (Model != null)
         {
-            @Html.Action("GetProductsCategory", "Product", new 
+            @Html.Action("getProductsCategory", "product", new
             {
                 category = Model.IdCategory,
                 viewList = Request.QueryString["viewList"] ?? "",
