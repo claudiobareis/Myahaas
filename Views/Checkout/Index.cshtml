@@ -32,10 +32,10 @@
         <img class="ui middle aligned image logo" src="~/assets/image/logo/logo.png" />
     </a>
 }
-<div class="ui container">
+<div class="ui container checkout-page">
     <div class="ui two column grid stackable middle aligned">
         <div class="row">
-            <div class="column ui ten wide computer six wide tablet">
+            <div class="column sixteen wide">
                 <h1 class="meu-carrinho">@(Session["idEventList"] == null && Session["EventList"] == null ? "Meu Carrinho" : "Minha Lista")</h1>
             </div>
             <div class="column ui six wide computer ten wide tablet">
@@ -118,7 +118,7 @@
                 <input type="hidden" id="permiteVenda" value="@permiteVenda.ToString()" />
             </div>
         </div>
-        <div class="ui clearing divider"></div>
+        
     </div>
 
     <div class="ui grid horizontal" id="ListProductsCheckoutCompleto">
@@ -172,8 +172,7 @@
                                                                class="masked mask_zipcode" size="9" name="shipping"
                                                                value="@Model.ZipCode"
                                                                id="shipping">
-                                                        <button class="ui right labeled icon button frete calcular" id="CallServiceShipping">
-                                                            <i class="shipping icon"></i>
+                                                        <button class="ui right labeled icon button frete calcular" id="CallServiceShipping">                                                            
                                                             Calcular
                                                         </button>
                                                     </div>

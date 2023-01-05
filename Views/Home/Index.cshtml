@@ -17,16 +17,16 @@
 <h1 class="ocultoSeo">Sapatos Femininos, Bolsas e Acessórios</h1>
 
 <!-- ~/Views/Shared/Blocks/Banner/_FullBanner.cshtml -->
-@if (!Request.Browser.IsMobileDevice) {    
+@if (!Request.Browser.IsMobileDevice) {        
 <section class="mobile-hide tablet-hide hero-banner">    
-        @Html.Action("FullBanner", "Banner")
-        <script>
-            $(document).ready(function () {            
-                $('.products-carousel .slideshow').attr('data-dots','true');
-                $('.products-carousel .slideshow').attr('data-arrow','false');            
-            });
-        </script> 
+        @Html.Action("fullBanner", "banner")   
 </section>
+<script>
+    $(document).ready(function () {            
+        $('.products-carousel .slideshow').attr('data-dots','true');
+        $('.products-carousel .slideshow').attr('data-arrow','false');            
+    });
+</script> 
 }
 
 <!-- ~/Views/Shared/Blocks/Banner/_FooterHalfBanner.cshtml -->
