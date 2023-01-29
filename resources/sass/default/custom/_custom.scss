@@ -938,3 +938,22 @@ input[data-mode="Receba hoje"] + label span:before {
         transform: translate3d(-500px,0,0);
     }
 }
+
+.ui{
+    &.grid {
+        & > .stackable{
+            &.stackable{
+                &.row {
+                    & > .column{
+                        &.btnComprar{
+                            @media screen and (max-width: $mobile-bp) {
+                                padding: 0 0 !important;
+                                line-height: initial;
+                            }
+                        }                        
+                    }
+                }
+            }
+        }
+    }
+}

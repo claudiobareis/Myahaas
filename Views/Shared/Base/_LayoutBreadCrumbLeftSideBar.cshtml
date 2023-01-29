@@ -82,6 +82,7 @@
           
 
           <div class="ui container fluid margin bottom large margin left large margin right large ">
+            @RenderSection("descriptionCategory", required: false)
             <div class="ui grid">
               <div class="row divided horizontal stackable">
                 @RenderSection("filters", required: true)

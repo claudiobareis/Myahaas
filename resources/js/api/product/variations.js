@@ -463,7 +463,7 @@ variations = {
     },
     thumbAction: function() {
 
-        $('.thumbnails a').on('click', function(e) {
+        $('.thumbnails a:not(.slick-arrow)').on('click', function (e) {
 
             var $this = $(this),
                 $toggle = $('.toggleZoom'),
@@ -473,6 +473,19 @@ variations = {
 
             $this.parents(".slick-slide").siblings().removeClass("slick-current")
             $this.parents(".slick-slide").addClass("slick-current")
+
+            if ($this.data("video-url").length > 0) {
+                $("#imagem-padrao").hide();
+                $("#imagem-padrao").attr('style', 'display: none !important');
+
+                $("#video-product").attr('src', $this.data("video-url"));
+
+                $("#video-product").show();
+            } else {
+                $("#imagem-padrao").show();
+                $("#video-product").hide();
+                $("#video-product").attr('src', '');
+            }
 
             if ($toggle.data("active") === true || !variations.isDevice()) {
                 $easyzoom.easyZoom().filter('.easyzoom--with-thumbnails').data('easyZoom').swap($this.data('standard'), $this.attr('href'));
@@ -721,22 +734,23 @@ variations = {
                                     detalhes_maiorParc = 0;
 
                                     for (var l = 0; l < json_content[i].paymentMethods[j].paymentBrands[k].installments.length; l++) {
+
+                                        if (json_content[i].paymentMethods[j].paymentBrands[k].installments[l].description.toLowerCase().trim() !== "sem juros")//maior parcela sem juros
+                                        {
+                                            break;
+                                        }
+
                                         html += `<span class="item parcelamentos">
                                                               <span class="parcelas">${json_content[i].paymentMethods[j].paymentBrands[k].installments[l].installmentNumber} x</span>
                                                               <span class="valor"> ${this.moneyBR(json_content[i].paymentMethods[j].paymentBrands[k].installments[l].value)} </span>
                                                               <span class="modelo">(${json_content[i].paymentMethods[j].paymentBrands[k].installments[l].description})</span>
                                                               <span class="total">Total Parcelado: ${this.moneyBR(json_content[i].paymentMethods[j].paymentBrands[k].installments[l].total)}</span>
                                                           </span>`
-                                        var ret = json_content[i].paymentMethods[j].paymentBrands[k].installments[l].description.toLowerCase()
 
                                         detalhes_maiorParc = json_content[i].paymentMethods[j].paymentBrands[k].installments[l].installmentNumber;
                                         detalhes_valorParc = json_content[i].paymentMethods[j].paymentBrands[k].installments[l].value;
                                         detalhes_descricao = json_content[i].paymentMethods[j].paymentBrands[k].installments[l].description;
 
-                                        if (ret !== "sem juros")//maior parcela sem juros
-                                        {
-                                            return;
-                                        }
                                     }
                                     html += `</div>
                                         </div>`

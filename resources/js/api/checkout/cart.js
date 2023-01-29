@@ -1,73 +1,55 @@
 ﻿import { isLoading } from "../api_config";
 import { _alert, _confirm } from '../../functions/message';
-import { createModelExhausted, ExibirDicadeFrete, disparaAjaxUpdate } from "./mini_cart";
+import { createModelExhausted, ExibirDicadeFrete, disparaAjaxUpdate, excluirProdutoCarrinho, LoadingCart } from "./mini_cart";
 import { UpdateCarrinho } from "../../functions/mini_cart_generic";
 import { SomenteNumerosPositivos } from "../../functions/form-control";
 import { CompraRecorrenteStorage, CompraRecorrenteCart } from '../../functions/recurringPurchase';
 import { atualizaResumoCarrinho } from './payment'
 import { buscaCepCD, changeCd } from "../../ui/modules/multiCd";
+import { loading } from "../../functions/loading";
+import { debounce } from "../../functions/util";
+import { isGtmEnabled, getProductAndPushRemoveFromCartEvent } from "../../api/googleTagManager/googleTagManager";
 
 function InserirQuantidadeManual() {
-    $(document).on("keyup", "#ListProductsCheckoutCompleto input[id^='qtd_']", function (e) {
-        if ($(this).val().length > 0) {
-            CancelarCalculoFreteCart(1);
-            var valor_final = SomenteNumerosPositivos($(this).val());
-            $(this).val(valor_final);
-            $("#id_frete_selecionado").val("");
-            $("#cep_selecionado").val("");
-            // $("#btn_recalcular_frete").click();
+    $(document).on("keyup", "#ListProductsCheckoutCompleto input[id^='qtd_']", debounce(updateQuantity, 1000));
+}
 
-            var action = $(this).attr("data-action");
-            var idCurrent = $(this).attr("data-id");
-            var valorInput = new Number($("#qtd_" + idCurrent).val());
-            var valorStock = new Number($("#stock_" + idCurrent).val());
-            var idCartPersonalization = $(this).attr("data-id-personalization-cart");
+function updateQuantity(e) {
+    let initialQuantity = $("#qtdInicial_" + $(this).attr("data-id")).val();
 
-            if (valorInput <= valorStock) {
-                disparaAjaxUpdate(idCurrent, valorInput, action, idCartPersonalization);
-            }
-            else {
-                _alert("Ops ... Encontramos um problema", "Produto sem Estoque!", "warning");
-                valorInput -= 1
-            }
+    if (initialQuantity == $(this).val()) {
+        return;
+    }
 
-            $("#qtd_" + idCurrent).val(valorInput);
-            e.stopPropagation();
+    if ($(this).val().length > 0) {
+        CancelarCalculoFreteCart(1);
+        var valor_final = SomenteNumerosPositivos($(this).val());
+        $(this).val(valor_final);
+        $("#id_frete_selecionado").val("");
+        $("#cep_selecionado").val("");
+        // $("#btn_recalcular_frete").click();
+
+        var action = $(this).attr("data-action");
+        var idCurrent = $(this).attr("data-id");
+        var valorInput = new Number($("#qtd_" + idCurrent).val());
+        var valorStock = new Number($("#stock_" + idCurrent).val());
+        var idCartPersonalization = $(this).attr("data-id-personalization-cart");
+
+        if (valorInput <= valorStock) {
+            disparaAjaxUpdate(idCurrent, valorInput, action, idCartPersonalization, true);
         }
-    });
-
-    $(document).on("blur", "#ListProductsCheckoutCompleto input[id^='qtd_']", function (e) {
-        if ($(this).val().length == 0) {
-            CancelarCalculoFreteCart(1);
-            $(this).val(1);
-            $("#id_frete_selecionado").val("");
-            $("#cep_selecionado").val("");
-            // $("#btn_recalcular_frete").click();
-
-            var action = $(this).attr("data-action");
-            var idCurrent = $(this).attr("data-id");
-            var idCartPersonalization = $(this).attr("data-id-personalization-cart");
-            var valorInput = new Number($(this).val());
-            var valorStock = new Number($("#stock_" + idCurrent).val());
-            
-
-            if (valorInput <= valorStock) {
-                disparaAjaxUpdate(idCurrent, valorInput, action, idCartPersonalization);
-            }
-            else {
-                _alert("Ops ... Encontramos um problema", "Produto sem Estoque!", "warning");
-                valorInput -= 1
-            }
-
-            $("#qtd_" + idCurrent).val(valorInput);
-            e.stopPropagation();
+        else {
+            _alert("Ops ... Encontramos um problema", "Produto sem Estoque!", "warning");
+            valorInput -= 1
         }
-    });
+
+        $("#qtd_" + idCurrent).val(valorInput);
+        e.stopPropagation();
+    }
 }
 
 function AddMinusProductCart() {
     $(".qtdAction").on("click", function (event) {
-        CancelarCalculoFreteCart(1);
         
         var action = $(this).attr("data-action");
         var idCurrent = $(this).attr("data-id");
@@ -80,11 +62,11 @@ function AddMinusProductCart() {
         
         var valorStock = new Number($("#stock_" + idCurrent).val());
         
-
         if (action == "plus") {
             valorInput += 1;
             if (valorInput <= valorStock) {
-                disparaAjaxUpdate(idCurrent, valorInput, action, idCartPersonalization);
+                isLoading("#ListProductsCheckoutCompleto");
+                disparaAjaxUpdate(idCurrent, valorInput, action, idCartPersonalization, true);
             }
             else {
                 _alert("Ops ... Encontramos um problema", "Produto sem Estoque!", "warning");
@@ -97,16 +79,11 @@ function AddMinusProductCart() {
                 valorInput = 1;
             }
             else {
-                disparaAjaxUpdate(idCurrent, valorInput, action, idCartPersonalization);
+                isLoading("#ListProductsCheckoutCompleto");
+                disparaAjaxUpdate(idCurrent, valorInput, action, idCartPersonalization, true);
             }
         }
         $("#qtd_" + idCurrent).val(valorInput);
-
-        var id_frete = $("#id_frete_selecionado").val();
-        var cep_selecionado = $("#cep_selecionado").val();
-        ExibirDicadeFrete(id_frete, cep_selecionado);
-        //$('.qtdAction').off('click');
-
     });
 }
 
@@ -114,8 +91,10 @@ function RemoveProductCart() {
     $(".removeCartItem").click(function (event) {
         var idCurrent = $(this).attr("data-id"),
             idCartPersonalization = $(this).data('id-personalization-cart'),
+            restrictedDeliveryProduct = $(this).data('restricted-delivery'),
+            recalculatedRestrictedProducts = $("#recalculatedRestrictedProducts").val(),
             $this = $(this);
-        
+
         _confirm({
             title: "Deseja realmente remover esse produto do carrinho?",
             text: "",
@@ -135,34 +114,40 @@ function RemoveProductCart() {
                         idCartPersonalization
                     },
                     success: function (data) {
+                        LoadingCart(loading)
                         if (data.success === true) {
 
-                            if($('#formas-pagamento').length > 0) {
-                                $this.closest('[id^=itemCartProduct_]').remove();                              
-                                
-                                if($("[id^=itemCartProduct_]", "#checkout_products_list").length === 0){
-                                    
-                                    swal({
-                                        title: 'Ops ... Seu carrinho agora está vazio!',
-                                        html: 'Estamos te direcionando para a Home!',
-                                        type: 'warning',
-                                        showCancelButton: false,
-                                        confirmButtonColor: '#3085d6',
-                                        cancelButtonColor: '#d33',
-                                        confirmButtonText: 'OK'
-                                    }).then(function () {
-                                        window.location.href = "/Home";
-                                    });
-                                    
-                                } else {
-                                    atualizaResumoCarrinho(false);
-                                }                                
-                                
-                            } else {
-                                $this.closest('[id^=itemCartProduct_]').remove();
-                                CancelarCalculoFreteCart(1, 1);
+                            if (isGtmEnabled()) {
+                                pushRemoveFromCartEvent(idCurrent)
                             }
-                           
+                            
+                            $this.closest('[id^=itemCartProduct_]').remove();                              
+                                
+                            if($("[id^=itemCartProduct_]", "#checkout_products_list_cart").length === 0){
+
+                                swal({
+                                    title: 'Ops ... Seu carrinho agora está vazio!',
+                                    html: 'Estamos te direcionando para a Home!',
+                                    type: 'warning',
+                                    showCancelButton: false,
+                                    confirmButtonColor: '#3085d6',
+                                    cancelButtonColor: '#d33',
+                                    confirmButtonText: 'OK'
+                                }).then(function () {
+                                    window.location.href = "/home";
+                                });
+                                    
+                            } else {
+                                atualizaResumoCarrinho(false);
+                            }
+                            
+                            LoadCarrinho();
+
+                            if (recalculatedRestrictedProducts != undefined && restrictedDeliveryProduct.toLowerCase() == 'false' && recalculatedRestrictedProducts.toLowerCase() == 'false') {
+                                CancelarCalculoFreteCart(1, 1);
+                                
+                            }
+
                         }
                         else {
                             swal({
@@ -175,11 +160,13 @@ function RemoveProductCart() {
                             });
 
                             $this.closest('[id^=itemCartProduct_]').remove();
-                            
-                            if($this.hasClass("payment-cart"))
+
+                            if ($this.hasClass("payment-cart")) {
                                 atualizaResumoCarrinho(false);
-                            else                                    
+                            }
+                            else {
                                 LoadCarrinho();
+                            }
                         }
                     }
                 });
@@ -188,8 +175,30 @@ function RemoveProductCart() {
     });
 }
 
+function pushRemoveFromCartEvent(idCurrent) {
+    let cartItem = document.querySelector(`[data-id-cart='${idCurrent}']`);
+
+    let cartButon = cartItem.querySelector("[data-id-produto][data-id-sku]");
+
+    let idSku = cartButon.getAttribute('data-id-sku');
+
+    let idProduct = cartButon.getAttribute('data-id-produto');
+
+    var initialQuantity = Number($("#qtdInicial_" + idCurrent).val());
+
+    getProductAndPushRemoveFromCartEvent({ idProduct: idProduct, idSku: idSku, quantity: initialQuantity })
+}
+
+function shippingCalculateCart(status) {
+    $(".qtdAction").prop("disabled", status);
+    $(".removeCartItem").prop("disabled", status);
+    $(".qtdProduct").prop("disabled", status);
+    $("#ClearCart").prop("disabled", status);
+}
+
 function LoadServiceShipping() {
     $("#CallServiceShipping").click(function (event) {
+        shippingCalculateCart(true)
         $(this).addClass("loading");
         var zipCode = $("#shipping").val();
         $.ajax({
@@ -212,8 +221,16 @@ function LoadServiceShipping() {
                     //$(".tabela.frete").dropdown('refresh');
                     $(".description.resultado").show();
 
+                    if ($("#recalculatedRestrictedProducts").length) {
+                        var recalculatedRestrictedProducts = $("#recalculatedRestrictedProducts").val()
+                        if (recalculatedRestrictedProducts.toLowerCase() == 'true') {
+                            $(".productRestrictedMessage").show();
+                        }
+                    }
+
                     ChangeFrete();
                 }
+                shippingCalculateCart(false)
             },
             error: function (error) {
                 $("#CallServiceShipping").removeClass("loading");
@@ -223,34 +240,10 @@ function LoadServiceShipping() {
                         changeCd(true, false, undefined, true, true);
                     })
                 }
+                shippingCalculateCart(false)
             }
         });
         event.stopPropagation();
-    });
-}
-
-function ClearCart() {
-    $("#ClearCart").on("click", function (event) {
-        _confirm({
-            title: "Deseja realmente remover todos os produtos do carrinho?",
-            text: "",
-            type: "warning",
-            confirm: {
-                text: "Remover"
-            },
-            cancel: {
-                text: "Cancelar"
-            },
-            callback: function () {
-                $.ajax({
-                    method: "POST",
-                    url: "/Checkout/ClearCart",
-                    success: function (data) {
-                        window.location.href = "/home";
-                    }
-                });
-            }
-        });
     });
 }
 
@@ -277,11 +270,13 @@ function LoadCarrinho() {
                 var subTotalCarrinho = objCarrinho.subTotal;
                 var totalCarrinho = objCarrinho.total;
 
+                LoadingCart(loading)
+
                 UpdateCabecalhoCarrinho(descontoCarrinho, subTotalCarrinho, totalCarrinho);
             }
             else {
                 _alert("Ops ... Seu carrinho agora está vazio!", "Estamos te direcionando para a Home!", "warning");
-                window.location.href = "/Home";
+                window.location.href = "/home";
             }
         }
     });
@@ -310,9 +305,6 @@ function SaveFrete(zipCode, idShippingMode, deliveredByTheCorreiosService, carri
             hub: hub
         },
         success: function (data) {
-            if (loading)
-                isLoading("#ListProductsCheckoutCompleto");
-
             LoadCarrinho();
         }
     });
@@ -324,16 +316,24 @@ function ChangeFrete() {
         $(".ShippingValue").prop("checked", false).removeAttr("checked");
         ponteiroCurrent.prop("checked", true);
 
-
         var idCurrent = $(ponteiroCurrent).val();
         var zipCode = $("#shipping").cleanVal();
         var idShippingMode = idCurrent;
-
+        var recalculatedRestrictedProducts = $("#recalculatedRestrictedProducts").val()
 
         var deliveredByTheCorreiosService = $("#ship_" + idCurrent).attr("data-correios");
         var carrier = $("#ship_" + idCurrent).data("carrier");
         var mode = $("#ship_" + idCurrent).data("mode");
         var hub = $("#ship_" + idCurrent).data("hub");
+        var pickUpStore = $("#ship_" + idCurrent).data("pickupstore");
+
+        if ($("#recalculatedRestrictedProducts").length) {
+            if (pickUpStore.toLowerCase() === 'false' && recalculatedRestrictedProducts && $(".productRestrictedMessage").is(":visible")) {
+                _alert("Aviso!", "Não é possível selecionar o frete, pois existem produtos que não podem ser entregues para este endereço.", "warning", true);
+                ponteiroCurrent.prop("checked", false).removeAttr("checked");
+                return;
+            }
+        }
 
         isLoading("#ListProductsCheckoutCompleto");
 
@@ -407,7 +407,6 @@ $(document).ready(function () {
     AddMinusProductCart();
     RemoveProductCart();
     LoadServiceShipping();
-    ClearCart();
     InserirQuantidadeManual();
     CancelarCalculoFreteClk();
     loadCompraRecorrente();
@@ -440,7 +439,7 @@ $(document).on("click", "#finalizePurchase", function (e) {
                 if (CompraRecorrenteCart.modalConfig.hasModal())
                     CompraRecorrenteCart.modalConfig.showModal(data.redirect);
                 else
-                    window.location = data.redirect;
+                    window.location.href = "/" + data.redirect.toLowerCase()
 
             } else {
                 _alert("Mensagem", data.message, "error")

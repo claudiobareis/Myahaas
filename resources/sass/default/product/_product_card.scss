@@ -105,8 +105,10 @@
                 text-align: center;
             }            
         }
-        .info {
+        .avaliacao{
             display: none;
+        }
+        .info {            
             background-color: white;
             height: auto;
             position: relative;
@@ -175,8 +177,8 @@
             }
 
             .sku-options {
-                color: #ffffff;
-                display: flex;
+                display: none;
+                color: #ffffff;                
                 justify-content: space-between;
                 align-items: center;
                 opacity: 1;
@@ -291,6 +293,7 @@
                     }
                 }
                 &.mask {
+                    display: none;
                     background: rgba(255, 255, 255, .5);
                     padding: 10px 0;
                     @media screen and (min-width: $tablet-bp-min){

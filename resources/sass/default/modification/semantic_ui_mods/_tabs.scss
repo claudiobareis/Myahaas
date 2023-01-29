@@ -1,7 +1,29 @@
-.ui.secondary.pointing.menu .item.active {
-  @media only screen and(max-width: $mobile-bp) {
-    box-shadow: inset 2px 0 0 #1b1c1d !important;
-    border-radius: 0px !important;
-    border-bottom: 0px !important;
+.ui{
+  &.secondary{
+    &.pointing{
+      &.menu{
+        @media only screen and(max-width: $mobile-bp) {
+          padding: 0 15px 10px;
+        }
+        .item{
+          @media only screen and(max-width: $mobile-bp) {
+            margin: 0;
+            padding: 0;
+            box-shadow: none;
+            line-height: 40px;
+            font-family: $font-mont-name;
+          }
+          &.active{
+            @media only screen and(max-width: $mobile-bp) {
+              box-shadow: none !important;
+              border-radius: 0px !important;
+              border-bottom: 0px !important;
+              margin: 0;
+              padding: 0;
+            }
+          }
+        }
+      }
+    }
   }
 }
