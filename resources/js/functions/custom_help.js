@@ -69,4 +69,19 @@ $(document).ready(function() {
         }
     });
 
+    //Adicionando Classes para as páginas
+    $( document ).ready(function() {
+        var is_root = location.pathname == "/";
+        var is_root_home = location.pathname == "/home";
+    
+        if(is_root == true || is_root_home == true){
+            $('body').addClass('home');
+        } else if(location.pathname == "/customer/login"){
+            $('body').addClass('login');
+        } else{
+            $('body').addClass('interna');
+        }
+
+    });
+
 });
