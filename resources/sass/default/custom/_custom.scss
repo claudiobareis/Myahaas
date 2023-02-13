@@ -480,6 +480,7 @@ html, body {
     padding: 20px 60px;
     position: relative;
     top: -6px;
+    display: none;
     @media screen and (max-width: $mobile-bp) {
         padding: 20px 0 15px;        
         &.slick-slider{
